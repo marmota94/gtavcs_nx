@@ -4,6 +4,7 @@
     python tools/switch_m09_session.py game <evidence-dir> <run.cfg> [--label NAME] [--prompt TEXT] [--keep-card]
                                                                      [--settings vcs.ini]
     python tools/switch_m09_session.py shapes <burst-dir>
+    python tools/switch_m09_session.py scopemask <screenshot.png>...
 
 `game` is switch_m08_session.py's, with the screenshots kept privately under build/evidence/M09/screenshots/<label>
 (game pictures never enter Git). A run file with `burst userdata/tests/m09-burst/...` commands gets those folders
@@ -131,6 +132,16 @@ def shapes(folder):
     return lines, frames, bad
 
 
+def scopemask(png):
+    """Upstream's regress step "scopemask" strip test on one screenshot (upstream tools/regress.py step_scopemask): the
+    brightest value in the outer eighths of the 16:9 picture's rows, left and right; the mask reaches the edges when
+    both are <= 8. Returns (left, right)."""
+    w, h, rows = read_png(str(png))
+    top, bottom = (h - w * 9 // 16) // 2 + 8, (h + w * 9 // 16) // 2 - 8
+    strip = lambda x0, x1: max(max(rows[y][x * 3:x * 3 + 3]) for y in range(top, bottom, 3) for x in range(x0, x1, 2))  # noqa: E731
+    return strip(2, w // 8 - 5), strip(w - w // 8 + 5, w - 2)
+
+
 def summarise(session, label):
     log = session.evidence / f"{label}-gtavcs.txt"
     results = session.evidence / f"{label}-results.txt"
@@ -147,18 +158,27 @@ def summarise(session, label):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["preflight", "game", "shapes"])
+    ap.add_argument("command", choices=["preflight", "game", "shapes", "scopemask"])
     ap.add_argument("evidence")
     ap.add_argument("config", nargs="?")
     ap.add_argument("--label")
     ap.add_argument("--prompt")
     ap.add_argument("--keep-card", action="store_true")
     ap.add_argument("--settings")
+    ap.add_argument("more", nargs="*", help="scopemask: further screenshots")
     a = ap.parse_args()
     if a.command == "shapes":
         lines, frames, bad = shapes(a.evidence)
         print("\n".join(lines))
         return 0 if frames and not bad else 1
+    if a.command == "scopemask":
+        bad = 0
+        for png in [a.evidence] + ([a.config] if a.config else []) + a.more:
+            left, right = scopemask(png)
+            ok = left <= 8 and right <= 8
+            bad += 0 if ok else 1
+            print(f"{png} left_max {left} right_max {right} {'pass' if ok else 'FAIL'}")
+        return 1 if bad else 0
     session = m04.Session(Path(a.evidence))
     if a.command == "preflight":
         ok = m04.preflight(session)

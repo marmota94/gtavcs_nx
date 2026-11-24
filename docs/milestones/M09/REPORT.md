@@ -46,19 +46,20 @@ machines fell on different cutscene frames (other FOVs), so only same-frame pair
 
 `hardware/shape3-burst-in-shapes.txt`, `-out-shapes.txt`: per presented frame the picture rectangle (lit columns of the
 320x180 capture), the shape the runtime showed it at (burst.txt `aspect`) and what it shows (upstream's menushape
-test: the game's sky at the top middle). Entering: 24 x (16:9, game), 96 x (4:3, menu). Leaving: 12 x (4:3, menu),
-108 x (16:9, game). 0 mismatched of 240. `shape2` (b3fc1722): the same, 0 of 240.
+test: the game's sky at the top middle). Entering: 31 x (16:9, game), 89 x (4:3, menu). Leaving: 13 x (4:3, menu),
+107 x (16:9, game). 0 mismatched of 240. `shape2` (b3fc1722) first failed: the session's judge (`session-shape2.txt`: burst-in 97, burst-out 12 mismatched, `RESULT game FAIL`) compared each picture with the 16:9 `frame` rectangle it is placed in, so every 4:3 menu frame failed; the judge was changed in 92357a4 to compare it with the `aspect` it is shown at, and the committed shape2 shapes files are that judge's re-check of the same PNGs (hashes in the session log): 24 game frames then 96 menu frames entering, 12 menu then 108 game leaving, 0 mismatched.
 
 ## Cost of 16:9 against 4:3 (M09-06)
 
 Handheld, 1x, the player standing at the S4 spot; game frames from `perf.csv` over 80-200 s, GPU from the
 `[rhi-stats] gpu` lines over the same span (GL_TIME_ELAPSED from one present to the next), targets from
-`[rhi-stats] targets`, heap from the `progress` lines.
+`[rhi-stats] targets` over the whole run (each run logs 14 or 15 targets, the two values in the table; inside
+80-200 s `cost-43` logged only its 17.6 MiB), heap from the `progress` lines.
 
 | | 4:3 (`cost-43`) | 16:9 (`cost-169`) | 16:9, 640-wide targets (`cost-169n`) |
 |---|---|---|---|
 | Largest target (picture) | 640x1472 | 853x1472 | 640x1472 |
-| Render targets + depth | 17.6-21.1 MiB | 23.0-26.5 MiB | 19.9-23.4 MiB |
+| Render targets + depth (whole run) | 17.6-21.1 MiB | 23.0-26.5 MiB | 19.9-23.4 MiB |
 | GPU per presented frame, mean | 11.43 ms | 21.28 ms | 34.20 ms |
 | GPU time per second | ~548 ms | ~537 ms | ~611 ms |
 | Game frame median / p95 | 23.9 / 57.5 ms | 48.8 / 366.1 ms | 49.1 / 103.3 ms |
@@ -77,4 +78,5 @@ world in view at 16:9); they are not a controlled memory cost. The user kept 16:
 
 `drive`: `cruise status` 334 -> 5,336 m of the 5,736 m loop in 360 s; the player's positions every 15 s cover both
 sides of the bay (574,509 ... -675,1162 ... 574,236). 24 screenshots: buildings, trees, roads, water and the skyline
-reach both outer eighths of the 16:9 picture in every frame; no hole, missing cell or late pop-in at the edges seen.
+reach both outer eighths of the 16:9 picture in every frame; no hole or missing cell at the edges seen.
+Stills 15 s apart show what is drawn at the edges, not whether it appeared late: pop-in is not claimed.

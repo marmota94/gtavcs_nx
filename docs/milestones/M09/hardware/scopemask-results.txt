@@ -1,0 +1,14 @@
+# M09-05 scope / camera mask at 16:9: upstream's regress step "scopemask" strip test (the brightest value in the
+# outer eighths of the picture's rows, left / right; pass <= 8), run by
+#   python tools/switch_m09_session.py scopemask <png>...
+# on the private screenshots (game pictures never enter Git; their sha256 below and in screenshots-sha256.txt).
+# silent3 (NRO 99472722): camera modes 7 (sniper) and 47 (camera) aimed. silent2 (b3fc1722): the scope commands lacked
+# TERMINATE, so no scope was shown: the strips show the world (the FAIL lines are the expected contrast, not a defect).
+5e5e90795092f4978b9fbebe8c2f49309c17ea9e4a78e9396a5ae71fcdaa2808  screenshots/silent3/scope-sniper.png
+silent3/scope-sniper.png left_max 2 right_max 2 pass
+52241353e808c6895e30b84fb9ad934c3f0e544c6de28f6015ee8f31aff2c5bd  screenshots/silent3/scope-camera.png
+silent3/scope-camera.png left_max 2 right_max 2 pass
+6dbfffed852a9bc8efda73ad115ac2c2ab78fef35c6f3ef08fdf3701758ee4d4  screenshots/silent2/scope-sniper.png
+silent2/scope-sniper.png left_max 255 right_max 47 FAIL
+6dbfffed852a9bc8efda73ad115ac2c2ab78fef35c6f3ef08fdf3701758ee4d4  screenshots/silent2/scope-camera.png
+silent2/scope-camera.png left_max 255 right_max 47 FAIL

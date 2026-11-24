@@ -72,11 +72,11 @@
  "M09-04": [
   {
    "path": "docs/milestones/M09/hardware/shape3-burst-in-shapes.txt",
-   "result": "NRO 99472722: entering the pause map, 24 game frames 16:9 then 96 menu frames 4:3, 0 mismatched"
+   "result": "NRO 99472722: entering the pause map, 31 game frames 16:9 then 89 menu frames 4:3, 0 mismatched"
   },
   {
    "path": "docs/milestones/M09/hardware/shape3-burst-out-shapes.txt",
-   "result": "Leaving: 12 menu frames 4:3 then 108 game frames 16:9, 0 mismatched"
+   "result": "Leaving: 13 menu frames 4:3 then 107 game frames 16:9, 0 mismatched"
   },
   {
    "path": "docs/milestones/M09/hardware/shape3-results.txt",
@@ -93,8 +93,8 @@
    "result": "NRO 99472722: cutscene bars on / off / on, locked on at 4:3; sniper (camera mode 7) and camera (mode 47) aimed"
   },
   {
-   "path": "docs/milestones/M09/REPORT.md",
-   "result": "Scope and camera masks: brightest value in the outer eighths 2 / 2 each (limit 8; 255 / 47 without the scope)"
+   "path": "docs/milestones/M09/hardware/scopemask-results.txt",
+   "result": "Scope and camera masks (upstream's scopemask strip test, tools/switch_m09_session.py scopemask): brightest value in the outer eighths 2 / 2 each (limit 8; 255 / 47 without the scope)"
   },
   {
    "path": "docs/milestones/M09/hardware/accept-gtavcs.txt",
