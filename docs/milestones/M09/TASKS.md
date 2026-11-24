@@ -26,7 +26,15 @@ of it through the OpenGL backend (patch 0008) without change; M09 makes it the S
 
 ## Candidate NRO
 
-`99472722a5cbd07817040f594759aff6b34509876cafb7cdd32d3dd0fd82bef7`, built by `python tools/build_game.py` from commit
+After review 1: `af1a582d041112bbf612726f36caa6e178864e6166fc3fc034a2db6f191c30f1`, built from commit `0f6cc36` with a
+clean tree (manifest root_dirty false; overlay series 00fc91bc). `git diff 178f68a 0f6cc36 -- src CMakeLists.txt patches
+cmake tests/core` changes only patch 0013's `applyPreset` fallback, now skipped for a key locked by its environment
+variable (review 1 finding 4). It is reached only when a preset is pressed while such a key is locked; no run on
+99472722 or b3fc1722 did that (the runs with `env VCS_ASPECT` pressed no preset; `presets` and `accept2` had no lock),
+so they stand. Runs on af1a582d: `presets-r1` (`presets` again: Enhanced 169, Authentic 43, Widescreen, light 169, as on
+99472722) and `presets-env` (`VCS_ASPECT=43`: every preset leaves the aspect at 43, no `not offered here` line).
+
+Before review 1: `99472722a5cbd07817040f594759aff6b34509876cafb7cdd32d3dd0fd82bef7`, built by `python tools/build_game.py` from commit
 `178f68a` with a clean tree (build/m04/private/manifest.json: root_dirty false). Runs on it: `presets`, `silent3`,
 `shape3`, `text`. The other runs were on `b3fc17227bdc8f59efd3c70c8edd678cfb255f7e4b5c08b2d66dcd1a0edc5249` (commit `b2e458d`,
 clean): `git diff b2e458d 178f68a -- src CMakeLists.txt patches cmake` changes only patch 0013's preset functions in

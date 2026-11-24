@@ -35,8 +35,8 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M08: the developer menu on L3+R3 proven on the Switch, handheld; awaiting independent review).**
-M06 (the handheld beta) and M07 (sound and movies) are merged.
+**Current deliverable (M09: widescreen, 16:9 Hor+ by default on the Switch, proven in handheld; awaiting independent review).**
+M06 (the handheld beta), M07 (sound and movies) and M08 (the developer menu on L3+R3) are merged.
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
 `src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
@@ -313,3 +313,10 @@ settings, trainer, free camera, performance overlay, frame-time recording and di
 103-185 ms late; R1-then-L3 sets the game's own free-aim flag). Menus use A to choose and B to go back; touch is read from HID (switch-sdl2
 delivered none). Damaged vcs.ini values are ignored and repaired; settings survive relaunch and reset. Root patch 0012.
 The 1080p menu layout was checked in handheld with VCS_NX_OUTPUT=1080; docked and the Pro Controller: M16.
+M09 (2026-11-21, handheld, paired Joy-Cons attached): upstream's Hor+ chain runs through the OpenGL backend unchanged;
+the Switch's Aspect ratio offers 4:3 and 16:9, 16:9 by default (root patch 0013), switched live from the developer menu
+and kept across relaunch. The view window and entity planes match the desktop reference; HUD modes, cutscene bars, the
+scope mask and 2D-only frames (4:3 inside the 16:9 frame, 0 mismatched shapes) were checked on hardware. Cost at 1x
+handheld (S4 standing): game frame median 48.8 / p95 366.1 ms at 16:9 against 23.9 / 57.5 ms at 4:3, with a ~400 ms
+stall about once a second from the wide targets; the user kept 16:9 the default and moved the stall to M10-03.
+Docked parts: M16-03.

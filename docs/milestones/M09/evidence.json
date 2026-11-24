@@ -21,6 +21,14 @@
    "result": "NRO 99472722: Enhanced / Widescreen, light get 16:9 for Match window, Authentic sets 4:3"
   },
   {
+   "path": "docs/milestones/M09/hardware/presets-r1-gtavcs.txt",
+   "result": "NRO af1a582d (review 1 fix): the same, Enhanced 169, Authentic 43, Widescreen, light 169"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/presets-env-gtavcs.txt",
+   "result": "NRO af1a582d, VCS_ASPECT=43 locking the aspect: Enhanced, light, Authentic leave it at 43, no 'not offered here' line"
+  },
+  {
    "path": "docs/milestones/M09/hardware/person-observations.txt",
    "result": "The user after switching live: 'Everything was ok'"
   },
