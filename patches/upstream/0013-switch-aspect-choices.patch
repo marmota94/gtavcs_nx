@@ -19,15 +19,16 @@ diff --git a/src/main.cpp b/src/main.cpp
 index a5c9173..157d9d3 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
-@@ -329,11 +329,23 @@ namespace
+@@ -329,11 +329,24 @@ namespace
      template <size_t N> void applyPreset(const char *name, const Preset (&values)[N])
      {
          for (const Preset &p : values)
 -            settings::set(p.key, p.value);
-+            if (!settings::set(p.key, p.value))
++            if (!settings::set(p.key, p.value) && !settings::overridden(p.key))
 +            {
 +                // [gta-recomp] a value this host does not offer (settings::setChoices; the Switch has no Match window:
-+                // its screens are 16:9): the host's default for it instead
++                // its screens are 16:9): the host's default for it instead; a key locked by its environment variable
++                // (also refused by set) keeps that variable's value
 +                for (const settings::Spec &s : settings::all())
 +                    if (s.key == p.key && s.type == settings::Type::Choice)
 +                    {
