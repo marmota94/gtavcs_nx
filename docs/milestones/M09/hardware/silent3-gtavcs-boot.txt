@@ -1,0 +1,1 @@
+[boot] GTA VCS NX; HOS=00160500 libnx=libnx 4.12.0-1 applet=0

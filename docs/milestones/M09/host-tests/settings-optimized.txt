@@ -1,0 +1,45 @@
+commit d9522d972a3ff84ad5fc56606e4bdf2f9b5f3163 dirty=False
++ docker run --rm --network=none --security-opt seccomp=unconfined --mount type=bind,source=C:\Users\Gamer\Documents\gtavcs_nx,target=/work gtavcs-nx-toolchain:m01 bash -c set -e; mkdir -p /tmp/t && cd /work && printf 'int runSettingsTests();\nint main() { return runSettingsTests() ? 1 : 0; }\n' > /tmp/t/driver.cpp && g++ --version | head -1 && g++ -std=c++20 -Wall -Wextra -O2  -I/work/build/m04/game-source-00fc91bc73a5ccef/src -I/work/build/m04/game-source-00fc91bc73a5ccef/third_party/PS2Recomp/ps2xRuntime/include /work/build/m04/game-source-00fc91bc73a5ccef/src/settings/settings.cpp tests/core/settings_tests.cpp /tmp/t/driver.cpp -o /tmp/t/settings && setarch -R timeout 600 /tmp/t/settings
+g++ (Debian 12.2.0-14+deb12u1) 12.2.0
+[settings] /tmp/t/vcs.ini: ignoring test.toggle=abc
+[settings] /tmp/t/vcs.ini: ignoring test.choice=4x
+[settings] /tmp/t/vcs.ini: ignoring test.integer=250
+[settings] /tmp/t/vcs.ini: ignoring test.key=
+[settings] /tmp/t/vcs.ini: ignoring test.integer=-5
+[settings] /tmp/t/vcs.ini: ignoring test.toggle=junk
+[settings] /tmp/t/vcs.ini: ignoring test.choice=2
+PASS settings text 'abc' for a toggle ignored: the default 1, not atoi's 0
+PASS settings '4x' and '1<NUL>' for a choice ignored: the default 2
+PASS settings 250 above the range ignored: the default 100
+PASS settings an empty key ignored: the default
+PASS settings state lines survive a damaged file
+PASS settings applyAll applies the default after a damaged value
+PASS settings good values load, spaces around them trimmed
+PASS settings -5 below the range ignored (the value before stays: load starts from what is set); '+4' taken (strtol)
+PASS settings set a value
+PASS settings the next save writes the damaged key's real value over it
+PASS settings comments and state kept, the change saved
+PASS settings relaunch: the saved value loads again
+PASS settings reset: every setting back to its default, also after reloading
+PASS settings missing file: defaults
+PASS settings missing file: the first change creates it
+PASS settings four pages with rows
+PASS settings hide the keyboard row
+PASS settings an unknown key is refused
+PASS settings the page left without a row has no tab
+PASS settings a hidden setting still takes a value
+PASS settings setChoices: an unknown key is refused
+PASS settings setChoices: a setting that is not a Choice is refused
+PASS settings setChoices: a default outside the choices is refused
+PASS settings a refused setChoices changes nothing
+PASS settings setChoices: narrowed, default 4
+PASS settings the help and the choices replaced
+PASS settings no file: the host's default
+PASS settings a saved value no longer offered (2) ignored: the host's default
+PASS settings set refuses a value no longer offered
+PASS settings an offered value loads
+PASS settings back to the host's default: the file's line rewritten
+PASS settings the host's default is not appended to a new file (only values off the default are)
+PASS settings: 0 failure(s)
+
+exit=0

@@ -1,10 +1,14 @@
 """Run a Switch run schedule (tests/switch/*.cfg, the nxrun.cfg format) on the desktop reference.
 
-    python tools/m04_reference.py tests/switch/m04-boot.cfg <evidence-dir> [--iso PATH] [--rhi null|vulkan|opengl]
+    python tools/m04_reference.py tests/switch/m04-boot.cfg <evidence-dir> [--iso PATH] [--rhi null|d3d11|vulkan|opengl]
+        [--setting KEY=VALUE ...]
 
---rhi (default null, M04's comparison) picks the reference's renderer; `opengl` needs the reference built with the
-port's backend (tests/rhi/desktop-opengl.patch, M05). A schedule's `screenshot <path>` commands write to
-<evidence-dir>/screenshots/<file name> instead (game pictures: keep the evidence folder under build/).
+--rhi (default null, M04's comparison) picks the reference's renderer (d3d11: a Windows reference build, M09);
+`opengl` needs the reference built with the port's backend (tests/rhi/desktop-opengl.patch, M05). A schedule's
+`screenshot <path>` commands write to <evidence-dir>/screenshots/<file name> instead (game pictures: keep the
+evidence folder under build/). --setting (M09) starts the reference with a setting's value as a saved one, not an
+environment override, so the schedule's `setting` commands can still change it (the Switch's defaults, e.g.
+display.aspect=169): the lines go into the reference's vcs.ini for the run, and the file is restored afterwards.
 
 The reference is upstream's own desktop build in build/m02/reference (M02-01), started hidden with VCS_RHI=null and
 an empty card of its own (VCS_DATA_DIR under the evidence folder; never the player's). The schedule's commands go
@@ -107,7 +111,8 @@ def main():
     parser.add_argument("config")
     parser.add_argument("evidence", type=Path)
     parser.add_argument("--iso", type=Path)
-    parser.add_argument("--rhi", default="null", choices=["null", "vulkan", "opengl"])
+    parser.add_argument("--rhi", default="null", choices=["null", "d3d11", "vulkan", "opengl"])
+    parser.add_argument("--setting", action="append", default=[], metavar="KEY=VALUE")
     args = parser.parse_args()
     config = parse(args.config)
     iso = args.iso or next(iter(sorted(ROOT.glob("*.iso"))), None)
@@ -133,8 +138,18 @@ def main():
         results.write(line + "\n")
         results.flush()
 
-    process = subprocess.Popen([str(exe), str(iso)], cwd=REFERENCE / "build", env=env, stdout=log,
-                               stderr=subprocess.STDOUT)
+    ini = REFERENCE / "build/vcs.ini"
+    saved_ini = ini.read_bytes() if ini.exists() else None
+    if args.setting:
+        text = (saved_ini or b"").decode()
+        ini.write_text(text + ("" if not text or text.endswith("\n") else "\n") + "\n".join(args.setting) + "\n")
+    try:
+        process = subprocess.Popen([str(exe), str(iso)], cwd=REFERENCE / "build", env=env, stdout=log,
+                                   stderr=subprocess.STDOUT)
+    except OSError:
+        if saved_ini is not None:
+            ini.write_bytes(saved_ini)
+        raise
     try:
         start = time.time() + 60
         while time.time() < start:
@@ -147,7 +162,7 @@ def main():
             raise SystemExit("The reference never answered on the control channel")
         t0 = time.time()
         result(0.0, "config", f"profile={quote(config['profile'])} seconds={config['seconds']} "
-                              f"commands={len(config['commands'])} renderer={args.rhi}")
+                              f"commands={len(config['commands'])} renderer={args.rhi} settings={quote(' '.join(args.setting))}")
         pending = list(config["commands"])
         next_report = 0.0
         while True:
@@ -189,6 +204,11 @@ def main():
             process.kill()
         results.close()
         log.close()
+        if args.setting:
+            if saved_ini is None:
+                ini.unlink()
+            else:
+                ini.write_bytes(saved_ini)
     return 0
 
 

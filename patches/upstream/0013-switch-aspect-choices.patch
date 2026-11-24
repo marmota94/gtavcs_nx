@@ -1,0 +1,92 @@
+diff --git a/docs/SETTINGS_MENU_WIDESCREEN.md b/docs/SETTINGS_MENU_WIDESCREEN.md
+index 8484040..ee1631b 100644
+--- a/docs/SETTINGS_MENU_WIDESCREEN.md
++++ b/docs/SETTINGS_MENU_WIDESCREEN.md
+@@ -262,6 +262,12 @@ and **Alt+Enter** switches at any time, also with a menu open; the choice is sav
+ 
+ - A host without a keyboard, a mouse or a desktop window hides their rows (`settings::setHidden`): the values are
+   still loaded, saved and reset, and a page left with no row has no tab (`settings::pages`).
++- A host with one screen shape narrows a choice and gives it its own default (`settings::setChoices`, Switch port M09,
++  2026-11-21): the Switch's screens are 16:9 (the 1280x720 panel, a 1920x1080 TV), so Aspect ratio offers 4:3 and 16:9,
++  16:9 by default; 16:10, 21:9, 32:9 and Match window would only letterbox inside it. A saved value no longer offered
++  is ignored at load like any invalid one. A preset value the host does not offer (Enhanced's and Widescreen, light's
++  Match window) becomes the host's default for that setting (16:9), and Authentic (PS2) sets 4:3 itself rather than the
++  aspect's default.
+ - A host with its own way to the menus turns the desktop's gamepad chords off (`ui::setDesktopGamepadChords`: Back +
+   Start, Back + RB, Back + LB; on the Switch Back is the game's Select, and the port's developer menu opens on
+   L3 + R3). Its menu draws first in the UI hook (`vcs::launcher::setHostUi`) and blocks the game's input as these do;
+diff --git a/src/main.cpp b/src/main.cpp
+index a5c9173..157d9d3 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -329,11 +329,24 @@ namespace
+     template <size_t N> void applyPreset(const char *name, const Preset (&values)[N])
+     {
+         for (const Preset &p : values)
+-            settings::set(p.key, p.value);
++            if (!settings::set(p.key, p.value) && !settings::overridden(p.key))
++            {
++                // [gta-recomp] a value this host does not offer (settings::setChoices; the Switch has no Match window:
++                // its screens are 16:9): the host's default for it instead; a key locked by its environment variable
++                // (also refused by set) keeps that variable's value
++                for (const settings::Spec &s : settings::all())
++                    if (s.key == p.key && s.type == settings::Type::Choice)
++                    {
++                        settings::set(s.key, s.defaultValue);
++                        std::fprintf(stderr, "[settings] preset %s: %s=%d not offered here, %d instead\n", name, p.key,
++                                     p.value, s.defaultValue);
++                    }
++            }
+         std::fprintf(stderr, "[settings] preset %s\n", name);
+     }
+ 
+-    const Preset kAuthenticTiming[] = {{"display.timing", 0}, {"display.fps", 30}};
++    // [gta-recomp] and the PS2's 4:3 picture whatever the host's default aspect (16:9 on the Switch, setChoices)
++    const Preset kAuthenticTiming[] = {{"display.timing", 0}, {"display.fps", 30}, {"display.aspect", 43}};
+ 
+     void applyAuthentic()
+     {
+diff --git a/src/settings/settings.cpp b/src/settings/settings.cpp
+index aad00f5..2f2276e 100644
+--- a/src/settings/settings.cpp
++++ b/src/settings/settings.cpp
+@@ -142,6 +142,22 @@ namespace settings
+         return true;
+     }
+ 
++    bool setChoices(const std::string &key, std::vector<Choice> choices, int defaultValue, const std::string &help)
++    {
++        auto it = g_index.find(key);
++        if (it == g_index.end() || g_specs[it->second].type != Type::Choice ||
++            std::none_of(choices.begin(), choices.end(), [&](const Choice &c) { return c.value == defaultValue; }))
++            return false;
++        Spec &s = g_specs[it->second];
++        s.choices = std::move(choices);
++        s.defaultValue = defaultValue;
++        if (!help.empty())
++            s.help = help;
++        std::lock_guard<std::mutex> lock(g_mutex);
++        g_values[key] = defaultValue;
++        return true;
++    }
++
+     int value(const std::string &key)
+     {
+         std::lock_guard<std::mutex> lock(g_mutex);
+diff --git a/src/settings/settings.h b/src/settings/settings.h
+index 858d2bd..e155069 100644
+--- a/src/settings/settings.h
++++ b/src/settings/settings.h
+@@ -80,6 +80,12 @@ namespace settings
+     // keyboard, the mouse and the desktop window). Its value is still loaded, saved and reset. False for an unknown
+     // key. Main thread, before the menu opens.
+     bool setHidden(const std::string &key, bool hidden);
++    // [gta-recomp] Narrows a registered Choice setting to the choices a host supports and gives it that host's default
++    // (the Switch port: display.aspect 4:3 / 16:9, 16:9 by default - its screens are 16:9). A saved value outside the
++    // choices is then ignored at load like any invalid one. False for an unknown key, a setting that is not a Choice,
++    // or a default that is not one of the choices. A nonempty `help` replaces the row's help (it may name choices that
++    // are gone). Main thread, after add() and before load().
++    bool setChoices(const std::string &key, std::vector<Choice> choices, int defaultValue, const std::string &help = "");
+ 
+     int value(const std::string &key);         // the default for unknown keys / before load
+     bool set(const std::string &key, int v);   // validates, saves vcs.ini, calls onChange (Live); false if refused

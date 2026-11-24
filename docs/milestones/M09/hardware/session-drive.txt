@@ -1,0 +1,43 @@
+11:55:49 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive
+11:55:49 == m09-drive: profile=m09-drive nro sha256=b3fc17227bdc8f59efd3c70c8edd678cfb255f7e4b5c08b2d66dcd1a0edc5249
+11:55:54 tree /switch/gtavcs_nx/gamefolder/userdata entries=508 file=userdata-before-m09-drive.txt
+11:55:54 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+11:55:54 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/nxrun-results.txt
+11:55:54 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=2214 sha256=c56d1c4906788622a234cdf530fd12d8aca6c0c1b4d5b239befde8516e227910
+11:55:59 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66366712 bytes\n26193959 sent (39.47%), 2164 blocks'
+12:03:31 ftp back after 451s: the payload has ended
+12:03:34 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+12:03:34 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=97908 sha256=861f1d55c29b244683cba205475860ac0ce7e387cdb42e8ae0e27cdec969af8f
+12:03:34 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+12:03:34 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/nxrun-results.txt bytes=49242 sha256=335a6c07b6654be13193ed44653a7a91cbb96c95a2ab581a2e041460518c00e1
+12:03:40 tree /switch/gtavcs_nx/gamefolder/userdata entries=538 file=userdata-after-m09-drive.txt
+12:03:45 m09-drive: clean_exit_line=True results_tail=['stop t=420.031 reason=seconds frames=10487', 'shutdown t=420.031 frames=10487', 'audit t=420.031 file_opens=175 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+12:03:45 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-060.png bytes=688294 sha256=2fb2213b4ac7e5f59f442669f39fef5d76b574498f5764849ae63e74d6bcc8ac
+12:03:45 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-075.png bytes=817929 sha256=664f233ab3d83e2a0b1116e4f37600a7b2e30aee13090829f99a29de7c8307e9
+12:03:46 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-090.png bytes=828665 sha256=5d991aa45b7d1edd628f00aeef4f08bcda56f9f802b517a533fbeba47b010e4a
+12:03:46 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-105.png bytes=514154 sha256=6901378ce043c0ed0f11ea29f1757d05a08412650736ec52d115e3f68b6e7144
+12:03:46 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-120.png bytes=757522 sha256=5a239feb8be8a3e2c4b06b8125fef5aac036e119e1e43544f2ac0d4f96a45c8c
+12:03:46 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-135.png bytes=746739 sha256=7e1e734e5379d159cfd8c34e0eb400e49870b17b56002d66f6f43781b60a66d7
+12:03:46 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-150.png bytes=404132 sha256=652bb141e7412c5aaf3adfe4bf29003998f69132abbdfc1baf7f3cd09133910e
+12:03:46 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-165.png bytes=686703 sha256=768e4771d3a24ff41354f87cd6c797acb720b1cce151f78f2baacde3955cdee4
+12:03:46 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-180.png bytes=602317 sha256=dbef546b2fb36144619dd931559fdb978fe4f1ddc6bc625595f7d778d29d7e9b
+12:03:46 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-195.png bytes=660688 sha256=d9ed5c5c5ed85e98ba977da23cd942120b9870e839e6156aff08b10b4b3fe9e3
+12:03:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-210.png bytes=687871 sha256=1f351c2aa448a03e8353c6f81482da22f6129be10681dc8c3d2cac29986c82d7
+12:03:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-225.png bytes=628739 sha256=4c1577b374bdaae1ebb54bfcc1f3cb3f8b22646094629080086e1a2beb600f6d
+12:03:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-240.png bytes=629804 sha256=c49e7b16573c47c9adf5981b1912df667f1e5ce4332dc48fb8facf8a4f66c668
+12:03:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-255.png bytes=612328 sha256=49af0ac91418f66f12f445ff3933e6d916dffdfb5faab08d512d4f6ba3d5ff98
+12:03:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-270.png bytes=609461 sha256=958eb9c5b21327c06d4b16b4a5401e9138f63b24fc7a6160a51d3721ddbfe5ad
+12:03:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-285.png bytes=748195 sha256=d329e63b15c92158b50fa215cd50a57ddd1fdb854230229acf73b6d7c3a45eab
+12:03:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-300.png bytes=562686 sha256=973347801394ca562444f06887edee352bac8cbfcb1678bb9a45203b4248b97c
+12:03:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-315.png bytes=593566 sha256=997c03a1c6eb6364713bc32efdd9cd603311df4f386b7d2e1b2d23a6259f1562
+12:03:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-330.png bytes=738907 sha256=77a48842a601731379fe4769be6adcead5222536c6dc1a59fad8d4ada7c51292
+12:03:48 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-345.png bytes=793231 sha256=51359991b892a94a660c73df9ff35e301ff7a08b0854846927fa01b131bac828
+12:03:48 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-360.png bytes=730299 sha256=c17054c044a9123f5a7350e3e6b5a72b5ddba708a62b21979a37cd8dec6ee515
+12:03:48 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-375.png bytes=869233 sha256=650d4a3a86b7c32a96ca0eb7bb786849caa372cfc151e6f1f4fa9d8b545ff530
+12:03:48 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-390.png bytes=710393 sha256=33d6659aca826ab5cfb082b4d2e41c33bc58753d5537958d5e778b0ba21c9cd0
+12:03:48 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/drive-405.png bytes=891050 sha256=e0dfda69e4eac151a761cb54abf3cf6aa2f4697f9a883269abd1320f73969c7b
+12:03:48 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive/nxrun-results.txt bytes=49242 sha256=335a6c07b6654be13193ed44653a7a91cbb96c95a2ab581a2e041460518c00e1
+12:03:48 drive: read back 25 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m09-drive (screenshots private under build\evidence\M09\screenshots\drive)
+12:03:48 drive: 11 chord / menu / touch / settings lines -> drive-m08.txt
+12:03:48 drive: 128 widescreen lines -> drive-m09.txt
+12:03:48 RESULT game PASS

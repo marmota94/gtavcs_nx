@@ -31,6 +31,9 @@ namespace rhi
         uint64_t textures = 0, textureBytes = 0; // estimated: width x height x 4 x samples, mip chains included
         uint64_t buffers = 0, bufferBytes = 0;
         uint64_t samplers = 0, pipelines = 0, programs = 0, framebuffers = 0;
+        // render targets and depth buffers among the textures (M09-06), and the largest one alive (by area)
+        uint64_t targets = 0, targetBytes = 0;
+        uint32_t largestTargetWidth = 0, largestTargetHeight = 0;
         uint64_t pendingDeletes = 0;   // GL names waiting for the owner thread (deferred destruction)
         uint64_t glErrors = 0;         // glGetError results (polled at present and by glCheck)
         uint64_t debugMessages = 0;    // KHR_debug messages of severity medium or high

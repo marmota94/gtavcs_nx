@@ -1,0 +1,188 @@
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 5 (13.4 MiB) largest 853x1472
+[present] display aspect 1.778
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[nxrun] command t=80.079 at=80.000000 command="screenshot userdata/tests/m09-accept/live-080.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=90.024 at=90.000000 command="screenshot userdata/tests/m09-accept/live-090.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=100.067 at=100.000000 command="screenshot userdata/tests/m09-accept/live-100.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=110.029 at=110.000000 command="screenshot userdata/tests/m09-accept/live-110.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=120.108 at=120.000000 command="screenshot userdata/tests/m09-accept/live-120.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=130.025 at=130.000000 command="screenshot userdata/tests/m09-accept/live-130.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=140.078 at=140.000000 command="screenshot userdata/tests/m09-accept/live-140.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=150.104 at=150.000000 command="screenshot userdata/tests/m09-accept/live-150.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=160.057 at=160.000000 command="screenshot userdata/tests/m09-accept/live-160.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=170.041 at=170.000000 command="screenshot userdata/tests/m09-accept/live-170.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=180.044 at=180.000000 command="screenshot userdata/tests/m09-accept/live-180.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=190.106 at=190.000000 command="screenshot userdata/tests/m09-accept/live-190.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=200.093 at=200.000000 command="screenshot userdata/tests/m09-accept/live-200.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=210.025 at=210.000000 command="screenshot userdata/tests/m09-accept/live-210.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=220.042 at=220.000000 command="screenshot userdata/tests/m09-accept/live-220.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=230.029 at=230.000000 command="screenshot userdata/tests/m09-accept/live-230.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=240.074 at=240.000000 command="screenshot userdata/tests/m09-accept/live-240.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=250.019 at=250.000000 command="screenshot userdata/tests/m09-accept/live-250.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=260.116 at=260.000000 command="screenshot userdata/tests/m09-accept/live-260.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=270.109 at=270.000000 command="screenshot userdata/tests/m09-accept/live-270.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=280.075 at=280.000000 command="screenshot userdata/tests/m09-accept/live-280.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=290.017 at=290.000000 command="screenshot userdata/tests/m09-accept/live-290.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=300.078 at=300.000000 command="screenshot userdata/tests/m09-accept/live-300.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=310.060 at=310.000000 command="screenshot userdata/tests/m09-accept/live-310.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=320.099 at=320.000000 command="screenshot userdata/tests/m09-accept/live-320.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=330.057 at=330.000000 command="screenshot userdata/tests/m09-accept/live-330.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=340.106 at=340.000000 command="screenshot userdata/tests/m09-accept/live-340.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=350.092 at=350.000000 command="screenshot userdata/tests/m09-accept/live-350.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=360.054 at=360.000000 command="screenshot userdata/tests/m09-accept/live-360.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=370.147 at=370.000000 command="screenshot userdata/tests/m09-accept/live-370.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=380.118 at=380.000000 command="screenshot userdata/tests/m09-accept/live-380.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=390.111 at=390.000000 command="screenshot userdata/tests/m09-accept/live-390.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=400.035 at=400.000000 command="screenshot userdata/tests/m09-accept/live-400.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=410.074 at=410.000000 command="screenshot userdata/tests/m09-accept/live-410.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=420.144 at=420.000000 command="screenshot userdata/tests/m09-accept/live-420.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=430.030 at=430.000000 command="screenshot userdata/tests/m09-accept/live-430.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=440.091 at=440.000000 command="screenshot userdata/tests/m09-accept/live-440.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=450.115 at=450.000000 command="screenshot userdata/tests/m09-accept/live-450.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=460.173 at=460.000000 command="screenshot userdata/tests/m09-accept/live-460.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=470.081 at=470.000000 command="screenshot userdata/tests/m09-accept/live-470.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=480.217 at=480.000000 command="screenshot userdata/tests/m09-accept/live-480.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=490.024 at=490.000000 command="screenshot userdata/tests/m09-accept/live-490.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=500.129 at=500.000000 command="screenshot userdata/tests/m09-accept/live-500.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=510.030 at=510.000000 command="screenshot userdata/tests/m09-accept/live-510.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=520.033 at=520.000000 command="screenshot userdata/tests/m09-accept/live-520.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=530.104 at=530.000000 command="screenshot userdata/tests/m09-accept/live-530.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=540.029 at=540.000000 command="screenshot userdata/tests/m09-accept/live-540.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=550.032 at=550.000000 command="screenshot userdata/tests/m09-accept/live-550.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=560.073 at=560.000000 command="screenshot userdata/tests/m09-accept/live-560.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=570.145 at=570.000000 command="screenshot userdata/tests/m09-accept/live-570.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=580.024 at=580.000000 command="screenshot userdata/tests/m09-accept/live-580.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=590.071 at=590.000000 command="screenshot userdata/tests/m09-accept/live-590.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472

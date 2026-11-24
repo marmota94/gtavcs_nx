@@ -1,0 +1,37 @@
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/vcs.ini: 122 settings, 0 not at their default: (none)
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.778, HUD stretched
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.778, HUD stretched
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.778, HUD stretched
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.778, HUD stretched
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.778, HUD stretched
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.778, HUD stretched
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.778, HUD stretched
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.778, HUD stretched
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.778, HUD stretched
+[settings] display aspect 1.778, HUD 4:3

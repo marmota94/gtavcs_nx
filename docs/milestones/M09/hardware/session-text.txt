@@ -1,0 +1,49 @@
+13:09:18 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text
+13:09:18 == m09-text: profile=m09-text nro sha256=99472722a5cbd07817040f594759aff6b34509876cafb7cdd32d3dd0fd82bef7
+13:09:24 tree /switch/gtavcs_nx/gamefolder/userdata entries=729 file=userdata-before-m09-text.txt
+13:09:24 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+13:09:24 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/nxrun-results.txt
+13:09:24 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=2867 sha256=73b2c94d59bbfd796bc503b5012c670234e3a1e9298ff89332719ba59b3d95fb
+13:09:33 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66366712 bytes\n26193796 sent (39.47%), 2163 blocks'
+13:11:28 ftp back after 114s: the payload has ended
+13:11:31 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+13:11:31 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=41335 sha256=bd0e7ef069725a40250163929e31c0621d6cb04c3a2660ab14a2f21dc117e80e
+13:11:31 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+13:11:31 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/nxrun-results.txt bytes=29301 sha256=d69d29f0e466243f2b2f8b43d0f15de6e37410e8d7e2324124a96e3f1f78ca2b
+13:11:37 tree /switch/gtavcs_nx/gamefolder/userdata entries=764 file=userdata-after-m09-text.txt
+13:11:37 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/vcs.ini bytes=14 sha256=f5847c9eceec0b84a5258be9e776b77e03ca0f2d36ff103cf311cecb2deb2c11
+13:11:41 m09-text: clean_exit_line=True results_tail=['stop t=90.025 reason=seconds frames=2987', 'shutdown t=90.025 frames=2987', 'audit t=90.025 file_opens=229 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+13:11:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/nxrun-results.txt bytes=29301 sha256=d69d29f0e466243f2b2f8b43d0f15de6e37410e8d7e2324124a96e3f1f78ca2b
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t220-hud0.png bytes=866138 sha256=c74f3b461dea24d7a97e58acce6ad9b286f841fd72f180034b0844494ac90179
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t235-hud2.png bytes=939206 sha256=a7ca9987c08c2e2998413e914881e3510b744eca5b67fa3c83bb3319d0db16cf
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t250-hud1.png bytes=972447 sha256=1df1d6b70f3e795a20ba117300d7a0d547dffe961e6f424e301b1684c6ec39c2
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t265-hud0.png bytes=929837 sha256=2668fc37d3c84d9e7c5dd96da35e800e115d757965e93599232e8c49533f9ab7
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t280-hud2.png bytes=896987 sha256=df0447a465e9300cd3cec086b6e0836cc98cb6a7cd5be7e91ecdb88c728cb2dd
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t295-hud1.png bytes=839766 sha256=fac6a22d3b3cc9e90364a0b72095d6a6ad91b0f21d646612900ea1b24c9bce2c
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t310-hud0.png bytes=459900 sha256=29457b4c52a8fb247a006722d9cbadf0f74b02bffc242333cfe2b0e284189564
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t325-hud2.png bytes=2759 sha256=7efdbbfeb59ec43fc9584c5027bfb5a906d7980f68ffa20f617083617c6cf574
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t340-hud1.png bytes=2759 sha256=7efdbbfeb59ec43fc9584c5027bfb5a906d7980f68ffa20f617083617c6cf574
+13:11:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t355-hud0.png bytes=2759 sha256=7efdbbfeb59ec43fc9584c5027bfb5a906d7980f68ffa20f617083617c6cf574
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t370-hud2.png bytes=567914 sha256=f2efc7d3eeef5651b6f776e850aca07a7537aa82791aba64cc42db2ca3817322
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t385-hud1.png bytes=800672 sha256=6f931233c2c07e65a91f1fb1d60674b1f39f4c8db3e475c90ce54413e9a4911e
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t400-hud0.png bytes=803083 sha256=b0689c0e164e72cdec14006ca0110ff2a360b604a74c0c77675dd9c571889e30
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t415-hud2.png bytes=804809 sha256=270ae3190a34be78b4ea1ebaed90f7382e55fb6cc90e7e5bf9b34e6e46c92f29
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t430-hud1.png bytes=636750 sha256=7e13f72fd7a84301716adef4d819753b541b429ab24ddca7884570077cf622f8
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t445-hud0.png bytes=63912 sha256=0198962682e133be2dd4549fe15277c8cb61f11be0f76841a939b1e9b74395f1
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t460-hud2.png bytes=49883 sha256=1ba8f2c093cf40f41a249a9b02d76e9b7c84d38daa1cbd6d6679cee769a18fdc
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t475-hud1.png bytes=697482 sha256=84efcb077281b9a5cc605aa8a8514d706609815c1f29e404dc280a3cedee1b0a
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t490-hud0.png bytes=709610 sha256=d9899e821ecfed8910397bf1a530fa723952bc8c27dfd0cdd2916d2b58f9cdee
+13:11:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t505-hud2.png bytes=717909 sha256=1d4271806d39fcda96da97ff24acfebaa6c39f3248e3d56621f07d9ac604b1a9
+13:11:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t520-hud1.png bytes=713324 sha256=cef352abb7bd1499b4f4a6eeea3ef9cfec7f08d36309fb4b2877c3af1a931a87
+13:11:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t535-hud0.png bytes=718899 sha256=dfa9540e67544019354148c56a44e2d06d2b09d3f92c1d37a4d131de156637f6
+13:11:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t550-hud2.png bytes=714321 sha256=b021fc59537aa17c23b58a9ee8dcf2103857c27fbda7070de1e81f68111d7d03
+13:11:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t565-hud1.png bytes=723377 sha256=f777aa2d540ff957784d50465df6386992ffa0af8218b3bff09f7336d8e3c5c1
+13:11:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t580-hud0.png bytes=716372 sha256=ec0e5be19041de8a4eff46f42a86d70ef6d5d96c2ae1b73809c8f179f38644c9
+13:11:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t595-hud2.png bytes=719844 sha256=fcea4a1beeefd8be68a75cb8fca1764f77014ca7a2fe1e8deb0e0065f15e4552
+13:11:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t610-hud1.png bytes=711489 sha256=b4d3bdbef6f4e35117b75646b1dc5c5ad3e0649b8009312b39ed0b10bd1866bb
+13:11:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/t625-hud0.png bytes=713497 sha256=f7620f5ecf5780266a71013dd0022efbfee4c71c976acd39b63119e2c6a3cb30
+13:11:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text/vcs.ini bytes=14 sha256=f5847c9eceec0b84a5258be9e776b77e03ca0f2d36ff103cf311cecb2deb2c11
+13:11:44 text: read back 30 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m09-text (screenshots private under build\evidence\M09\screenshots\text)
+13:11:44 text: 37 chord / menu / touch / settings lines -> text-m08.txt
+13:11:44 text: 100 widescreen lines -> text-m09.txt
+13:11:44 RESULT game PASS

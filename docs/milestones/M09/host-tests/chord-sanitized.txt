@@ -1,0 +1,45 @@
+commit d9522d972a3ff84ad5fc56606e4bdf2f9b5f3163 dirty=False
++ docker run --rm --network=none --security-opt seccomp=unconfined --mount type=bind,source=C:\Users\Gamer\Documents\gtavcs_nx,target=/work gtavcs-nx-toolchain:m01 bash -c set -e; mkdir -p /tmp/t && cd /work && printf 'int runChordTests();\nint main() { return runChordTests() ? 1 : 0; }\n' > /tmp/t/driver.cpp && g++ --version | head -1 && g++ -std=c++20 -Wall -Wextra -O1 -g -fsanitize=address,undefined -fno-sanitize-recover=all -fno-omit-frame-pointer  -Isrc src/devmenu/chord.cpp tests/core/chord_tests.cpp /tmp/t/driver.cpp -o /tmp/t/chord && setarch -R timeout 600 /tmp/t/chord
+g++ (Debian 12.2.0-14+deb12u1) 12.2.0
+PASS chord simultaneous L3 + R3: one chord, nothing to the game (pump every 5 ms)
+PASS chord R3 40 ms after L3: chord, nothing to the game (pump every 5 ms)
+PASS chord L3 held alone: delivered once the window ends (pressed at 100 ms, to the game at 200 ms) (pump every 5 ms)
+PASS chord L3 tap: delivered as a pulse of 12 pumps (pump every 5 ms)
+PASS chord L3 under a held R1 (free aim): delivered (pump every 5 ms)
+PASS chord R3 long after L3: no chord, both delivered (pump every 5 ms)
+PASS chord chord released one at a time: nothing leaks (pump every 5 ms)
+PASS chord open and close: two chords, nothing leaks (pump every 5 ms)
+PASS chord simultaneous L3 + R3: one chord, nothing to the game (pump every 16 ms)
+PASS chord R3 40 ms after L3: chord, nothing to the game (pump every 16 ms)
+PASS chord L3 held alone: delivered once the window ends (pressed at 112 ms, to the game at 224 ms) (pump every 16 ms)
+PASS chord L3 tap: delivered as a pulse of 4 pumps (pump every 16 ms)
+PASS chord L3 under a held R1 (free aim): delivered (pump every 16 ms)
+PASS chord R3 long after L3: no chord, both delivered (pump every 16 ms)
+PASS chord chord released one at a time: nothing leaks (pump every 16 ms)
+PASS chord open and close: two chords, nothing leaks (pump every 16 ms)
+PASS chord simultaneous L3 + R3: one chord, nothing to the game (pump every 43 ms)
+PASS chord R3 40 ms after L3: chord, nothing to the game (pump every 43 ms)
+PASS chord L3 held alone: delivered once the window ends (pressed at 129 ms, to the game at 258 ms) (pump every 43 ms)
+PASS chord L3 tap: delivered as a pulse of 2 pumps (pump every 43 ms)
+PASS chord L3 under a held R1 (free aim): delivered (pump every 43 ms)
+PASS chord R3 long after L3: no chord, both delivered (pump every 43 ms)
+PASS chord chord released one at a time: nothing leaks (pump every 43 ms)
+PASS chord open and close: two chords, nothing leaks (pump every 43 ms)
+PASS chord simultaneous L3 + R3: one chord, nothing to the game (pump every 84 ms)
+PASS chord R3 40 ms after L3: chord, nothing to the game (pump every 84 ms)
+PASS chord L3 held alone: delivered once the window ends (pressed at 168 ms, to the game at 336 ms) (pump every 84 ms)
+PASS chord L3 tap: delivered as a pulse of 2 pumps (pump every 84 ms)
+PASS chord L3 under a held R1 (free aim): delivered (pump every 84 ms)
+PASS chord R3 long after L3: no chord, both delivered (pump every 84 ms)
+PASS chord chord released one at a time: nothing leaks (pump every 84 ms)
+PASS chord open and close: two chords, nothing leaks (pump every 84 ms)
+PASS chord reset: a withheld press is dropped
+PASS chord reset with both held: no chord and nothing to the game while they stay held
+PASS chord reset: after both are let go a new chord counts
+PASS chord reset with L3 held: not withheld and handed on again
+PASS chord event: withheld, counted as a press
+PASS chord event: delivered after exactly the window, held time reported
+PASS chord event: released
+PASS chord: 0 failure(s)
+
+exit=0

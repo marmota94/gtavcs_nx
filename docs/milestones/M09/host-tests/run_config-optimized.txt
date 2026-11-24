@@ -1,0 +1,35 @@
+commit d9522d972a3ff84ad5fc56606e4bdf2f9b5f3163 dirty=False
++ docker run --rm --network=none --security-opt seccomp=unconfined --mount type=bind,source=C:\Users\Gamer\Documents\gtavcs_nx,target=/work gtavcs-nx-toolchain:m01 bash -c set -e; mkdir -p /tmp/t && cd /work && printf 'int runRunConfigTests();\nint main() { return runRunConfigTests() ? 1 : 0; }\n' > /tmp/t/driver.cpp && g++ --version | head -1 && g++ -std=c++20 -Wall -Wextra -O2  -Isrc src/core/run_config.cpp tests/core/run_config_tests.cpp /tmp/t/driver.cpp -o /tmp/t/run_config && setarch -R timeout 600 /tmp/t/run_config
+g++ (Debian 12.2.0-14+deb12u1) 12.2.0
+PASS run-config full file parses
+PASS run-config profile, seconds, report, verify-files
+PASS run-config env
+PASS run-config at + every expand to 5 commands
+PASS run-config commands sorted by time
+PASS run-config every includes its last time
+PASS run-config a file with only its profile
+PASS run-config empty file refused: no profile
+PASS run-config commands and env without a profile refused (never on the player's userdata)
+PASS run-config unknown directive named with its line
+PASS run-config profile twice
+PASS run-config unsafe profile
+PASS run-config env outside VCS_/PS2X_
+PASS run-config lower-case env name
+PASS run-config socket control channel refused
+PASS run-config hidden mode refused
+PASS run-config data folder override refused
+PASS run-config seconds below range
+PASS run-config negative seconds
+PASS run-config exponent refused
+PASS run-config at without a command
+PASS run-config every with a zero period
+PASS run-config every ending before it starts
+PASS run-config every bounded by the command limit
+PASS run-config verify-files argument
+PASS run-config control characters
+PASS run-config long line
+PASS run-config line limit
+PASS run-config missing file is a normal run
+[run-config] failures=0
+
+exit=0

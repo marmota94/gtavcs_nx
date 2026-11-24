@@ -1,0 +1,52 @@
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 5 (13.4 MiB) largest 853x1472
+[present] display aspect 1.778
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[present] display aspect 1.333
+[rhi-stats] targets 14 (22.1 MiB) largest 853x1472
+[present] display aspect 1.778
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 14 (21.2 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[settings] display aspect 1.333, HUD 4:3
+[present] display aspect 1.333
+[rhi-stats] targets 18 (27.3 MiB) largest 853x1472
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[settings] display aspect 1.778, HUD screen edges
+[rhi-stats] targets 18 (29.6 MiB) largest 853x1472
+[nxrun] command t=80.146 at=80.000000 command="screenshot userdata/tests/m09-accept/live-080.png" status=ok reply="ok 1280x720"
+[settings] display aspect 1.333, HUD screen edges
+[present] display aspect 1.333
+[settings] display aspect 1.778, HUD screen edges
+[present] display aspect 1.778
+[settings] display aspect 1.333, HUD screen edges
+[present] display aspect 1.333
+[rhi-stats] targets 19 (30.8 MiB) largest 853x1472
+[settings] display aspect 1.778, HUD screen edges
+[present] display aspect 1.778
+[settings] display aspect 1.333, HUD screen edges
+[present] display aspect 1.333
+[rhi-stats] targets 19 (30.8 MiB) largest 853x1472
+[nxrun] command t=90.046 at=90.000000 command="screenshot userdata/tests/m09-accept/live-090.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (30.8 MiB) largest 853x1472

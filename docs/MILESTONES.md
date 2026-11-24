@@ -338,14 +338,14 @@ Exit: 16:9 Hor+ picture on Switch with correct HUD, culling and 2D frames, selec
 from the dev menu; 4:3 remains available. Upstream's design and limits:
 `upstream/docs/SETTINGS_MENU_WIDESCREEN.md`.
 
-- [ ] M09-01 Wire the upstream `display.aspect` chain (presenter display aspect, Hor+ widening, GS widening, HUD squeeze) through the OpenGL path; make 16:9 the Switch default once accepted and keep 4:3 selectable, both persisted through the dev menu.
-- [ ] M09-02 Verify the Hor+ view-window wrapper and entity-culling plane widening on ARM64 under guest-hook rules, numerically against the desktop reference.
-- [ ] M09-03 Verify HUD modes (keep 4:3, screen edges, stretch), HUD classification and scissor squeeze on GL, including radar and centred text.
-- [ ] M09-04 Verify 2D-only frames (loading, pause map) stay 4:3 inside the frame, and each presented frame's shape matches its picture at transitions.
-- [ ] M09-05 Keep the game's own PS2 widescreen option off and its menu row hidden; verify the cutscene-bars setting and the scope/camera mask.
-- [ ] M09-06 Size internal render targets for 16:9 and record memory and GPU cost against 4:3 at the same scale in both modes.
-- [ ] M09-07 Verify no missing geometry or unstreamed cells at the frame edges in S2-S4 and a driven route.
-- [ ] M09-08 Hardware acceptance in handheld and docked: reference-scene comparison with desktop at 16:9, and live 4:3/16:9 switching without corruption.
+- [x] M09-01 Wire the upstream `display.aspect` chain (presenter display aspect, Hor+ widening, GS widening, HUD squeeze) through the OpenGL path; make 16:9 the Switch default once accepted and keep 4:3 selectable, both persisted through the dev menu.
+- [x] M09-02 Verify the Hor+ view-window wrapper and entity-culling plane widening on ARM64 under guest-hook rules, numerically against the desktop reference.
+- [x] M09-03 Verify HUD modes (keep 4:3, screen edges, stretch), HUD classification and scissor squeeze on GL, including radar and centred text.
+- [x] M09-04 Verify 2D-only frames (loading, pause map) stay 4:3 inside the frame, and each presented frame's shape matches its picture at transitions.
+- [x] M09-05 Keep the game's own PS2 widescreen option off and its menu row hidden; verify the cutscene-bars setting and the scope/camera mask.
+- [x] M09-06 Size internal render targets for 16:9 and record memory and GPU cost against 4:3 at the same scale in both modes (handheld here; docked: M16-03, user decision 2026-11-19, docs/milestones/M09/SCOPE_DECISIONS.md).
+- [x] M09-07 Verify no missing geometry or unstreamed cells at the frame edges in S2-S4 and a driven route.
+- [x] M09-08 Hardware acceptance in handheld and docked: reference-scene comparison with desktop at 16:9, and live 4:3/16:9 switching without corruption (handheld here, paired Joy-Cons; docked: M16-03, user decision 2026-11-19, docs/milestones/M09/SCOPE_DECISIONS.md).
 
 ## M10 — Stability, lifecycle and measured performance
 
@@ -353,7 +353,7 @@ Branch: `milestone/m10-stability-performance` <!-- M10 -->
 
 - [ ] M10-01 Pin stock-clock hardware/firmware/build/settings and define a repeatable busy gameplay route with warm/cold run procedures.
 - [ ] M10-02 Instrument CPU frame/game/worker/streaming time, GPU time, stalls, memory, cache churn and audio underruns with bounded overhead.
-- [ ] M10-03 Identify bottlenecks from measurements and optimize one owning layer at a time with before/after evidence and visual/numeric regression checks.
+- [ ] M10-03 Identify bottlenecks from measurements and optimize one owning layer at a time with before/after evidence and visual/numeric regression checks. From M09-06 (user decision 2026-11-21, docs/milestones/M09/SCOPE_DECISIONS.md): 16:9, the Switch default, doubles the S4 game frame against 4:3 (median 48.8 vs 23.9 ms at 1x, handheld) and its wide picture targets (largest 853x1472, against 640x1472 at 4:3) add a stall of about 400 ms roughly once a second (p95 366.1 ms; 103.3 ms with PS2X_HW_WIDE_SCALE=0).
 - [ ] M10-04 Establish 25+ FPS baseline on the busy route in both modes; report median/p95 frame time and sustained slow intervals at explicit internal/output scales.
 - [ ] M10-05 Attempt native 720p/1080p internal resolutions separately; report observed limits without relabelling scaled output as native rendering.
 - [ ] M10-06 Verify frame pacing and simulation/mission timer/audio cadence at 25/30/variable FPS; no guest-time manipulation to meet FPS target.
@@ -446,7 +446,7 @@ Controller and a working dock.
 
 - [ ] M16-01 (was M10-13) Complete the docked work deferred from M06 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): M06-06's target and camera recreation on docking, M06-13's docking check, M06-20's docked 1920x1080 output and repeated dock changes from both start modes with a flat heap, docked S2/S4 timing (M06-11) and the docked beta acceptance run (M06-18), M07-11's docked audio drift and cutscene synchronization (user decision 2026-11-18, docs/milestones/M07/SCOPE_DECISIONS.md), and M08-02's docked developer-menu layout, including a dock change while the menu is open (user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md), on hardware with logs and video.
 - [ ] M16-02 (was M13-11) Complete the Pro Controller work deferred from M06-14/M06-16 by the user decision of 2026-11-17 (docs/milestones/M06/SCOPE_DECISIONS.md): identity, physical-position mapping, the physical connection-state matrix (initial open, hotplug, disconnect to neutral, reconnect, orderly exit) and play on a real Pro Controller, with hardware logs; and M08-16's L3+R3 developer-menu acceptance on the Pro Controller (user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md).
-- [ ] M16-03 Repeat in docked mode, and on the Pro Controller where a controller is involved, every docked or Pro Controller part that M09-M14 deferred here, each listed with its source task, on hardware with logs.
+- [ ] M16-03 Repeat in docked mode, and on the Pro Controller where a controller is involved, every docked or Pro Controller part that M09-M14 deferred here, each listed with its source task, on hardware with logs. From M09: M09-06's memory and GPU cost of 16:9 against 4:3 at the docked 1920x1080 output, and M09-08's docked acceptance (the 16:9 picture on a TV, a dock change at 16:9 and at 4:3, live switching docked).
 - [ ] M16-04 (from M08-17) With a USB mouse on the Switch, verify that Dear ImGui's mouse position matches the pointer on the screen in handheld and docked output (src/platform/platform_switch_sdl2.cpp `toUiCoordinates`), and fix the mapping if switch-sdl2 reports surface pixels rather than panel-scaled positions; user decision 2026-11-19, docs/milestones/M08/SCOPE_DECISIONS.md.
 
 ## M15 — Final packaging, clean deployment and acceptance

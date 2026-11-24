@@ -1,0 +1,15 @@
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[present] display aspect 1.333
+[nxrun] command t=90.054 at=90.000000 command="setting display.aspect" status=ok reply="ok 43"
+[settings] display aspect 1.333, HUD screen edges
+[nxrun] command t=93.089 at=93.000000 command="setting presets.enhanced 1" status=ok reply="ok pressed"
+[nxrun] command t=96.071 at=96.000000 command="setting display.aspect" status=ok reply="ok 43"
+[nxrun] command t=97.072 at=97.000000 command="screenshot userdata/tests/m09-presets-env/enhanced.png" status=ok reply="ok 1280x720"
+[nxrun] command t=100.052 at=100.000000 command="setting presets.light 1" status=ok reply="ok pressed"
+[nxrun] command t=103.070 at=103.000000 command="setting display.aspect" status=ok reply="ok 43"
+[nxrun] command t=104.068 at=104.000000 command="screenshot userdata/tests/m09-presets-env/light.png" status=ok reply="ok 1280x720"
+[settings] display aspect 1.333, HUD 4:3
+[nxrun] command t=107.087 at=107.000000 command="setting presets.authentic 1" status=ok reply="ok pressed"
+[nxrun] command t=110.065 at=110.000000 command="setting display.aspect" status=ok reply="ok 43"

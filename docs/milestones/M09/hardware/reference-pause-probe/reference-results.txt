@@ -1,0 +1,63 @@
+config t=0.000 profile="m09-pause-probe" seconds=150.0 commands=31 renderer=d3d11 settings="display.aspect=169"
+progress t=0.000 game_frames=0 private_bytes=239996928
+perf t=0.000 "ok game_fps=60.7 frame_ms=16.5 vblank_per_s=60.7 game_ms=5.1 render_ms=0.1 iop_ms=0.1 wait_ms=11.2 draws=0 verts=0 tex_uploads=0 dma_tags=0 vu1_programs=0 host_fps=46 gl_ms=1.1 audio_ms=0 black_frames=13 dip_frames=0 probed_frames=13 worker_ms=0.1 gs_ms=5.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=0.0 post_draws=0.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+progress t=10.028 game_frames=0 private_bytes=235044864
+perf t=10.028 "ok game_fps=60.7 frame_ms=16.5 vblank_per_s=60.7 game_ms=5.1 render_ms=0.1 iop_ms=0.1 wait_ms=11.2 draws=0 verts=0 tex_uploads=0 dma_tags=0 vu1_programs=0 host_fps=46 gl_ms=1.1 audio_ms=0 black_frames=35 dip_frames=0 probed_frames=587 worker_ms=0.1 gs_ms=5.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=0.0 post_draws=0.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+command t=10.239 at=10.000000 command="press cross" status=ok reply="ok"
+command t=14.197 at=14.000000 command="press cross" status=ok reply="ok"
+command t=18.196 at=18.000000 command="press cross" status=ok reply="ok"
+progress t=20.065 game_frames=304 private_bytes=357826560
+perf t=20.065 "ok game_fps=58.0 frame_ms=17.2 vblank_per_s=60.0 game_ms=2.1 render_ms=0.4 iop_ms=0.1 wait_ms=14.7 draws=348 verts=18168 tex_uploads=2 dma_tags=71 vu1_programs=0 host_fps=60 gl_ms=0.5 audio_ms=0 black_frames=329 dip_frames=59 probed_frames=1189 worker_ms=1.1 gs_ms=1.3 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=287.1 hud_draws=0.3 post_draws=3.6 packed_draws=24.9 packed_verts=4545.1 tex_create_us=1.9 tex_kb=62.5 tex_decode_us=43.3"
+command t=22.198 at=22.000000 command="press cross" status=ok reply="ok"
+command t=26.197 at=26.000000 command="press cross" status=ok reply="ok"
+command t=30.197 at=30.000000 command="press cross" status=ok reply="ok"
+progress t=30.248 game_frames=912 private_bytes=398209024
+perf t=30.248 "ok game_fps=60.0 frame_ms=16.7 vblank_per_s=60.0 game_ms=4.8 render_ms=0.5 iop_ms=0.1 wait_ms=11.3 draws=340 verts=28073 tex_uploads=1 dma_tags=241 vu1_programs=0 host_fps=60 gl_ms=0.7 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=1801 worker_ms=2.3 gs_ms=1.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=238.0 hud_draws=18.0 post_draws=16.0 packed_draws=68.0 packed_verts=11911.4 tex_create_us=1.2 tex_kb=64.0 tex_decode_us=47.9"
+command t=34.184 at=34.000000 command="press cross" status=ok reply="ok"
+command t=38.173 at=38.000000 command="press cross" status=ok reply="ok"
+progress t=40.293 game_frames=1432 private_bytes=436535296
+perf t=40.293 "ok game_fps=43.1 frame_ms=23.2 vblank_per_s=53.4 game_ms=4.8 render_ms=0.5 iop_ms=0.2 wait_ms=17.8 draws=338 verts=27680 tex_uploads=1 dma_tags=241 vu1_programs=0 host_fps=56 gl_ms=0.6 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=2333 worker_ms=3.4 gs_ms=6.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=238.0 hud_draws=15.0 post_draws=16.0 packed_draws=69.0 packed_verts=11921.6 tex_create_us=1.2 tex_kb=64.0 tex_decode_us=55.6"
+command t=42.225 at=42.000000 command="press cross" status=ok reply="ok"
+command t=46.184 at=46.000000 command="press cross" status=ok reply="ok"
+command t=50.194 at=50.000000 command="press cross" status=ok reply="ok"
+progress t=50.295 game_frames=2024 private_bytes=478052352
+perf t=50.295 "ok game_fps=60.0 frame_ms=16.7 vblank_per_s=60.0 game_ms=4.4 render_ms=0.4 iop_ms=0.1 wait_ms=11.7 draws=340 verts=27720 tex_uploads=1 dma_tags=241 vu1_programs=0 host_fps=60 gl_ms=0.6 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=2926 worker_ms=2.3 gs_ms=1.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=238.0 hud_draws=15.0 post_draws=16.0 packed_draws=70.9 packed_verts=11960.5 tex_create_us=1.1 tex_kb=64.0 tex_decode_us=56.2"
+command t=54.206 at=54.000000 command="press cross" status=ok reply="ok"
+command t=58.223 at=58.000000 command="press cross" status=ok reply="ok"
+progress t=60.343 game_frames=2623 private_bytes=586285056
+perf t=60.343 "ok game_fps=60.0 frame_ms=16.7 vblank_per_s=60.0 game_ms=4.6 render_ms=0.5 iop_ms=0.1 wait_ms=11.5 draws=339 verts=27354 tex_uploads=1 dma_tags=241 vu1_programs=0 host_fps=60 gl_ms=1.2 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=3525 worker_ms=2.5 gs_ms=1.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=238.0 hud_draws=15.0 post_draws=16.0 packed_draws=70.0 packed_verts=11595.4 tex_create_us=1.4 tex_kb=64.0 tex_decode_us=68.3"
+command t=62.175 at=62.000000 command="press cross" status=ok reply="ok"
+command t=66.223 at=66.000000 command="press cross" status=ok reply="ok"
+command t=70.184 at=70.000000 command="press cross" status=ok reply="ok"
+progress t=70.386 game_frames=3104 private_bytes=627847168
+perf t=70.386 "ok game_fps=54.9 frame_ms=18.2 vblank_per_s=59.8 game_ms=4.4 render_ms=0.4 iop_ms=0.1 wait_ms=13.2 draws=337 verts=27346 tex_uploads=1 dma_tags=241 vu1_programs=0 host_fps=56 gl_ms=1.1 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=4032 worker_ms=2.1 gs_ms=1.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=238.0 hud_draws=15.0 post_draws=16.0 packed_draws=68.0 packed_verts=11586.8 tex_create_us=1.3 tex_kb=64.0 tex_decode_us=58.8"
+progress t=80.415 game_frames=3598 private_bytes=627335168
+perf t=80.415 "ok game_fps=60.0 frame_ms=16.7 vblank_per_s=60.0 game_ms=4.6 render_ms=0.5 iop_ms=0.1 wait_ms=11.5 draws=336 verts=27337 tex_uploads=1 dma_tags=241 vu1_programs=0 host_fps=60 gl_ms=1.2 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=4554 worker_ms=2.1 gs_ms=1.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=238.0 hud_draws=15.0 post_draws=16.0 packed_draws=67.0 packed_verts=11577.7 tex_create_us=1.3 tex_kb=64.0 tex_decode_us=60.8"
+command t=90.057 at=90.000000 command="menustate" status=ok reply="ok open=0"
+progress t=90.461 game_frames=4189 private_bytes=619204608
+perf t=90.461 "ok game_fps=54.2 frame_ms=18.4 vblank_per_s=60.2 game_ms=4.4 render_ms=0.5 iop_ms=0.1 wait_ms=13.4 draws=336 verts=27322 tex_uploads=1 dma_tags=241 vu1_programs=0 host_fps=56 gl_ms=1.1 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=5145 worker_ms=2.1 gs_ms=1.5 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=238.0 hud_draws=15.0 post_draws=16.0 packed_draws=67.0 packed_verts=11563.6 tex_create_us=1.3 tex_kb=64.0 tex_decode_us=67.1"
+command t=95.454 at=95.000000 command="press escape 400" status=ok reply="ok"
+command t=98.063 at=98.000000 command="menustate" status=ok reply="ok open=1 tabbar=1 page=MAP_PAGE focus=Map_t window=640x448 cursor=- items=Background:0,0,640,448;Map_AE:17,8,622,369:m240.0,115.0,110.0;MapTitle:26,16,116,79;Map_t:187,373,234,401:i;Audio_t:309,408,368,436:i;Brief_t:257,373,369,401:i;Display_t:393,408,477,436:i;Game_t:331,373,384,401:i;Stats_t:413,373,533,401:i;Controls_t:195,408,290,436:i;"
+command t=99.045 at=99.000000 command="screenshot C:\\Users\\Gamer\\Documents\\gtavcs_nx\\build\\evidence\\M09\\reference-pause-probe\\screenshots\\p1.png" status=ok reply="ok 640x360"
+progress t=100.509 game_frames=4773 private_bytes=644091904
+perf t=100.509 "ok game_fps=60.0 frame_ms=16.7 vblank_per_s=60.0 game_ms=1.4 render_ms=0.3 iop_ms=0.1 wait_ms=14.9 draws=43 verts=1820 tex_uploads=0 dma_tags=20 vu1_programs=0 host_fps=60 gl_ms=0.3 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=5731 worker_ms=0.3 gs_ms=0.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=41.6 post_draws=1.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+command t=105.443 at=105.000000 command="press escape 400" status=ok reply="ok"
+command t=108.026 at=108.000000 command="menustate" status=ok reply="ok open=0"
+progress t=110.550 game_frames=5362 private_bytes=654417920
+perf t=110.550 "ok game_fps=56.6 frame_ms=17.7 vblank_per_s=60.6 game_ms=4.6 render_ms=0.5 iop_ms=0.1 wait_ms=12.5 draws=338 verts=27352 tex_uploads=1 dma_tags=241 vu1_programs=0 host_fps=58 gl_ms=1.1 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=6320 worker_ms=2.2 gs_ms=1.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=238.0 hud_draws=15.0 post_draws=16.0 packed_draws=68.7 packed_verts=11593.3 tex_create_us=1.4 tex_kb=64.1 tex_decode_us=69.2"
+command t=115.052 at=115.000000 command="gamepad on" status=ok reply="ok"
+command t=116.013 at=116.000000 command="gamepad start 1" status=ok reply="ok"
+command t=116.546 at=116.500000 command="gamepad start 0" status=ok reply="ok"
+command t=119.039 at=119.000000 command="menustate" status=ok reply="ok open=1 tabbar=1 page=MAP_PAGE focus=Map_t window=640x448 cursor=- items=Background:0,0,640,448;Map_AE:17,8,622,369:m240.0,115.0,110.0;MapTitle:26,16,116,79;Map_t:187,373,234,401:i;Audio_t:309,408,368,436:i;Brief_t:257,373,369,401:i;Display_t:393,408,477,436:i;Game_t:331,373,384,401:i;Stats_t:413,373,533,401:i;Controls_t:195,408,290,436:i;"
+command t=120.113 at=120.000000 command="screenshot C:\\Users\\Gamer\\Documents\\gtavcs_nx\\build\\evidence\\M09\\reference-pause-probe\\screenshots\\p2.png" status=ok reply="ok 640x360"
+progress t=120.567 game_frames=5943 private_bytes=633569280
+perf t=120.567 "ok game_fps=58.1 frame_ms=17.2 vblank_per_s=60.1 game_ms=1.6 render_ms=0.4 iop_ms=0.1 wait_ms=15.1 draws=42 verts=1821 tex_uploads=0 dma_tags=20 vu1_programs=0 host_fps=59 gl_ms=0.4 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=6901 worker_ms=0.3 gs_ms=0.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=41.4 post_draws=1.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+command t=125.042 at=125.000000 command="gamepad start 1" status=ok reply="ok"
+command t=125.553 at=125.500000 command="gamepad start 0" status=ok reply="ok"
+command t=128.042 at=128.000000 command="menustate" status=ok reply="ok open=0"
+command t=129.032 at=129.000000 command="gamepad off" status=ok reply="ok"
+progress t=130.597 game_frames=6524 private_bytes=656150528
+perf t=130.597 "ok game_fps=57.4 frame_ms=17.4 vblank_per_s=59.4 game_ms=4.8 render_ms=0.5 iop_ms=0.1 wait_ms=12.0 draws=339 verts=27346 tex_uploads=1 dma_tags=241 vu1_programs=0 host_fps=58 gl_ms=1.1 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=7482 worker_ms=2.2 gs_ms=1.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=238.0 hud_draws=15.0 post_draws=16.0 packed_draws=70.0 packed_verts=11586.5 tex_create_us=1.5 tex_kb=64.0 tex_decode_us=74.5"
+progress t=140.647 game_frames=7102 private_bytes=645181440
+perf t=140.647 "ok game_fps=58.2 frame_ms=17.2 vblank_per_s=60.1 game_ms=5.5 render_ms=0.5 iop_ms=0.2 wait_ms=11.0 draws=379 verts=28839 tex_uploads=1 dma_tags=252 vu1_programs=0 host_fps=59 gl_ms=1.4 audio_ms=0 black_frames=486 dip_frames=268 probed_frames=8060 worker_ms=2.7 gs_ms=2.1 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=279.0 hud_draws=15.0 post_draws=16.0 packed_draws=69.0 packed_verts=11587.3 tex_create_us=1.4 tex_kb=64.0 tex_decode_us=80.1"
+stop t=150.014 reason=seconds

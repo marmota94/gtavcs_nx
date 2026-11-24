@@ -201,6 +201,9 @@ namespace rhi
             std::vector<GLsync> fences;                            // worker-created textures released before first use
             std::atomic<uint64_t> textureCount{0}, textureBytes{0}, bufferCount{0}, bufferBytes{0}, samplerCount{0};
             std::atomic<uint64_t> pipelineCount{0};
+            // render targets and depth buffers (M09-06: what widescreen's wider targets cost), and the live ones' sizes
+            std::atomic<uint64_t> targetCount{0}, targetBytes{0};
+            std::map<std::pair<uint32_t, uint32_t>, uint32_t> targetSizes; // width, height -> live targets (mutex)
 
             void release(std::vector<GLuint> Core::*list, GLuint name)
             {
@@ -220,6 +223,15 @@ namespace rhi
             {
                 m_core->textureCount.fetch_sub(1, std::memory_order_relaxed);
                 m_core->textureBytes.fetch_sub(bytes, std::memory_order_relaxed);
+                if (renderTarget)
+                {
+                    m_core->targetCount.fetch_sub(1, std::memory_order_relaxed);
+                    m_core->targetBytes.fetch_sub(bytes, std::memory_order_relaxed);
+                    std::lock_guard<std::mutex> lock(m_core->mutex);
+                    auto it = m_core->targetSizes.find({m_desc.width, m_desc.height});
+                    if (it != m_core->targetSizes.end() && --it->second == 0)
+                        m_core->targetSizes.erase(it);
+                }
                 m_core->release(&Core::textures, name);
                 if (fence)
                 {
@@ -235,6 +247,7 @@ namespace rhi
             FormatInfo format{};
             uint32_t levels = 1;
             uint64_t bytes = 0;
+            bool renderTarget = false; // UsageRenderTarget or UsageDepth: counted in Core::target*
         };
 
         class GlBuffer final : public Buffer
@@ -504,6 +517,14 @@ namespace rhi
                     defaultParameters(t->levels);
                 }
                 t->bytes = accountTexture(w, h, fi.bytes, t->levels, msaa ? desc.samples : 1u);
+                if (desc.usage & (UsageRenderTarget | UsageDepth))
+                {
+                    t->renderTarget = true;
+                    m_core->targetCount.fetch_add(1, std::memory_order_relaxed);
+                    m_core->targetBytes.fetch_add(t->bytes, std::memory_order_relaxed);
+                    std::lock_guard<std::mutex> lock(m_core->mutex);
+                    ++m_core->targetSizes[{w, h}];
+                }
                 label(GL_TEXTURE, t->name, desc.name);
                 bindScratch(t->target, 0);
                 if (glCheckError("createTexture"))
@@ -1188,11 +1209,20 @@ namespace rhi
                 s.bufferBytes = m_core->bufferBytes.load();
                 s.samplers = m_core->samplerCount.load();
                 s.pipelines = m_core->pipelineCount.load();
+                s.targets = m_core->targetCount.load();
+                s.targetBytes = m_core->targetBytes.load();
                 s.programs = m_programs.size();
                 s.framebuffers = m_fbos.size();
                 {
                     std::lock_guard<std::mutex> lock(m_core->mutex);
                     s.pendingDeletes = m_core->textures.size() + m_core->buffers.size() + m_core->samplers.size() + m_core->vaos.size();
+                    for (const auto &[size, count] : m_core->targetSizes)
+                        if (static_cast<uint64_t>(size.first) * size.second >
+                            static_cast<uint64_t>(s.largestTargetWidth) * s.largestTargetHeight)
+                        {
+                            s.largestTargetWidth = size.first;
+                            s.largestTargetHeight = size.second;
+                        }
                 }
                 s.offOwnerCreated = m_offOwnerCreated.load();
                 s.offOwnerRefused = m_offOwnerRefused.load();
@@ -2011,6 +2041,8 @@ namespace rhi
                              static_cast<unsigned long long>(s.glErrors), static_cast<unsigned long long>(s.debugMessages),
                              static_cast<unsigned long long>(s.incompleteFramebuffers), static_cast<unsigned long long>(s.ownerViolations),
                              static_cast<unsigned long long>(s.rejected), static_cast<unsigned long long>(s.hazards));
+                std::fprintf(stderr, "[rhi-stats] targets %llu (%.1f MiB) largest %ux%u\n", static_cast<unsigned long long>(s.targets),
+                             s.targetBytes / 1048576.0, s.largestTargetWidth, s.largestTargetHeight);
             }
 
             friend bool rhi::openGLStats(Device &, GlStats &);

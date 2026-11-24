@@ -1,0 +1,321 @@
+[boot] checked chdir succeeded: sdmc:/switch/gtavcs_nx/gamefolder
+[boot] SDL Switch; audio switch
+[boot] GL 4.3 (Core Profile) Mesa 20.1.0-rc3; renderer NV120
+[video] output 1280x720 on the 1920x1080 surface, crop lower-left (00000000)
+[resources] boot live_threads=2 (svc 00000000 via own)
+[resources] boot mapped_total=3343908864 mapped_used=3339763712 heap_in_use=145576896 heap_obtained=145608704 threads_created=1 default_thread_stack=8388608 file_opens=2 iso_opens=0
+[core] root=/switch/gtavcs_nx/gamefolder userdata=/switch/gtavcs_nx/gamefolder/userdata/tests/m09-wide settings=/switch/gtavcs_nx/gamefolder/userdata/tests/m09-wide/vcs.ini mc0=/switch/gtavcs_nx/gamefolder/userdata/tests/m09-wide/mc0 mc1=/switch/gtavcs_nx/gamefolder/userdata/tests/m09-wide/mc1 backups=/switch/gtavcs_nx/gamefolder/userdata/tests/m09-wide/backups cache=/switch/gtavcs_nx/gamefolder/userdata/tests/m09-wide/cache elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 profile=m09-wide
+[nxrun] config t=0.000 profile="m09-wide" seconds=230.000000 commands=106 env=5 verify_files=0
+[core] env VCS_ASPECT=169
+[core] env PS2X_RHI_STATS=1
+[core] env PS2X_GL_GPU_TIME=1
+[core] env PS2X_GL_GPU_LOG=userdata/tests/m09-wide/gpu.csv
+[core] env PS2X_CAPTURE_SIZE=1280x720
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[framerate] cap 30.00 fps (independent timing)
+[framerate] cap 60.00 fps (independent timing)
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m09-wide/vcs.ini: 122 settings, 1 not at their default: display.aspect=169
+[core] /switch/gtavcs_nx/gamefolder/SLUS_215.90 sha1 d1832508caf0990c2291c0f255c96a889cce9f88: GTA: Vice City Stories - USA (SLUS-21590) v1.00
+[core] folder disc 1066336 sectors, 0 mods applied; no disc image opened
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[gs] hardware GS renderer (OpenGL)
+[render-worker] on: render submission runs on its own thread
+[render-worker] GS stage on: the GS front end and frame building on a second thread
+[platform] gamepad: Switch Controller (instance 0) mapping 000038f853776974636820436f6e7400,Switch Controller,a:b1,b:b0,back:b11,dpdown:b15,dpleft:b12,dpright:b14,dpup:b13,leftshoulder:b6,leftstick:b4,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b5,righttrigger:b9,rightx:a2,righty:a3,start:b10,x:b3,y:b2,crc:f838,platform:Unknown (see SDL_platform.h)
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] SDL2 2.28.5 adopted main.c's window 1920x1080 (asked 640x448); ImGui on
+[rhi] GPU time per frame to userdata/tests/m09-wide/gpu.csv
+[rhi] OpenGL 4.3: clip_control 1, viewport_array 1, anisotropy 1 (max 16), KHR_debug 1, dual-source draw buffers 1, samples 8/8/8, max texture 16384, framebuffer encoding 0x2601
+[present] OpenGL on NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)
+[platform] audio device 2: 48000 Hz, 2 channels, 1024 frames (switch)
+[menu] pause menu: Enter selects, Escape goes back, the mouse points and clicks
+[sound] native sound driver (CDSTREAM's servers on the host)
+[iop] emulated IOP off: no IRX module loaded or run (PS2X_IOP=1 runs it)
+[core] io elf=/switch/gtavcs_nx/gamefolder/SLUS_215.90 host=/switch/gtavcs_nx/gamefolder cd=/switch/gtavcs_nx/gamefolder mc=/switch/gtavcs_nx/gamefolder/userdata/tests/m09-wide/mc0 cdImage=(none)
+[input] player bindings
+[core] desktop watchdog and sampling profiler not started (detached desktop threads; progress comes from the run's report lines)
+[resources] running live_threads=5 (svc 00000000 via own)
+[resources] running mapped_total=3343908864 mapped_used=3339763712 heap_in_use=231293344 heap_obtained=234242048 threads_created=4 default_thread_stack=8388608 file_opens=13 iso_opens=0
+[lifecycle] suspension_clock=1
+[lifecycle] resume=0 focus_notifications=1 focus=1
+[platform] focus lost: audio paused, pad neutral
+[nxrun] focus t=0.000 state=out
+[platform] focus back: audio resumed, pad live
+[nxrun] focus t=0.000 state=in
+[video] drawable=1920x1080 window=1920x1080 output=1280x720 mode=0 (was -1); 0 frames, 0.00 ms each since the last change; heap 231293056
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[gs-hw] renderer ready (NV120 (4.3 (Core Profile) Mesa 20.1.0-rc3; GLSL 4.30)), scale 1x
+[present] display aspect 1.778
+[platform] mouse capture: not on the Switch (accepted, no effect)
+[nxrun] progress t=0.000 host_frames=1 game_frames=0 ee_cycle=9830624 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021c8f0 ra=0021c8f0 pumps=1 audio_callbacks=16 audio_frames=16384 gamepad=1 heap_in_use=319012496 heap_obtained=321110016
+[nxrun] perf t=0.000 "game_fps=34.9 frame_ms=28.7 vblank_per_s=34.9 game_ms=28.2 render_ms=0.1 iop_ms=0.1 wait_ms=0.2 draws=0 verts=0 tex_uploads=0 dma_tags=0 vu1_programs=0 host_fps=0 gl_ms=0.0 audio_ms=64 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=0.1 gs_ms=22.4 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=0.0 post_draws=0.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] devmenu t=0.000 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[swscaler @ 0xce18268b0] No accelerated colorspace conversion found from yuv420p to rgba.
+[present] display aspect 1.333
+[rhi-stats] gpu 280 frames timed, mean 0.31 ms (run max 1.11 ms, 0 not timed)
+[rhi-stats] textures 4 (5.9 MiB) buffers 5 (0.0 MiB) samplers 9 pipelines 5 programs 5 fbos 1 pending 0 | draws 283 passes 283 presents 281 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=5.025 at=5.000000 command="gameinfo" status=ok reply="ok frames=0 | [PLAYER] | no player ped yet | [CAMERA  mode 4 follow ped] | pos        0.00      0.00     0.00   heading   0.0  pitch -90.0  fov 0 | [WORLD] | clock 00:00  area 0 (outdoors)  level 0 ? | game time 0.0 s  frame 0  step 0.000 | pools  peds 0/0  vehicles 0/0 | [SCRIPTS  0 active]"
+[rhi-stats] gpu 301 frames timed, mean 0.31 ms (run max 1.11 ms, 0 not timed)
+[rhi-stats] textures 4 (5.9 MiB) buffers 5 (0.0 MiB) samplers 9 pipelines 5 programs 5 fbos 1 pending 0 | draws 584 passes 584 presents 582 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] progress t=10.009 host_frames=600 game_frames=0 ee_cycle=9830624 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021c8f0 ra=0021c8f0 pumps=600 audio_callbacks=484 audio_frames=495616 gamepad=1 heap_in_use=330845872 heap_obtained=333496320
+[nxrun] perf t=10.009 "game_fps=34.9 frame_ms=28.7 vblank_per_s=34.9 game_ms=28.2 render_ms=0.1 iop_ms=0.1 wait_ms=0.2 draws=0 verts=0 tex_uploads=0 dma_tags=0 vu1_programs=0 host_fps=0 gl_ms=0.0 audio_ms=64 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=0.1 gs_ms=22.4 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=0.0 post_draws=0.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] devmenu t=10.009 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[nxrun] command t=10.039 at=10.000000 command="gameinfo" status=ok reply="ok frames=0 | [PLAYER] | no player ped yet | [CAMERA  mode 4 follow ped] | pos        0.00      0.00     0.00   heading   0.0  pitch -90.0  fov 0 | [WORLD] | clock 00:00  area 0 (outdoors)  level 0 ? | game time 0.0 s  frame 0  step 0.000 | pools  peds 0/0  vehicles 0/0 | [SCRIPTS  0 active]"
+[nxrun] command t=10.192 at=10.000000 command="press cross" status=ok reply="ok"
+[movie] cdrom0:\MOVIES\STINGS.PSS;1: 321 pictures shown, 0 dropped, 10.7 s
+[present] display aspect 1.778
+[swscaler @ 0xce0feacf0] No accelerated colorspace conversion found from yuv420p to rgba.
+[present] display aspect 1.333
+[movie] cdrom0:\MOVIES\INTRO.PSS;1: 79 pictures shown, 0 dropped, 2.7 s, skipped
+[present] display aspect 1.778
+[gs-hw] input delay by stage: input -> queued 39.2 ms (game, render worker, GS stage), queued -> taken 8.8 ms
+[nxrun] command t=14.185 at=14.000000 command="press cross" status=ok reply="ok"
+[gs-hw] a draw samples its own render target: reading a copy
+[present] display aspect 1.333
+[rhi-stats] gpu 284 frames timed, mean 0.91 ms (run max 96.81 ms, 0 not timed)
+[rhi-stats] textures 10 (21.6 MiB) buffers 7 (1.3 MiB) samplers 9 pipelines 10 programs 9 fbos 6 pending 0 | draws 902 passes 902 presents 866 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=15.025 at=15.000000 command="gameinfo" status=ok reply="ok frames=2 | [PLAYER] | no player ped yet | [CAMERA  mode 4 follow ped] | pos        0.00      0.00     0.00   heading   0.0  pitch -90.0  fov 0 | [WORLD] | clock 00:00  area 0 (outdoors)  level 0 ? | game time 0.0 s  frame 0  step 1.000 | pools  peds 0/0  vehicles 0/0 | [SCRIPTS  0 active]"
+[menu] the Display page's Widescreen row hidden (2 focus moves past it, 4 rows up 27)
+[vu0native] running VCS VU0 segment vs triangle (0x020) natively (VU0 0x0020, 1960 bytes)
+[vu0native] running VCS VU0 sphere vs triangle (0x3A0) natively (VU0 0x03a0, 1960 bytes)
+[vu0native] running VCS VU0 store vf1..vf12 (0x0E30) natively (VU0 0x0e30, 104 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0E98) natively (VU0 0x0e98, 272 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0EB8) natively (VU0 0x0eb8, 240 bytes)
+[vu0native] running VCS VU0 sector box clip (0x0CF8) natively (VU0 0x0cf8, 312 bytes)
+[vu0native] running VCS VU0 sphere vs three plane sets (0x0C10) natively (VU0 0x0c10, 216 bytes)
+[hle] world packets 21: culled 5, drawn 1 + 0 GPU-clipped (70 vertices), 15 C++-clipped, VU fallback 0
+[present] display aspect 1.778
+[nxrun] command t=18.320 at=18.000000 command="press cross" status=ok reply="ok"
+[gs-hw] input delay by stage: input -> queued 589.6 ms (game, render worker, GS stage), queued -> taken 48.1 ms
+[rhi-stats] gpu 185 frames timed, mean 8.99 ms (run max 387.50 ms, 0 not timed)
+[rhi-stats] textures 27 (31.2 MiB) buffers 21 (1.3 MiB) samplers 9 pipelines 25 programs 15 fbos 16 pending 0 | draws 4446 passes 2024 presents 1051 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] progress t=20.053 host_frames=1072 game_frames=58 ee_cycle=973229207 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=1072 audio_callbacks=973 audio_frames=996352 gamepad=1 heap_in_use=371180880 heap_obtained=385052672
+[nxrun] perf t=20.053 "game_fps=10.5 frame_ms=95.5 vblank_per_s=38.1 game_ms=14.4 render_ms=20.3 iop_ms=1.3 wait_ms=59.5 draws=66 verts=5409 tex_uploads=0 dma_tags=32 vu1_programs=0 host_fps=35 gl_ms=1.6 audio_ms=219 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=30.7 gs_ms=47.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=46.6 hud_draws=0.0 post_draws=18.9 packed_draws=12.5 packed_verts=598.9 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] devmenu t=20.053 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[nxrun] command t=20.153 at=20.000000 command="gameinfo" status=ok reply="ok frames=59 | [PLAYER  ped 01d439c0  model 0  state  (0xc)] | pos    -1453.22   -314.63    14.85   heading  45.5 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1522.05   -308.01    15.42   heading 248.8  pitch  -0.6  fov 70 | [WORLD] | clock 06:30  area 2 (interior)  level 2 MAINLA | game time 2.6 s  frame 205  step 3.333 | player controls off | pools  peds 4/70  vehicles 4/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @89ab | newest  ch_jerr @89ab  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] command t=20.153 at=20.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.66667 0.1 2000"
+[nxrun] command t=20.153 at=20.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=20.153 at=20.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[nxrun] command t=21.020 at=21.000000 command="screenshot userdata/tests/m09-wide/s2-020.png" status=ok reply="ok 1280x720"
+[nxrun] command t=22.290 at=22.000000 command="press cross" status=ok reply="ok"
+[vu1compiled] running VU1 program 10 (ELF 0x2ac130) compiled (254 pairs at VU 0x0000)
+[vu1compiled] running VU1 program 11 (ELF 0x2ac920) compiled (84 pairs at VU 0x07f0)
+[vu1compiled] running VU1 program 12 (ELF 0x2acbc0) compiled (40 pairs at VU 0x0a90)
+[vu1compiled] running VU1 program 13 (ELF 0x2acd00) compiled (10 pairs at VU 0x0bd0)
+[vu1compiled] running VU1 program 14 (ELF 0x2acd50) compiled (3 pairs at VU 0x0c20)
+[vu1compiled] running VU1 program 15 (ELF 0x2acd68) compiled (88 pairs at VU 0x0c38)
+[vu1compiled] running VU1 program 16 (ELF 0x2ad028) compiled (30 pairs at VU 0x0ef8)
+[vu1compiled] running VU1 program 18 (ELF 0x2ad168) compiled (129 pairs at VU 0x1038)
+[vu1compiled] running VU1 program 19 (ELF 0x2ad570) compiled (38 pairs at VU 0x1440)
+[vu1compiled] running VU1 program 20 (ELF 0x2ad6a0) compiled (4 pairs at VU 0x1570)
+[vu1compiled] running VU1 program 21 (ELF 0x2ad6c0) compiled (558 pairs at VU 0x1590)
+[vu1compiled] running VU1 program 22 (ELF 0x2d08f0) compiled (112 pairs at VU 0x2bf0)
+[vu1compiled] running VU1 program 26 (ELF 0x2f13d0) compiled (18 pairs at VU 0x2700)
+[vu1compiled] running VU1 program 27 (ELF 0x2f1460) compiled (36 pairs at VU 0x2790)
+[vu1compiled] running VU1 program 28 (ELF 0x2f1580) compiled (48 pairs at VU 0x28b0)
+[vu1compiled] running VU1 program 29 (ELF 0x2f1700) compiled (30 pairs at VU 0x2a30)
+[vu1compiled] running VU1 program 30 (ELF 0x2f17f0) compiled (6 pairs at VU 0x2b20)
+[vu1compiled] running VU1 program 31 (ELF 0x2f1820) compiled (20 pairs at VU 0x2b50)
+[vu1compiled] running VU1 program 32 (ELF 0x2f18c0) compiled (18 pairs at VU 0x2700)
+[vu1compiled] running VU1 program 38 (ELF 0x368730) compiled (84 pairs at VU 0x07f0)
+[vu1compiled] running VU1 program 39 (ELF 0x3689d0) compiled (40 pairs at VU 0x0a90)
+[vu1compiled] running VU1 program 40 (ELF 0x368b10) compiled (10 pairs at VU 0x0bd0)
+[vu1compiled] running VU1 program 41 (ELF 0x368b60) compiled (88 pairs at VU 0x0c38)
+[vu1compiled] running VU1 program 42 (ELF 0x368e20) compiled (30 pairs at VU 0x0ef8)
+[vu1compiled] running VU1 program 43 (ELF 0x368f10) compiled (10 pairs at VU 0x0fe8)
+[vu1compiled] running VU1 program 44 (ELF 0x368f60) compiled (38 pairs at VU 0x1440)
+[vu1compiled] running VU1 program 45 (ELF 0x369090) compiled (4 pairs at VU 0x1570)
+[gs-hw] input delay by stage: input -> queued 116.1 ms (game, render worker, GS stage), queued -> taken 47.5 ms
+[rhi-stats] gpu 124 frames timed, mean 20.22 ms (run max 387.50 ms, 0 not timed)
+[rhi-stats] textures 668 (42.9 MiB) buffers 1140 (2.9 MiB) samplers 9 pipelines 33 programs 16 fbos 17 pending 0 | draws 17431 passes 3541 presents 1175 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=25.023 at=25.000000 command="gameinfo" status=ok reply="ok frames=111 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1646.56   -139.23    14.82   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1643.35   -142.38    15.64   heading  45.6  pitch  -2.9  fov 70 | [WORLD] | clock 06:30  area 0 (outdoors)  level 2 MAINLA | game time 4.6 s  frame 253  step 3.333 | pools  peds 2/70  vehicles 3/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @3ce2b | newest  ch_jerr @3ce2b  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[present] display aspect 1.333
+[nxrun] command t=26.221 at=26.000000 command="press cross" status=ok reply="ok"
+[present] display aspect 1.778
+[hle] world packets 23320: culled 1726, drawn 19674 + 0 GPU-clipped (944068 vertices), 1920 C++-clipped, VU fallback 0
+[present] display aspect 1.333
+[gs-hw] input delay by stage: input -> queued 97.2 ms (game, render worker, GS stage), queued -> taken 19.2 ms
+[present] display aspect 1.778
+[rhi-stats] gpu 227 frames timed, mean 6.53 ms (run max 387.50 ms, 0 not timed)
+[rhi-stats] textures 958 (49.8 MiB) buffers 1831 (5.0 MiB) samplers 9 pipelines 38 programs 18 fbos 17 pending 0 | draws 47550 passes 4785 presents 1403 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=30.023 at=30.000000 command="gameinfo" status=ok reply="ok frames=257 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1596.73   -133.48    14.83   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1600.00   -143.90    23.30   heading  56.5  pitch -21.8  fov 70 | [WORLD] | clock 06:32  area 2 (interior)  level 2 MAINLA | game time 7.6 s  frame 355  step 3.333 | player controls off | pools  peds 3/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @890f | newest  ch_jerr @890f  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] progress t=30.079 host_frames=1421 game_frames=258 ee_cycle=2997519889 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebd4 ra=0021ebd4 pumps=1421 audio_callbacks=1447 audio_frames=1481728 gamepad=1 heap_in_use=457475824 heap_obtained=474005504
+[nxrun] perf t=30.079 "game_fps=11.7 frame_ms=85.3 vblank_per_s=38.1 game_ms=19.1 render_ms=8.4 iop_ms=1.4 wait_ms=56.4 draws=454 verts=33608 tex_uploads=1 dma_tags=289 vu1_programs=0 host_fps=30 gl_ms=7.6 audio_ms=166 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=31.7 gs_ms=54.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=372.2 hud_draws=0.9 post_draws=14.7 packed_draws=65.8 packed_verts=11174.5 tex_create_us=1108.8 tex_kb=60.0 tex_decode_us=168.1"
+[nxrun] devmenu t=30.079 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[nxrun] command t=30.162 at=30.000000 command="press cross" status=ok reply="ok"
+[gs-hw] input delay by stage: input -> queued 126.3 ms (game, render worker, GS stage), queued -> taken 37.5 ms
+[nxrun] command t=34.307 at=34.000000 command="press cross" status=ok reply="ok"
+[rhi-stats] gpu 119 frames timed, mean 22.87 ms (run max 387.50 ms, 0 not timed)
+[rhi-stats] textures 1015 (53.4 MiB) buffers 1831 (5.0 MiB) samplers 9 pipelines 38 programs 18 fbos 17 pending 0 | draws 88778 passes 6455 presents 1521 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=35.140 at=35.000000 command="gameinfo" status=ok reply="ok frames=319 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1596.73   -133.48    14.83   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1600.19   -143.77    23.20   heading  56.5  pitch -21.8  fov 70 | [WORLD] | clock 06:35  area 2 (interior)  level 2 MAINLA | game time 10.3 s  frame 436  step 1.000 | player controls off | pools  peds 3/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @89ab | newest  ch_jerr @89ab  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[hle] world packets 57038: culled 6304, drawn 44225 + 0 GPU-clipped (2363728 vertices), 6509 C++-clipped, VU fallback 0
+[nxrun] command t=38.325 at=38.000000 command="press cross" status=ok reply="ok"
+[gs-hw] input delay by stage: input -> queued 155.8 ms (game, render worker, GS stage), queued -> taken 36.2 ms
+[rhi-stats] gpu 138 frames timed, mean 18.03 ms (run max 387.50 ms, 0 not timed)
+[rhi-stats] textures 1068 (56.6 MiB) buffers 1831 (5.0 MiB) samplers 9 pipelines 38 programs 18 fbos 17 pending 0 | draws 127070 passes 8021 presents 1659 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=40.073 at=40.000000 command="gameinfo" status=ok reply="ok frames=367 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1596.73   -133.48    14.83   heading  45.6 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1600.44   -143.60    23.09   heading  56.5  pitch -21.8  fov 70 | [WORLD] | clock 06:37  area 2 (interior)  level 2 MAINLA | game time 12.2 s  frame 492  step 1.000 | player controls off | pools  peds 3/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @acde | newest  ch_jerr @acde  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] command t=40.073 at=40.000000 command="screenshot userdata/tests/m09-wide/s3-040-bars.png" status=ok reply="ok 1280x720"
+[nxrun] command t=40.073 at=40.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.66667 0.7 2000"
+[nxrun] command t=40.073 at=40.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=40.073 at=40.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[nxrun] progress t=40.323 host_frames=1678 game_frames=368 ee_cycle=4819227954 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=1678 audio_callbacks=1961 audio_frames=2008064 gamepad=1 heap_in_use=463954368 heap_obtained=491884544
+[nxrun] perf t=40.323 "game_fps=9.1 frame_ms=110.1 vblank_per_s=24.5 game_ms=18.2 render_ms=51.9 iop_ms=1.2 wait_ms=38.9 draws=495 verts=36626 tex_uploads=1 dma_tags=301 vu1_programs=0 host_fps=31 gl_ms=13.0 audio_ms=60 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=71.0 gs_ms=88.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=404.0 hud_draws=0.0 post_draws=16.0 packed_draws=75.0 packed_verts=12263.1 tex_create_us=1250.6 tex_kb=64.0 tex_decode_us=121.3"
+[nxrun] devmenu t=40.323 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[nxrun] command t=41.095 at=41.000000 command="setting display.cutscene_bars 0" status=ok reply="ok 0"
+[nxrun] command t=42.210 at=42.000000 command="press cross" status=ok reply="ok"
+[gs-hw] input delay by stage: input -> queued 247.7 ms (game, render worker, GS stage), queued -> taken 93.9 ms
+[rhi-stats] gpu 99 frames timed, mean 24.60 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1109 (59.2 MiB) buffers 1831 (5.0 MiB) samplers 9 pipelines 38 programs 18 fbos 17 pending 0 | draws 157299 passes 9267 presents 1758 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=43.111 at=43.000000 command="screenshot userdata/tests/m09-wide/s3-043-nobars.png" status=ok reply="ok 1280x720"
+[nxrun] command t=44.094 at=44.000000 command="setting display.cutscene_bars 1" status=ok reply="ok 1"
+[nxrun] command t=45.027 at=45.000000 command="gameinfo" status=ok reply="ok frames=427 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 15 fixed  (script camera)] | pos    -1600.84   -143.34    22.90   heading  56.5  pitch -21.8  fov 70 | [WORLD] | clock 06:39  area 2 (interior)  level 2 MAINLA | game time 14.5 s  frame 545  step 0.850 | player controls off | pools  peds 1/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @40ba8 | newest  ch_jerr @40ba8  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[present] display aspect 1.333
+[hle] world packets 83508: culled 10331, drawn 62839 + 0 GPU-clipped (3496397 vertices), 10338 C++-clipped, VU fallback 0
+[present] display aspect 1.778
+[nxrun] command t=46.227 at=46.000000 command="press cross" status=ok reply="ok"
+[gs-hw] input delay by stage: input -> queued 151.1 ms (game, render worker, GS stage), queued -> taken 68.5 ms
+[rhi-stats] gpu 154 frames timed, mean 18.47 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1171 (62.6 MiB) buffers 1915 (5.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 191039 passes 11301 presents 1912 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[vu0native] running VCS VU0 segment vs triangle, float inputs (0x068) natively (VU0 0x0068, 1960 bytes)
+[nxrun] command t=50.111 at=50.000000 command="gameinfo" status=ok reply="ok frames=504 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 06:42  area 0 (outdoors)  level 2 MAINLA | game time 17.2 s  frame 578  step 3.333 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] command t=50.327 at=50.000000 command="press cross" status=ok reply="ok"
+[nxrun] progress t=50.327 host_frames=1965 game_frames=505 ee_cycle=6631512943 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=1965 audio_callbacks=2464 audio_frames=2523136 gamepad=1 heap_in_use=471279088 heap_obtained=498782208
+[nxrun] perf t=50.327 "game_fps=8.6 frame_ms=116.8 vblank_per_s=31.7 game_ms=19.3 render_ms=45.3 iop_ms=1.1 wait_ms=51.2 draws=352 verts=29219 tex_uploads=1 dma_tags=250 vu1_programs=0 host_fps=27 gl_ms=7.9 audio_ms=70 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=70.6 gs_ms=92.3 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=266.2 hud_draws=19.8 post_draws=17.6 packed_draws=83.6 packed_verts=14219.4 tex_create_us=1258.0 tex_kb=70.4 tex_decode_us=118.6"
+[nxrun] devmenu t=50.327 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[gs-hw] input delay by stage: input -> queued 153.0 ms (game, render worker, GS stage), queued -> taken 36.9 ms
+[rhi-stats] gpu 132 frames timed, mean 20.14 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1225 (66.0 MiB) buffers 1915 (5.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 229631 passes 13713 presents 2044 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=54.244 at=54.000000 command="press cross" status=ok reply="ok"
+[nxrun] command t=55.145 at=55.000000 command="gameinfo" status=ok reply="ok frames=559 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 06:44  area 0 (outdoors)  level 2 MAINLA | game time 19.6 s  frame 651  step 3.333 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[hle] world packets 111924: culled 17102, drawn 75937 + 0 GPU-clipped (4281278 vertices), 18885 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 135.4 ms (game, render worker, GS stage), queued -> taken 38.7 ms
+[nxrun] command t=58.312 at=58.000000 command="press cross" status=ok reply="ok"
+[rhi-stats] gpu 122 frames timed, mean 22.74 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1283 (69.5 MiB) buffers 1915 (5.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 267307 passes 16017 presents 2166 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=60.094 at=60.000000 command="gameinfo" status=ok reply="ok frames=615 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 06:47  area 0 (outdoors)  level 2 MAINLA | game time 22.0 s  frame 723  step 2.500 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] progress t=60.413 host_frames=2218 game_frames=617 ee_cycle=8408283245 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=2218 audio_callbacks=2936 audio_frames=3006464 gamepad=1 heap_in_use=479070544 heap_obtained=506408960
+[nxrun] perf t=60.413 "game_fps=9.7 frame_ms=103.4 vblank_per_s=35.2 game_ms=23.0 render_ms=31.9 iop_ms=0.9 wait_ms=47.7 draws=351 verts=29047 tex_uploads=1 dma_tags=250 vu1_programs=0 host_fps=30 gl_ms=8.5 audio_ms=67 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=54.1 gs_ms=74.2 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=242.0 hud_draws=16.0 post_draws=16.0 packed_draws=77.0 packed_verts=12945.8 tex_create_us=1260.2 tex_kb=64.0 tex_decode_us=116.2"
+[nxrun] devmenu t=60.413 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[nxrun] command t=62.277 at=62.000000 command="press cross" status=ok reply="ok"
+[gs-hw] input delay by stage: input -> queued 130.9 ms (game, render worker, GS stage), queued -> taken 36.9 ms
+[rhi-stats] gpu 130 frames timed, mean 21.20 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1341 (73.1 MiB) buffers 1915 (5.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 302729 passes 18235 presents 2297 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=65.077 at=65.000000 command="gameinfo" status=ok reply="ok frames=671 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 06:49  area 0 (outdoors)  level 2 MAINLA | game time 24.5 s  frame 798  step 1.400 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[hle] world packets 140852: culled 23995, drawn 89271 + 0 GPU-clipped (5080301 vertices), 27586 C++-clipped, VU fallback 0
+[nxrun] command t=66.260 at=66.000000 command="press cross" status=ok reply="ok"
+[gs-hw] input delay by stage: input -> queued 138.0 ms (game, render worker, GS stage), queued -> taken 37.8 ms
+[rhi-stats] gpu 130 frames timed, mean 20.46 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1395 (76.5 MiB) buffers 1915 (5.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 333038 passes 20250 presents 2426 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=70.112 at=70.000000 command="gameinfo" status=ok reply="ok frames=729 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 06:52  area 0 (outdoors)  level 2 MAINLA | game time 27.0 s  frame 841  step 3.333 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] command t=70.261 at=70.000000 command="press cross" status=ok reply="ok"
+[nxrun] progress t=70.427 host_frames=2467 game_frames=730 ee_cycle=10231672055 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=2467 audio_callbacks=3405 audio_frames=3486720 gamepad=1 heap_in_use=486579328 heap_obtained=514842624
+[nxrun] perf t=70.427 "game_fps=11.2 frame_ms=89.0 vblank_per_s=36.5 game_ms=20.1 render_ms=23.8 iop_ms=0.8 wait_ms=44.3 draws=321 verts=26435 tex_uploads=1 dma_tags=250 vu1_programs=0 host_fps=32 gl_ms=8.7 audio_ms=68 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=40.8 gs_ms=59.4 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=242.0 hud_draws=15.0 post_draws=16.0 packed_draws=77.0 packed_verts=12946.5 tex_create_us=1305.2 tex_kb=58.7 tex_decode_us=138.8"
+[nxrun] devmenu t=70.427 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[gs-hw] input delay by stage: input -> queued 124.5 ms (game, render worker, GS stage), queued -> taken 39.7 ms
+[rhi-stats] gpu 120 frames timed, mean 22.90 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1453 (80.1 MiB) buffers 1915 (5.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 365243 passes 22317 presents 2546 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=75.060 at=75.000000 command="gameinfo" status=ok reply="ok frames=784 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 06:54  area 0 (outdoors)  level 2 MAINLA | game time 29.3 s  frame 896  step 2.200 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[hle] world packets 171060: culled 31193, drawn 103195 + 0 GPU-clipped (5914679 vertices), 36672 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 137.1 ms (game, render worker, GS stage), queued -> taken 40.1 ms
+[rhi-stats] gpu 126 frames timed, mean 21.17 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1511 (83.8 MiB) buffers 1915 (5.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 397574 passes 24431 presents 2673 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=80.111 at=80.000000 command="gameinfo" status=ok reply="ok frames=841 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 06:57  area 0 (outdoors)  level 2 MAINLA | game time 31.9 s  frame 953  step 3.333 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] progress t=80.443 host_frames=2718 game_frames=841 ee_cycle=12018129692 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec2c ra=0021ec2c pumps=2718 audio_callbacks=3873 audio_frames=3965952 gamepad=1 heap_in_use=494100752 heap_obtained=522780672
+[nxrun] perf t=80.443 "game_fps=10.0 frame_ms=99.6 vblank_per_s=34.8 game_ms=20.6 render_ms=24.6 iop_ms=0.7 wait_ms=53.6 draws=350 verts=28828 tex_uploads=1 dma_tags=250 vu1_programs=0 host_fps=30 gl_ms=8.2 audio_ms=41 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=43.6 gs_ms=66.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=279.2 hud_draws=17.3 post_draws=18.5 packed_draws=88.8 packed_verts=14927.1 tex_create_us=1508.9 tex_kb=68.9 tex_decode_us=148.8"
+[nxrun] devmenu t=80.443 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[gs-hw] input delay by stage: input -> queued 139.2 ms (game, render worker, GS stage), queued -> taken 37.4 ms
+[rhi-stats] gpu 128 frames timed, mean 20.79 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1567 (87.3 MiB) buffers 1915 (5.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 428887 passes 26488 presents 2801 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=85.043 at=85.000000 command="gameinfo" status=ok reply="ok frames=892 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 06:59  area 0 (outdoors)  level 2 MAINLA | game time 33.9 s  frame 1017  step 1.500 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] command t=85.043 at=85.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.77778 0.1125 2000"
+[nxrun] command t=85.043 at=85.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=85.043 at=85.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[hle] world packets 199476: culled 37964, drawn 116293 + 0 GPU-clipped (6699560 vertices), 45219 C++-clipped, VU fallback 0
+[nxrun] command t=86.043 at=86.000000 command="screenshot userdata/tests/m09-wide/s4-086-hud43.png" status=ok reply="ok 1280x720"
+[gs-hw] input delay by stage: input -> queued 208.3 ms (game, render worker, GS stage), queued -> taken 77.7 ms
+[rhi-stats] gpu 116 frames timed, mean 22.89 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1611 (90.0 MiB) buffers 2212 (6.2 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 453805 passes 28201 presents 2917 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[settings] display aspect 1.778, HUD screen edges
+[nxrun] command t=88.128 at=88.000000 command="setting display.hud 2" status=ok reply="ok 2"
+[nxrun] command t=90.122 at=90.000000 command="gameinfo" status=ok reply="ok frames=948 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 07:01  area 0 (outdoors)  level 2 MAINLA | game time 36.3 s  frame 1024  step 1.400 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] command t=90.122 at=90.000000 command="screenshot userdata/tests/m09-wide/s4-090-hudedges.png" status=ok reply="ok 1280x720"
+[nxrun] progress t=90.465 host_frames=2975 game_frames=948 ee_cycle=13725273641 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=2975 audio_callbacks=4406 audio_frames=4511744 gamepad=1 heap_in_use=506929856 heap_obtained=539086848
+[nxrun] perf t=90.465 "game_fps=1.8 frame_ms=553.5 vblank_per_s=9.9 game_ms=9.0 render_ms=494.2 iop_ms=0.3 wait_ms=50.0 draws=174 verts=14241 tex_uploads=0 dma_tags=125 vu1_programs=0 host_fps=9 gl_ms=9.3 audio_ms=64 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=553.3 gs_ms=567.6 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=242.0 hud_draws=15.0 post_draws=16.0 packed_draws=76.0 packed_verts=12591.0 tex_create_us=1353.5 tex_kb=64.0 tex_decode_us=53.5"
+[nxrun] devmenu t=90.465 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[gs-hw] input delay by stage: input -> queued 215.0 ms (game, render worker, GS stage), queued -> taken 98.4 ms
+[settings] display aspect 1.778, HUD stretched
+[nxrun] command t=92.149 at=92.000000 command="setting display.hud 1" status=ok reply="ok 1"
+[rhi-stats] gpu 115 frames timed, mean 23.19 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1655 (92.8 MiB) buffers 3400 (9.7 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 478646 passes 29902 presents 3031 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[hle] world packets 222004: culled 43332, drawn 126677 + 0 GPU-clipped (7321808 vertices), 51995 C++-clipped, VU fallback 0
+[nxrun] command t=94.148 at=94.000000 command="screenshot userdata/tests/m09-wide/s4-094-hudstretch.png" status=ok reply="ok 1280x720"
+[nxrun] command t=95.059 at=95.000000 command="gameinfo" status=ok reply="ok frames=995 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 07:03  area 0 (outdoors)  level 2 MAINLA | game time 38.3 s  frame 1107  step 1.500 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[gs-hw] input delay by stage: input -> queued 190.6 ms (game, render worker, GS stage), queued -> taken 98.3 ms
+[settings] display aspect 1.778, HUD 4:3
+[nxrun] command t=96.028 at=96.000000 command="setting display.hud 0" status=ok reply="ok 0"
+[rhi-stats] gpu 115 frames timed, mean 22.69 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1701 (95.6 MiB) buffers 4641 (13.3 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 504604 passes 31668 presents 3147 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=100.025 at=100.000000 command="gameinfo" status=ok reply="ok frames=1047 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 07:05  area 0 (outdoors)  level 2 MAINLA | game time 40.5 s  frame 1159  step 3.333 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] command t=100.025 at=100.000000 command="setting display.aspect 43" status=error reply="error refused"
+[nxrun] progress t=100.476 host_frames=3253 game_frames=1056 ee_cycle=15489098736 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec24 ra=0021ec24 pumps=3253 audio_callbacks=4915 audio_frames=5032960 gamepad=1 heap_in_use=522885776 heap_obtained=559284224
+[nxrun] perf t=100.476 "game_fps=10.3 frame_ms=97.2 vblank_per_s=37.4 game_ms=19.8 render_ms=27.7 iop_ms=0.7 wait_ms=49.1 draws=349 verts=28480 tex_uploads=1 dma_tags=250 vu1_programs=0 host_fps=28 gl_ms=12.8 audio_ms=66 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=48.3 gs_ms=71.7 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=242.0 hud_draws=15.0 post_draws=16.0 packed_draws=76.0 packed_verts=12590.2 tex_create_us=1645.8 tex_kb=64.0 tex_decode_us=118.5"
+[nxrun] devmenu t=100.476 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[gs-hw] input delay by stage: input -> queued 163.1 ms (game, render worker, GS stage), queued -> taken 35.9 ms
+[rhi-stats] gpu 134 frames timed, mean 19.30 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1755 (99.0 MiB) buffers 6087 (17.6 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 534990 passes 33718 presents 3281 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=103.062 at=103.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.77778 0.1125 2000"
+[nxrun] command t=103.062 at=103.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=103.062 at=103.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[hle] world packets 247092: culled 49310, drawn 138241 + 0 GPU-clipped (8014766 vertices), 59541 C++-clipped, VU fallback 0
+[nxrun] command t=104.027 at=104.000000 command="screenshot userdata/tests/m09-wide/s4-104-aspect43.png" status=ok reply="ok 1280x720"
+[gs-hw] input delay by stage: input -> queued 217.6 ms (game, render worker, GS stage), queued -> taken 72.8 ms
+[nxrun] command t=105.129 at=105.000000 command="gameinfo" status=ok reply="ok frames=1100 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 07:08  area 0 (outdoors)  level 2 MAINLA | game time 42.7 s  frame 1152  step 3.333 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[rhi-stats] gpu 123 frames timed, mean 20.81 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1796 (101.6 MiB) buffers 7191 (20.8 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 558478 passes 35390 presents 3403 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=106.030 at=106.000000 command="setting display.aspect 169" status=error reply="error refused"
+[nxrun] command t=109.029 at=109.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.77778 0.1125 2000"
+[nxrun] command t=109.029 at=109.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=109.029 at=109.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[nxrun] command t=110.063 at=110.000000 command="gameinfo" status=ok reply="ok frames=1152 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 07:10  area 0 (outdoors)  level 2 MAINLA | game time 44.9 s  frame 1219  step 1.800 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] command t=110.063 at=110.000000 command="screenshot userdata/tests/m09-wide/s4-110-aspect169.png" status=ok reply="ok 1280x720"
+[gs-hw] input delay by stage: input -> queued 140.3 ms (game, render worker, GS stage), queued -> taken 44.4 ms
+[rhi-stats] gpu 112 frames timed, mean 23.96 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1842 (104.5 MiB) buffers 8426 (24.5 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 584285 passes 37117 presents 3515 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] progress t=110.501 host_frames=3516 game_frames=1153 ee_cycle=17208915812 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ebfc ra=0021ebfc pumps=3516 audio_callbacks=5436 audio_frames=5566464 gamepad=1 heap_in_use=540594208 heap_obtained=579620864
+[nxrun] perf t=110.501 "game_fps=6.8 frame_ms=147.4 vblank_per_s=24.2 game_ms=20.2 render_ms=81.3 iop_ms=0.7 wait_ms=45.3 draws=349 verts=28480 tex_uploads=1 dma_tags=250 vu1_programs=0 host_fps=18 gl_ms=15.2 audio_ms=42 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=105.2 gs_ms=128.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=276.6 hud_draws=17.1 post_draws=18.3 packed_draws=86.9 packed_verts=14388.0 tex_create_us=2121.1 tex_kb=73.1 tex_decode_us=149.7"
+[nxrun] devmenu t=110.501 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=0 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[hle] world packets 269108: culled 54556, drawn 148389 + 0 GPU-clipped (8622872 vertices), 66163 C++-clipped, VU fallback 0
+[nxrun] command t=115.051 at=115.000000 command="gameinfo" status=ok reply="ok frames=1203 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 07:12  area 0 (outdoors)  level 2 MAINLA | game time 47.0 s  frame 1282  step 1.250 | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[nxrun] command t=115.051 at=115.000000 command="burst userdata/tests/m09-burst/in 50" status=ok reply="ok"
+[rhi-stats] gpu 127 frames timed, mean 18.92 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1892 (107.6 MiB) buffers 9764 (28.5 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 612405 passes 39030 presents 3642 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=115.127 at=115.000000 command="press start 150" status=ok reply="ok"
+[gs-hw] input delay by stage: input -> queued 248.4 ms (game, render worker, GS stage), queued -> taken 65.5 ms
+[rhi-stats] gpu 7 frames timed, mean 486.79 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1892 (107.6 MiB) buffers 9764 (28.5 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 612566 passes 39079 presents 3649 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 731.7 ms (game, render worker, GS stage), queued -> taken 3632.3 ms
+[rhi-stats] gpu 7 frames timed, mean 493.20 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1893 (107.6 MiB) buffers 9791 (28.5 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 613239 passes 39152 presents 3656 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[gs-hw] input delay by stage: input -> queued 1112.9 ms (game, render worker, GS stage), queued -> taken 8528.8 ms
+[touch] finger down at panel 1071,484 -> display 1071,484 (display 1280x720)
+[rhi-stats] gpu 7 frames timed, mean 488.87 ms (run max 557.45 ms, 0 not timed)
+[rhi-stats] textures 1893 (107.6 MiB) buffers 9791 (28.5 MiB) samplers 9 pipelines 41 programs 18 fbos 18 pending 0 | draws 613400 passes 39201 presents 3663 | gl errors 0 debug 0 incomplete 0 owner 0 rejected 0 hazards 0
+[nxrun] command t=120.377 at=120.000000 command="gameinfo" status=ok reply="ok frames=1216 | [PLAYER  ped 01d439c0  model 0  state on foot (0x1)] | pos    -1614.15   -132.33    14.81   heading  58.0 | health 100.0  armour   0.0  money $0 | weapons  none | [CAMERA  mode 4 follow ped] | pos    -1610.34   -134.71    15.64   heading  58.0  pitch  -2.9  fov 70 | [WORLD] | clock 07:12  area 0 (outdoors)  level 2 MAINLA | game time 47.1 s  frame 1328  step 0.000 | PAUSED (menu)   | pools  peds 4/70  vehicles 6/40 | [SCRIPTS  32 active  mission running] | mission  ch_jerr @4065e | newest  ch_jerr @4065e  ambtaxi @37af5  warpspo @3763c  carpark @37222 | rampage usj facepla jandw metalde ammunat exportb exportc srangeh | safehou ga_laga ga_imp1 ga_arm2 ga_arm1 shopmon id19 zonemo id17  +10 more"
+[gs-hw] input delay by stage: input -> queued 1582.3 ms (game, render worker, GS stage), queued -> taken 13441.3 ms
+[nxrun] progress t=120.627 host_frames=3664 game_frames=1217 ee_cycle=18830818560 ee_threads=1 ready=1 waiting=0 dormant=0 running=1 pc=0021ec9c ra=0021ec9c pumps=3664 audio_callbacks=6518 audio_frames=6674432 gamepad=1 heap_in_use=554358720 heap_obtained=600584192
+[nxrun] perf t=120.627 "game_fps=0.6 frame_ms=1656.7 vblank_per_s=0.0 game_ms=0.9 render_ms=1655.8 iop_ms=0.0 wait_ms=0.0 draws=0 verts=0 tex_uploads=0 dma_tags=0 vu1_programs=0 host_fps=1 gl_ms=1.9 audio_ms=60 black_frames=0 dip_frames=0 probed_frames=0 worker_ms=1655.8 gs_ms=1655.8 gs_draws=0.0 gs_verts=0.0 gs_vu1=0.0 gs_hle=0.0 gs_path2=0.0 gs_path3=0.0 native_draws=0.0 hud_draws=0.0 post_draws=0.0 packed_draws=0.0 packed_verts=0.0 tex_create_us=0.0 tex_kb=0.0 tex_decode_us=0.0"
+[nxrun] devmenu t=120.627 menu=0 settings=0 trainer=0 blocked=0 chords=0 opens=0 closes=0 stick_presses=0 stick_delivered=0 max_withheld_ms=0.0 touches=1 trainer_used=0 game_free_aim=0 game_free_aims=0 nav=0 last=""
+[nxrun] shutdown t=120.627 frames=3664
+[rhi] GPU time: 3663 frames, mean 17.59 ms, max 557.45 ms, 0 not timed
+[platform] audio closed after 6554 callbacks, 6711296 frames
+[platform] shut down (window, context and SDL left to main.c)
+[core] game thread joined, render worker and platform stopped
+[stream] reader stopped
+[core] runtime destroyed
+[core] folder disc closed
+[nxrun] audit t=120.627 file_opens=213 iso_opens=0 first_iso="" threads_created=7
+[resources] shutdown live_threads=2 (svc 00000000 via own)
+[resources] shutdown mapped_total=3343908864 mapped_used=3339763712 heap_in_use=428885968 heap_obtained=597639168 threads_created=7 default_thread_stack=8388608 file_opens=213 iso_opens=0
+[shutdown] core, context, window and SDL closed

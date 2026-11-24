@@ -1,0 +1,24 @@
+12:51:06 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets
+12:51:06 == m09-presets: profile=m09-presets nro sha256=99472722a5cbd07817040f594759aff6b34509876cafb7cdd32d3dd0fd82bef7
+12:51:13 tree /switch/gtavcs_nx/gamefolder/userdata entries=719 file=userdata-before-m09-presets.txt
+12:51:13 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+12:51:13 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets/nxrun-results.txt
+12:51:14 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=1002 sha256=5ef7913be6031c319d80279abb38628aece96e5f3dc2da5194d9a62e64c02049
+12:51:22 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66366712 bytes\n26193796 sent (39.47%), 2163 blocks'
+12:54:07 ftp back after 164s: the payload has ended
+12:54:10 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+12:54:10 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=40964 sha256=afcee630649ab37d4ab8667c08a04f552d444d163942090fc44cb31595cb1e7c
+12:54:10 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+12:54:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets/nxrun-results.txt bytes=28805 sha256=db02845fef73ff4e90d4b68fc76e4e7ac6bccf9426755f6e7336dd15bc0f678f
+12:54:17 tree /switch/gtavcs_nx/gamefolder/userdata entries=729 file=userdata-after-m09-presets.txt
+12:54:17 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets/vcs.ini bytes=111 sha256=c3c28c05fe72fb3424b7ec94d17a941073a3fb7a273968848e87d5fd9a456b81
+12:54:22 m09-presets: clean_exit_line=True results_tail=['stop t=150.006 reason=seconds frames=5892', 'shutdown t=150.006 frames=5892', 'audit t=150.006 file_opens=199 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+12:54:22 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets/authentic.png bytes=566389 sha256=4a619f121165d8cf2bc5cfceaef571e797d031ea44df17b487198e296819f19f
+12:54:22 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets/enhanced.png bytes=712523 sha256=76c31875bd61de9d3d5ab18c66fc7d9b0ab288ebb19866eb2a42ef1f32d12a67
+12:54:23 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets/light.png bytes=693793 sha256=a182c75fceb7838198a9c862ccc30cdc816953b79b366b042305f09ee432aacb
+12:54:23 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets/nxrun-results.txt bytes=28805 sha256=db02845fef73ff4e90d4b68fc76e4e7ac6bccf9426755f6e7336dd15bc0f678f
+12:54:23 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets/vcs.ini bytes=111 sha256=c3c28c05fe72fb3424b7ec94d17a941073a3fb7a273968848e87d5fd9a456b81
+12:54:23 presets: read back 5 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m09-presets (screenshots private under build\evidence\M09\screenshots\presets)
+12:54:23 presets: 25 chord / menu / touch / settings lines -> presets-m08.txt
+12:54:23 presets: 41 widescreen lines -> presets-m09.txt
+12:54:23 RESULT game PASS

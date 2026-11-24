@@ -1,0 +1,41 @@
+11:26:51 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent
+11:26:51 == m09-silent: profile=m09-silent nro sha256=b3fc17227bdc8f59efd3c70c8edd678cfb255f7e4b5c08b2d66dcd1a0edc5249
+11:26:57 tree /switch/gtavcs_nx/gamefolder/userdata entries=370 file=userdata-before-m09-silent.txt
+11:26:57 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+11:26:57 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/nxrun-results.txt
+11:26:57 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=3302 sha256=c059f176d0f882a1be5124ecd9f16c37e5a452709ad550de8b3cac73cea889ec
+11:27:21 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66366712 bytes\n26193959 sent (39.47%), 2164 blocks'
+11:33:00 ftp back after 339s: the payload has ended
+11:33:04 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+11:33:04 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=127703 sha256=f889b5aec160d1b2039deb3685e88a5403a061b2f673adc7ddf6acadac8385f3
+11:33:04 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+11:33:04 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/nxrun-results.txt bytes=82923 sha256=04b1cda14c1dbb0fe7f1c998b0695b56cdc02952b617f26feffd19ecd0453d3f
+11:33:10 tree /switch/gtavcs_nx/gamefolder/userdata entries=397 file=userdata-after-m09-silent.txt
+11:33:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/vcs.ini bytes=57 sha256=3132dd75e38321dd4a637816b2a93becfb26bbe638de8e4361686212df8a1152
+11:33:14 m09-silent: clean_exit_line=True results_tail=['stop t=330.006 reason=seconds frames=13416', 'shutdown t=330.006 frames=13416', 'audit t=330.006 file_opens=186 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/nxrun-results.txt bytes=82923 sha256=04b1cda14c1dbb0fe7f1c998b0695b56cdc02952b617f26feffd19ecd0453d3f
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/pause-302.png bytes=356501 sha256=8d8e357d7f994ba6f8718b70044747440e0f7ed4a1998ede07fd97f91fb55b1a
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s1-003.png bytes=80019 sha256=3925a81db21b76392c7c802819347ed30ccfdcb9f682329f484e1f943750ca53
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s1-008.png bytes=133942 sha256=72c5b7de2f50155abba8c434de30fabd23dbe0b7a1729e2c553b5f778cc8ac8f
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s1-012.png bytes=2759 sha256=7efdbbfeb59ec43fc9584c5027bfb5a906d7980f68ffa20f617083617c6cf574
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s2-026.png bytes=333552 sha256=a2a15c9d5299eee71d9c7b5c6305b2b85a686a663f14c30ce27b9b1715d8f272
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s2-040.png bytes=76233 sha256=ded6de0133cce184f410f0efdc0eab8a23cff07e56aa02f3251e6d8c8ce29010
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s3-091-bars.png bytes=128348 sha256=78ef5df8604e9cdda59ecf88cf0e68c3d631625ec17c823618d71ed6fc0b9dfc
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s3-096-nobars.png bytes=273786 sha256=377c1f1d181fb60cc472277796d21777f29ec6cc214ecbc488d939f685bc7574
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s3-101-bars.png bytes=755174 sha256=e01ac050c1ad48ae6d49ec40ea3565f2c12c2fbd008c0167dad1b778a114ccfd
+11:33:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s3-115-aspect43-barslocked.png bytes=704019 sha256=060beb873ab1753c654fb11543b5dc51a4915dffde9b07b97e74d589c7b51d0d
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s3-121-aspect169-nobars.png bytes=698952 sha256=d5be770ffc0487ce4424feffc5a53aa6c7a7d3a43be27edfefaec4b3dd7110b8
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s3-160.png bytes=485171 sha256=111c458c307ef42d33aa3dbe780bc534e00bb89bcc4251cdcb4f7f6bbc107d5d
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s4-241-hud43.png bytes=382102 sha256=cc6ff676117f8417690d412c70204e2aad4dd2a0593d54dae0c7046ca13b8f08
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s4-246-hudedges.png bytes=301738 sha256=d29a04b39cce1b69d32a7195252d085acb89686907d7499a9d401f6876570e7f
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s4-251-hudstretch.png bytes=272360 sha256=cbffdbc6027a3afecd058688e8f5d14c555809917d56da27c144c3e7cdfd7030
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s4-260-aspect43.png bytes=223838 sha256=22f1ca8c945f3d69998151e4f30ccc859c89717204b02d18fee897e6f14447f9
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s4-266-aspect169.png bytes=447762 sha256=6e6ecab1dd6ca1c052a17b9d4806db1896a85dd085425df822a2ba5df688792e
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/s4-312.png bytes=356501 sha256=8d8e357d7f994ba6f8718b70044747440e0f7ed4a1998ede07fd97f91fb55b1a
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/scope-camera.png bytes=356501 sha256=8d8e357d7f994ba6f8718b70044747440e0f7ed4a1998ede07fd97f91fb55b1a
+11:33:16 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/scope-sniper.png bytes=356501 sha256=8d8e357d7f994ba6f8718b70044747440e0f7ed4a1998ede07fd97f91fb55b1a
+11:33:17 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent/vcs.ini bytes=57 sha256=3132dd75e38321dd4a637816b2a93becfb26bbe638de8e4361686212df8a1152
+11:33:17 silent: read back 22 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m09-silent (screenshots private under build\evidence\M09\screenshots\silent)
+11:33:17 silent: 17 chord / menu / touch / settings lines -> silent-m08.txt
+11:33:17 silent: 140 widescreen lines -> silent-m09.txt
+11:33:17 RESULT game PASS

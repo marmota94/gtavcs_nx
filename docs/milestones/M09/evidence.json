@@ -1,0 +1,162 @@
+{
+ "M09-01": [
+  {
+   "path": "docs/milestones/M09/TASKS.md",
+   "result": "16:9 default and 4:3 kept through patch 0013 setChoices; the chain wired through the OpenGL path, traced in TASKS.md M09-01"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/silent3-gtavcs.txt",
+   "result": "NRO 99472722: 'aspect ratio choices 4:3 / 16:9, default 16:9: set', an empty card shown at 16:9, 0 GL errors"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/accept2-gtavcs.txt",
+   "result": "NRO b3fc1722: the person switched 4:3 / 16:9 seven times from the developer menu in play, left at 4:3"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/relaunch-gtavcs.txt",
+   "result": "Next start on the same card: display.aspect=43 loaded and shown 4:3; setting back to 169 rewrote the line"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/presets-gtavcs.txt",
+   "result": "NRO 99472722: Enhanced / Widescreen, light get 16:9 for Match window, Authentic sets 4:3"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/presets-r1-gtavcs.txt",
+   "result": "NRO af1a582d (review 1 fix): the same, Enhanced 169, Authentic 43, Widescreen, light 169"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/presets-env-gtavcs.txt",
+   "result": "NRO af1a582d, VCS_ASPECT=43 locking the aspect: Enhanced, light, Authentic leave it at 43, no 'not offered here' line"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/person-observations.txt",
+   "result": "The user after switching live: 'Everything was ok'"
+  },
+  {
+   "path": "docs/milestones/M09/host-tests/settings-sanitized.txt",
+   "result": "Host tests for setChoices on d9522d9 (overlay with the review 1 patch 0013): all PASS"
+  }
+ ],
+ "M09-02": [
+  {
+   "path": "docs/milestones/M09/REPORT.md",
+   "result": "View window and entity planes identical to the desktop reference wherever both sampled the same scene (S2, S3, S4 at 16:9 and 4:3); plane edge = view window"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/silent3-results.txt",
+   "result": "NRO 99472722: peekf of 0x742AC0 and TheCamera+0xB60/0xB70 in S2, S3, S4, live 4:3 and back"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/reference-silent2/reference-results.txt",
+   "result": "Desktop D3D11 reference: the same values on the same schedule"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/cost-169-results.txt",
+   "result": "S4 16:9 on the Switch: 0.93361 1.77778, planes 0.730967 -0.682412"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/reference-cost-169/reference-results.txt",
+   "result": "S4 16:9 on the desktop: the same"
+  }
+ ],
+ "M09-03": [
+  {
+   "path": "docs/milestones/M09/TASKS.md",
+   "result": "Keep 4:3, Screen edges and Stretch with the radar, the help box and the centred mission subtitle, described in TASKS.md M09-03"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/text-results.txt",
+   "result": "NRO 99472722: the three HUD modes in turn with the subtitle on screen, screenshots taken (hashes in screenshots-sha256.txt)"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/silent3-gtavcs.txt",
+   "result": "HUD 4:3 / screen edges / stretched applied in S4 ('[settings] display aspect 1.778, HUD ...'), 0 GL errors"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/screenshots-sha256.txt",
+   "result": "Private pictures of each mode (text/, silent3/) and the desktop's (reference-silent2/)"
+  }
+ ],
+ "M09-04": [
+  {
+   "path": "docs/milestones/M09/hardware/shape3-burst-in-shapes.txt",
+   "result": "NRO 99472722: entering the pause map, 31 game frames 16:9 then 89 menu frames 4:3, 0 mismatched"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/shape3-burst-out-shapes.txt",
+   "result": "Leaving: 13 menu frames 4:3 then 107 game frames 16:9, 0 mismatched"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/shape3-results.txt",
+   "result": "menustate open=1 page=MAP_PAGE, then open=0"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/silent3-gtavcs.txt",
+   "result": "Legal and loading screens shown at display aspect 1.333, the flyover at 1.778"
+  }
+ ],
+ "M09-05": [
+  {
+   "path": "docs/milestones/M09/hardware/silent3-results.txt",
+   "result": "NRO 99472722: cutscene bars on / off / on, locked on at 4:3; sniper (camera mode 7) and camera (mode 47) aimed"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/scopemask-results.txt",
+   "result": "Scope and camera masks (upstream's scopemask strip test, tools/switch_m09_session.py scopemask): brightest value in the outer eighths 2 / 2 each (limit 8; 255 / 47 without the scope)"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/accept-gtavcs.txt",
+   "result": "The game's own Widescreen row hidden on the pause menu's Display page"
+  }
+ ],
+ "M09-06": [
+  {
+   "path": "docs/milestones/M09/REPORT.md",
+   "result": "Targets 640x1472 -> 853x1472, 17.6-21.1 -> 23.0-26.5 MiB (in play, 14 or 15 targets); GPU 11.43 -> 21.28 ms per present; game frame 23.9 / 57.5 -> 48.8 / 366.1 ms median / p95, handheld 1x"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/cost-43-gtavcs.txt",
+   "result": "4:3 rhi-stats targets and GPU time"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/cost-169-gtavcs.txt",
+   "result": "16:9 rhi-stats targets (largest 853x1472) and GPU time"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/cost-169n-gtavcs.txt",
+   "result": "Diagnosis with 640-wide targets: no once-a-second stall"
+  },
+  {
+   "path": "docs/milestones/M09/SCOPE_DECISIONS.md",
+   "result": "Docked cost under M16-03; 16:9 kept the default at this cost, the stall to M10-03 (user decisions)"
+  }
+ ],
+ "M09-07": [
+  {
+   "path": "docs/milestones/M09/hardware/drive-results.txt",
+   "result": "NRO b3fc1722: upstream's cruise route (a low flight at ~35 m, z 34.70-35.01), commanded at 40 m/s, 334 m at 60 s -> 5,336 m at 360 s (about 16.7 m/s), positions every 15 s, 24 screenshots"
+  },
+  {
+   "path": "docs/milestones/M09/REPORT.md",
+   "result": "Cruise-route frames (upstream's low flight at a fixed ~35 m, not road driving): buildings, trees, roads, water and skyline reach both outer eighths, some frames inside a structure or building face (drive-105, drive-150, drive-210) or a blur in palm trees (drive-075); no hole or missing cell seen; pop-in not claimed"
+  }
+ ],
+ "M09-08": [
+  {
+   "path": "docs/milestones/M09/hardware/accept2-gtavcs.txt",
+   "result": "Handheld, Joy-Cons attached: live 4:3 / 16:9 switching from the developer menu, clean HOME close, 0 GL errors"
+  },
+  {
+   "path": "docs/milestones/M09/hardware/person-observations.txt",
+   "result": "The user: 'Everything was ok'"
+  },
+  {
+   "path": "docs/milestones/M09/REPORT.md",
+   "result": "Reference scenes: eight silent3 / reference-silent2 pairs and cost-169's s4-200 looked at side by side; Fort Baxter HUD modes and 4:3 the same framing and placement, flyover and cutscene shape and bars only; no scope on the desktop reference"
+  },
+  {
+   "path": "docs/milestones/M09/SCOPE_DECISIONS.md",
+   "result": "Docked acceptance under M16-03 (user decision 2026-11-19)"
+  }
+ ]
+}

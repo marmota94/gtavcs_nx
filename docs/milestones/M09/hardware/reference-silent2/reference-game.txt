@@ -1,0 +1,480 @@
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[framerate] cap 30.00 fps (independent timing)
+[framerate] cap 60.00 fps (independent timing)
+[gs] hardware GS renderer (D3D11)
+[render-worker] on: render submission runs on its own thread
+[render-worker] GS stage on: the GS front end and frame building on a second thread
+[present] D3D11 on NVIDIA GeForce RTX 4060
+[control] listening on 127.0.0.1:47681 (window hidden, physical input off)
+[menu] pause menu: Enter selects, Escape goes back, the mouse points and clicks
+[sound] native sound driver (CDSTREAM's servers on the host)
+[iop] emulated IOP off: no IRX module loaded or run (PS2X_IOP=1 runs it)
+[input] player bindings
+[platform] gamepad: Gamesir Xbox Controller
+[gs-hw] renderer ready (NVIDIA GeForce RTX 4060), scale 1x
+[present] display aspect 1.778
+Loading segment: 0x100000 - 0x74df54 (filesz: 0x3cd0a8, memsz: 0x64df54)
+Registered code region: 100000 - 4cd0a8[game_overrides] applying 'GTA Vice City Stories (SLUS-21590)'[game_overrides] applied 1 matching override(s).ELF file loaded successfully. Entry point: 0x1dd6a0Starting execution at address 0x1dd6a0[SifInitRpc] Initialized[SIF module] load-emulated id=1 ref=1 path="cdrom0:\MODULES\SIO2MAN.IRX;1"
+[SIF module] load-emulated id=2 ref=1 path="cdrom0:\MODULES\LIBSD.IRX;1"
+[SIF module] load-emulated id=3 ref=1 path="cdrom0:\MODULES\SDRDRV.IRX;1"
+[SIF module] load-emulated id=4 ref=1 path="cdrom0:\MODULES\CDVDSTM.IRX;1"
+[SIF module] load-emulated id=5 ref=1 path="cdrom0:\MODULES\CDSTREAM.IRX;1"
+[SIF module] load-emulated id=6 ref=1 path="cdrom0:\MODULES\PADMAN.IRX;1"
+[SIF module] load-emulated id=7 ref=1 path="cdrom0:\MODULES\SIO2MAN.IRX;1"
+[SIF module] load-emulated id=8 ref=1 path="cdrom0:\MODULES\MCMAN.IRX;1"
+[SIF module] load-emulated id=9 ref=1 path="cdrom0:\MODULES\MCSERV.IRX;1"
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1ffff30 pathAddr=0x4ff8a8 path="\SYSTEM.CNF;1"
+[sceCdSearchFile:ok] path="\SYSTEM.CNF;1" lsn=0x2b3 size=0x39 sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1ffff30 pathAddr=0x4ff8b6 path="\SLUS_215.90;1"
+[sceCdSearchFile:ok] path="\SLUS_215.90;1" lsn=0x2b4 size=0x3cef18 sectors=0x79e
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fffc60 pathAddr=0x4ff8c5 path="\MODULES\CDSTREAM.IRX;1"
+[sceCdSearchFile:ok] path="\MODULES\CDSTREAM.IRX;1" lsn=0xa52 size=0xbd9c sectors=0x18
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fffc60 pathAddr=0x4ff8dd path="\MODULES\CDVDSTM.IRX;1"
+[sceCdSearchFile:ok] path="\MODULES\CDVDSTM.IRX;1" lsn=0xa6a size=0x82f1 sectors=0x11
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fffc60 pathAddr=0x4ff8f4 path="\MODULES\IOPRP300.IMG;1"
+[sceCdSearchFile:ok] path="\MODULES\IOPRP300.IMG;1" lsn=0xa7b size=0x43391 sectors=0x87
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fffc60 pathAddr=0x4ff90c path="\MODULES\LIBSD.IRX;1"
+[sceCdSearchFile:ok] path="\MODULES\LIBSD.IRX;1" lsn=0xb02 size=0x7585 sectors=0xf
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fffc60 pathAddr=0x4ff921 path="\MODULES\MCMAN.IRX;1"
+[sceCdSearchFile:ok] path="\MODULES\MCMAN.IRX;1" lsn=0xb11 size=0x177b5 sectors=0x2f
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fffc60 pathAddr=0x4ff936 path="\MODULES\MCSERV.IRX;1"
+[sceCdSearchFile:ok] path="\MODULES\MCSERV.IRX;1" lsn=0xb40 size=0x1cd9 sectors=0x4
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fffc60 pathAddr=0x4ff94c path="\MODULES\PADMAN.IRX;1"
+[sceCdSearchFile:ok] path="\MODULES\PADMAN.IRX;1" lsn=0xb44 size=0xb365 sectors=0x17
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fffc60 pathAddr=0x4ff962 path="\MODULES\SDRDRV.IRX;1"
+[sceCdSearchFile:ok] path="\MODULES\SDRDRV.IRX;1" lsn=0xb5b size=0x23c9 sectors=0x5
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fffc60 pathAddr=0x4ff978 path="\MODULES\SIO2MAN.IRX;1"
+[sceCdSearchFile:ok] path="\MODULES\SIO2MAN.IRX;1" lsn=0xb60 size=0x19f1 sectors=0x4
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ff98f path="\AUDIO\CUTSCENE\BRYB1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\BRYB1.VB;1" lsn=0x576b2 size=0x1d0000 sectors=0x3a0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ff9aa path="\AUDIO\CUTSCENE\DIAC1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\DIAC1.VB;1" lsn=0x57a52 size=0x350000 sectors=0x6a0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ff9c5 path="\AUDIO\CUTSCENE\DIAC2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\DIAC2.VB;1" lsn=0x580f2 size=0x288000 sectors=0x510
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ff9e0 path="\AUDIO\CUTSCENE\DIAC3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\DIAC3.VB;1" lsn=0x58602 size=0x338000 sectors=0x670
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ff9fb path="\AUDIO\CUTSCENE\DIAC4.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\DIAC4.VB;1" lsn=0x58c72 size=0x318000 sectors=0x630
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffa16 path="\AUDIO\CUTSCENE\DIAC5B.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\DIAC5B.VB;1" lsn=0x592a2 size=0x360000 sectors=0x6c0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffa32 path="\AUDIO\CUTSCENE\JERA1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\JERA1.VB;1" lsn=0x59962 size=0x4e4000 sectors=0x9c8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffa4d path="\AUDIO\CUTSCENE\JERA2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\JERA2.VB;1" lsn=0x5a32a size=0x358000 sectors=0x6b0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffa68 path="\AUDIO\CUTSCENE\JERA3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\JERA3.VB;1" lsn=0x5a9da size=0x404000 sectors=0x808
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffa83 path="\AUDIO\CUTSCENE\LANB1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANB1.VB;1" lsn=0x5b1e2 size=0x2f0000 sectors=0x5e0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffa9e path="\AUDIO\CUTSCENE\LANB2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANB2.VB;1" lsn=0x5b7c2 size=0x250000 sectors=0x4a0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffab9 path="\AUDIO\CUTSCENE\LANB4.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANB4.VB;1" lsn=0x5bc62 size=0x200000 sectors=0x400
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffad4 path="\AUDIO\CUTSCENE\LANB5.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANB5.VB;1" lsn=0x5c062 size=0x2e4000 sectors=0x5c8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffaef path="\AUDIO\CUTSCENE\LANB6.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANB6.VB;1" lsn=0x5c62a size=0x25c000 sectors=0x4b8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffb0a path="\AUDIO\CUTSCENE\LANC1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANC1.VB;1" lsn=0x5cae2 size=0x220000 sectors=0x440
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffb25 path="\AUDIO\CUTSCENE\LANC11A.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANC11A.VB;1" lsn=0x5cf22 size=0x264000 sectors=0x4c8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffb42 path="\AUDIO\CUTSCENE\LANC11B.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANC11B.VB;1" lsn=0x5d3ea size=0x384000 sectors=0x708
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffb5f path="\AUDIO\CUTSCENE\LANC3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANC3.VB;1" lsn=0x5daf2 size=0x31c000 sectors=0x638
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffb7a path="\AUDIO\CUTSCENE\LANC4.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANC4.VB;1" lsn=0x5e12a size=0x100000 sectors=0x200
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffb95 path="\AUDIO\CUTSCENE\LANC5.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANC5.VB;1" lsn=0x5e32a size=0x2e8000 sectors=0x5d0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffbb0 path="\AUDIO\CUTSCENE\LANC6.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANC6.VB;1" lsn=0x5e8fa size=0x3c0000 sectors=0x780
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffbcb path="\AUDIO\CUTSCENE\LANC8.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LANC8.VB;1" lsn=0x5f07a size=0x220000 sectors=0x440
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffbe6 path="\AUDIO\CUTSCENE\LOUA1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LOUA1.VB;1" lsn=0x5f4ba size=0x438000 sectors=0x870
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffc01 path="\AUDIO\CUTSCENE\LOUA2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LOUA2.VB;1" lsn=0x5fd2a size=0x16c000 sectors=0x2d8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffc1c path="\AUDIO\CUTSCENE\LOUA3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCENE\LOUA3.VB;1" lsn=0x60002 size=0x170000 sectors=0x2e0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffc37 path="\AUDIO\CUTSCN2\MARA1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\MARA1.VB;1" lsn=0x602e2 size=0x31c000 sectors=0x638
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffc51 path="\AUDIO\CUTSCN2\MARA2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\MARA2.VB;1" lsn=0x6091a size=0x324000 sectors=0x648
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffc6b path="\AUDIO\CUTSCN2\MARA5.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\MARA5.VB;1" lsn=0x60f62 size=0x1e0000 sectors=0x3c0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffc85 path="\AUDIO\CUTSCN2\MENC1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\MENC1.VB;1" lsn=0x61322 size=0x210000 sectors=0x420
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffc9f path="\AUDIO\CUTSCN2\MENC2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\MENC2.VB;1" lsn=0x61742 size=0x278000 sectors=0x4f0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffcb9 path="\AUDIO\CUTSCN2\MENC3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\MENC3.VB;1" lsn=0x61c32 size=0x350000 sectors=0x6a0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffcd3 path="\AUDIO\CUTSCN2\MENC5.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\MENC5.VB;1" lsn=0x622d2 size=0x26c000 sectors=0x4d8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffced path="\AUDIO\CUTSCN2\MENC6.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\MENC6.VB;1" lsn=0x627aa size=0x2d4000 sectors=0x5a8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffd07 path="\AUDIO\CUTSCN2\PHIA1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\PHIA1.VB;1" lsn=0x62d52 size=0x2bc000 sectors=0x578
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffd21 path="\AUDIO\CUTSCN2\PHIA2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\PHIA2.VB;1" lsn=0x632ca size=0x388000 sectors=0x710
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffd3b path="\AUDIO\CUTSCN2\PHIA3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\PHIA3.VB;1" lsn=0x639da size=0x2d4000 sectors=0x5a8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffd55 path="\AUDIO\CUTSCN2\PHIA4.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\PHIA4.VB;1" lsn=0x63f82 size=0x26c000 sectors=0x4d8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffd6f path="\AUDIO\CUTSCN2\RENC1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\RENC1.VB;1" lsn=0x6445a size=0x40c000 sectors=0x818
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffd89 path="\AUDIO\CUTSCN2\RENC2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\RENC2.VB;1" lsn=0x64c72 size=0x28c000 sectors=0x518
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffda3 path="\AUDIO\CUTSCN2\RENC3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\RENC3.VB;1" lsn=0x6518a size=0x260000 sectors=0x4c0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffdbd path="\AUDIO\CUTSCN2\RENC4.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\RENC4.VB;1" lsn=0x6564a size=0x2bc000 sectors=0x578
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffdd7 path="\AUDIO\CUTSCN2\RENC5.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\RENC5.VB;1" lsn=0x65bc2 size=0x308000 sectors=0x610
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffdf1 path="\AUDIO\CUTSCN2\RENC6.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\RENC6.VB;1" lsn=0x661d2 size=0x1fc000 sectors=0x3f8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffe0b path="\AUDIO\CUTSCN2\RENC7.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\RENC7.VB;1" lsn=0x665ca size=0x20c000 sectors=0x418
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffe25 path="\AUDIO\CUTSCN2\UMBB1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\UMBB1.VB;1" lsn=0x669e2 size=0x234000 sectors=0x468
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffe3f path="\AUDIO\CUTSCN2\UMBB2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\UMBB2.VB;1" lsn=0x66e4a size=0x2b4000 sectors=0x568
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffe59 path="\AUDIO\CUTSCN2\UMBB3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\UMBB3.VB;1" lsn=0x673b2 size=0x29c000 sectors=0x538
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffe73 path="\AUDIO\CUTSCN2\UMBB4.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\CUTSCN2\UMBB4.VB;1" lsn=0x678ea size=0x2a0000 sectors=0x540
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffe8d path="\AUDIO\MUSIC\AMB_BIKR.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\AMB_BIKR.VB;1" lsn=0x67e2a size=0x2c8000 sectors=0x590
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffea8 path="\AUDIO\MUSIC\CITY.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\CITY.VB;1" lsn=0x683ba size=0x14f0000 sectors=0x29e0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffebf path="\AUDIO\MUSIC\CONSTRCT.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\CONSTRCT.VB;1" lsn=0x6ad9a size=0x26c000 sectors=0x4d8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffeda path="\AUDIO\MUSIC\CROWD.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\CROWD.VB;1" lsn=0x6b272 size=0x278000 sectors=0x4f0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4ffef2 path="\AUDIO\MUSIC\EMOTION.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\EMOTION.VB;1" lsn=0x6b762 size=0x90a0000 sectors=0x12140
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fff0c path="\AUDIO\MUSIC\ESPANT.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\ESPANT.VB;1" lsn=0x7d8a2 size=0x3fe4000 sectors=0x7fc8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fff25 path="\AUDIO\MUSIC\FLASH.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\FLASH.VB;1" lsn=0x8586a size=0x87ac000 sectors=0x10f58
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fff3d path="\AUDIO\MUSIC\FRESH.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\FRESH.VB;1" lsn=0x967c2 size=0x3e3c000 sectors=0x7c78
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fff55 path="\AUDIO\MUSIC\MALL_1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\MALL_1.VB;1" lsn=0x9e43a size=0x580000 sectors=0xb00
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fff6e path="\AUDIO\MUSIC\MALL_2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\MALL_2.VB;1" lsn=0x9ef3a size=0x748000 sectors=0xe90
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fff87 path="\AUDIO\MUSIC\MALL_3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\MALL_3.VB;1" lsn=0x9fdca size=0x454000 sectors=0x8a8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fffa0 path="\AUDIO\MUSIC\MALL_4.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\MALL_4.VB;1" lsn=0xa0672 size=0x490000 sectors=0x920
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fffb9 path="\AUDIO\MUSIC\MALL_5.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\MALL_5.VB;1" lsn=0xa0f92 size=0x66c000 sectors=0xcd8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fffd2 path="\AUDIO\MUSIC\MISCOM2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\MISCOM2.VB;1" lsn=0xa1c6a size=0x24000 sectors=0x48
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x4fffec path="\AUDIO\MUSIC\PARADISE.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\PARADISE.VB;1" lsn=0xa1cb2 size=0x5668000 sectors=0xacd0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500007 path="\AUDIO\MUSIC\PHILCOL.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\PHILCOL.VB;1" lsn=0xac982 size=0xd6c000 sectors=0x1ad8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500021 path="\AUDIO\MUSIC\POLICE.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\POLICE.VB;1" lsn=0xae45a size=0x2284000 sectors=0x4508
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50003a path="\AUDIO\MUSIC\SAWMILL.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\SAWMILL.VB;1" lsn=0xb2962 size=0x3f4000 sectors=0x7e8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500054 path="\AUDIO\MUSIC\TAXI.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\TAXI.VB;1" lsn=0xb314a size=0x2284000 sectors=0x4508
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50006b path="\AUDIO\MUSIC\THEME.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\THEME.VB;1" lsn=0xb7652 size=0x2e8000 sectors=0x5d0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500083 path="\AUDIO\MUSIC\VCFL.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\VCFL.VB;1" lsn=0xb7c22 size=0x516c000 sectors=0xa2d8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50009a path="\AUDIO\MUSIC\VCPR.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\VCPR.VB;1" lsn=0xc1efa size=0x8800000 sectors=0x11000
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5000b1 path="\AUDIO\MUSIC\VROCK.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\VROCK.VB;1" lsn=0xd2efa size=0x7ce0000 sectors=0xf9c0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5000c9 path="\AUDIO\MUSIC\WATER.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\WATER.VB;1" lsn=0xe28ba size=0x160c000 sectors=0x2c18
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5000e1 path="\AUDIO\MUSIC\WAVE.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\MUSIC\WAVE.VB;1" lsn=0xe54d2 size=0x7d8c000 sectors=0xfb18
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5000f8 path="\AUDIO\NEWS\NEWS_1.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_1.VB;1" lsn=0xf4fea size=0x110000 sectors=0x220
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500110 path="\AUDIO\NEWS\NEWS_10.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_10.VB;1" lsn=0xf520a size=0x108000 sectors=0x210
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500129 path="\AUDIO\NEWS\NEWS_11.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_11.VB;1" lsn=0xf541a size=0x114000 sectors=0x228
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500142 path="\AUDIO\NEWS\NEWS_12.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_12.VB;1" lsn=0xf5642 size=0x10c000 sectors=0x218
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50015b path="\AUDIO\NEWS\NEWS_13.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_13.VB;1" lsn=0xf585a size=0xfc000 sectors=0x1f8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500174 path="\AUDIO\NEWS\NEWS_14.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_14.VB;1" lsn=0xf5a52 size=0x100000 sectors=0x200
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50018d path="\AUDIO\NEWS\NEWS_15.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_15.VB;1" lsn=0xf5c52 size=0x118000 sectors=0x230
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5001a6 path="\AUDIO\NEWS\NEWS_16.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_16.VB;1" lsn=0xf5e82 size=0xf0000 sectors=0x1e0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5001bf path="\AUDIO\NEWS\NEWS_17.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_17.VB;1" lsn=0xf6062 size=0x104000 sectors=0x208
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5001d8 path="\AUDIO\NEWS\NEWS_18.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_18.VB;1" lsn=0xf626a size=0xf8000 sectors=0x1f0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5001f1 path="\AUDIO\NEWS\NEWS_19.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_19.VB;1" lsn=0xf645a size=0x130000 sectors=0x260
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50020a path="\AUDIO\NEWS\NEWS_2.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_2.VB;1" lsn=0xf66ba size=0x110000 sectors=0x220
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500222 path="\AUDIO\NEWS\NEWS_20.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_20.VB;1" lsn=0xf68da size=0xf8000 sectors=0x1f0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50023b path="\AUDIO\NEWS\NEWS_3.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_3.VB;1" lsn=0xf6aca size=0xe4000 sectors=0x1c8
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500253 path="\AUDIO\NEWS\NEWS_4.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_4.VB;1" lsn=0xf6c92 size=0x100000 sectors=0x200
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50026b path="\AUDIO\NEWS\NEWS_5.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_5.VB;1" lsn=0xf6e92 size=0x10c000 sectors=0x218
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500283 path="\AUDIO\NEWS\NEWS_6.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_6.VB;1" lsn=0xf70aa size=0x114000 sectors=0x228
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50029b path="\AUDIO\NEWS\NEWS_7.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_7.VB;1" lsn=0xf72d2 size=0xf8000 sectors=0x1f0
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5002b3 path="\AUDIO\NEWS\NEWS_8.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_8.VB;1" lsn=0xf74c2 size=0x108000 sectors=0x210
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5002cb path="\AUDIO\NEWS\NEWS_9.VB;1"
+[sceCdSearchFile:ok] path="\AUDIO\NEWS\NEWS_9.VB;1" lsn=0xf76d2 size=0x108000 sectors=0x210
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5002e3 path="\AUDIO\SET0\SFX0_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX0_PS.RAW;1" lsn=0xf78e2 size=0x185440 sectors=0x30b
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5002fd path="\AUDIO\SET0\SFX0_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX0_PS.SDT;1" lsn=0xf7bed size=0xdb0 sectors=0x2
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500317 path="\AUDIO\SET0\SFX1_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX1_PS.RAW;1" lsn=0xf7bef size=0x80 sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500331 path="\AUDIO\SET0\SFX1_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX1_PS.SDT;1" lsn=0xf7bf0 size=0xc sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50034b path="\AUDIO\SET0\SFX2_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX2_PS.RAW;1" lsn=0xf7bf1 size=0x33c55e0 sectors=0x678b
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500365 path="\AUDIO\SET0\SFX2_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX2_PS.SDT;1" lsn=0xfe37c size=0x10308 sectors=0x21
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50037f path="\AUDIO\SET0\SFX3_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX3_PS.RAW;1" lsn=0xfe39d size=0xe9d0 sectors=0x1e
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500399 path="\AUDIO\SET0\SFX3_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX3_PS.SDT;1" lsn=0xfe3bb size=0x60 sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5003b3 path="\AUDIO\SET0\SFX4_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX4_PS.RAW;1" lsn=0xfe3bc size=0xc140 sectors=0x19
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5003cd path="\AUDIO\SET0\SFX4_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX4_PS.SDT;1" lsn=0xfe3d5 size=0x24 sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5003e7 path="\AUDIO\SET0\SFX5_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX5_PS.RAW;1" lsn=0xfe3d6 size=0x11fb0 sectors=0x24
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500401 path="\AUDIO\SET0\SFX5_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX5_PS.SDT;1" lsn=0xfe3fa size=0x24 sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50041b path="\AUDIO\SET0\SFX6_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX6_PS.RAW;1" lsn=0xfe3fb size=0x14200 sectors=0x29
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500435 path="\AUDIO\SET0\SFX6_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX6_PS.SDT;1" lsn=0xfe424 size=0x24 secto[present] display aspect 1.333
+[frames] black run of 35 host frames from 0 (luma before 0.0, after 6.2)
+[movie] cdrom0:\MOVIES\STINGS.PSS;1: 321 pictures shown, 0 dropped, 10.7 s, no sound output (host clock)
+[present] display aspect 1.778
+[present] display aspect 1.333
+[frames] black run of 189 host frames from 628 (luma before 9.7, after 7.8)
+[frames] black run of 54 host frames from 883 (luma before 6.2, after 10.2)
+[frames] black run of 112 host frames from 1051 (luma before 6.0, after 13.1)
+[frames] black run of 32 host frames from 1383 (luma before 6.1, after 9.1)
+[frames] black run of 38 host frames from 1649 (luma before 6.0, after 10.7)
+[frames] dip of 61 host frames from 1641 (scene luma 58.6, lowest 0.0, after 36.0)
+[frames] black run of 47 host frames from 1995 (luma before 7.8, after 6.2)
+[frames] dip of 64 host frames from 1987 (scene luma 35.5, lowest 0.0, after 20.2)
+[frames] black run of 30 host frames from 2327 (luma before 6.4, after 8.6)
+[frames] dip of 52 host frames from 2317 (scene luma 33.5, lowest 0.0, after 20.9)
+[frames] black run of 25 host frames from 2587 (luma before 6.1, after 8.1)
+[frames] dip of 53 host frames from 2575 (scene luma 44.9, lowest 0.0, after 25.7)
+[frames] black run of 54 host frames from 2869 (luma before 9.4, after 8.0)
+[frames] dip of 90 host frames from 2861 (scene luma 35.1, lowest 0.0, after 27.8)
+[frames] black run of 49 host frames from 3137 (luma before 6.2, after 15.5)
+[frames] black run of 41 host frames from 3443 (luma before 7.4, after 7.4)
+[frames] dip of 60 host frames from 3433 (scene luma 58.0, lowest 0.0, after 34.5)
+[frames] black run of 44 host frames from 3743 (luma before 8.7, after 9.9)
+[frames] dip of 59 host frames from 3736 (scene luma 40.2, lowest 0.0, after 26.4)
+[frames] black run of 37 host frames from 4060 (luma before 13.1, after 13.2)
+[frames] dip of 51 host frames from 4053 (scene luma 39.7, lowest 0.0, after 25.4)
+[frames] black run of 35 host frames from 4362 (luma before 8.4, after 8.5)
+[frames] dip of 70 host frames from 4348 (scene luma 68.1, lowest 0.0, after 39.4)
+[frames] black run of 24 host frames from 4673 (luma before 7.8, after 6.8)
+[frames] dip of 45 host frames from 4661 (scene luma 37.4, lowest 0.0, after 22.6)
+[frames] black run of 29 host frames from 4993 (luma before 8.2, after 11.3)
+[frames] dip of 39 host frames from 4988 (scene luma 28.4, lowest 0.0, after 21.0)
+[frames] black run of 35 host frames from 5356 (luma before 7.8, after 55.5)
+[frames] dip of 46 host frames from 5345 (scene luma 40.6, lowest 0.0, after 55.5)
+[movie] cdrom0:\MOVIES\INTRO.PSS;1: 2527 pictures shown, 0 dropped, 84.2 s, no sound output (host clock)
+[present] display aspect 1.778
+[gs-hw] input delay by stage: input -> queued 30.6 ms (game, render worker, GS stage), queued -> taken 11.1 ms
+[gs-hw] a draw samples its own render target: reading a copy
+[present] display aspect 1.333
+[frames] black run of 102 host frames from 5595 (luma before 9.1, after 35.9)
+[menu] the Display page's Widescreen row hidden (2 focus moves past it, 4 rows up 27)
+[frames] dip of 119 host frames from 5587 (scene luma 65.9, lowest 0.0, after 74.6)
+[vu0native] running VCS VU0 segment vs triangle (0x020) natively (VU0 0x0020, 1960 bytes)
+[vu0native] running VCS VU0 sphere vs triangle (0x3A0) natively (VU0 0x03a0, 1960 bytes)
+[vu0native] running VCS VU0 store vf1..vf12 (0x0E30) natively (VU0 0x0e30, 104 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0E98) natively (VU0 0x0e98, 272 bytes)
+[vu0native] running VCS VU0 3x matrix product (0x0EB8) natively (VU0 0x0eb8, 240 bytes)
+[vu0native] running VCS VU0 sector box clip (0x0CF8) natively (VU0 0x0cf8, 312 bytes)
+[vu0native] running VCS VU0 sphere vs three plane sets (0x0C10) natively (VU0 0x0c10, 216 bytes)
+[hle] world packets 21: culled 5, drawn 1 + 0 GPU-clipped (70 vertices), 15 C++-clipped, VU fallback 0
+[present] display aspect 1.778
+[frames] black run of 17 host frames from 5771 (luma before 145.2, after 6.9)
+[frames] dip of 56 host frames from 5771 (scene luma 139.8, lowest 0.0, after 178.8)
+[gs-hw] input delay by stage: input -> queued 58.7 ms (game, render worker, GS stage), queued -> taken 14.3 ms
+[gs-hw] input delay by stage: input -> queued 7.5 ms (game, render worker, GS stage), queued -> taken 9.2 ms
+[hle] world packets 562851: culled 11563, drawn 539062 + 0 GPU-clipped (24973813 vertices), 12226 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 6.0 ms (game, render worker, GS stage), queued -> taken 10.7 ms
+[gs-hw] input delay by stage: input -> queued 7.2 ms (game, render worker, GS stage), queued -> taken 9.5 ms
+[hle] world packets 1343246: culled 37043, drawn 1242526 + 0 GPU-clipped (60620191 vertices), 63677 C++-clipped, VU fallback 0
+[frames] dip of 76 host frames from 7056 (scene luma 107.8, lowest 10.0, after 64.2)
+[gs-hw] input delay by stage: input -> queued 7.1 ms (game, render worker, GS stage), queued -> taken 9.7 ms
+[vu0native] running VCS VU0 segment vs triangle, float inputs (0x068) natively (VU0 0x0068, 1960 bytes)
+[gs-hw] input delay by stage: input -> queued 10.8 ms (game, render worker, GS stage), queued -> taken 11.7 ms
+[hle] world packets 1828188: culled 60104, drawn 1655548 + 0 GPU-clipped (81313450 vertices), 112536 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 6.6 ms (game, render worker, GS stage), queued -> taken 10.1 ms
+[gs-hw] input delay by stage: input -> queued 18.3 ms (game, render worker, GS stage), queued -> taken 9.8 ms
+[frames] black run of 58 host frames from 8021 (luma before 8.5, after 6.8)
+[frames] dip of 111 host frames from 8005 (scene luma 84.1, lowest 0.0, after 46.5)
+[hle] world packets 2501954: culled 101136, drawn 2219163 + 0 GPU-clipped (106449029 vertices), 181655 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 7.9 ms (game, render worker, GS stage), queued -> taken 8.9 ms
+[gs-hw] input delay by stage: input -> queued 7.8 ms (game, render worker, GS stage), queued -> taken 8.9 ms
+[hle] world packets 3377271: culled 167438, drawn 2960537 + 0 GPU-clipped (138154815 vertices), 249296 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 5.6 ms (game, render worker, GS stage), queued -> taken 11.1 ms
+[gs-hw] input delay by stage: input -> queued 10.4 ms (game, render worker, GS stage), queued -> taken 11.9 ms
+[hle] world packets 3832480: culled 253596, drawn 3274798 + 0 GPU-clipped (152585651 vertices), 304086 C++-clipped, VU fallback 0
+[frames] dip of 106 host frames from 9360 (scene luma 102.0, lowest 49.5, after 95.3)
+[gs-hw] input delay by stage: input -> queued 5.3 ms (game, render worker, GS stage), queued -> taken 11.4 ms
+[gs-hw] input delay by stage: input -> queued 5.1 ms (game, render worker, GS stage), queued -> taken 11.6 ms
+[hle] world packets 4370369: culled 348245, drawn 3662863 + 0 GPU-clipped (170870518 vertices), 359261 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 5.7 ms (game, render worker, GS stage), queued -> taken 11.1 ms
+[gs-hw] input delay by stage: input -> queued 7.4 ms (game, render worker, GS stage), queued -> taken 9.3 ms
+[hle] world packets 4941349: culled 408784, drawn 4108720 + 0 GPU-clipped (190482473 vertices), 423845 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 5.4 ms (game, render worker, GS stage), queued -> taken 11.3 ms
+[gs-hw] input delay by stage: input -> queued 5.5 ms (game, render worker, GS stage), queued -> taken 11.2 ms
+[hle] world packets 5506871: culled 485390, drawn 4532901 + 0 GPU-clipped (209333721 vertices), 488580 C++-clipped, VU fallback 0
+[frames] dip of 17 host frames from 11253 (scene luma 88.9, lowest 41.8, after 49.1)
+[gs-hw] input delay by stage: input -> queued 4.9 ms (game, render worker, GS stage), queued -> taken 11.8 ms
+[gs-hw] input delay by stage: input -> queued 6.1 ms (game, render worker, GS stage), queued -> taken 10.6 ms
+[hle] world packets 6335760: culled 580223, drawn 5190298 + 0 GPU-clipped (238305112 vertices), 565239 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 5.7 ms (game, render worker, GS stage), queued -> taken 11.1 ms
+[gs-hw] input delay by stage: input -> queued 6.1 ms (game, render worker, GS stage), queued -> taken 12.9 ms
+[hle] world packets 6867448: culled 677723, drawn 5561758 + 0 GPU-clipped (255164471 vertices), 627967 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 9.9 ms (game, render worker, GS stage), queued -> taken 11.0 ms
+[gs-hw] input delay by stage: input -> queued 8.5 ms (game, render worker, GS stage), queued -> taken 11.2 ms
+[hle] world packets 7507289: culled 765277, drawn 6045949 + 0 GPU-clipped (276033380 vertices), 696063 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 6.6 ms (game, render worker, GS stage), queued -> taken 10.1 ms
+[settings] display aspect 1.333, HUD 4:3
+[present] display aspect 1.333
+[gs-hw] input delay by stage: input -> queued 6.4 ms (game, render worker, GS stage), queued -> taken 10.4 ms
+[hle] world packets 8336863: culled 840878, drawn 6726122 + 0 GPU-clipped (306509298 vertices), 769863 C++-clipped, VU fallback 0
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[gs-hw] input delay by stage: input -> queued 7.1 ms (game, render worker, GS stage), queued -> taken 12.0 ms
+[gs-hw] input delay by stage: input -> queued 7.5 ms (game, render worker, GS stage), queued -> taken 12.6 ms
+[hle] world packets 8733469: culled 919714, drawn 6974758 + 0 GPU-clipped (319616443 vertices), 838997 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 7.6 ms (game, render worker, GS stage), queued -> taken 9.3 ms
+[frames] dip of 2 host frames from 14408 (scene luma 61.6, lowest 31.5, after 92.3)
+[gs-hw] input delay by stage: input -> queued 5.8 ms (game, render worker, GS stage), queued -> taken 10.9 ms
+[hle] world packets 9240594: culled 989485, drawn 7340752 + 0 GPU-clipped (336192296 vertices), 910357 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 6.3 ms (game, render worker, GS stage), queued -> taken 10.4 ms
+[frames] dip of 118 host frames from 14824 (scene luma 93.3, lowest 37.1, after 52.1)
+[gs-hw] input delay by stage: input -> queued 6.0 ms (game, render worker, GS stage), queued -> taken 10.7 ms
+[hle] world packets 9679172: culled 1069716, drawn 7632649 + 0 GPU-clipped (349897591 vertices), 976807 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 5.1 ms (game, render worker, GS stage), queued -> taken 11.6 ms
+[gs-hw] input delay by stage: input -> queued 6.5 ms (game, render worker, GS stage), queued -> taken 10.2 ms
+[hle] world packets 10088053: culled 1161188, drawn 7898473 + 0 GPU-clipped (362211387 vertices), 1028392 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 7.0 ms (game, render worker, GS stage), queued -> taken 9.7 ms
+[gs-hw] input delay by stage: input -> queued 5.4 ms (game, render worker, GS stage), queued -> taken 11.5 ms
+[present] display aspect 1.333
+[present] display aspect 1.778
+[frames] black run of 80 host frames from 16423 (luma before 7.2, after 7.1)
+[hle] world packets 10420135: culled 1228052, drawn 8106671 + 0 GPU-clipped (372785057 vertices), 1085412 C++-clipped, VU fallback 0
+[frames] dip of 119 host frames from 16408 (scene luma 58.9, lowest 0.0, after 33.2)
+[gs-hw] input delay by stage: input -> queued 5.6 ms (game, render worker, GS stage), queued -> taken 12.2 ms
+[gs-hw] input delay by stage: input -> queued 10.9 ms (game, render worker, GS stage), queued -> taken 11.5 ms
+[hle] world packets 10606241: culled 1256587, drawn 8236814 + 0 GPU-clipped (380696444 vertices), 1112840 C++-clipped, VU fallback 0
+[present] display aspect 1.333
+[present] display aspect 1.778
+[frames] black run of 66 host frames from 17208 (luma before 6.5, after 6.5)
+[frames] dip of 92 host frames from 17195 (scene luma 33.9, lowest 0.0, after 19.2)
+[gs-hw] input delay by stage: input -> queued 6.8 ms (game, render worker, GS stage), queued -> taken 10.4 ms
+[gs-hw] input delay by stage: input -> queued 6.8 ms (game, render worker, GS stage), queued -> taken 9.9 ms
+[hle] world packets 10755970: culled 1289975, drawn 8312994 + 0 GPU-clipped (385275473 vertices), 1153001 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 7.7 ms (game, render worker, GS stage), queued -> taken 9.0 ms
+[gs-hw] input delay by stage: input -> queued 7.7 ms (game, render worker, GS stage), queued -> taken 9.1 ms
+[hle] world packets 10909452: culled 1326535, drawn 8383741 + 0 GPU-clipped (389514790 vertices), 1199176 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 7.3 ms (game, render worker, GS stage), queued -> taken 9.4 ms
+[gs-hw] input delay by stage: input -> queued 7.6 ms (game, render worker, GS stage), queued -> taken 9.1 ms
+[hle] world packets 11063052: culled 1363135, drawn 8454541 + 0 GPU-clipped (393757390 vertices), 1245376 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 6.9 ms (game, render worker, GS stage), queued -> taken 9.8 ms
+[gs-hw] input delay by stage: input -> queued 7.1 ms (game, render worker, GS stage), queued -> taken 9.6 ms
+[hle] world packets 11216805: culled 1399780, drawn 8525415 + 0 GPU-clipped (398004594 vertices), 1291610 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 6.9 ms (game, render worker, GS stage), queued -> taken 9.9 ms
+[gs-hw] input delay by stage: input -> queued 7.1 ms (game, render worker, GS stage), queued -> taken 9.8 ms
+[hle] world packets 11370149: culled 1436319, drawn 8596097 + 0 GPU-clipped (402240123 vertices), 1337733 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 6.5 ms (game, render worker, GS stage), queued -> taken 10.2 ms
+[gs-hw] input delay by stage: input -> queued 6.6 ms (game, render worker, GS stage), queued -> taken 10.1 ms
+[hle] world packets 11523749: culled 1472919, drawn 8666897 + 0 GPU-clipped (406482723 vertices), 1383933 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 6.4 ms (game, render worker, GS stage), queued -> taken 10.3 ms
+[gs-hw] input delay by stage: input -> queued 6.4 ms (game, render worker, GS stage), queued -> taken 10.3 ms
+[hle] world packets 11677368: culled 1509525, drawn 8737698 + 0 GPU-clipped (410725393 vertices), 1430145 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 6.7 ms (game, render worker, GS stage), queued -> taken 10.0 ms
+[settings] display aspect 1.778, HUD screen edges
+[gs-hw] input delay by stage: input -> queued 14.6 ms (game, render worker, GS stage), queued -> taken 11.3 ms
+[hle] world packets 11819704: culled 1543441, drawn 8803306 + 0 GPU-clipped (414656869 vertices), 1472957 C++-clipped, VU fallback 0
+[settings] display aspect 1.778, HUD stretched
+[gs-hw] input delay by stage: input -> queued 13.0 ms (game, render worker, GS stage), queued -> taken 11.1 ms
+[settings] display aspect 1.778, HUD 4:3
+[gs-hw] input delay by stage: input -> queued 11.9 ms (game, render worker, GS stage), queued -> taken 11.3 ms
+[settings] display aspect 1.333, HUD 4:3
+[present] display aspect 1.333
+[hle] world packets 11963344: culled 1577366, drawn 8869796 + 0 GPU-clipped (418643524 vertices), 1516182 C++-clipped, VU fallback 0
+[gs-hw] input delay by stage: input -> queued 13.7 ms (game, render worker, GS stage), queued -> taken 10.5 ms
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[gs-hw] input delay by stage: input -> queued 7.6 ms (game, render worker, GS stage), queued -> taken 9.1 ms
+[hle] world packets 12089006: culled 1602587, drawn 8932115 + 0 GPU-clipped (422414317 vertices), 1554304 C++-clipped, VU fallback 0
+rs=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50044f path="\AUDIO\SET0\SFX7_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX7_PS.RAW;1" lsn=0xfe425 size=0x13800 sectors=0x27
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500469 path="\AUDIO\SET0\SFX7_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX7_PS.SDT;1" lsn=0xfe44c size=0x24 sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500483 path="\AUDIO\SET0\SFX8_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX8_PS.RAW;1" lsn=0xfe44d size=0x139c0 sectors=0x28
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50049d path="\AUDIO\SET0\SFX8_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX8_PS.SDT;1" lsn=0xfe475 size=0x24 sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5004b7 path="\AUDIO\SET0\SFX9_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX9_PS.RAW;1" lsn=0xfe476 size=0xd940 sectors=0x1c
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5004d1 path="\AUDIO\SET0\SFX9_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET0\SFX9_PS.SDT;1" lsn=0xfe492 size=0x24 sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x5004eb path="\AUDIO\SET1\SFX10_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET1\SFX10_PS.RAW;1" lsn=0xfe493 size=0xfd30 sectors=0x20
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500506 path="\AUDIO\SET1\SFX10_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET1\SFX10_PS.SDT;1" lsn=0xfe4b3 size=0x24 sectors=0x1
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x500521 path="\AUDIO\SET1\SFX11_PS.RAW;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET1\SFX11_PS.RAW;1" lsn=0xfe4b4 size=0x10700 sectors=0x21
+[sceCdSearchFile] pc=0x220ab8 ra=0x220ab8 file=0x1fff990 pathAddr=0x50053c path="\AUDIO\SET1\SFX11_PS.SDT;1"
+[sceCdSearchFile:ok] path="\AUDIO\SET1\SFX11_PS.SDT;1" lsn=0xfe4d5 size=0x24 sectors=0x1
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] Chdir port=0 '/BASLUS-21590GTA40001' -> result=-4 cwd='/'[MC] Sync cmd=12 result=-4[MC] Chdir port=0 '/BASLUS-21590GTA40001' -> result=-4 cwd='/'[MC] Sync cmd=12 result=-4[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] Sync cmd=18 result=1024[sceDmaSend] ch=0x1000a000 madr=0x0 qwc=0x0 tadr=0x1fc3800 chcr=0x185
+[sceDmaSend:head] ch=0x1000a000 tagQwc=0xa id=0x7 irq=0x0 addr=0x0 w2=0x0 w3=0x0
+[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] Chdir port=0 '/BASLUS-21590GTA40001' -> result=-4 cwd='/'[MC] Sync cmd=12 result=-4[MC] GetInfo port=0 type=2 free=8192 format=1 result=0[MC] Sync cmd=1 result=0[MC] Chdir port=0 '/BASLUS-21590GTA40001' -> result=-4 cwd='/'[MC] Sync cmd=12 result=-4[MC] GetDir port=0 '*' maxent=15 -> result=2[MC] Sync cmd=13 result=2[guest-branch:missing-target] kind=IndirectCall op=JALR source=0x25615c target=0x0 pc=0x0 ra=0x256164 sp=0x1fffe30 gp=0x4d50f0 a0=0x742e4b a1=0x1100 a2=0x73bfb8 a3=0x50def8 s0=0x73bfb8 s1=0x50dca8 v0=0x0 v1=0x4c72f0 a0Readable=yes a0[0]=0x0 a0[4]=0x0 a0[8]=0x0 a0[c]=0x0 s0Readable=yes s0[0]=0x73c1d0 s0[4]=0x0 s0[8]=0x28 s0[c]=0x0 recordReadable=no record[0]=0x0 record[4]=0x0 record[8]=0x0 record[c]=0x0 vtableReadable=no vtbl[0]=0x0 vtbl[4]=0x0 vtbl[8]=0x0 vtbl[c]=0x0 codeRegion=no policy=1 trace=0x451038 -> 0x465100 -> 0x461b54 -> 0x224dec -> 0x225400 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x461b00 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x461b00 -> 0x465100 -> 0x465100 -> 0x461b00 -> 0x465100 -> 0x465100 -> 0x465100 -> 0x461b00 -> 0x465100 -> 0x3c7b14 -> 0x3c7364 -> 0x3c71e0 -> 0x47a268 -> 0x3cba6c -> 0x2000a4 -> 0x407120 -> 0x414320 -> 0x256164 -> 0x256038 -> 0x3b1170 stackHits=0x1fffe24,0x1fffe1c,0x1fffe14,0x1fffe0c,0x1fffe04,0x1fffdfc,0x1fffdf4,0x1fffdec,0x1fffde4,0x1fffddc,0x1fffdd4,0x1fffdcc,0x1fffdc4,0x1fffdbc,0x1fffdb4,0x1fffdac,0x1fffda4,0x1fffd9c,0x1fffd94,0x1fffd8c,0x1fffd84,0x1fffd7c,0x1fffd74,0x1fffd6c,0x1fffd64,0x1fffd5c,0x1fffd58,0x1fffd4c,0x1fffd48,0x1fffd3c,0x1fffd34,0x1fffd2c,0x1fffd24,0x1fffd1c,0x1fffd14,0x1fffd0c,0x1fffcfc,0x1fffcf4,0x1fffcec,0x1fffce4,0x1fffcdc,0x1fffcd4,0x1fffccc,0x1fffcbc,0x1fffcb4,0x1fffcac,0x1fffca4,0x1fffc9c,0x1fffc94,0x1fffc8c,0x1fffc84,0x1fffc7c,0x1fffc74,0x1fffc6c,0x1fffc68,0x1fffc64,0x1fffc5c,0x1fffc54,0x1fffc4c,0x1fffc44,0x1fffc3c,0x1fffc34,0x1fffc2c,0x1fffc1c,0x1fffc14,0x1fffc0c,0x1fffc08,0x1fffc04,0x1fffbfc,0x1fffbf8,0x1fffbf4,0x1fffbf0,0x1fffbec,0x1fffbe4,0x1fffbdc,0x1fffbd4,0x1fffbcc,0x1fffbc8,0x1fffbc4,0x1fffbbc,0x1fffbac,0x1fffba4,0x1fffb9c,0x1fffb94,0x1fffb8c,0x1fffb84,0x1fffb7c,0x1fffb74,0x1fffb6c,0x1fffb68,0x1fffb64,0x1fffb5c,0x1fffb54,0x1fffb4c,0x1fffb44,0x1fffb3c,0x1fffb34,0x1fffb2c,0x1fffb24,0x1fffb1c,0x1fffb14,0x1fffb0c,0x1fffb00,0x1fffafc,0x1fffaec,0x1fffae4,0x1fffae0,0x1fffadc,0x1fffad4,0x1fffacc,0x1fffac4,0x1fffabc,0x1fffab4,0x1fffaac,0x1fffaa4,0x1fffa9c,0x1fffa94,0x1fffa8c,0x1fffa84,0x1fffa7c,0x1fffa74,0x1fffa6c,0x1fffa64,0x1fffa5c,0x1fffa58,0x1fffa54,0x1fffa50,0x1fffa4c,0x1fffa44,0x1fffa3c,
+[ee] thread 1 -> dormant pc=0x00000000 ra=0x00256164 sp=0x01fffe30 v0=0x00000000 a0=0x00742e4b
+[gs-hw] input delay by stage: input -> queued 40.6 ms (game, render worker, GS stage), queued -> taken 10.2 ms
+[gs-hw] input delay by stage: input -> queued 3000.1 ms (game, render worker, GS stage), queued -> taken 8.3 ms
+[gs-hw] input delay by stage: input -> queued 8008.8 ms (game, render worker, GS stage), queued -> taken 8.0 ms
+[gs-hw] input delay by stage: input -> queued 13016.7 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 18016.7 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 23025.1 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 28033.4 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 33050.1 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 38058.4 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 43058.4 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 48058.4 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 53066.7 ms (game, render worker, GS stage), queued -> taken 16.6 ms
+[gs-hw] input delay by stage: input -> queued 57942.5 ms (game, render worker, GS stage), queued -> taken 18.7 ms
+[gs-hw] input delay by stage: input -> queued 63077.8 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 68086.1 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 73102.8 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 78119.5 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 83127.8 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 88136.1 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 93144.5 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 98152.8 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 103169.5 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 108186.1 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 113202.8 ms (game, render worker, GS stage), queued -> taken 16.7 ms
+[gs-hw] input delay by stage: input -> queued 118127.8 ms (game, render worker, GS stage), queued -> taken 17.6 ms
+Game thread returned. PC=0x0 RA=0x256164
+[run] exiting loop

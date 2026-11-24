@@ -1,0 +1,70 @@
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 5 (11.4 MiB) largest 640x1472
+[present] display aspect 1.778
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[nxrun] command t=150.096 at=150.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.77778 0.1125 2000"
+[nxrun] command t=150.096 at=150.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=150.096 at=150.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[nxrun] command t=190.108 at=190.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.77778 0.1125 2000"
+[nxrun] command t=190.108 at=190.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=190.108 at=190.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 14 (19.9 MiB) largest 640x1472
+[rhi-stats] targets 15 (23.4 MiB) largest 640x1472
+[nxrun] command t=200.094 at=200.000000 command="screenshot userdata/tests/m09-cost-169n/s4-200.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (23.4 MiB) largest 640x1472
+[rhi-stats] targets 15 (23.4 MiB) largest 640x1472
+[rhi-stats] targets 15 (23.4 MiB) largest 640x1472
+[rhi-stats] targets 15 (23.4 MiB) largest 640x1472
+[rhi-stats] targets 15 (23.4 MiB) largest 640x1472
+[rhi-stats] targets 15 (23.4 MiB) largest 640x1472
+[rhi-stats] targets 15 (23.4 MiB) largest 640x1472

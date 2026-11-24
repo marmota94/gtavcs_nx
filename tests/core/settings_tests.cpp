@@ -1,4 +1,4 @@
-// The overlaid upstream settings registry (src/settings/settings.cpp with root patch 0012): a damaged vcs.ini falls back
+// The overlaid upstream settings registry (src/settings/settings.cpp with root patches 0012 and 0013): a damaged vcs.ini falls back
 // to the defaults key by key, the next save repairs it, hidden rows leave no empty page (M08-04, M08-03).
 #include "settings/settings.h"
 
@@ -145,6 +145,30 @@ int runSettingsTests()
         keyboard = keyboard || p == "Keyboard";
     check(pages.size() == 3 && !keyboard, "the page left without a row has no tab");
     check(settings::set("test.key", 291) && settings::value("test.key") == 291, "a hidden setting still takes a value");
+
+    // a host's narrower choices and default (root patch 0013, M09-01: the Switch's display.aspect 4:3 / 16:9, 16:9)
+    check(!settings::setChoices("no.such", {{"a", 1}}, 1), "setChoices: an unknown key is refused");
+    check(!settings::setChoices("test.toggle", {{"a", 1}}, 1), "setChoices: a setting that is not a Choice is refused");
+    check(!settings::setChoices("test.choice", {{"one", 1}, {"four", 4}}, 2), "setChoices: a default outside the choices is refused");
+    check(settings::all()[1].choices.size() == 3 && settings::all()[1].defaultValue == 2, "a refused setChoices changes nothing");
+    check(settings::setChoices("test.choice", {{"one", 1}, {"four", 4}}, 4, "new help"), "setChoices: narrowed, default 4");
+    check(settings::all()[1].help == "new help" && settings::all()[1].choices.size() == 2, "the help and the choices replaced");
+    std::remove(ini.c_str());
+    settings::load(ini);
+    check(settings::value("test.choice") == 4, "no file: the host's default");
+    writeAll(ini, "test.choice=2\n");
+    settings::load(ini);
+    check(settings::value("test.choice") == 4, "a saved value no longer offered (2) ignored: the host's default");
+    check(!settings::set("test.choice", 2) && settings::value("test.choice") == 4, "set refuses a value no longer offered");
+    writeAll(ini, "test.choice=1\n");
+    settings::load(ini);
+    check(settings::value("test.choice") == 1, "an offered value loads");
+    check(settings::set("test.choice", 4) && readAll(ini).find("test.choice=4\n") != std::string::npos,
+          "back to the host's default: the file's line rewritten");
+    std::remove(ini.c_str());
+    settings::load(ini);
+    check(settings::set("test.integer", 41) && readAll(ini).find("test.choice=") == std::string::npos,
+          "the host's default is not appended to a new file (only values off the default are)");
     std::printf("%s settings: %d failure(s)\n", g_failures ? "FAIL" : "PASS", g_failures);
     return g_failures;
 }

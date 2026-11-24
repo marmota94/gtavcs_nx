@@ -1,0 +1,14 @@
+2026-11-21, NRO c81c7428 (main, wide-base, unattended run with VCS_ASPECT=169): the user: "the game freezed. ive closed it".
+The log shows the burst capture (every presented frame at 1280x720 into PNGs on the SD card) slowing the GPU frame from
+~19 ms to ~490 ms from t=115 s; the user closed it at t=120.6 s. Not a hang: later burst runs capture at 320x180.
+2026-11-21, NRO b3fc1722 (accept): the run went its full 600 s with no button press logged. Asked "Did you see the game
+reach play, and are you ready to do the 3 steps now on a fresh run?", the user chose "Ready, run again".
+2026-11-21, NRO b3fc1722 (accept2): the user asked "What step?" and was given the steps: wait for play at Fort Baxter,
+L3 + R3, Settings, Display, Aspect ratio 4:3 -> 16:9 -> 4:3 -> 16:9 -> 4:3 looking at the picture each time, leave it
+at 4:3, B to close the menus, close from HOME, then say whether any change looked wrong (stretched or squashed picture,
+garbage, HUD in the wrong place). The user: "Everything was ok". The log has the chord at 59.0 s, Settings, seven aspect
+changes ending at 4:3, the HUD set to Screen edges and the preset Widescreen, light pressed once (display.hud=2,
+display.aniso=4 saved with display.aspect=43), the closing chord at 91.7 s and a clean HOME close.
+2026-11-21, after the cost runs: asked "How should M09 handle the default and the stall?" (fix the stall first; 16:9
+default with 640-wide targets; keep 4:3 default; 16:9 default as is), the user chose "16:9 default as is"
+(SCOPE_DECISIONS.md).

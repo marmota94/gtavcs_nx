@@ -1,0 +1,41 @@
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[settings] display aspect 1.333, HUD 4:3
+[nxrun] command t=90.074 at=90.000000 command="setting display.aspect 43" status=ok reply="ok 43"
+[present] display aspect 1.333
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[nxrun] command t=93.037 at=93.000000 command="setting presets.enhanced 1" status=ok reply="ok pressed"
+[present] display aspect 1.778
+[nxrun] command t=96.159 at=96.000000 command="setting display.aspect" status=ok reply="ok 169"
+[nxrun] command t=97.024 at=97.000000 command="screenshot userdata/tests/m09-presets/enhanced.png" status=ok reply="ok 1280x720"
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[nxrun] command t=100.039 at=100.000000 command="setting presets.authentic 1" status=ok reply="ok pressed"
+[present] display aspect 1.333
+[nxrun] command t=103.028 at=103.000000 command="setting display.aspect" status=ok reply="ok 43"
+[nxrun] command t=104.030 at=104.000000 command="screenshot userdata/tests/m09-presets/authentic.png" status=ok reply="ok 1280x720"
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[nxrun] command t=107.031 at=107.000000 command="setting presets.light 1" status=ok reply="ok pressed"
+[present] display aspect 1.778
+[nxrun] command t=110.086 at=110.000000 command="setting display.aspect" status=ok reply="ok 169"
+[nxrun] command t=111.019 at=111.000000 command="screenshot userdata/tests/m09-presets/light.png" status=ok reply="ok 1280x720"
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.333, HUD 4:3
+[nxrun] command t=114.096 at=114.000000 command="setting presets.authentic 1" status=ok reply="ok pressed"
+[present] display aspect 1.333

@@ -1,0 +1,32 @@
+[devmenu] 74 desktop-only settings hidden (Keyboard page, window, background)
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[settings] /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/vcs.ini: 122 settings, 0 not at their default: (none)
+[devmenu] L3 + R3 opens the developer menu; Back + Start / RB / LB chords off
+[chord] L3 + R3 opens the developer menu; every L3 / R3 press waits 100 ms for the other
+[platform] focus lost: audio paused, pad neutral
+[platform] focus back: audio resumed, pad live
+[platform] controller physical: No1 styles 0x0 (none, device type 0x0), handheld styles 0x2 (Joy-Cons attached (handheld), device type 0xc)
+[chord] 58.958 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 58.958 s R3 chord after 0.0 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] opened by L3 + R3: menu=1 settings=0 trainer=0 chords=1
+[chord] 59.174 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 59.174 s R3 suppressed-up: game sees L3=0 R3=0
+[devmenu] chose: settings
+[devmenu] to the settings menu: menu=0 settings=1 trainer=0 chords=1
+[settings] display aspect 1.333, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD screen edges
+[settings] preset Widescreen, light
+[settings] display aspect 1.333, HUD screen edges
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.333, HUD screen edges
+[settings] display aspect 1.778, HUD screen edges
+[settings] display aspect 1.333, HUD screen edges
+[chord] 91.621 s R3 withheld: game sees L3=0 R3=0
+[chord] 91.691 s L3 chord after 0.0 ms: game sees L3=0 R3=0
+[chord] 91.691 s R3 chord after 69.3 ms: game sees L3=0 R3=0 (menu toggle)
+[devmenu] settings / trainer closed by L3 + R3: menu=0 settings=0 trainer=0 chords=2
+[chord] 91.859 s L3 suppressed-up: game sees L3=0 R3=0
+[chord] 91.906 s R3 suppressed-up: game sees L3=0 R3=0

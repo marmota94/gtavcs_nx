@@ -1,0 +1,107 @@
+11:52:32 burst folder ready (empty): /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/
+11:52:32 burst folder ready (empty): /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/
+11:52:32 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-shape
+11:52:32 == m09-shape: profile=m09-shape nro sha256=b3fc17227bdc8f59efd3c70c8edd678cfb255f7e4b5c08b2d66dcd1a0edc5249
+11:52:37 tree /switch/gtavcs_nx/gamefolder/userdata entries=420 file=userdata-before-m09-shape.txt
+11:52:37 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+11:52:37 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-shape/nxrun-results.txt
+11:52:37 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=838 sha256=aea3c6169560a7947035eda2b105dc779ca4c3ef247834027438e11145a20eba
+11:52:42 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66366712 bytes\n26193959 sent (39.47%), 2164 blocks'
+11:55:26 ftp back after 163s: the payload has ended
+11:55:29 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+11:55:29 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=39183 sha256=ea4dee883f016897a8b4c530ba7325eb5c910ccf1084e0a6a5c82c2c355edc67
+11:55:29 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+11:55:29 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-shape/nxrun-results.txt bytes=28065 sha256=f05914eb01211bbf1412befe8c47da1aa7ba72db92a46ca18643171b376e845c
+11:55:35 tree /switch/gtavcs_nx/gamefolder/userdata entries=508 file=userdata-after-m09-shape.txt
+11:55:39 m09-shape: clean_exit_line=True results_tail=['stop t=150.057 reason=seconds frames=4458', 'shutdown t=150.057 frames=4458', 'audit t=150.057 file_opens=308 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+11:55:39 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-shape/nxrun-results.txt bytes=28065 sha256=f05914eb01211bbf1412befe8c47da1aa7ba72db92a46ca18643171b376e845c
+11:55:39 shape: read back 1 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m09-shape (screenshots private under build\evidence\M09\screenshots\shape)
+11:55:39 shape: 10 chord / menu / touch / settings lines -> shape-m08.txt
+11:55:39 shape: 20 widescreen lines -> shape-m09.txt
+11:55:39 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst.txt bytes=4532 sha256=8e8d06469948e5bb18831020998af7a83c79dff6435026f494257ed9fcba0983
+11:55:39 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0000.png bytes=76888 sha256=02b3f09e869c34a2dac38ddc80b7312197f7b15a12cdb4e6c7499ecf9ba07074
+11:55:39 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0001.png bytes=76888 sha256=02b3f09e869c34a2dac38ddc80b7312197f7b15a12cdb4e6c7499ecf9ba07074
+11:55:39 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0002.png bytes=76888 sha256=02b3f09e869c34a2dac38ddc80b7312197f7b15a12cdb4e6c7499ecf9ba07074
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0003.png bytes=76888 sha256=02b3f09e869c34a2dac38ddc80b7312197f7b15a12cdb4e6c7499ecf9ba07074
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0004.png bytes=76888 sha256=02b3f09e869c34a2dac38ddc80b7312197f7b15a12cdb4e6c7499ecf9ba07074
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0005.png bytes=76888 sha256=02b3f09e869c34a2dac38ddc80b7312197f7b15a12cdb4e6c7499ecf9ba07074
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0006.png bytes=76888 sha256=02b3f09e869c34a2dac38ddc80b7312197f7b15a12cdb4e6c7499ecf9ba07074
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0007.png bytes=76888 sha256=02b3f09e869c34a2dac38ddc80b7312197f7b15a12cdb4e6c7499ecf9ba07074
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0008.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0009.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0010.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0011.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0012.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0013.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0014.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0015.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0016.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0017.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0018.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0019.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:40 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0020.png bytes=76885 sha256=580acb12ba1d5a6244b06c12f3cd3eb0fbd18e8fbf3664cb98e7f2938b5a4e82
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0021.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0022.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0023.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0024.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0025.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0026.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0027.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0028.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0029.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0030.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0031.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0032.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0033.png bytes=76778 sha256=61010438b315096d06d4324f64c51ebb6190bee8d4ceb07aa3149c8edec06aa7
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0034.png bytes=76816 sha256=f65bdee9e38a36dda54e47544ed52d6828967d92bcaea607b1f7175006264f6a
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0035.png bytes=76816 sha256=f65bdee9e38a36dda54e47544ed52d6828967d92bcaea607b1f7175006264f6a
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0036.png bytes=76816 sha256=f65bdee9e38a36dda54e47544ed52d6828967d92bcaea607b1f7175006264f6a
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0037.png bytes=76816 sha256=f65bdee9e38a36dda54e47544ed52d6828967d92bcaea607b1f7175006264f6a
+11:55:41 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0038.png bytes=76816 sha256=f65bdee9e38a36dda54e47544ed52d6828967d92bcaea607b1f7175006264f6a
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/in/burst_0039.png bytes=76816 sha256=f65bdee9e38a36dda54e47544ed52d6828967d92bcaea607b1f7175006264f6a
+11:55:42 shape: 41 burst files from userdata/tests/m09-burst/in -> build\evidence\M09\screenshots\shape\burst-in
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst.txt bytes=4526 sha256=6638a336d71b69576808d43a3d5ada14b259317e092348f55735c9eea7395824
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0000.png bytes=75661 sha256=186b744302c79ace5694159917285e785227d3e833865be8edef31e27dac8b86
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0001.png bytes=75661 sha256=186b744302c79ace5694159917285e785227d3e833865be8edef31e27dac8b86
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0002.png bytes=75661 sha256=186b744302c79ace5694159917285e785227d3e833865be8edef31e27dac8b86
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0003.png bytes=75661 sha256=186b744302c79ace5694159917285e785227d3e833865be8edef31e27dac8b86
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0004.png bytes=75661 sha256=186b744302c79ace5694159917285e785227d3e833865be8edef31e27dac8b86
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0005.png bytes=75661 sha256=186b744302c79ace5694159917285e785227d3e833865be8edef31e27dac8b86
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0006.png bytes=75661 sha256=186b744302c79ace5694159917285e785227d3e833865be8edef31e27dac8b86
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0007.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0008.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0009.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0010.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0011.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0012.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:42 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0013.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0014.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0015.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0016.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0017.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0018.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0019.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0020.png bytes=75694 sha256=4c84dbeb10958f017ab04a50e9c6e7a5b43268d86d2fc7b1f5a12a6d8d7a846f
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0021.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0022.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0023.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0024.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0025.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0026.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0027.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0028.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0029.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0030.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0031.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0032.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:43 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0033.png bytes=75851 sha256=4ac344a49af8ec55f66baa773144800061e9432814408c5266f0500daec8df47
+11:55:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0034.png bytes=75872 sha256=931dc17e6d75c0997ad0666fdc9233cd032ee75444d59e2f320de7ae3092e63b
+11:55:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0035.png bytes=75872 sha256=931dc17e6d75c0997ad0666fdc9233cd032ee75444d59e2f320de7ae3092e63b
+11:55:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0036.png bytes=75872 sha256=931dc17e6d75c0997ad0666fdc9233cd032ee75444d59e2f320de7ae3092e63b
+11:55:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0037.png bytes=75872 sha256=931dc17e6d75c0997ad0666fdc9233cd032ee75444d59e2f320de7ae3092e63b
+11:55:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0038.png bytes=75872 sha256=931dc17e6d75c0997ad0666fdc9233cd032ee75444d59e2f320de7ae3092e63b
+11:55:44 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-burst/out/burst_0039.png bytes=75872 sha256=931dc17e6d75c0997ad0666fdc9233cd032ee75444d59e2f320de7ae3092e63b
+11:55:44 shape: 41 burst files from userdata/tests/m09-burst/out -> build\evidence\M09\screenshots\shape\burst-out
+11:55:46 shape: burst-in frames=40 mismatched=0 -> shape-burst-in-shapes.txt
+11:55:48 shape: burst-out frames=40 mismatched=0 -> shape-burst-out-shapes.txt
+11:55:48 RESULT game PASS

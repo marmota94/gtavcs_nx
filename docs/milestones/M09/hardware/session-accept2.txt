@@ -1,0 +1,24 @@
+12:34:04 removed /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept: files=53 folders=4
+12:34:04 == m09-accept: profile=m09-accept nro sha256=b3fc17227bdc8f59efd3c70c8edd678cfb255f7e4b5c08b2d66dcd1a0edc5249
+12:34:10 tree /switch/gtavcs_nx/gamefolder/userdata entries=708 file=userdata-before-m09-accept.txt
+12:34:10 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+12:34:10 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/nxrun-results.txt
+12:34:10 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=3661 sha256=57eec5ec16b33f75d8eed63c137fd459d09376bd75385ef7de9a5cc1cd85bed0
+12:34:19 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66366712 bytes\n26193959 sent (39.47%), 2164 blocks'
+12:34:34 ACTION FOR THE PERSON AT THE SWITCH: In play: L3+R3 > Settings > Display > Aspect ratio 4:3/16:9 x2, leave 4:3, close menus, HOME close
+12:36:02 ftp back after 102s: the payload has ended
+12:36:05 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+12:36:05 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=42487 sha256=69df98dbc64bfd36ea8e591020e9b906f9cfab85f3279bd85406237834090555
+12:36:05 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+12:36:05 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/nxrun-results.txt bytes=23959 sha256=026882f2c116bc8bbf6b11b05b74ac9ce781eb37092a41b6022d7e4eebea1a6b
+12:36:11 tree /switch/gtavcs_nx/gamefolder/userdata entries=717 file=userdata-after-m09-accept.txt
+12:36:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/vcs.ini bytes=48 sha256=2cd4c33ecf9d9923fbbec10be46928155cdbda7f33a19a26072126100a1a15ba
+12:36:15 m09-accept: clean_exit_line=True results_tail=['shutdown t=92.757 frames=3154', 'audit t=92.757 file_opens=167 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+12:36:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-080.png bytes=504872 sha256=c0f6305523f48ce7cb5bb994201977e63106010873719fa5ec46a94e723168a6
+12:36:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-090.png bytes=362267 sha256=4cf0ff856fdd05f6fb68c8e3f6e21eed128aac7f6475a2155aaadfc79a1dca9e
+12:36:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/nxrun-results.txt bytes=23959 sha256=026882f2c116bc8bbf6b11b05b74ac9ce781eb37092a41b6022d7e4eebea1a6b
+12:36:15 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/vcs.ini bytes=48 sha256=2cd4c33ecf9d9923fbbec10be46928155cdbda7f33a19a26072126100a1a15ba
+12:36:15 accept2: read back 4 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept (screenshots private under build\evidence\M09\screenshots\accept2)
+12:36:15 accept2: 32 chord / menu / touch / settings lines -> accept2-m08.txt
+12:36:15 accept2: 52 widescreen lines -> accept2-m09.txt
+12:36:15 RESULT game PASS

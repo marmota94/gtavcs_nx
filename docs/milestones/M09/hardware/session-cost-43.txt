@@ -1,0 +1,22 @@
+11:43:17 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-cost-43
+11:43:18 == m09-cost-43: profile=m09-cost-43 nro sha256=b3fc17227bdc8f59efd3c70c8edd678cfb255f7e4b5c08b2d66dcd1a0edc5249
+11:43:22 tree /switch/gtavcs_nx/gamefolder/userdata entries=400 file=userdata-before-m09-cost-43.txt
+11:43:22 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+11:43:23 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-cost-43/nxrun-results.txt
+11:43:23 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=1063 sha256=6c6391011acfbb8497d4a57433175a3eda4fbab832a797f16fa717284275d886
+11:43:32 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66366712 bytes\n26193959 sent (39.47%), 2164 blocks'
+11:47:44 ftp back after 251s: the payload has ended
+11:47:47 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+11:47:47 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=88643 sha256=577327e5d15ddf730d427149f2f4ef32699fe85ecdfde4ed7b6ad4fdf3f7259d
+11:47:47 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+11:47:47 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-cost-43/nxrun-results.txt bytes=44084 sha256=a38dd9cc944ca293aaa9cecb01e799d0a17ab7b459c2ee62942742e9e074ee46
+11:47:52 tree /switch/gtavcs_nx/gamefolder/userdata entries=409 file=userdata-after-m09-cost-43.txt
+11:47:56 m09-cost-43: clean_exit_line=True results_tail=['stop t=240.001 reason=seconds frames=12235', 'shutdown t=240.001 frames=12235', 'audit t=240.001 file_opens=150 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+11:47:56 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-cost-43/gpu.csv bytes=143631 sha256=d7c839436cf18e7e4365bcee58a73ffc566ebbf8a65ddc5db04f57828a5cb76c
+11:47:56 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-cost-43/nxrun-results.txt bytes=44084 sha256=a38dd9cc944ca293aaa9cecb01e799d0a17ab7b459c2ee62942742e9e074ee46
+11:47:56 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-cost-43/perf.csv bytes=1091462 sha256=fbd4721d43d8f00a4908e178d0da3ce7c5f9a63f699255bf15e3d002f198bae3
+11:47:56 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-cost-43/s4-200.png bytes=558260 sha256=b6e61f92e32555e57bfd782010c8fa47c8cde7761e93074a6e76b68cda6f264c
+11:47:56 cost-43: read back 4 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m09-cost-43 (screenshots private under build\evidence\M09\screenshots\cost-43)
+11:47:57 cost-43: 12 chord / menu / touch / settings lines -> cost-43-m08.txt
+11:47:57 cost-43: 59 widescreen lines -> cost-43-m09.txt
+11:47:57 RESULT game PASS

@@ -1,0 +1,21 @@
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[nxrun] command t=100.128 at=100.000000 command="burst userdata/tests/m09-burst/in 120" status=ok reply="ok"
+[present] display aspect 1.333
+[nxrun] command t=108.032 at=108.000000 command="screenshot userdata/tests/m09-shape/pause-map.png" status=ok reply="ok 320x180"
+[nxrun] command t=120.020 at=120.000000 command="burst userdata/tests/m09-burst/out 120" status=ok reply="ok"
+[present] display aspect 1.778

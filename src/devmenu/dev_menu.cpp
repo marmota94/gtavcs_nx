@@ -361,6 +361,14 @@ namespace devmenu
             if (each.page == "Keyboard" || each.key == "display.window" || each.key == "game.background")
                 hidden += settings::setHidden(each.key, true) ? 1 : 0;
         std::fprintf(stderr, "[devmenu] %d desktop-only settings hidden (Keyboard page, window, background)\n", hidden);
+
+        // M09: the Switch's screens are 16:9 (the 1280x720 panel, a 1920x1080 TV): Aspect ratio offers 4:3 (the PS2's
+        // picture, pillarboxed) and 16:9 (Hor+), 16:9 by default; the other ratios would only letterbox inside 16:9
+        const bool aspect = settings::setChoices(
+            "display.aspect", {{"4:3 (original)", 43}, {"16:9", 169}}, 169,
+            "16:9 shows more to the sides (Hor+) and fills the screen; 4:3 is the original picture, with black bars at the "
+            "sides.");
+        std::fprintf(stderr, "[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: %s\n", aspect ? "set" : "FAILED");
     }
 
     void install(const std::string &userdata)

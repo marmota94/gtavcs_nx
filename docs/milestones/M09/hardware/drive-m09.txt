@@ -1,0 +1,128 @@
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 5 (13.4 MiB) largest 853x1472
+[present] display aspect 1.778
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[nxrun] command t=32.227 at=32.000000 command="scm b101cfa5070107010701070107019b00cfa52300" status=ok reply="ok 0073bfb8"
+[nxrun] command t=34.211 at=34.000000 command="scm 600108d3002802480008d30009cd44c9c4097b5404c309c3f57c410d4e000d09cd44c9c4097b5404c3090000c8c21c02cfa50db2010d07010701070107010701620108d3002300" status=ok reply="ok 0073bfb8"
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[rhi-stats] targets 14 (23.0 MiB) largest 853x1472
+[nxrun] command t=60.087 at=60.000000 command="screenshot userdata/tests/m09-drive/drive-060.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=75.095 at=75.000000 command="screenshot userdata/tests/m09-drive/drive-075.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=90.025 at=90.000000 command="screenshot userdata/tests/m09-drive/drive-090.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=105.075 at=105.000000 command="screenshot userdata/tests/m09-drive/drive-105.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=120.094 at=120.000000 command="screenshot userdata/tests/m09-drive/drive-120.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=135.173 at=135.000000 command="screenshot userdata/tests/m09-drive/drive-135.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=150.110 at=150.000000 command="screenshot userdata/tests/m09-drive/drive-150.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=165.169 at=165.000000 command="screenshot userdata/tests/m09-drive/drive-165.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=180.108 at=180.000000 command="screenshot userdata/tests/m09-drive/drive-180.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=195.034 at=195.000000 command="screenshot userdata/tests/m09-drive/drive-195.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=210.113 at=210.000000 command="screenshot userdata/tests/m09-drive/drive-210.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=225.151 at=225.000000 command="screenshot userdata/tests/m09-drive/drive-225.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=240.126 at=240.000000 command="screenshot userdata/tests/m09-drive/drive-240.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=255.098 at=255.000000 command="screenshot userdata/tests/m09-drive/drive-255.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=270.100 at=270.000000 command="screenshot userdata/tests/m09-drive/drive-270.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=285.047 at=285.000000 command="screenshot userdata/tests/m09-drive/drive-285.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=300.156 at=300.000000 command="screenshot userdata/tests/m09-drive/drive-300.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=315.159 at=315.000000 command="screenshot userdata/tests/m09-drive/drive-315.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=330.029 at=330.000000 command="screenshot userdata/tests/m09-drive/drive-330.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=345.250 at=345.000000 command="screenshot userdata/tests/m09-drive/drive-345.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=360.066 at=360.000000 command="screenshot userdata/tests/m09-drive/drive-360.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=375.022 at=375.000000 command="screenshot userdata/tests/m09-drive/drive-375.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=390.128 at=390.000000 command="screenshot userdata/tests/m09-drive/drive-390.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=405.032 at=405.000000 command="screenshot userdata/tests/m09-drive/drive-405.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472

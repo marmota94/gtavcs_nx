@@ -1,0 +1,181 @@
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.778, HUD 4:3
+[settings] display aspect 1.778, HUD 4:3
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[present] display aspect 1.778
+[present] display aspect 1.333
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[rhi-stats] targets 1 (3.5 MiB) largest 1280x720
+[nxrun] command t=60.017 at=60.000000 command="screenshot userdata/tests/m09-silent/s1-060.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 2 (7.0 MiB) largest 1280x720
+[rhi-stats] targets 2 (7.0 MiB) largest 1280x720
+[rhi-stats] targets 2 (7.0 MiB) largest 1280x720
+[rhi-stats] targets 2 (7.0 MiB) largest 1280x720
+[rhi-stats] targets 2 (7.0 MiB) largest 1280x720
+[nxrun] command t=85.018 at=85.000000 command="screenshot userdata/tests/m09-silent/s1-085.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 2 (7.0 MiB) largest 1280x720
+[nxrun] command t=90.019 at=90.000000 command="screenshot userdata/tests/m09-silent/s1-090.png" status=ok reply="ok 1280x720"
+[nxrun] command t=93.033 at=93.000000 command="screenshot userdata/tests/m09-silent/s1-093.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 2 (7.0 MiB) largest 1280x720
+[present] display aspect 1.778
+[present] display aspect 1.333
+[nxrun] command t=96.122 at=96.000000 command="screenshot userdata/tests/m09-silent/s1-096.png" status=ok reply="ok 1280x720"
+[present] display aspect 1.778
+[nxrun] command t=99.027 at=99.000000 command="screenshot userdata/tests/m09-silent/s1-099.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=120.110 at=120.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.66667 0.1 2000"
+[nxrun] command t=120.110 at=120.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=120.110 at=120.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[nxrun] command t=121.144 at=121.000000 command="screenshot userdata/tests/m09-silent/s2-121.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=150.057 at=150.000000 command="screenshot userdata/tests/m09-silent/s2-150.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=200.135 at=200.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.259437 1.66667 0.3 2000"
+[nxrun] command t=200.135 at=200.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.967957 -0.251116"
+[nxrun] command t=200.135 at=200.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.967957 -0.251116"
+[nxrun] command t=201.068 at=201.000000 command="screenshot userdata/tests/m09-silent/s3-201-bars.png" status=ok reply="ok 1280x720"
+[nxrun] command t=203.098 at=203.000000 command="setting display.cutscene_bars 0" status=ok reply="ok 0"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=206.082 at=206.000000 command="screenshot userdata/tests/m09-silent/s3-206-nobars.png" status=ok reply="ok 1280x720"
+[nxrun] command t=208.072 at=208.000000 command="setting display.cutscene_bars 1" status=ok reply="ok 1"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=211.022 at=211.000000 command="screenshot userdata/tests/m09-silent/s3-211-bars.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[rhi-stats] targets 15 (26.5 MiB) largest 853x1472
+[nxrun] command t=220.149 at=220.000000 command="setting display.cutscene_bars 0" status=ok reply="ok 0"
+[settings] display aspect 1.333, HUD 4:3
+[nxrun] command t=222.030 at=222.000000 command="setting display.aspect 43" status=ok reply="ok 43"
+[present] display aspect 1.333
+[rhi-stats] targets 19 (31.7 MiB) largest 853x1472
+[nxrun] command t=225.024 at=225.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.325031 1.25 0.3 2000"
+[nxrun] command t=225.024 at=225.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.951028 -0.309104"
+[nxrun] command t=225.024 at=225.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.951028 -0.309104"
+[nxrun] command t=226.083 at=226.000000 command="screenshot userdata/tests/m09-silent/s3-226-aspect43-barslocked.png" status=ok reply="ok 1280x720"
+[settings] display aspect 1.778, HUD 4:3
+[nxrun] command t=228.066 at=228.000000 command="setting display.aspect 169" status=ok reply="ok 169"
+[present] display aspect 1.778
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=231.095 at=231.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.453461 1.66667 0.3 2000"
+[nxrun] command t=231.095 at=231.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.910743 -0.412974"
+[nxrun] command t=231.095 at=231.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.910743 -0.412974"
+[nxrun] command t=232.111 at=232.000000 command="screenshot userdata/tests/m09-silent/s3-232-aspect169-nobars.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=234.056 at=234.000000 command="setting display.cutscene_bars 1" status=ok reply="ok 1"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=280.023 at=280.000000 command="screenshot userdata/tests/m09-silent/s3-280.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[present] display aspect 1.333
+[present] display aspect 1.778
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[present] display aspect 1.333
+[rhi-stats] targets 19 (32.2 MiB) largest 853x1472
+[present] display aspect 1.778
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=360.114 at=360.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.77778 0.1125 2000"
+[nxrun] command t=360.114 at=360.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=360.114 at=360.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[nxrun] command t=361.155 at=361.000000 command="screenshot userdata/tests/m09-silent/s4-361-hud43.png" status=ok reply="ok 1280x720"
+[settings] display aspect 1.778, HUD screen edges
+[nxrun] command t=363.087 at=363.000000 command="setting display.hud 2" status=ok reply="ok 2"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=366.020 at=366.000000 command="screenshot userdata/tests/m09-silent/s4-366-hudedges.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[settings] display aspect 1.778, HUD stretched
+[nxrun] command t=368.122 at=368.000000 command="setting display.hud 1" status=ok reply="ok 1"
+[nxrun] command t=371.047 at=371.000000 command="screenshot userdata/tests/m09-silent/s4-371-hudstretch.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[settings] display aspect 1.778, HUD 4:3
+[nxrun] command t=373.025 at=373.000000 command="setting display.hud 0" status=ok reply="ok 0"
+[settings] display aspect 1.333, HUD 4:3
+[nxrun] command t=376.108 at=376.000000 command="setting display.aspect 43" status=ok reply="ok 43"
+[present] display aspect 1.333
+[rhi-stats] targets 19 (30.8 MiB) largest 853x1472
+[nxrun] command t=379.022 at=379.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.700208 1.33333 0.1125 2000"
+[nxrun] command t=379.022 at=379.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.819162 -0.573562"
+[nxrun] command t=379.022 at=379.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.819162 -0.573562"
+[nxrun] command t=380.042 at=380.000000 command="screenshot userdata/tests/m09-silent/s4-380-aspect43.png" status=ok reply="ok 1280x720"
+[settings] display aspect 1.778, HUD 4:3
+[nxrun] command t=382.028 at=382.000000 command="setting display.aspect 169" status=ok reply="ok 169"
+[present] display aspect 1.778
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=385.024 at=385.000000 command="peekf 0x742ac0 4" status=ok reply="ok 0.93361 1.77778 0.1125 2000"
+[nxrun] command t=385.024 at=385.000000 command="peekf 0x6f5030 2" status=ok reply="ok 0.730967 -0.682412"
+[nxrun] command t=385.024 at=385.000000 command="peekf 0x6f5040 2" status=ok reply="ok -0.730967 -0.682412"
+[nxrun] command t=386.024 at=386.000000 command="screenshot userdata/tests/m09-silent/s4-386-aspect169.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=390.393 at=390.000000 command="scm 0601cfa5071e0732" status=ok reply="ok 0073bfb8"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=395.032 at=395.000000 command="screenshot userdata/tests/m09-silent/scope-sniper.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=407.030 at=407.000000 command="screenshot userdata/tests/m09-silent/scope-camera.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=415.185 at=415.000000 command="press start 150" status=ok reply="ok"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=422.024 at=422.000000 command="screenshot userdata/tests/m09-silent/pause-422.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=426.172 at=426.000000 command="press start 150" status=ok reply="ok"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=432.028 at=432.000000 command="screenshot userdata/tests/m09-silent/s4-432.png" status=ok reply="ok 1280x720"
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[nxrun] command t=460.489 at=402.000000 command="scm 0601cfa507270732" status=timeout reply=""
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472
+[rhi-stats] targets 19 (33.1 MiB) largest 853x1472

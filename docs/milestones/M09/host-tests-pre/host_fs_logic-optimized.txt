@@ -1,0 +1,12 @@
+commit 77ddfc7939e3139667491c0cd38fc087b241011b dirty=True
++ docker run --rm --network=none --security-opt seccomp=unconfined --mount type=bind,source=C:\Users\Gamer\Documents\gtavcs_nx,target=/work gtavcs-nx-toolchain:m01 bash -c set -e; mkdir -p /tmp/t && cd /work && printf 'int runHostFsLogicTests();\nint main() { return runHostFsLogicTests() ? 1 : 0; }\n' > /tmp/t/driver.cpp && g++ --version | head -1 && g++ -std=c++20 -Wall -Wextra -O2 -D__SWITCH__ -I/work/build/m04/game-source-49f897274a5485ff/third_party/PS2Recomp/ps2xRuntime/include tests/core/host_fs_logic_tests.cpp /tmp/t/driver.cpp -o /tmp/t/host_fs_logic && setarch -R timeout 600 /tmp/t/host_fs_logic
+g++ (Debian 12.2.0-14+deb12u1) 12.2.0
+PASS host-fs-logic new target
+PASS host-fs-logic existing target, stale aside file removed
+PASS host-fs-logic failed rename restores the target
+PASS host-fs-logic nested tree removed
+PASS host-fs-logic missing tree is no error
+PASS host-fs-logic a file given to removeTree is removed
+[host-fs-logic] failures=0
+
+exit=0

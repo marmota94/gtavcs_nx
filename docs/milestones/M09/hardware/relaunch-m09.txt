@@ -1,0 +1,9 @@
+[devmenu] aspect ratio choices 4:3 / 16:9, default 16:9: set
+[settings] display aspect 1.333, HUD screen edges
+[settings] display aspect 1.333, HUD screen edges
+[present] display aspect 1.333
+[nxrun] command t=90.054 at=90.000000 command="screenshot userdata/tests/m09-accept/relaunch-090.png" status=ok reply="ok 1280x720"
+[settings] display aspect 1.778, HUD screen edges
+[nxrun] command t=95.046 at=95.000000 command="setting display.aspect 169" status=ok reply="ok 169"
+[present] display aspect 1.778
+[nxrun] command t=100.039 at=100.000000 command="screenshot userdata/tests/m09-accept/relaunch-100.png" status=ok reply="ok 1280x720"

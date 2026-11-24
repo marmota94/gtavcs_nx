@@ -1,0 +1,72 @@
+12:19:54 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept
+12:19:55 == m09-accept: profile=m09-accept nro sha256=b3fc17227bdc8f59efd3c70c8edd678cfb255f7e4b5c08b2d66dcd1a0edc5249
+12:20:00 tree /switch/gtavcs_nx/gamefolder/userdata entries=708 file=userdata-before-m09-accept.txt
+12:20:00 deleted /switch/gtavcs_nx/gamefolder/gtavcs.log
+12:20:00 nothing to delete at /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/nxrun-results.txt
+12:20:00 wrote /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg bytes=3661 sha256=57eec5ec16b33f75d8eed63c137fd459d09376bd75385ef7de9a5cc1cd85bed0
+12:20:05 nxlink attempt=1 exit=0 output='Sending /switch/gtavcs_nx/gtavcs.nro, 66366712 bytes\n26193959 sent (39.47%), 2164 blocks'
+12:20:20 ACTION FOR THE PERSON AT THE SWITCH: In play: L3+R3 > Settings > Display > Aspect ratio 4:3/16:9 x2, leave 4:3, close menus, HOME close
+12:30:54 ftp back after 649s: the payload has ended
+12:30:58 deleted /switch/gtavcs_nx/gamefolder/userdata/nxrun.cfg
+12:30:58 read-back /switch/gtavcs_nx/gamefolder/gtavcs.log bytes=223020 sha256=f0547fc557d955827bd8afcf6168bec0010797bd273dde3940691699b2e24673
+12:30:58 read-back /switch/gtavcs_nx/gtavcs-boot.log bytes=62 sha256=3dfe21382f340edd44bac1bf1dd0af6377ec3f03f87b166979ec89c9759bba4b
+12:30:58 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/nxrun-results.txt bytes=157437 sha256=0f6b6734d49f6f185f8653b29c0e0720a9a7810362d2b990c0d52808978c3674
+12:31:03 tree /switch/gtavcs_nx/gamefolder/userdata entries=766 file=userdata-after-m09-accept.txt
+12:31:07 m09-accept: clean_exit_line=True results_tail=['stop t=600.058 reason=seconds frames=16144', 'shutdown t=600.058 frames=16144', 'audit t=600.058 file_opens=199 iso_opens=0 first_iso="" threads_created=7'] sd_matches_local=True new_crashes=[]
+12:31:07 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-080.png bytes=719984 sha256=f390383c66c0843b07110e50840e9517298c4ea80227d61e4767f09047e36499
+12:31:07 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-090.png bytes=716300 sha256=659131c770171b407cc0df12a825bf7ff19e07b8a4c40f8f9b7ba279f4405583
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-100.png bytes=714513 sha256=2496b0f864f7f3fa7974c0795902b54011b69db59c6043c151dc68c5ad607086
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-110.png bytes=702984 sha256=89cc79b0413e1af8b6dc2cfd658dbf6928c4b7ad59c531de69f39f89a142bf9e
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-120.png bytes=697617 sha256=4afaf59f03dd1d46e8e9aa840d4a4314ac8e3b04de6f7c3854b45b9604a09cb3
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-130.png bytes=688505 sha256=f84ac9354c838ab2fb6cebc682ccebfcd4f194fdeae5dfb0f7a760c906df9d85
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-140.png bytes=687262 sha256=6809416aa621e12214c31734266e60b88b3e0556a616fcba5611edefdc768d7e
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-150.png bytes=680309 sha256=04de8b64709b56ed08eb188e4a865d854bfaa8e224da86a4eca57e95c48f5909
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-160.png bytes=675795 sha256=e673cce8951f70e460cf676dc030a3cc04f2d58ada2084d328943d98872ed4be
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-170.png bytes=673925 sha256=0770f939391ef8ef351643c9afa18272e2dc4e12b8d7fff069c83d08c846394d
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-180.png bytes=662443 sha256=0cd5bec1c31f0b262223a00b70bdf5110c54876a241c6c3e8b58ebee5426cccd
+12:31:08 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-190.png bytes=663473 sha256=417b1768f239e1f3b9dde3894eed568392389f486000a986e6073bee6d41e4c4
+12:31:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-200.png bytes=653725 sha256=d9cd84ca3f810d6abb41ce4177bf69f6c4739a163880c28af9259464bcd79b99
+12:31:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-210.png bytes=645201 sha256=43df61e29b48238dc121d20f21a948493ce5835aa0736af727b07dbf70030c3b
+12:31:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-220.png bytes=650484 sha256=660f32184a4d1de6559817f121af587d2fc86f030396e368db120aa0e03d8f3e
+12:31:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-230.png bytes=650548 sha256=d092772c895c6a52c5f8ab2607ed9905e5c3c9a84c4a38e5ce2b0232d0ab78bc
+12:31:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-240.png bytes=648916 sha256=4e13c243f9dc3ea608166fb024c57128b3095d32d0bd1858d00e802646e5c53e
+12:31:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-250.png bytes=648351 sha256=53fadee09fcd24b6a35de481fca59b25dd4ca21f4e30f1b2a722a36943081c36
+12:31:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-260.png bytes=656701 sha256=a95d825daf3b8416b8885cd062463c0b7c822d2381b57175f120faa0139df9b7
+12:31:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-270.png bytes=653649 sha256=23c0a0d0eec7f49e97584b071756bd426260a0932354f877c60eb35b7d346daf
+12:31:09 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-280.png bytes=662786 sha256=47da7c53ecee4764f75da496d6e315aab4da241eb630c04c1c39059638328967
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-290.png bytes=663304 sha256=b75d612b13c975caa617cf05f166b315c1e6eafa756e9015d468c9bd8c27d205
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-300.png bytes=662739 sha256=2615d8944382608600cf55350934f6f313a0aecc474414bf7e66d2b77a3da498
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-310.png bytes=667352 sha256=85506b2b0f50aaa9be1f89f4b7931454b998c37196fe76a371a1b1b1eb836cb1
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-320.png bytes=666453 sha256=59f7f9dde6f852c7c1d09e7ee1fd9d0e5974abf8d4487b041f9e967dd5b19d72
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-330.png bytes=673248 sha256=0672c03c6c363d1a9408552dd16a7ad10838af21eb20cd95f73e5e23f34203bc
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-340.png bytes=673996 sha256=bde471b0400246e09471d68d8e1d63af2db3ac00a15b81a177ac2dda02cd8a90
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-350.png bytes=673341 sha256=4bc9c033683866c4a9f2ece2d3b2d295440abbfc093b23e2ee8f009e39451edc
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-360.png bytes=681085 sha256=66970236b953a4ac872e196b62ffcde48116a51588a12d6fa2a4d674d27e489e
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-370.png bytes=680410 sha256=d7106e87b4deeaeed38d79d9465be07816a2c9287798de37ac5c782c5c539dd9
+12:31:10 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-380.png bytes=690292 sha256=4ef5cb0f8ef1e53cbac197e9d5f2f262646a0e94d8fd84ecf49b6537b91e7983
+12:31:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-390.png bytes=689396 sha256=e58f6b57fcdf5d9fb1c3e9878f80b7620692e2c29e4ab457e1694f94ad64030d
+12:31:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-400.png bytes=695764 sha256=711e7f89c2bf8ddc8492a8dfeefdeff33d5e3f518421aa03643f5c1d51f7e1e6
+12:31:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-410.png bytes=699830 sha256=ef2caf0404db4b95d2c8c7d9cc681746fcb18a42ce6773498aedb33ad44a01d7
+12:31:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-420.png bytes=701526 sha256=eb0ea006d11a82467eadb7651c273425ea3facc9cb60b055454e98634d9f7043
+12:31:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-430.png bytes=708138 sha256=f7c0282f698e8d703d676ebf49d6ec7b573098fea72116dde3783157c063b4a2
+12:31:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-440.png bytes=708251 sha256=1162e8661a76e1fd274eade5791efc3524ad780dac8920d7851b3a8317d5ad53
+12:31:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-450.png bytes=717724 sha256=34ecf34cb484cdc38d9b8180efd93c79d3827e54a29e07ea39fa6e472ac71f19
+12:31:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-460.png bytes=722077 sha256=668e4fba74462547d522186848acca2bc1397e3dbee1c8768025bde3cd0e73bf
+12:31:11 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-470.png bytes=717308 sha256=7db6ae29029a13361cf59379b4e598e90edd9f66d0914c535d384925b2545a72
+12:31:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-480.png bytes=718992 sha256=935e5a8cafbde09b7c97f0bf4159b189fada9a12b4a58cdf5c205f871ef20cf9
+12:31:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-490.png bytes=721038 sha256=7a22c8262e4dc425b18ddf52c2527d465badcc7bf18fa4b8371eb72170c36c7a
+12:31:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-500.png bytes=724627 sha256=aae9a0afeb71130f69dc12f503f50d9f626456037783d8b891cdfa10d3cdf194
+12:31:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-510.png bytes=727155 sha256=2f0ea15fc8cb2256b7ca433d5202d963e769ed182afb047027f1923020255fa5
+12:31:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-520.png bytes=727109 sha256=a0c36736b69115749ea7a6b2073231c3aa6906ec0d692dc350c99058085d4909
+12:31:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-530.png bytes=726907 sha256=0fcdca9658c4ab814d057881c1b67ce8f7e0c886651a9998077555f4269dea8f
+12:31:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-540.png bytes=728626 sha256=7f4a9b8e353a416ca5eae07fb870c721832bab8b6ced10d010c5fb4cf059e9cf
+12:31:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-550.png bytes=729809 sha256=393cc29c94aa1881b52699ef1a195c2a1be754b003d923b11114fce4ea3e733a
+12:31:12 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-560.png bytes=731459 sha256=c2e106de727661149d0cceae51c52a178df6b28262df3667ccb3d0b88476bcdd
+12:31:13 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-570.png bytes=728381 sha256=f0525b547f4abbc35124f86157b9983d8887195bb75f32d3a93be07f18ad23db
+12:31:13 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-580.png bytes=729475 sha256=a97af0446ff1534395c7ef9b928cfb2fbd55d1236a0bc766acec54d9199caf55
+12:31:13 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/live-590.png bytes=732840 sha256=acf32da1c091ecf0b1f1e8f3cad2b0beaafebb11b1e42e94672f2e360696a1c2
+12:31:13 read-back /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept/nxrun-results.txt bytes=157437 sha256=0f6b6734d49f6f185f8653b29c0e0720a9a7810362d2b990c0d52808978c3674
+12:31:13 accept: read back 53 files from /switch/gtavcs_nx/gamefolder/userdata/tests/m09-accept (screenshots private under build\evidence\M09\screenshots\accept)
+12:31:13 accept: 10 chord / menu / touch / settings lines -> accept-m08.txt
+12:31:13 accept: 188 widescreen lines -> accept-m09.txt
+12:31:13 RESULT game PASS
