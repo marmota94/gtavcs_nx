@@ -1,0 +1,33 @@
+{
+ "milestone": "M09",
+ "candidate_commit": "44a762c2653180cef39e38bce7f244c21ba99dc2",
+ "verdict": "APPROVE",
+ "reviewer_id": "m09-review6",
+ "independent": true,
+ "unresolved_findings": [],
+ "checks": [
+  "Earlier independent reviews of M09 requested changes: reviews 1-5 (reports REVIEW1-5.md, responses REVIEW1-5_RESPONSE.md). This sixth, fresh reviewer (Claude Opus 5.5 subagent, read-only) reviewed candidate 44a762c; the tree was clean before and after; all review 1-5 findings resolved in TASKS.md, REPORT.md and evidence.json, which agree",
+  "Patch 0013 against the overlaid upstream: setChoices refuses an unknown key, a non-Choice setting or a default outside the choices; valid()/take() ignore a saved value no longer offered; applyPreset falls back to the host default only when !settings::overridden; kAuthenticTiming adds display.aspect=43; series.json hash 96d3212c matches, series hashes to 00fc91bc; setChoices called only by the Switch dev menu, after vcs::launcher::registerSettings and before settings::load (core.cpp:382-384); upstream vcs_display.cpp hooks work only before the original",
+  "Manifest build/m04/private/manifest.json: nro af1a582d from 0f6cc36, root_dirty false, overlay 00fc91bc; the private NRO hashes to af1a582d; git diff 0f6cc36..44a762c over src, patches, tests, tools, cmake, CMakeLists.txt empty; 178f68a..0f6cc36 only the applyPreset override guard; b2e458d..178f68a only patch 0013's preset functions; run-to-NRO map in transcript.txt / session-*.txt matches TASKS.md",
+  "Earlier runs stand: presets pressed only in accept2, presets, presets-r1, presets-env; VCS_ASPECT only in cost-*, wide, presets-env; 'not offered' 2 in presets and presets-r1, 0 in presets-env and accept2",
+  "M09-01..08 evidence found as quoted: choices/default lines, accept2's 7 aspect changes, relaunch's 3 settings not at default and the vcs.ini rewrite, preset readbacks 169/43/169 and 43 under VCS_ASPECT=43; every M09-02 peekf value in the Switch and desktop results; shape3 31+89 / 13+107 and shape2 24/96 / 12/108, 0 mismatched, shape2's first FAIL disclosed; scope masks (modes 7/47) and cutscene bars viewed; perf, GPU, heap and target figures recomputed over 80-200 s; cruise 334.3 -> 5,335.8 m, z 34.70-35.01; nine reference pairs, text HUD modes and all 24 drive frames viewed",
+  "All 800 screenshots-sha256.txt entries verify; every evidence.json path exists; no game picture, NRO or ISO tracked; AGENTS.md, MILESTONES.md (M10-03, M16-03) and SCOPE_DECISIONS.md (2026-11-19, 2026-11-21) consistent"
+ ],
+ "limitations": [
+  "No hardware access by the reviewer; Switch evidence judged from committed logs, CSVs and private screenshots",
+  "NRO not rebuilt by the reviewer; tied through the manifest, the private NRO's hash and git diffs",
+  "Shape judge and scopemask not re-run by this reviewer (slow pure-Python PNG reader); inputs verified by hash, outputs against the counts and pictures (reviews 1-5 re-ran both byte-identically)",
+  "Pictures compared by eye at half size; runs not frame-locked, no pixel diff claimed",
+  "Handheld and paired Joy-Cons only; the docked parts of M09-06 and M09-08 are M16-03 by user decision (SCOPE_DECISIONS.md), not waived; the 16:9 once-a-second stall is M10-03 by user decision",
+  "M09-07's route is upstream's cruise rig, a fixed-height flight at ~35 m, disclosed as not road driving; accepted as the driven route (position-based streaming, the route M06-12 accepted); a person-driven street-level 16:9 run could be added in M10 or M16",
+  "Notes: cost-169 and silent2 went dormant after their unterminated scope scripts (cost-169 from ~211 s, silent2 from ~390 s), both shut down cleanly and are not used as evidence after that point; '0 GL errors' rests on the per-frame checkErrors print where PS2X_RHI_STATS was off; small approximations ('from ~10 s', 'over water to 345 s'); the Enhanced preset's help text; the zero-width key in the rhi_gl stats map; cost-169n's GPU mean (M10-03)"
+ ],
+ "observed_test_results": [
+  "python tools/milestone_gate.py M09 -> PASS M09: eligible to request independent review",
+  "python tools/validate_project.py -> PASS foundation: 188 unique tasks, 17 milestones",
+  "python -m unittest discover -s tools -p test_*.py -> Ran 34 tests, OK (skipped=1)",
+  "python tools/upstream_overlay.py build/review6-m09/overlay -> PASS applied 13 patches",
+  "python tools/run_core_host_tests.py build/review6-m09/host-tests -> 8/8 PASS (run_config, host_fs_logic, chord, settings; sanitized and optimized) on overlay 00fc91bc",
+  "gh pr checks 10 (head 44a762c) -> foundation, cross-build, public-cpu-runtime, GitGuardian pass; milestone-review fails only for the missing review.json (expected)"
+ ]
+}
