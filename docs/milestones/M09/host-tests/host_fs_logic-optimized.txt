@@ -1,5 +1,5 @@
-commit 178f68adca89f576309ff2920b6d032660e2faef dirty=False
-+ docker run --rm --network=none --security-opt seccomp=unconfined --mount type=bind,source=C:\Users\Gamer\Documents\gtavcs_nx,target=/work gtavcs-nx-toolchain:m01 bash -c set -e; mkdir -p /tmp/t && cd /work && printf 'int runHostFsLogicTests();\nint main() { return runHostFsLogicTests() ? 1 : 0; }\n' > /tmp/t/driver.cpp && g++ --version | head -1 && g++ -std=c++20 -Wall -Wextra -O2 -D__SWITCH__ -I/work/build/m04/game-source-329e323a186a270a/third_party/PS2Recomp/ps2xRuntime/include tests/core/host_fs_logic_tests.cpp /tmp/t/driver.cpp -o /tmp/t/host_fs_logic && setarch -R timeout 600 /tmp/t/host_fs_logic
+commit d9522d972a3ff84ad5fc56606e4bdf2f9b5f3163 dirty=False
++ docker run --rm --network=none --security-opt seccomp=unconfined --mount type=bind,source=C:\Users\Gamer\Documents\gtavcs_nx,target=/work gtavcs-nx-toolchain:m01 bash -c set -e; mkdir -p /tmp/t && cd /work && printf 'int runHostFsLogicTests();\nint main() { return runHostFsLogicTests() ? 1 : 0; }\n' > /tmp/t/driver.cpp && g++ --version | head -1 && g++ -std=c++20 -Wall -Wextra -O2 -D__SWITCH__ -I/work/build/m04/game-source-00fc91bc73a5ccef/third_party/PS2Recomp/ps2xRuntime/include tests/core/host_fs_logic_tests.cpp /tmp/t/driver.cpp -o /tmp/t/host_fs_logic && setarch -R timeout 600 /tmp/t/host_fs_logic
 g++ (Debian 12.2.0-14+deb12u1) 12.2.0
 PASS host-fs-logic new target
 PASS host-fs-logic existing target, stale aside file removed

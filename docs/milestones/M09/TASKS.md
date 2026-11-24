@@ -42,7 +42,7 @@ clean): `git diff b2e458d 178f68a -- src CMakeLists.txt patches cmake` changes o
 `accept2` (the person chose Widescreen, light once; its Match window was refused without a word and the aspect stayed
 16:9 - the defect fixed in `178f68a`, proven by `presets`), so the others stand for everything else. `wide-base` ran on
 main's NRO c81c7428 with `VCS_ASPECT=169` before any M09 change: kept as history (it found the burst capture's cost and
-the env lock), not as task proof. Host tests: `host-tests/*.txt` from `178f68a` (all PASS).
+the env lock), not as task proof. Host tests: `host-tests/*.txt` from `d9522d9`, overlay 00fc91bc (all PASS; before review 1 from `178f68a`).
 
 Stages (camera mode from `gameinfo` every 5 s) with no input (`silent*`): S1 boot movies and menus to ~95 s (M07's
 movies play first), S2 flyover (mode 15) ~100-180 s, S3 cutscene (mode 17) ~185-320 s, S4 play (mode 4, the player at

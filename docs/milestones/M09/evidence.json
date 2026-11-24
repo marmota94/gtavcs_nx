@@ -34,7 +34,7 @@
   },
   {
    "path": "docs/milestones/M09/host-tests/settings-sanitized.txt",
-   "result": "Host tests for setChoices on 178f68a: all PASS"
+   "result": "Host tests for setChoices on d9522d9 (overlay with the review 1 patch 0013): all PASS"
   }
  ],
  "M09-02": [
