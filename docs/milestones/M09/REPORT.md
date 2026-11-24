@@ -20,10 +20,16 @@ schedules. Logs and results: `hardware/<run>-gtavcs.txt`, `hardware/<run>-result
 | `drive` | b3fc1722 | `m09-drive.cfg` | 360 s on upstream's city route at 40 m/s, a screenshot every 15 s |
 | `accept2`, `relaunch` | b3fc1722 | `m09-accept.cfg`, `m09-relaunch.cfg` | the person switching in the developer menu; the choice loading at the next start |
 | `reference-silent2`, `reference-cost-43`, `reference-cost-169` | desktop | the same schedules | numbers and pictures to compare |
+| `reference-silent` | desktop | `silent`'s schedule | the S3 view window and planes at 16:9 and 4:3 (M09-02) |
 
 Superseded runs kept as history: `wide-base` (main's NRO, `VCS_ASPECT=169` locked the setting), `silent` (scheduled
 for M06's stage times; M07's boot movies now come first), `shape` (Start pressed 150 ms: missed at ~10 game frames a
 second), `accept` (nobody pressed a button).
+
+Also kept: `hardware/pause-probe.cfg` with `hardware/reference-pause-probe/` (a desktop run, D3D11, 16:9, that found
+how to open the pause menu from a run file: Escape held 400 ms or the pad's Start, `menustate` `open=1 ...
+page=MAP_PAGE`; it set the shape runs' Start hold) and `host-tests-pre/` (the host tests on main's 77ddfc7 before any
+M09 change, dirty=True, a baseline only, not proof).
 
 ## Hor+ view window and entity planes (M09-02)
 
@@ -34,19 +40,19 @@ second), `accept` (nobody pressed a button).
 |---|---|---|---|
 | S2 flyover, 16:9 (120 s) | `0.93361 1.66667 0.1 2000`, `0.730967 -0.682412` (`silent2`, `silent3`) | the same (`reference-silent2`) | 0.93357 |
 | S3 cutscene, 16:9 (200 s) | `0.259437 1.66667 0.3 2000`, `0.967957 -0.251116` (`silent2`, `silent3`) | the same | 0.25943 |
-| S3, one frame at 16:9 and 4:3 | `0.433374` (`silent3`, 231 s) | `0.433374` / `0.325031` at 4:3: ratio 1.33333 (`reference-silent`) | 0.43336 |
+| S3, one camera FOV at 16:9 | `0.433374` (`silent3`, 231 s) | `0.433374` (`reference-silent` 240 s) | 0.43336 |
+| S3, the same at 4:3 (live switch) | `0.325031 1.25 0.3 2000`, `0.951028 -0.309104` (`silent2` 225 s) | the same (`reference-silent` 259 s); 0.433374 / 0.325031 = 1.33333 | 0.32503 |
 | S4, 16:9 | `0.93361 1.77778 0.1125 2000`, `0.730967 -0.682412` (`silent3` 360 / 385 s, `cost-169`) | the same (`reference-silent2`, `reference-cost-169`) | 0.93357 |
 | S4, 4:3 (live switch) | `0.700208 1.33333 0.1125 2000`, `0.819162 -0.573562` (`silent3` 379 s, `cost-43`) | the same (`reference-silent2`, `reference-cost-43`) | 0.70018 = tan 35 degrees |
 
 0.93361 / 0.700208 = 1.33331 (r = 16:9 / 4:3). The entity planes follow the view window at both ratios and back. One
 desktop sample (`reference-cost-169` 150 s) caught the right plane between the game's rebuild (FUN_0037b2c8, each camera
-update) and the widening, which runs just before each sphere test; the next sample matched. S3 4:3 samples on the two
-machines fell on different cutscene frames (other FOVs), so only same-frame pairs are compared.
+update) and the widening, which runs just before each sphere test; the next sample matched.
 
 ## Reference scenes (M09-08)
 
-`silent3` (Switch, 99472722) against `reference-silent2` (desktop, D3D11, the same schedule at 16:9), the screenshots
-of the same name put side by side at half size (private, not frame-locked; no pixel diff claimed):
+`silent3` (Switch, 99472722) against `reference-silent2` (desktop, D3D11, the same schedule at 16:9), and `cost-169`
+against `reference-cost-169`, the screenshots of the same name put side by side at half size (private, not frame-locked; no pixel diff claimed):
 
 | Pair | Seen |
 |---|---|
@@ -56,11 +62,12 @@ of the same name put side by side at half size (private, not frame-locked; no pi
 | `s4-380-aspect43` | both pillarboxed 4:3 with equal black bars (80 of 640 px each side), the same framing |
 | `s4-386-aspect169` | back to the full 16:9 picture, as `s4-361` |
 | `s2-121` (flyover) | different flyover frames: both the full 16:9 picture, nothing more comparable |
+| `s4-200` (`cost-169` / `reference-cost-169`) | the same framing; HUD (keep 4:3) and radar at the same places (the Switch picture also carries the runtime's small REC mark, top left: the run records perf.csv, `PS2X_PERF_LOG`) |
 | `s3-201-bars`, `s3-206-nobars` | different cutscene shots: black bars top and bottom inside 16:9 with the same thickness on both; the whole picture without them |
 
 Differences seen are those of unlocked runs: the clock time, the waypoint arrow's animation, pedestrians. The scope
 is not compared: the desktop references showed none (`reference-silent2` and `reference-cost-169` scope shots are
-each one picture twice; gameinfo mode 4 at 395 / 405 s; scopemask 255 / 63 and 255 / 61); the Switch's scope rests
+each one picture twice; gameinfo mode 4 at their scope times, 395 / 405 s and 215 / 227 s; scopemask 255 / 63 and 255 / 61); the Switch's scope rests
 on M09-05's strip test (`hardware/scopemask-results.txt`).
 
 ## Frame shapes (M09-04)
@@ -99,5 +106,6 @@ world in view at 16:9); they are not a controlled memory cost. The user kept 16:
 
 `drive`: `cruise status` 334 -> 5,336 m of the 5,736 m loop in 360 s; the player's positions every 15 s cover both
 sides of the bay (574,509 ... -675,1162 ... 574,236). 24 screenshots: buildings, trees, roads, water and the skyline
-reach both outer eighths of the 16:9 picture in every frame; no hole or missing cell at the edges seen.
+reach both outer eighths of the 16:9 picture; the rig's cruise moves the car through geometry, so some frames are inside
+a structure (drive-105, drive-150) or a blur in palm trees (drive-075). No hole or missing cell at the edges seen.
 Stills 15 s apart show what is drawn at the edges, not whether it appeared late: pop-in is not claimed.

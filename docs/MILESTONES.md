@@ -339,13 +339,13 @@ from the dev menu; 4:3 remains available. Upstream's design and limits:
 `upstream/docs/SETTINGS_MENU_WIDESCREEN.md`.
 
 - [x] M09-01 Wire the upstream `display.aspect` chain (presenter display aspect, Hor+ widening, GS widening, HUD squeeze) through the OpenGL path; make 16:9 the Switch default once accepted and keep 4:3 selectable, both persisted through the dev menu.
-- [ ] M09-02 Verify the Hor+ view-window wrapper and entity-culling plane widening on ARM64 under guest-hook rules, numerically against the desktop reference.
+- [x] M09-02 Verify the Hor+ view-window wrapper and entity-culling plane widening on ARM64 under guest-hook rules, numerically against the desktop reference.
 - [x] M09-03 Verify HUD modes (keep 4:3, screen edges, stretch), HUD classification and scissor squeeze on GL, including radar and centred text.
 - [x] M09-04 Verify 2D-only frames (loading, pause map) stay 4:3 inside the frame, and each presented frame's shape matches its picture at transitions.
 - [x] M09-05 Keep the game's own PS2 widescreen option off and its menu row hidden; verify the cutscene-bars setting and the scope/camera mask.
 - [x] M09-06 Size internal render targets for 16:9 and record memory and GPU cost against 4:3 at the same scale in both modes (handheld here; docked: M16-03, user decision 2026-11-19, docs/milestones/M09/SCOPE_DECISIONS.md).
-- [ ] M09-07 Verify no missing geometry or unstreamed cells at the frame edges in S2-S4 and a driven route.
-- [ ] M09-08 Hardware acceptance in handheld and docked: reference-scene comparison with desktop at 16:9, and live 4:3/16:9 switching without corruption (handheld here, paired Joy-Cons; docked: M16-03, user decision 2026-11-19, docs/milestones/M09/SCOPE_DECISIONS.md).
+- [x] M09-07 Verify no missing geometry or unstreamed cells at the frame edges in S2-S4 and a driven route.
+- [x] M09-08 Hardware acceptance in handheld and docked: reference-scene comparison with desktop at 16:9, and live 4:3/16:9 switching without corruption (handheld here, paired Joy-Cons; docked: M16-03, user decision 2026-11-19, docs/milestones/M09/SCOPE_DECISIONS.md).
 
 ## M10 — Stability, lifecycle and measured performance
 
