@@ -17,7 +17,7 @@ schedules. Logs and results: `hardware/<run>-gtavcs.txt`, `hardware/<run>-result
 | `text` | 99472722 | `m09-text.cfg` | the mission subtitle and help box in each HUD mode |
 | `silent2`, `shape2` | b3fc1722 | as above | the same, before the preset fix (`silent2`'s scope commands lacked TERMINATE: no scope) |
 | `cost-43`, `cost-169`, `cost-169n` | b3fc1722 | `m09-cost-*.cfg`, Cross to S4, 150 s standing | cost of 16:9 against 4:3; `169n` with `PS2X_HW_WIDE_SCALE=0` (diagnosis). `cost-169` and `reference-cost-169` ran `m09-cost-169.cfg` before 75a65ac added TERMINATE to its scope scripts: no scope shown on either; the 80-200 s cost window is not affected |
-| `drive` | b3fc1722 | `m09-drive.cfg` | upstream's city route, commanded 40 m/s (about 16.7 m/s average), a screenshot every 15 s from 60 s |
+| `drive` | b3fc1722 | `m09-drive.cfg` | upstream's cruise route (a low flight at ~35 m, not road driving), commanded 40 m/s (about 16.7 m/s average), a screenshot every 15 s from 60 s |
 | `accept2`, `relaunch` | b3fc1722 | `m09-accept.cfg`, `m09-relaunch.cfg` | the person switching in the developer menu; the choice loading at the next start |
 | `reference-silent2`, `reference-cost-43`, `reference-cost-169` | desktop | the same schedules | numbers and pictures to compare |
 | `reference-silent` | desktop | `silent`'s schedule | the S3 view window and planes at 16:9 and 4:3 (M09-02) |
@@ -67,7 +67,8 @@ against `reference-cost-169`, the screenshots of the same name put side by side 
 
 Differences seen are those of unlocked runs: the clock time, the waypoint arrow's animation, pedestrians. The scope
 is not compared: the desktop references showed none (`reference-silent2` and `reference-cost-169` scope shots are
-each one picture twice; gameinfo mode 4 at their scope times, 395 / 405 s and 215 / 227 s; scopemask 255 / 63 and 255 / 61); the Switch's scope rests
+each one picture twice; gameinfo mode 4 at 395 / 405 s (`reference-silent2`) and at 210 / 220 / 230 s around the 215 / 227 s shots
+(`reference-cost-169`); scopemask 255 / 63 and 255 / 61); the Switch's scope rests
 on M09-05's strip test (`hardware/scopemask-results.txt`).
 
 ## Frame shapes (M09-04)
@@ -81,13 +82,14 @@ test: the game's sky at the top middle). Entering: 31 x (16:9, game), 89 x (4:3,
 
 Handheld, 1x, the player standing at the S4 spot; game frames from `perf.csv` over 80-200 s, GPU from the
 `[rhi-stats] gpu` lines over the same span (GL_TIME_ELAPSED from one present to the next), targets from
-`[rhi-stats] targets` over the whole run (each run logs 14 or 15 targets, the two values in the table; inside
+`[rhi-stats] targets` in play (from ~10 s each run logs 14 or 15 targets, the two values in the table; the boot logs
+1 and 5; inside
 80-200 s `cost-43` logged only its 17.6 MiB), heap from the `progress` lines.
 
 | | 4:3 (`cost-43`) | 16:9 (`cost-169`) | 16:9, 640-wide targets (`cost-169n`) |
 |---|---|---|---|
 | Largest target (picture) | 640x1472 | 853x1472 | 640x1472 |
-| Render targets + depth (whole run) | 17.6-21.1 MiB | 23.0-26.5 MiB | 19.9-23.4 MiB |
+| Render targets + depth (in play) | 17.6-21.1 MiB | 23.0-26.5 MiB | 19.9-23.4 MiB |
 | GPU per presented frame, mean | 11.43 ms | 21.28 ms | 34.20 ms |
 | GPU time per second | ~548 ms | ~537 ms | ~611 ms |
 | Game frame median / p95 | 23.9 / 57.5 ms | 48.8 / 366.1 ms | 49.1 / 103.3 ms |
@@ -102,11 +104,12 @@ pixels and the extra draws"). The heap figures include the texture cache, which 
 world in view at 16:9); they are not a controlled memory cost. The user kept 16:9 the default at this cost
 (SCOPE_DECISIONS.md); the stall is M10-03's.
 
-## Frame edges while driving (M09-07)
+## Frame edges along the cruise route (M09-07)
 
-`drive`: the cruise commanded 40 m/s from 44 s; `cruise status` 334 m at 60 s -> 5,336 m at 360 s of the 5,736 m
+`drive`: upstream's cruise rig (`cruise`, upstream docs/PERFORMANCE.md): its city route is a low flight at a fixed ~35 m over the roofs (`player` z 34.70-35.01 at all 24 samples) that streams the cells along it - not road driving; mid-air over water from 240 to 345 s. The cruise commanded 40 m/s from 44 s; `cruise status` 334 m at 60 s -> 5,336 m at 360 s of the 5,736 m
 loop (about 16.7 m/s average); the player's positions every 15 s cover both
 sides of the bay (574,509 ... -675,1162 ... 574,236). 24 screenshots: buildings, trees, roads, water and the skyline
 reach both outer eighths of the 16:9 picture; the rig's cruise moves the car through geometry, so some frames are inside
-a structure (drive-105, drive-150) or a blur in palm trees (drive-075). No hole or missing cell at the edges seen.
+a structure or a building face (drive-105, drive-150, drive-210) or a blur in palm trees (drive-075); at drive-225 the
+game shows a stunt-jump result for the flight. No hole or missing cell at the edges seen.
 Stills 15 s apart show what is drawn at the edges, not whether it appeared late: pop-in is not claimed.
