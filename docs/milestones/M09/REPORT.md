@@ -16,8 +16,8 @@ schedules. Logs and results: `hardware/<run>-gtavcs.txt`, `hardware/<run>-result
 | `shape3` | 99472722 | `m09-shape.cfg` | every presented frame into and out of the pause menu (Map page) |
 | `text` | 99472722 | `m09-text.cfg` | the mission subtitle and help box in each HUD mode |
 | `silent2`, `shape2` | b3fc1722 | as above | the same, before the preset fix (`silent2`'s scope commands lacked TERMINATE: no scope) |
-| `cost-43`, `cost-169`, `cost-169n` | b3fc1722 | `m09-cost-*.cfg`, Cross to S4, 150 s standing | cost of 16:9 against 4:3; `169n` with `PS2X_HW_WIDE_SCALE=0` (diagnosis) |
-| `drive` | b3fc1722 | `m09-drive.cfg` | 360 s on upstream's city route at 40 m/s, a screenshot every 15 s |
+| `cost-43`, `cost-169`, `cost-169n` | b3fc1722 | `m09-cost-*.cfg`, Cross to S4, 150 s standing | cost of 16:9 against 4:3; `169n` with `PS2X_HW_WIDE_SCALE=0` (diagnosis). `cost-169` and `reference-cost-169` ran `m09-cost-169.cfg` before 75a65ac added TERMINATE to its scope scripts: no scope shown on either; the 80-200 s cost window is not affected |
+| `drive` | b3fc1722 | `m09-drive.cfg` | upstream's city route, commanded 40 m/s (about 16.7 m/s average), a screenshot every 15 s from 60 s |
 | `accept2`, `relaunch` | b3fc1722 | `m09-accept.cfg`, `m09-relaunch.cfg` | the person switching in the developer menu; the choice loading at the next start |
 | `reference-silent2`, `reference-cost-43`, `reference-cost-169` | desktop | the same schedules | numbers and pictures to compare |
 | `reference-silent` | desktop | `silent`'s schedule | the S3 view window and planes at 16:9 and 4:3 (M09-02) |
@@ -104,7 +104,8 @@ world in view at 16:9); they are not a controlled memory cost. The user kept 16:
 
 ## Frame edges while driving (M09-07)
 
-`drive`: `cruise status` 334 -> 5,336 m of the 5,736 m loop in 360 s; the player's positions every 15 s cover both
+`drive`: the cruise commanded 40 m/s from 44 s; `cruise status` 334 m at 60 s -> 5,336 m at 360 s of the 5,736 m
+loop (about 16.7 m/s average); the player's positions every 15 s cover both
 sides of the bay (574,509 ... -675,1162 ... 574,236). 24 screenshots: buildings, trees, roads, water and the skyline
 reach both outer eighths of the 16:9 picture; the rig's cruise moves the car through geometry, so some frames are inside
 a structure (drive-105, drive-150) or a blur in palm trees (drive-075). No hole or missing cell at the edges seen.

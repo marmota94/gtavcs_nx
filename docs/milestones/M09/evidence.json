@@ -112,7 +112,7 @@
  "M09-06": [
   {
    "path": "docs/milestones/M09/REPORT.md",
-   "result": "Targets 640x1472 -> 853x1472, 17.6-21.1 -> 23.0-26.5 MiB; GPU 11.43 -> 21.28 ms per present; game frame 23.9 / 57.5 -> 48.8 / 366.1 ms median / p95, handheld 1x"
+   "result": "Targets 640x1472 -> 853x1472, 17.6-21.1 -> 23.0-26.5 MiB (over the whole run); GPU 11.43 -> 21.28 ms per present; game frame 23.9 / 57.5 -> 48.8 / 366.1 ms median / p95, handheld 1x"
   },
   {
    "path": "docs/milestones/M09/hardware/cost-43-gtavcs.txt",
@@ -134,11 +134,11 @@
  "M09-07": [
   {
    "path": "docs/milestones/M09/hardware/drive-results.txt",
-   "result": "NRO b3fc1722: 5,336 m of the city route at 40 m/s, positions every 15 s, 24 screenshots"
+   "result": "NRO b3fc1722: the city route commanded at 40 m/s, 334 m at 60 s -> 5,336 m at 360 s (about 16.7 m/s), positions every 15 s, 24 screenshots"
   },
   {
    "path": "docs/milestones/M09/REPORT.md",
-   "result": "Edges of every drive frame reach buildings, trees, roads, water and skyline; no missing cell seen"
+   "result": "Drive frames: buildings, trees, roads, water and skyline reach both outer eighths, some frames inside a structure (drive-105, drive-150) or a blur in palm trees (drive-075); no hole or missing cell seen; pop-in not claimed"
   }
  ],
  "M09-08": [
