@@ -10,6 +10,7 @@ schedules. Logs and results: `hardware/<run>-gtavcs.txt`, `hardware/<run>-result
 
 | Run | NRO | Schedule | What it shows |
 |---|---|---|---|
+| `presets-r1`, `presets-env` | af1a582d | `m09-presets.cfg`, `m09-presets-env.cfg` (`VCS_ASPECT=43`) | the presets again after review 1; patch 0013's fallback leaving a key locked by its environment variable alone |
 | `silent3` | 99472722 | `m09-silent.cfg`, no input, 470 s | S1-S4; view window and planes in S2, S3, S4, at 16:9 and live 4:3; cutscene bars; HUD modes; scope and camera masks |
 | `presets` | 99472722 | `m09-presets.cfg` | Enhanced / Widescreen, light / Authentic with the narrowed aspect |
 | `shape3` | 99472722 | `m09-shape.cfg` | every presented frame into and out of the pause menu (Map page) |
@@ -42,12 +43,32 @@ desktop sample (`reference-cost-169` 150 s) caught the right plane between the g
 update) and the widening, which runs just before each sphere test; the next sample matched. S3 4:3 samples on the two
 machines fell on different cutscene frames (other FOVs), so only same-frame pairs are compared.
 
+## Reference scenes (M09-08)
+
+`silent3` (Switch, 99472722) against `reference-silent2` (desktop, D3D11, the same schedule at 16:9), the screenshots
+of the same name put side by side at half size (private, not frame-locked; no pixel diff claimed):
+
+| Pair | Seen |
+|---|---|
+| `s4-361-hud43` | the same framing of the player and the barracks; HUD (clock, health, money, fist) and radar inside the middle 4:3 at the same places |
+| `s4-366-hudedges` | the HUD at the right edge and the radar at the left edge on both |
+| `s4-371-hudstretch` | the HUD and radar spread the same way, the radar widened into an ellipse on both |
+| `s4-380-aspect43` | both pillarboxed 4:3 with equal black bars (80 of 640 px each side), the same framing |
+| `s4-386-aspect169` | back to the full 16:9 picture, as `s4-361` |
+| `s2-121` (flyover) | different flyover frames: both the full 16:9 picture, nothing more comparable |
+| `s3-201-bars`, `s3-206-nobars` | different cutscene shots: black bars top and bottom inside 16:9 with the same thickness on both; the whole picture without them |
+
+Differences seen are those of unlocked runs: the clock time, the waypoint arrow's animation, pedestrians. The scope
+is not compared: the desktop references showed none (`reference-silent2` and `reference-cost-169` scope shots are
+each one picture twice; gameinfo mode 4 at 395 / 405 s; scopemask 255 / 63 and 255 / 61); the Switch's scope rests
+on M09-05's strip test (`hardware/scopemask-results.txt`).
+
 ## Frame shapes (M09-04)
 
 `hardware/shape3-burst-in-shapes.txt`, `-out-shapes.txt`: per presented frame the picture rectangle (lit columns of the
 320x180 capture), the shape the runtime showed it at (burst.txt `aspect`) and what it shows (upstream's menushape
 test: the game's sky at the top middle). Entering: 31 x (16:9, game), 89 x (4:3, menu). Leaving: 13 x (4:3, menu),
-107 x (16:9, game). 0 mismatched of 240. `shape2` (b3fc1722) first failed: the session's judge (`session-shape2.txt`: burst-in 97, burst-out 12 mismatched, `RESULT game FAIL`) compared each picture with the 16:9 `frame` rectangle it is placed in, so every 4:3 menu frame failed; the judge was changed in 92357a4 to compare it with the `aspect` it is shown at, and the committed shape2 shapes files are that judge's re-check of the same PNGs (hashes in the session log): 24 game frames then 96 menu frames entering, 12 menu then 108 game leaving, 0 mismatched.
+107 x (16:9, game). 0 mismatched of 240. `shape2` (b3fc1722) first failed: the session's judge (`session-shape2.txt`: burst-in 97, burst-out 12 mismatched, `RESULT game FAIL`) compared each picture with the 16:9 `frame` rectangle it is placed in, so every 4:3 menu frame failed (96), and its rule that a menu-flagged frame without 3D must be 4:3 failed frame 0011, the menu's first batch, which still showed the game at 16:9 (the 97th; shape3's frame 0018 is the same case); the judge was changed in 92357a4 to compare it with the `aspect` it is shown at, and the committed shape2 shapes files are that judge's re-check of the same PNGs (hashes in the session log): 24 game frames then 96 menu frames entering, 12 menu then 108 game leaving, 0 mismatched.
 
 ## Cost of 16:9 against 4:3 (M09-06)
 
@@ -63,7 +84,7 @@ Handheld, 1x, the player standing at the S4 spot; game frames from `perf.csv` ov
 | GPU per presented frame, mean | 11.43 ms | 21.28 ms | 34.20 ms |
 | GPU time per second | ~548 ms | ~537 ms | ~611 ms |
 | Game frame median / p95 | 23.9 / 57.5 ms | 48.8 / 366.1 ms | 49.1 / 103.3 ms |
-| Game frames over 250 ms | - | 131 of 1,288 | - |
+| Game frames over 250 ms | 6 of 4,169 (to 405 ms) | 131 of 1,288 (to 456 ms) | 9 of 1,928 (to 407 ms) |
 | Heap in use at 200 s | 590.0 MB | 638.0 MB | 632.1 MB |
 
 At 16:9 the game waits on the render pipeline (`wait_ms` median 0 -> 23.7 ms); the GS stage goes from ~12 to ~70 ms

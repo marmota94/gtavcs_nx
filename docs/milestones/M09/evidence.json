@@ -152,7 +152,7 @@
   },
   {
    "path": "docs/milestones/M09/REPORT.md",
-   "result": "Reference scenes against the desktop at 16:9: same framing and HUD placement by description, identical view window and planes"
+   "result": "Reference scenes: eight silent3 / reference-silent2 pairs looked at side by side; Fort Baxter HUD modes and 4:3 the same framing and placement, flyover and cutscene shape and bars only; no scope on the desktop reference"
   },
   {
    "path": "docs/milestones/M09/SCOPE_DECISIONS.md",

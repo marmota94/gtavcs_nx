@@ -313,7 +313,7 @@ settings, trainer, free camera, performance overlay, frame-time recording and di
 103-185 ms late; R1-then-L3 sets the game's own free-aim flag). Menus use A to choose and B to go back; touch is read from HID (switch-sdl2
 delivered none). Damaged vcs.ini values are ignored and repaired; settings survive relaunch and reset. Root patch 0012.
 The 1080p menu layout was checked in handheld with VCS_NX_OUTPUT=1080; docked and the Pro Controller: M16.
-M09 (2026-11-21, handheld, paired Joy-Cons attached): upstream's Hor+ chain runs through the OpenGL backend unchanged;
+M09 (2026-11-21, review fixes 2026-11-24, handheld, paired Joy-Cons attached): upstream's Hor+ chain runs through the OpenGL backend unchanged;
 the Switch's Aspect ratio offers 4:3 and 16:9, 16:9 by default (root patch 0013), switched live from the developer menu
 and kept across relaunch. The view window and entity planes match the desktop reference; HUD modes, cutscene bars, the
 scope mask and 2D-only frames (4:3 inside the 16:9 frame, 0 mismatched shapes) were checked on hardware. Cost at 1x
