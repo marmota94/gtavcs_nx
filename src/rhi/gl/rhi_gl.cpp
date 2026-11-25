@@ -475,6 +475,7 @@ namespace rhi
             // ---- resources ----------------------------------------------------------------------------------------
             std::unique_ptr<Texture> createTexture(const TextureDesc &desc, const void *data, uint32_t rowPitch) override
             {
+                CpuScope cpu(this, CpuCreate);
                 if (!onOwner() && m_freeThreaded)
                 {
                     if (!data || desc.samples > 1u || desc.mipLevels != 1u || (desc.usage & (UsageRenderTarget | UsageDepth)) ||
@@ -552,6 +553,7 @@ namespace rhi
             void updateTexture(Texture &texture, uint32_t x, uint32_t y, uint32_t width, uint32_t height, const void *data,
                                uint32_t rowPitch) override
             {
+                CpuScope cpu(this, CpuUpload);
                 if (!owner("updateTexture"))
                     return;
                 auto &t = static_cast<GlTexture &>(texture);
@@ -617,6 +619,7 @@ namespace rhi
             void copyTexture(Texture &dst, uint32_t dstX, uint32_t dstY, Texture &src, uint32_t srcX, uint32_t srcY,
                              uint32_t width, uint32_t height) override
             {
+                CpuScope cpu(this, CpuCopy);
                 if (!owner("copyTexture"))
                     return;
                 auto &d = static_cast<GlTexture &>(dst);
@@ -636,6 +639,7 @@ namespace rhi
 
             void resolveTexture(Texture &dst, Texture &src) override
             {
+                CpuScope cpu(this, CpuCopy);
                 if (!owner("resolveTexture"))
                     return;
                 auto &d = static_cast<GlTexture &>(dst);
@@ -662,6 +666,7 @@ namespace rhi
 
             std::unique_ptr<Texture> createTextureLevels(const TextureDesc &desc, const void *const *levels, uint32_t levelCount) override
             {
+                CpuScope cpu(this, CpuCreate);
                 if (!onOwner() && m_freeThreaded)
                     return createOffOwner(desc, levels, levelCount, 0);
                 if (!owner("createTextureLevels"))
@@ -741,6 +746,7 @@ namespace rhi
 
             void updateBuffer(Buffer &buffer, const void *data, size_t size) override
             {
+                CpuScope cpu(this, CpuBuffer);
                 if (!owner("updateBuffer"))
                     return;
                 auto &b = static_cast<GlBuffer &>(buffer);
@@ -849,6 +855,7 @@ namespace rhi
             // ---- drawing ------------------------------------------------------------------------------------------
             void beginPass(const PassDesc &pass) override
             {
+                CpuScope cpu(this, CpuPass);
                 if (!owner("beginPass"))
                     return;
                 if (m_inPass)
@@ -1111,6 +1118,7 @@ namespace rhi
 
             void draw(uint32_t vertexCount, uint32_t firstVertex) override
             {
+                CpuScope cpu(this, CpuDraw);
                 if (!owner("draw") || !vertexCount || !prepareDraw(static_cast<uint64_t>(firstVertex) + vertexCount))
                     return;
                 glDrawArrays(m_pipeline->mode, static_cast<GLint>(firstVertex), static_cast<GLsizei>(vertexCount));
@@ -1119,6 +1127,7 @@ namespace rhi
 
             void drawIndexed(uint32_t indexCount, uint32_t firstIndex, int32_t baseVertex) override
             {
+                CpuScope cpu(this, CpuDraw);
                 if (!owner("drawIndexed") || !indexCount)
                     return;
                 const uint32_t isize = m_index32 ? 4u : 2u;
@@ -1195,7 +1204,10 @@ namespace rhi
                     }
                     if (m_gpuTime)
                         endGpuFrame();
-                    m_window.swap();
+                    {
+                        CpuScope cpu(this, CpuSwap);
+                        m_window.swap();
+                    }
                     m_pipelineStateValid = false; // the platform's swap may touch state
                     m_boundFramebuffer = ~0u;
                     if (m_gpuTime)
@@ -1914,6 +1926,7 @@ namespace rhi
             // ---- deferred destruction and reports -----------------------------------------------------------------
             void drain()
             {
+                CpuScope cpu(this, CpuDelete);
                 std::vector<GLuint> textures, buffers, samplers, vaos;
                 std::vector<GLsync> fences;
                 {
@@ -2121,6 +2134,23 @@ namespace rhi
                     m_gpuReported[0] = s.gpuFrames;
                     m_gpuReported[1] = s.gpuNs;
                 }
+                if (cpuTimeOn())
+                {
+                    static const char *const names[CpuKinds] = {"create", "upload", "buffer", "draw", "pass", "copy", "swap",
+                                                                "delete"};
+                    const double n = s.presents > m_cpuPresents ? static_cast<double>(s.presents - m_cpuPresents) : 1.0;
+                    std::string line;
+                    for (uint32_t k = 0; k < CpuKinds; ++k)
+                    {
+                        char item[64];
+                        std::snprintf(item, sizeof(item), "%s%s %.2f ms x%.1f", k ? " | " : "", names[k], m_cpuNs[k] / 1e6 / n,
+                                      m_cpuCalls[k] / n);
+                        line += item;
+                        m_cpuNs[k] = m_cpuCalls[k] = 0;
+                    }
+                    std::fprintf(stderr, "[rhi-stats] cpu per present (%.0f presents, owner thread): %s\n", n, line.c_str());
+                    m_cpuPresents = s.presents;
+                }
                 if (m_passTime)
                 {
                     reportPassTimes(s.presents - m_passPresentsReported);
@@ -2184,6 +2214,39 @@ namespace rhi
             uint32_t m_gpuNext = 0;
             uint64_t m_gpuReported[2] = {0, 0}; // frames, ns at the last [rhi-stats] line
             FILE *m_gpuLog = nullptr;             // PS2X_GL_GPU_LOG: frame,gpu_ms per timed frame
+
+            // PS2X_GL_CPU_TIME (M10-02): the owner thread's CPU time inside the backend by kind of call
+            enum CpuKind : uint32_t { CpuCreate, CpuUpload, CpuBuffer, CpuDraw, CpuPass, CpuCopy, CpuSwap, CpuDelete, CpuKinds };
+            uint64_t m_cpuNs[CpuKinds] = {}, m_cpuCalls[CpuKinds] = {};
+            uint64_t m_cpuPresents = 0;
+            static bool cpuTimeOn()
+            {
+                static const bool on = envOn("PS2X_GL_CPU_TIME");
+                return on;
+            }
+            struct CpuScope
+            {
+                uint64_t *ns = nullptr, *calls = nullptr;
+                std::chrono::steady_clock::time_point t0;
+                CpuScope(GlDevice *d, CpuKind k)
+                {
+                    if (cpuTimeOn())
+                    {
+                        ns = &d->m_cpuNs[k];
+                        calls = &d->m_cpuCalls[k];
+                        t0 = std::chrono::steady_clock::now();
+                    }
+                }
+                ~CpuScope()
+                {
+                    if (ns)
+                    {
+                        *ns += static_cast<uint64_t>(
+                            std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - t0).count());
+                        ++*calls;
+                    }
+                }
+            };
 
             // PS2X_GL_PASS_TIME (M10-02): a ring of begin / end timestamp pairs and totals by pass key
             static constexpr uint32_t kPassRecords = 2048;
