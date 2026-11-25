@@ -545,6 +545,13 @@ extern "C" int gtavcs_core_frame(void)
             core.started = true;
             core.firstFrame = core.lastFrame = now;
         }
+        // M10-09: a game file the folder disc could not read after its retries: stop with it named (the system's error
+        // dialog shows it) instead of the game waiting on a black screen for data that never comes
+        {
+            std::string unreadable;
+            if (folderDiscUnreadable(unreadable))
+                return fail("cannot read " + unreadable + " (the SD card or the extracted game files): stopped"), -1;
+        }
         // the schedule counts time in focus only (HOME and sleep pause it)
         core.activeSeconds += std::min(0.25, std::chrono::duration<double>(now - core.lastFrame).count());
         core.lastFrame = now;

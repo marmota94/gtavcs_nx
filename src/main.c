@@ -40,13 +40,15 @@ static void diagnostic(const char *format, ...)
 
 /* A failure after SDL started: the system's error dialog shows the message without needing our display window
  * (see fatal_screen). It stays up until the player presses OK; the full text is under Details. */
-static void error_dialog(void)
+static void error_dialog(int in_play)
 {
     char details[1024];
     snprintf(details, sizeof(details), "%s\nCheck /switch/gtavcs_nx/gtavcs-boot.log or gamefolder/gtavcs.log.",
              last_message);
     ErrorApplicationConfig config;
-    Result rc = errorApplicationCreate(&config, "GTA VCS NX failed to start.", details);
+    /* M10-09: a failure in play (a game file unreadable) is not a failure to start */
+    Result rc = errorApplicationCreate(&config, in_play ? "GTA VCS NX stopped." : "GTA VCS NX failed to start.",
+                                       details);
     if (R_SUCCEEDED(rc)) rc = errorApplicationShow(&config);
     fprintf(stderr, "[boot] failure shown in the system error dialog (%08x)\n", rc);
     fflush(stderr);
@@ -277,7 +279,7 @@ cleanup:;
         diagnostic("[shutdown] core, context, window and SDL closed\n");
     else {
         memcpy(last_message, failure, sizeof(last_message));
-        if (sdl_started) error_dialog();
+        if (sdl_started) error_dialog(frames_presented != 0);
         else fatal_screen();
     }
     if (log) { fflush(log); fclose(log); }

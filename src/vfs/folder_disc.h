@@ -14,6 +14,9 @@
 
 #include "runtime/ps2_disc_image.h"
 
+// M10-09: the first file a read failed on after every retry (true), for the core to stop with it named
+bool folderDiscUnreadable(std::string &path);
+
 class FolderDisc final : public IPS2DiscImage
 {
 public:

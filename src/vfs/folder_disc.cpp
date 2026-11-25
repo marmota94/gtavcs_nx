@@ -6,6 +6,9 @@
 #include <cstdlib>
 #include <chrono>
 #include <atomic>
+#include <string>
+#include <thread>
+#include <mutex>
 #include <sys/stat.h>
 
 namespace
@@ -693,26 +696,52 @@ namespace
     }
 }
 
+namespace
+{
+    std::mutex g_unreadableMutex;
+    std::string g_unreadable; // the first file a read failed on after every retry (M10-09)
+}
+
+bool folderDiscUnreadable(std::string &path)
+{
+    std::lock_guard<std::mutex> lock(g_unreadableMutex);
+    path = g_unreadable;
+    return !path.empty();
+}
+
 bool FolderDisc::readFile(uint32_t file, uint64_t offset, size_t count, uint8_t *destination) const
 {
-    if (injectedReadFault(m_files[file].hostPath))
+    // M10-09: a failed read is retried (3 more attempts, 20 ms apart), as a drive retries: a transient SD error then
+    // costs a short wait. A read failing every time is recorded (folderDiscUnreadable) so the core can stop with the
+    // file named instead of the game waiting on a black screen for data that never comes (fault-read-img-docked).
+    for (int attempt = 0; attempt < 4; ++attempt)
     {
-        std::fprintf(stderr, "[folder-disc] read failed: %s offset=%llu count=%zu\n", m_files[file].hostPath.c_str(),
-                     static_cast<unsigned long long>(offset), count);
-        return false;
+        if (attempt)
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        bool ok = false;
+        if (!injectedReadFault(m_files[file].hostPath))
+        {
+            Slot *slot = acquire(file);
+            ok = slot && seekTo(slot->handle, offset) && std::fread(destination, 1, count, slot->handle) == count;
+            if (slot)
+            {
+                release(slot);
+            }
+        }
+        if (ok && attempt == 0)
+            return true;
+        std::fprintf(stderr, "[folder-disc] read %s: %s offset=%llu count=%zu (attempt %d of 4)\n",
+                     ok ? "succeeded after a failure" : "failed", m_files[file].hostPath.c_str(),
+                     static_cast<unsigned long long>(offset), count, attempt + 1);
+        if (ok)
+            return true;
     }
-    Slot *slot = acquire(file);
-    const bool ok = slot && seekTo(slot->handle, offset) && std::fread(destination, 1, count, slot->handle) == count;
-    if (slot)
     {
-        release(slot);
+        std::lock_guard<std::mutex> lock(g_unreadableMutex);
+        if (g_unreadable.empty())
+            g_unreadable = m_files[file].hostPath;
     }
-    if (!ok)
-    {
-        std::fprintf(stderr, "[folder-disc] read failed: %s offset=%llu count=%zu\n", m_files[file].hostPath.c_str(),
-                     static_cast<unsigned long long>(offset), count);
-    }
-    return ok;
+    return false;
 }
 
 bool FolderDisc::readBytes(uint64_t offset, size_t byteCount, void *destination) const
