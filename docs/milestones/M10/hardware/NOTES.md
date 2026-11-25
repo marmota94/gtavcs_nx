@@ -319,3 +319,16 @@ The shutdown order after the GL teardown: present::shutdown's end, `ps2AudioShut
 which calls the native sound engine's fill: SPU2, music stream), then SDL's audio close. The game thread (and the IOP
 work it drives) is joined before the keeper is stopped. Change (src/core/core.cpp): the core clears the keeper's filler
 before the runtime stops; log lines before that and before SDL's audio close place a remaining hang.
+
+## route-spikes-docked (2026-11-25): what the stalls are
+
+NRO `498fcb71` (commit e2b2a80), `m10-route-spikes.cfg` (`PS2X_GL_SPIKE_MS=100`): 253 main-thread frames over 100 ms,
+66 s in all. By kind: **texture creation 49%** (bursts of 200-400 GS textures in one frame at ~3 ms each, up to
+1.26 s), outside GL calls 21% (frames of ~1.3-1.5 s with ~20 ms of GL: the main thread waiting on the render
+pipeline), **texture deletion 16%** (the cache's eviction releases a quarter of it at once: up to 714 ms), draws 8%,
+first-use shader compiles 3% (one frame of 875 ms, 13 programs). The run also shut down cleanly with the new steps
+logged in order (`audio filler stopped`, `teardown: done`, `closing the audio device`, `audio closed`).
+
+Changes: patch 0016 (`PS2X_HW_TEX_BUDGET_MS`, the Switch default 12 ms: GS textures beyond that per frame wait and
+are made first in the next frames; their draws left out meanwhile) and the GL backend frees released textures at most
+~3 ms a frame (a backlog; the teardown frees all). Host conformance with the backlog: 127/127, 91 byte-identical.

@@ -60,6 +60,10 @@
     {
       "path": "0015-vu0-natives-neon.patch",
       "sha256": "99acafdf8a34c522c3245c01038fbc6b3a710cf28a81317223414a1242788649"
+    },
+    {
+      "path": "0016-gs-texture-budget.patch",
+      "sha256": "4bc5fd01b5c75d476c6c3f926cd1477c606c88e5183e3fcc4fd46551c0773fe1"
     }
   ]
 }

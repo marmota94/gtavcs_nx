@@ -1,0 +1,163 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index 2929498..80918fd 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -402,3 +402,4 @@ changes keep desktop behaviour: `main()` and `run()` take the same steps as befo
+ |---|---|---|
+ | `ps2xRuntime/src/lib/gs/gs_hw.cpp` | `PS2X_HW_WIDE_ALIGN=N`: the integer scale's wide width rounded up to a multiple of N pixels (diagnosis; unset = as before) | Docked at 16:9 the picture's passes into its 853-wide targets cost 2-3 times the 4:3 passes for 1.33 times the pixels; an A/B against an aligned width |
+ | `ps2xRuntime/include/runtime/ps2_vu1_neon.h` (new); `src/game/vcs_vu0_native.cpp` | `vu1neon`: vu1v's helpers in NEON with the AVX path's rules (the float range test before the double fallback, compare-and-select min / max, no fused multiply-add); the VU0 natives use it on AArch64 through the alias `vu0v`, vu1v elsewhere. A namespace of its own: the generated VU1 code keeps vu1v | On a host without AVX vu1v's scalar branch computes every fused lane in double; on the Switch the VU0 natives (boxClip, matrixTimes3From) were ~12% of the game thread's samples while driving |
++| `ps2xRuntime/src/lib/gs/gs_hw.cpp` | `PS2X_HW_TEX_BUDGET_MS=<ms>` (unset or 0: off, as before): the GS textures a frame creates beyond that much time wait (`m_pendingTex`) and are made first in the next frames; a draw whose texture still waits is left out; a delete or a newer version of a waiting texture updates the queue; `[gs-hw] textures waiting` lines | On the Switch a texture costs Mesa nouveau ~3 ms to create and the streaming made 200-400 in one frame: up to 1.3 s frozen (Switch port M10-03) |
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp
+index 1bbb273..afa8773 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp
+@@ -884,10 +884,68 @@ namespace
+         uint32_t displayWidth() const { return m_display ? m_display->desc().width : m_displayW * m_scale; }
+         uint32_t displayHeight() const { return m_display ? m_display->desc().height : m_displayH * m_scale; }
+ 
++        // [gta-recomp] PS2X_HW_TEX_BUDGET_MS=<ms> (Switch port M10-03; unset or 0 = off, as before): the textures a frame
++        // creates beyond that much time wait in m_pendingTex and are made first in the next frames; a draw whose texture
++        // is still waiting is left out (the object shows a few frames late), not drawn with no texture (black). On the
++        // Switch a texture costs Mesa nouveau ~3 ms to create and bursts of 200-400 in one frame froze the picture for up
++        // to 1.3 s (route-spikes-docked).
++        static double texBudgetMs()
++        {
++            static const double ms = [] {
++                const char *e = std::getenv("PS2X_HW_TEX_BUDGET_MS");
++                return e ? std::max(0.0, std::atof(e)) : 0.0;
++            }();
++            return ms;
++        }
++
++        void createTexture(const TexCreate &t)
++        {
++            rhi::TextureDesc d;
++            d.width = t.w;
++            d.height = t.h;
++            d.usage = rhi::UsageSampled;
++            d.name = "gs texture";
++            d.mipLevels = m_anisotropy ? 0u : 1u; // [gta-recomp] anisotropic filtering samples a mip chain
++            const auto createStart = ps2x::hostNow(); // [gta-recomp] tex_create_us / tex_kb
++            if (t.early) // [gta-recomp] made on a helper thread (makeTextureEarly): usually done long before
++            {
++                t.early->done.wait(false);
++                m_textures[t.key] = std::move(t.early->made);
++            }
++            else if (!t.mips.empty()) // [gta-recomp] the chain built on the GS stage: one plain creation (buildMipChain)
++            {
++                const void *levels[16];
++                m_textures[t.key] = m_dev.createTextureLevels(d, levels, mipLevels(t.pixels, t.mips, t.w, t.h, levels));
++            }
++            else
++                m_textures[t.key] = m_dev.createTexture(d, t.pixels.data(), t.w * 4u);
++            const auto spent = ps2x::hostNow() - createStart;
++            m_texSpentNs += static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(spent).count());
++            ps2perf::add(ps2perf::Counter::TexCreateUs,
++                         static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(spent).count()));
++            ps2perf::add(ps2perf::Counter::TexKBytes,
++                         ((t.early ? t.early->bytes : (t.pixels.size() + t.mips.size()) * 4u) + 1023u) / 1024u);
++        }
++
++        bool texBudgetLeft() const { return m_texSpentNs < static_cast<uint64_t>(texBudgetMs() * 1e6); }
++
+         void execute(const Frame &f, bool logDraws)
+         {
+             m_execWide = f.shown != 0; // [gta-recomp] the shape the frame's drawing is for (shapeOf)
+             m_dev.pushMarker("gs frame");
++            // [gta-recomp] the textures that waited (PS2X_HW_TEX_BUDGET_MS), oldest first, within this frame's budget
++            m_texSpentNs = 0;
++            while (!m_pendingTex.empty() && texBudgetLeft())
++            {
++                const TexCreate t = std::move(m_pendingTex.front());
++                m_pendingTex.pop_front();
++                m_pendingKeys.erase(t.key);
++                createTexture(t);
++            }
++            if (!m_pendingTex.empty() && ++m_texDeferReports % 300u == 1u)
++                std::fprintf(stderr, "[gs-hw] textures waiting for the creation budget: %zu (%llu deferred, %llu draws left out so far)\n",
++                             m_pendingTex.size(), static_cast<unsigned long long>(m_texDeferred),
++                             static_cast<unsigned long long>(m_texDrawsSkipped));
+             const size_t bytes = f.vertices.size() * sizeof(HwVertex);
+             if (bytes)
+             {
+@@ -928,29 +986,25 @@ namespace
+                 case CmdType::TexCreate:
+                 {
+                     const TexCreate &t = f.textures[c.index];
+-                    rhi::TextureDesc d;
+-                    d.width = t.w;
+-                    d.height = t.h;
+-                    d.usage = rhi::UsageSampled;
+-                    d.name = "gs texture";
+-                    d.mipLevels = m_anisotropy ? 0u : 1u; // [gta-recomp] anisotropic filtering samples a mip chain
+-                    const auto createStart = ps2x::hostNow(); // [gta-recomp] tex_create_us / tex_kb
+-                    if (t.early) // [gta-recomp] made on a helper thread (makeTextureEarly): usually done long before
++                    if (m_pendingKeys.count(t.key)) // a newer version of a texture still waiting replaces it
+                     {
+-                        t.early->done.wait(false);
+-                        m_textures[t.key] = std::move(t.early->made);
++                        for (auto it = m_pendingTex.begin(); it != m_pendingTex.end(); ++it)
++                            if (it->key == t.key)
++                            {
++                                m_pendingTex.erase(it);
++                                break;
++                            }
++                        m_pendingKeys.erase(t.key);
+                     }
+-                    else if (!t.mips.empty()) // [gta-recomp] the chain built on the GS stage: one plain creation (buildMipChain)
++                    if (texBudgetMs() > 0.0 && !t.early && !texBudgetLeft())
+                     {
+-                        const void *levels[16];
+-                        m_textures[t.key] = m_dev.createTextureLevels(d, levels, mipLevels(t.pixels, t.mips, t.w, t.h, levels));
++                        m_textures.erase(t.key); // (an older texture under the key is replaced: not drawn meanwhile)
++                        m_pendingTex.push_back(t);
++                        m_pendingKeys.insert(t.key);
++                        ++m_texDeferred;
++                        break;
+                     }
+-                    else
+-                        m_textures[t.key] = m_dev.createTexture(d, t.pixels.data(), t.w * 4u);
+-                    ps2perf::add(ps2perf::Counter::TexCreateUs, static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(
+-                                                                    ps2x::hostNow() - createStart).count()));
+-                    ps2perf::add(ps2perf::Counter::TexKBytes,
+-                                 ((t.early ? t.early->bytes : (t.pixels.size() + t.mips.size()) * 4u) + 1023u) / 1024u);
++                    createTexture(t);
+                     // [gta-recomp] PS2X_HW_DUMP_TEX=<key hex>: write that decoded texture (hw_tex_<key>.ppm, alpha dropped)
+                     static const uint64_t dumpTex = std::getenv("PS2X_HW_DUMP_TEX") ? std::strtoull(std::getenv("PS2X_HW_DUMP_TEX"), nullptr, 16) : 0u;
+                     if (dumpTex && t.key == dumpTex)
+@@ -970,6 +1024,13 @@ namespace
+                 {
+                     const auto deleteStart = ps2x::hostNow(); // [gta-recomp] tex_create_us: releases too
+                     m_textures.erase(f.texDeletes[c.index]);
++                    if (m_pendingKeys.erase(f.texDeletes[c.index])) // [gta-recomp] a waiting texture deleted before it was made
++                        for (auto it = m_pendingTex.begin(); it != m_pendingTex.end(); ++it)
++                            if (it->key == f.texDeletes[c.index])
++                            {
++                                m_pendingTex.erase(it);
++                                break;
++                            }
+                     ps2perf::add(ps2perf::Counter::TexCreateUs, static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(
+                                                                     ps2x::hostNow() - deleteStart).count()));
+                     break;
+@@ -2325,6 +2386,11 @@ namespace
+                 {
+                     auto it = m_textures.find(s.texKey);
+                     tex = it != m_textures.end() ? it->second.get() : nullptr;
++                    if (!tex && m_pendingKeys.count(s.texKey)) // [gta-recomp] its texture waits for the budget: left out
++                    {
++                        ++m_texDrawsSkipped;
++                        return;
++                    }
+                 }
+             }
+ 
+@@ -2529,6 +2595,9 @@ namespace
+         std::unordered_map<uint32_t, DroppedSize> m_droppedSize; // [gta-recomp] dropRt / rtFor
+         std::unordered_map<uint32_t, Depth> m_depth;
+         std::unordered_map<uint64_t, std::unique_ptr<rhi::Texture>> m_textures;
++        std::deque<TexCreate> m_pendingTex;          // [gta-recomp] PS2X_HW_TEX_BUDGET_MS: textures waiting to be made
++        std::unordered_set<uint64_t> m_pendingKeys;  // ... their keys
++        uint64_t m_texSpentNs = 0, m_texDeferred = 0, m_texDrawsSkipped = 0, m_texDeferReports = 0;
+         std::unique_ptr<rhi::Texture> m_display, m_feedback;
+         std::unordered_map<uint32_t, HudLayer> m_hud; // [gta-recomp] native HUD layer per frame buffer
+         // [gta-recomp] Per frame buffer, the shape (wide or 4:3) of the frame that last drew into it; a plain copy carries

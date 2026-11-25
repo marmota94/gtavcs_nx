@@ -407,6 +407,10 @@ namespace
             setenv("PS2X_HW_POSTFX", "bc", 1);
         std::fprintf(stderr, "[core] post effects native: %s (PS2X_HW_POSTFX; trails recorded by default, M10-03)\n",
                      std::getenv("PS2X_HW_POSTFX"));
+        // M10-03: at most 12 ms of GS texture creation a frame, the rest in the next frames (patch 0016; a texture costs
+        // ~3 ms on Mesa nouveau and streaming bursts of 200-400 froze the picture for up to 1.3 s, route-spikes-docked)
+        if (const char *b = std::getenv("PS2X_HW_TEX_BUDGET_MS"); !b || !*b)
+            setenv("PS2X_HW_TEX_BUDGET_MS", "12", 1);
 
         vcs::launcher::registerSettings();
         devmenu::registerSettings();

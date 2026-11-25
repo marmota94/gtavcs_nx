@@ -429,6 +429,7 @@ namespace rhi
                     m_core->recycled.clear();
                 }
                 std::fprintf(stderr, "[rhi] teardown: released objects\n");
+                m_deleteAll = true; // every waiting texture now
                 drain();
                 std::fprintf(stderr, "[rhi] teardown: done\n");
                 std::lock_guard<std::mutex> lock(m_core->mutex);
@@ -2199,7 +2200,22 @@ namespace rhi
                     for (GLuint *target : {&m_passColor, &m_passDepth})
                         if (std::find(textures.begin(), textures.end(), *target) != textures.end())
                             *target = 0;
-                    glDeleteTextures(static_cast<GLsizei>(textures.size()), textures.data());
+                    // M10-03: freed a few at a time (below), not all at once: a texture deletion costs Mesa nouveau
+                    // milliseconds and the GS texture cache's eviction releases hundreds together (up to 714 ms in one
+                    // frame, route-spikes-docked). The names stay allocated until then: GL does not reuse them.
+                    m_texDeleteBacklog.insert(m_texDeleteBacklog.end(), textures.begin(), textures.end());
+                }
+                if (!m_texDeleteBacklog.empty())
+                {
+                    const auto start = std::chrono::steady_clock::now();
+                    while (!m_texDeleteBacklog.empty())
+                    {
+                        const size_t n = m_deleteAll ? m_texDeleteBacklog.size() : std::min<size_t>(4u, m_texDeleteBacklog.size());
+                        glDeleteTextures(static_cast<GLsizei>(n), m_texDeleteBacklog.data());
+                        m_texDeleteBacklog.erase(m_texDeleteBacklog.begin(), m_texDeleteBacklog.begin() + static_cast<std::ptrdiff_t>(n));
+                        if (std::chrono::steady_clock::now() - start > std::chrono::milliseconds(3))
+                            break; // the rest in the next frames
+                    }
                 }
                 if (!buffers.empty())
                 {
@@ -2610,6 +2626,8 @@ namespace rhi
 
             // the stream rings (M10-03)
             StreamRing m_ubo, m_vbo;
+            std::vector<GLuint> m_texDeleteBacklog; // M10-03: released textures freed a few each frame
+            bool m_deleteAll = false;              // the teardown frees them all at once
             // the texture pool (M10-03; PS2X_GL_TEX_RECYCLE=0: released textures deleted, as before)
             static constexpr uint64_t kTexPoolBytes = 64ull << 20;
             bool m_texRecycle = false;
