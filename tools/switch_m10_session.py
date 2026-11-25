@@ -167,14 +167,16 @@ def profile(session, label, elf, top):
         s, size, n = syms[i]
         return n if not size or a < s + size else f"{n}+{a - s:#x}?"
 
-    self_count, callers, total = Counter(), {}, 0
+    self_count, callers, total = {}, {}, Counter()
     for line in lines[1:]:
-        c, pc, lr = line.split()
-        c = int(c)
-        total += c
+        parts = line.split()
+        c, pc, lr = int(parts[0]), parts[1], parts[2]
+        thread = parts[3] if len(parts) > 3 else "t?"
+        thread = "main" if thread == "main0" else thread
+        total[thread] += c
         f = name(int(pc, 16))
-        self_count[f] += c
-        callers.setdefault(f, Counter())[name(int(lr, 16))] += c
+        self_count.setdefault(thread, Counter())[f] += c
+        callers.setdefault(thread, {}).setdefault(f, Counter())[name(int(lr, 16))] += c
 
     def group(n):
         if n.startswith(("FUN_", "fn_")):
@@ -185,22 +187,24 @@ def profile(session, label, elf, top):
             return "libc / compiler"
         return "other (Mesa, SDL, libs)"
 
-    groups = Counter()
-    for f, c in self_count.items():
-        groups[group(f)] += c
-    out = [head, f"total {total} samples; load offset {delta:#x}", "", "by group:"]
-    out += [f"  {c * 100 / total:5.1f}%  {g}" for g, c in groups.most_common()]
-    out += ["", f"top {top} functions (self):"]
-    for f, c in self_count.most_common(top):
-        out.append(f"  {c * 100 / total:5.1f}%  {f}")
-    out += ["", "callers (lr) of the top 10:"]
-    for f, _ in self_count.most_common(10):
-        out.append(f"  {f}:")
-        for g, c in callers[f].most_common(5):
-            out.append(f"      {c * 100 / total:5.1f}%  <- {g}")
+    out = [head, f"load offset {delta:#x}"]
+    for thread in sorted(total):
+        n = total[thread]
+        groups = Counter()
+        for f, c in self_count[thread].items():
+            groups[group(f)] += c
+        out += ["", f"== thread {thread}: {n} samples", "by group:"]
+        out += [f"  {c * 100 / n:5.1f}%  {g}" for g, c in groups.most_common()]
+        out += ["", f"top {top} functions (self):"]
+        for f, c in self_count[thread].most_common(top):
+            out.append(f"  {c * 100 / n:5.1f}%  {f}")
+        out += ["", "callers (lr) of the top 12:"]
+        for f, _ in self_count[thread].most_common(12):
+            out.append(f"  {f}:")
+            for g, c in callers[thread][f].most_common(5):
+                out.append(f"      {c * 100 / n:5.1f}%  <- {g}")
     (session.evidence / f"{label}-profile.txt").write_text("\n".join(out) + "\n")
-    for line in out[: 14 + min(top, 25)]:
-        print(line)
+    print("\n".join(out))
     return True
 
 
