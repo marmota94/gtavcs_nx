@@ -34,6 +34,8 @@ PORT_PATHS = ("cmake/core-tests", "cmake/runtime", "cmake/CPUOptions.cmake",
 TOOL_PATHS = ("tools/build_core_tests.py", "tools/build_switch.py", "tools/upstream_overlay.py",
               "tools/inspect_cpu.py", "tools/generate_vu_test_fixture.py", "Dockerfile.switch",
               "docs/milestones/M01/package-lock.txt", "patches/upstream")
+# compile jobs and container CPUs; 1 by default (the host is a shared NAS), CI raises it
+JOBS = max(1, int(os.environ.get("NX_BUILD_JOBS", "1")))
 
 
 def digest(data):
@@ -176,7 +178,7 @@ def inside(manifest_path, log):
                         "-DNX_EXTENDED_CPU_TESTS=ON", "-DNX_PRIVATE_GENERATED_ARCHIVE=",
                         "-DNX_BASELINE_IMGUI_DIR="]
         run(["cmake", "-S", port / "cmake" / project, "-B", build, "-G", "Ninja", *options], log)
-        run(["cmake", "--build", build, "--parallel", str(min(os.cpu_count() or 1, 12)),
+        run(["cmake", "--build", build, "--parallel", str(JOBS),
              "--target", stem + "_nro"], log)
         commands = (build / "compile_commands.json").read_text()
         linkmap = (build / (stem + ".map")).read_text()
@@ -244,9 +246,9 @@ def main():
             manifest["snapshot_key"] = snapshot_key(manifest)
             manifest_path = LOGS / "public-inputs.json"
             manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
-            run(["docker", "build", "--network=none", "-f", "Dockerfile.switch", "-t", IMAGE, "."], log)
+            run(["docker", "build", "--network=none", f"--cpu-quota={JOBS * 100000}", "-f", "Dockerfile.switch", "-t", IMAGE, "."], log)
             try:
-                run(["docker", "run", "--rm", "--network=none", "--mount", f"type=bind,source={ROOT},target=/work",
+                run(["docker", "run", "--rm", "--network=none", f"--cpus={JOBS}", "-e", f"NX_BUILD_JOBS={JOBS}", "--mount", f"type=bind,source={ROOT},target=/work",
                      "--mount", f"type=volume,source={VOLUME},target=/cache", "-w", "/work", IMAGE,
                      "python3", "tools/build_core_tests.py", "--inside",
                      "/work/" + manifest_path.relative_to(ROOT).as_posix()], log)

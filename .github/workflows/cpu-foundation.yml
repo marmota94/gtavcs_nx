@@ -18,6 +18,8 @@ jobs:
           python-version: '3.12'
       - name: Build public CPU and runtime test NROs offline
         run: python tools/build_core_tests.py
+        env:
+          NX_BUILD_JOBS: 4
       - uses: actions/upload-artifact@v4
         with:
           name: public-cpu-tests-${{ github.sha }}

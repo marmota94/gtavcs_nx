@@ -18,7 +18,7 @@ jobs:
           python-version: '3.12'
       # Public sources only: the runtime, game layer, SDL2 platform and core adapter compile in the locked container.
       # The game NRO needs the user's generated code and is built privately (tools/build_game.py), never here.
-      - run: python tools/build_game.py --public
+      - run: python tools/build_game.py --public --jobs 4
       - uses: actions/upload-artifact@v4
         if: always()
         with:

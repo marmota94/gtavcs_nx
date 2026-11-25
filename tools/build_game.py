@@ -3,6 +3,7 @@
     python tools/build_game.py            the private game NRO: links the generated EE/VU archive built from the
                                           user's disc (Docker volume gtavcs-nx-m02-core, generated-build/)
     python tools/build_game.py --public   source CI: every public library compiles; no generated code, no NRO
+    --jobs N                              compile jobs and container CPUs (default 1: the host is a shared NAS)
 
 Host side: fetches the locked public dependencies (sse2neon, Dear ImGui) into build/, prepares the overlaid pinned
 upstream checkout (tools/upstream_overlay.py) and runs the container offline. The private NRO, ELF and map stay in
@@ -141,7 +142,7 @@ def inside(args, log):
     run(["cmake", "-S", "/work", "-B", build, "-G", "Ninja", *options], log)
     # the RHI conformance NRO (M05) is public: no game code, built in both modes
     targets = (["nx_core", "nx_self_registering", "nx_entry_check"] if args.public else ["gtavcs_nro"]) + ["gtavcs_rhi_tests_nro"]
-    run(["cmake", "--build", build, "--parallel", str(min(os.cpu_count() or 1, 12)), "--target", *targets, "--",
+    run(["cmake", "--build", build, "--parallel", str(args.jobs), "--target", *targets, "--",
          "-k", "0"], log)
     if args.public:
         commands = (build / "compile_commands.json").read_text()
@@ -183,6 +184,7 @@ def main():
     parser.add_argument("--source", help=argparse.SUPPRESS)
     parser.add_argument("--sse2neon", help=argparse.SUPPRESS)
     parser.add_argument("--imgui", help=argparse.SUPPRESS)
+    parser.add_argument("--jobs", type=int, default=1, help="compile jobs and container CPUs (default 1)")
     args = parser.parse_args()
     LOGS.mkdir(parents=True, exist_ok=True)
     name = ("public" if args.public else "private") + ("-container" if args.inside else "")
@@ -198,14 +200,14 @@ def main():
             prepare(source)
             if not args.public:
                 (PRIVATE / "gtavcs.nro").unlink(missing_ok=True)
-            run(["docker", "build", "--network=none", "-f", "Dockerfile.switch", "-t", IMAGE, "."], log)
-            command = ["docker", "run", "--rm", "--network=none",
+            run(["docker", "build", "--network=none", f"--cpu-quota={args.jobs * 100000}", "-f", "Dockerfile.switch", "-t", IMAGE, "."], log)
+            command = ["docker", "run", "--rm", "--network=none", f"--cpus={args.jobs}",
                        "--mount", f"type=bind,source={ROOT},target=/work",
                        "--mount", f"type=volume,source={VOLUME},target=/cache", "-w", "/work", IMAGE,
                        "python3", "tools/build_game.py", "--inside",
                        "--source", source.relative_to(ROOT).as_posix(),
                        "--sse2neon", sse2neon.relative_to(ROOT).as_posix(),
-                       "--imgui", imgui.relative_to(ROOT).as_posix()]
+                       "--imgui", imgui.relative_to(ROOT).as_posix(), "--jobs", str(args.jobs)]
             if args.public:
                 command.append("--public")
             try:
