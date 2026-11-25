@@ -102,3 +102,17 @@ The docked numbers above are **stock** (the reduced-clock idea is wrong). Window
 A homebrew run takes the overridden title's ID, so a profile may apply to it. This docked run was at stock. M09-06's
 handheld numbers (game thread ~22 ms) recorded no clocks: they may have run overclocked (1785 / 1020 = 1.75, close
 to 35 / 22). M10 comparisons use only runs with clock lines; every M10 run records them.
+
+## wide0-docked crashed the console (2026-11-24): the clock reading removed
+
+NRO `46c1c4fc`, `tests/switch/m10-stand-wide0.cfg` (`PS2X_HW_WIDE_SCALE=0`). The game log (`crash-wide0/gtavcs.log`)
+ends in the first report at t=0: the `progress` and `threads` lines, then nothing from the main thread (the movie
+thread's swscaler line follows). The next call there was the first `clocks` line, which opened three clkrst sessions to
+**pcv** (and apm, psm). Atmosphère crash reports of the same moment: **pcv** aborted (User Break, 0xCC0B), then
+**nvservices** (0xE401); the fatal service itself then aborted (the user's photo: Title ID 0100000000000034,
+std::abort, `report_681e6ed0983.bin`); the user pressed POWER. The run before with the same NRO (clocks-docked) read
+the clocks without trouble; sys-clk on this console also holds pcv sessions.
+
+Fix (src/switch/clocks.c): no clkrst and no apm: the line keeps the performance mode (applet), the charger and battery
+(psm), the operation mode, and adds the program ID the run has, against sys-clk's profiles. The clock rates of
+clocks-docked (stock 1020 / 768 / 1600) stay the record that docked runs are at stock; wide0-docked is repeated.
