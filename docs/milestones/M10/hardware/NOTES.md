@@ -290,3 +290,12 @@ growing, 1,162 MiB at 8 min -> 1,316 MiB at 32 min (~6 MiB a minute: fragmentati
 But the cruise had no car after the first interior transition (`cruise status` 0 m, 0 frames from 750 s on, in every
 soak so far): the teleport moves the player and leaves his car. So only the first ~5.5 minutes drove and streamed.
 The soak now puts the player into a new car after each return outdoors, and repeats.
+
+## soak30-docked-5 (2026-11-25): 30 minutes docked, driving between five interior visits - passed
+
+NRO `0104b414` (the texture pool off), `m10-soak30.cfg` with a new car after each return outdoors: the cruise drove
+and streamed between every transition (`cruise status` advancing after each). **1,920 s, a clean exit**, 0 GL errors,
+0 audio underruns, no crash report. Window 140-1890 s (`soak30-docked-5-route.txt`): 15.5 game fps, median 37.2 ms,
+p95 170.7 ms, p99 546.8 ms; game thread median 30.6 ms; render-stage stalls up to 10.4 s (texture creation up to
+994 ms in one frame: streamed textures made on the main thread). Heap in use at most 897 MiB, obtained 1,356 MiB at the
+end and still growing (fragmentation).
