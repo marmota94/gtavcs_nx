@@ -188,3 +188,11 @@ Also in these logs:
   clocks-docked read), but **handheld while charging on the official charger runs the CPU at 1785 MHz** (stock 1020):
   M09-06's handheld game thread (~22 ms against ~35 ms docked; 1785 / 1020 = 1.75) was very likely overclocked.
   Handheld M10 runs must be on battery or with that profile removed (user's decision).
+
+## route-prof-docked, second try (2026-11-25): the console slept
+
+NRO `099b133b` (commit 6407666), `VCS_NX_SAMPLE_THREAD=4,6`. Not a crash: `route-prof-sleep-gtavcs.log` shows a focus
+loss at 34 s and at ~48 s `[lifecycle] confirmed suspension_ns=32012882405937` - the console slept for 8.9 hours
+(auto-sleep in TV mode), resumed the next morning (game 31 fps standing in the car, 0 GL errors after resume), and the
+game was closed at 75 s (`[nxrun] shutdown t=75.029`, an orderly shutdown). The sampler had not begun (from 90 s).
+A real suspend / resume across 8.9 hours with the game running, for M10-08. Auto-sleep is to be off for the runs.
