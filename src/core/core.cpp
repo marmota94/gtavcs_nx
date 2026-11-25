@@ -391,6 +391,15 @@ namespace
         // (VCS_RHI=null keeps the null backend for CPU-side bring-up)
         if (const char *gs = std::getenv("PS2X_GS"); !gs || !*gs)
             setenv("PS2X_GS", "hw", 1);
+        // M10-03: the game's trails drawn as recorded (its own GS draws), bloom and frame copies native. Upstream's native
+        // trails (gs_hw.cpp nativeTrails: its buffer widened at 16:9) cost ~16 ms of GPU time a present at 16:9 on the
+        // Switch's Mesa nouveau: docked 11 -> 21 game fps standing at Fort Baxter with them recorded, the picture alike
+        // (docs/milestones/M10/hardware/NOTES.md, postfx-*-docked). At 4:3 both are the same draws. A run's
+        // PS2X_HW_POSTFX still wins.
+        if (const char *post = std::getenv("PS2X_HW_POSTFX"); !post || !*post)
+            setenv("PS2X_HW_POSTFX", "bc", 1);
+        std::fprintf(stderr, "[core] post effects native: %s (PS2X_HW_POSTFX; trails recorded by default, M10-03)\n",
+                     std::getenv("PS2X_HW_POSTFX"));
 
         vcs::launcher::registerSettings();
         devmenu::registerSettings();

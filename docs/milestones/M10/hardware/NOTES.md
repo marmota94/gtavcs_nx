@@ -137,3 +137,26 @@ sampler (`VCS_NX_SAMPLE_THREAD=4`, 500 Hz, 80-280 s) on the game thread.
   single hotspot: the runtime's native VU0 helpers `matrixTimes3From` 3.8%, `boxClip` 3.7%, collision
   (`sphereTriangle`, `CollisionVu`) ~3%, `dispatchGuestBranch` 2.3%, `free` 1.2%, SPU2 mixing ~1.1%, generated game
   code 16.8% spread over thousands of functions; perf.csv's SD writes 0.7% (measurement overhead).
+
+## postfx-*-docked (2026-11-25): upstream's native trails cost half the frame rate at 16:9
+
+NRO `318205e7`, `tests/switch/m10-postfx-{bt,bc,tc,0}.cfg`: 16:9 docked, standing at the S4 spot, window 70-130 s,
+one native post effect at a time back to the game's recorded GS draws (`PS2X_HW_POSTFX`: b bloom, t trails,
+c frame copies / motion blur native; default btc).
+
+| PS2X_HW_POSTFX | Game fps | Median / p95 ms | game_ms | GPU per present |
+|---|---|---|---|---|
+| bt (copies recorded) | 11.1 | 68.2 / 185.7 | 37.4 | ~40 ms |
+| tc (bloom recorded) | 11.5 | 66.3 / 145.4 | 33.6 | ~41 ms |
+| **bc (trails recorded)** | **20.8** | **40.0 / 70.0** | 35.5 | **~24 ms** |
+| 0 (all recorded) | 21.4 | 39.5 / 61.7 | 35.1 | ~16 ms |
+
+Upstream's native trails (`gs_hw.cpp` nativeTrails: the frame downsampled into a buffer widened to 683 wide at 16:9,
+blended back through warped strips) take ~16 ms of GPU time a present on the Switch; with them recorded 16:9 docked
+runs as 4:3 does, and the game thread (~35 ms) is the limit. Not the filtered render-target read (no `filtered copy`
+line in these logs). The screenshots at 100 s (`postfx-screenshots-sha256.txt`, private) look alike at 16:9 with
+native and recorded trails; the recorded trails' warp is a third wider on screen at 16:9 (upstream's reason for the
+native chain), the same at 4:3.
+
+**Change (M10-03):** src/core/core.cpp sets `PS2X_HW_POSTFX=bc` unless the run sets it: trails recorded, bloom and
+frame copies native (`[core] post effects native: bc` in the log).
