@@ -1,0 +1,39 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index cd505a5..ddca195 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -395,3 +395,9 @@ changes keep desktop behaviour: `main()` and `run()` take the same steps as befo
+ | Where | What | Why |
+ |---|---|---|
+ | `ps2xRuntime/src/lib/ps2_perf.cpp`, `include/runtime/ps2_perf.h` | `ps2perf::setRecording` / `recording` / `recordingName`: F4's CSV recording started and stopped from a menu, into a given folder | The Switch has no F4: its developer menu (L3 + R3) starts and stops the frame-time recording, and writes it under the game folder's userdata instead of the working directory (the extracted disc) |
++
++## Measuring the Switch port's GPU cost (Switch port M10, 2026-11-24)
++
++| Where | What | Why |
++|---|---|---|
++| `ps2xRuntime/src/lib/gs/gs_hw.cpp` | `PS2X_HW_WIDE_ALIGN=N`: the integer scale's wide width rounded up to a multiple of N pixels (diagnosis; unset = as before) | Docked at 16:9 the picture's passes into its 853-wide targets cost 2-3 times the 4:3 passes for 1.33 times the pixels; an A/B against an aligned width |
+diff --git a/third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp b/third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp
+index 4ec97b8..1bbb273 100644
+--- a/third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp
++++ b/third_party/PS2Recomp/ps2xRuntime/src/lib/gs/gs_hw.cpp
+@@ -4325,9 +4325,19 @@ namespace
+                     const char *e = std::getenv("PS2X_HW_WIDE_SCALE");
+                     return !(e && e[0] == '0');
+                 }();
++                // [gta-recomp] PS2X_HW_WIDE_ALIGN=N (Switch port M10-03, diagnosis): the wide width rounded up to a
++                // multiple of N pixels (853 -> 896 at 16:9 1x with 64)
++                static const uint32_t align = [] {
++                    const char *e = std::getenv("PS2X_HW_WIDE_ALIGN");
++                    const int n = e ? std::atoi(e) : 0;
++                    return n > 1 ? static_cast<uint32_t>(std::min(n, 1024)) : 1u;
++                }();
+                 const float r = g_aspectWidening.load(std::memory_order_relaxed);
+                 if (wide && r > 1.0001f)
+-                    m_rhi->setFrameSize(std::min<uint32_t>(8192u, static_cast<uint32_t>(std::lround(640.0 * m_scale * r))), 448u * m_scale);
++                {
++                    const uint32_t w = static_cast<uint32_t>(std::lround(640.0 * m_scale * r));
++                    m_rhi->setFrameSize(std::min<uint32_t>(8192u, (w + align - 1u) / align * align), 448u * m_scale);
++                }
+                 else
+                     m_rhi->setFrameSize(0u, 0u);
+             }
