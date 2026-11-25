@@ -279,3 +279,14 @@ NRO `80c11232` (commit ebcf919, ELF kept): the same crash (nouveau_mm_allocate <
 gs_hw.cpp:1066, PC 0xeaa00000000c3700) at ~1433 s, after four interior transitions (`soak30-docked-3/`). The three
 soaks with the texture pool crashed (480, 545, 1433 s); the one without it ran its 900 s. **The texture pool is off by
 default** (`PS2X_GL_TEX_RECYCLE=1` turns it on, for investigation); the full soak repeats without it.
+
+## soak30-docked-4 (2026-11-25): 30 minutes without the pool - but the cruise stopped at the first transition
+
+NRO `0104b414` (commit 18c416a, the texture pool off): **1,920 s, a clean exit** (every teardown step logged), 0 GL
+errors, 0 audio underruns, no crash report. Window 140-1890 s: 16.7 game fps, median 39.8 ms, p95 134.4 ms. Seven
+render-stage stalls of 2.0-9.3 s (game time 608-1039 s). Heap in use levels off at ~700-850 MiB; heap obtained keeps
+growing, 1,162 MiB at 8 min -> 1,316 MiB at 32 min (~6 MiB a minute: fragmentation, M06-12's open point).
+
+But the cruise had no car after the first interior transition (`cruise status` 0 m, 0 frames from 750 s on, in every
+soak so far): the teleport moves the player and leaves his car. So only the first ~5.5 minutes drove and streamed.
+The soak now puts the player into a new car after each return outdoors, and repeats.
