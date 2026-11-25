@@ -923,6 +923,7 @@ namespace rhi
 
             std::unique_ptr<Pipeline> createPipeline(const PipelineDesc &desc) override
             {
+                CpuScope cpu(this, CpuPipeline); // (a GLSL compile and link when the program is new)
                 if (!owner("createPipeline"))
                     return nullptr;
                 std::shared_ptr<Program> program = programFor(desc);
@@ -1329,6 +1330,8 @@ namespace rhi
                 if (m_inPass)
                     reject("present inside a pass");
                 ++m_presents;
+                if (spikeMs() > 0)
+                    noteSpike();
                 if (!m_offscreen)
                 {
                     const int interval = mode == PresentMode::Vsync ? 1 : 0; // Tearing falls back to Immediate
@@ -2272,6 +2275,36 @@ namespace rhi
                 }
             }
 
+            // M10-03: a host frame (present to present) longer than PS2X_GL_SPIKE_MS, with where its owner-thread time went
+            void noteSpike()
+            {
+                static const char *const names[CpuKinds] = {"create", "upload", "buffer", "draw", "pass", "copy", "swap",
+                                                            "delete", "constants", "pipeline"};
+                const auto now = std::chrono::steady_clock::now();
+                const double ms = std::chrono::duration<double, std::milli>(now - m_frameStart).count();
+                m_frameStart = now;
+                if (ms >= spikeMs())
+                {
+                    std::string line;
+                    double inGl = 0.0;
+                    for (uint32_t k = 0; k < CpuKinds; ++k)
+                    {
+                        const double kms = m_frameAll[k] / 1e6;
+                        inGl += kms;
+                        if (kms >= 1.0)
+                        {
+                            char item[64];
+                            std::snprintf(item, sizeof(item), " %s %.0f ms x%llu", names[k], kms,
+                                          static_cast<unsigned long long>(m_frameAll[CpuKinds + k]));
+                            line += item;
+                        }
+                    }
+                    std::fprintf(stderr, "[rhi-spike] present %llu: %.0f ms, %.0f in GL calls:%s\n",
+                                 static_cast<unsigned long long>(m_presents), ms, inGl, line.c_str());
+                }
+                std::memset(m_frameAll, 0, sizeof(m_frameAll));
+            }
+
             // ---- the stream rings (M10-03) ------------------------------------------------------------------------------
             // One GL buffer per ring in kRingSegments segments, mapped once persistent and coherent where the context has
             // buffer storage (GL 4.4 / ARB_buffer_storage; PS2X_GL_RING_PERSISTENT=0 or none: a map per write - on nouveau
@@ -2494,7 +2527,7 @@ namespace rhi
                 if (cpuTimeOn())
                 {
                     static const char *const names[CpuKinds] = {"create", "upload", "buffer", "draw", "pass", "copy", "swap",
-                                                                "delete", "constants"};
+                                                                "delete", "constants", "pipeline"};
                     const double n = s.presents > m_cpuPresents ? static_cast<double>(s.presents - m_cpuPresents) : 1.0;
                     std::string line;
                     for (uint32_t k = 0; k < CpuKinds; ++k)
@@ -2589,18 +2622,29 @@ namespace rhi
 
             // PS2X_GL_CPU_TIME (M10-02): the owner thread's CPU time inside the backend by kind of call
             enum CpuKind : uint32_t { CpuCreate, CpuUpload, CpuBuffer, CpuDraw, CpuPass, CpuCopy, CpuSwap, CpuDelete, CpuConst,
-                                     CpuKinds };
+                                     CpuPipeline, CpuKinds };
+            // M10-03: this host frame's share of the same (PS2X_GL_SPIKE_MS: a frame longer than that is logged with them)
+            uint64_t m_frameAll[2 * CpuKinds] = {}; // ns per kind, then calls per kind
+            std::chrono::steady_clock::time_point m_frameStart = std::chrono::steady_clock::now();
             uint64_t m_cpuBufferBytes = 0; // bytes through updateBuffer outside the constant ring
             uint64_t m_cpuNs[CpuKinds] = {}, m_cpuCalls[CpuKinds] = {};
             uint64_t m_cpuPresents = 0;
             static bool cpuTimeOn()
             {
-                static const bool on = envOn("PS2X_GL_CPU_TIME");
+                static const bool on = envOn("PS2X_GL_CPU_TIME") || spikeMs() > 0;
                 return on;
+            }
+            static int spikeMs()
+            {
+                static const int ms = [] {
+                    const char *e = std::getenv("PS2X_GL_SPIKE_MS");
+                    return e ? std::atoi(e) : 0;
+                }();
+                return ms;
             }
             struct CpuScope
             {
-                uint64_t *ns = nullptr, *calls = nullptr;
+                uint64_t *ns = nullptr, *calls = nullptr, *frame = nullptr;
                 std::chrono::steady_clock::time_point t0;
                 CpuScope(GlDevice *d, CpuKind k)
                 {
@@ -2608,6 +2652,7 @@ namespace rhi
                     {
                         ns = &d->m_cpuNs[k];
                         calls = &d->m_cpuCalls[k];
+                        frame = &d->m_frameAll[k];
                         t0 = std::chrono::steady_clock::now();
                     }
                 }
@@ -2615,9 +2660,12 @@ namespace rhi
                 {
                     if (ns)
                     {
-                        *ns += static_cast<uint64_t>(
+                        const uint64_t d = static_cast<uint64_t>(
                             std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now() - t0).count());
+                        *ns += d;
                         ++*calls;
+                        frame[0] += d; // (frame points at m_frameNs / m_frameCalls of the same kind)
+                        ++frame[1 * CpuKinds];
                     }
                 }
             };
