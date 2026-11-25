@@ -367,6 +367,8 @@ namespace rhi
                 }
                 if (m_gpuLog)
                     std::fclose(m_gpuLog);
+                if (m_passTime && !m_passQueries.empty())
+                    glDeleteQueries(static_cast<GLsizei>(m_passQueries.size()), m_passQueries.data());
                 drain();
                 std::lock_guard<std::mutex> lock(m_core->mutex);
                 m_core->alive = false;
@@ -409,6 +411,15 @@ namespace rhi
                         std::fprintf(stderr, "[rhi] GPU time per frame to %s%s\n", path, m_gpuLog ? "" : ": cannot open");
                     }
                     beginGpuFrame();
+                }
+                // GPU time per pass (M10-02): GL_TIMESTAMP queries around each pass, by pass name and target size
+                m_passTime = !m_offscreen && envOn("PS2X_GL_PASS_TIME");
+                if (m_passTime)
+                {
+                    m_passQueries.resize(2u * kPassRecords);
+                    glGenQueries(static_cast<GLsizei>(m_passQueries.size()), m_passQueries.data());
+                    m_passRecords.resize(kPassRecords);
+                    std::fprintf(stderr, "[rhi] GPU time per pass (PS2X_GL_PASS_TIME): %u passes in flight at most\n", kPassRecords);
                 }
                 m_freeThreaded = envOn("PS2X_GL_WORKER_CONTEXT") && m_window.loaderAvailable && m_window.makeLoaderCurrent &&
                                  m_window.loaderAvailable();
@@ -925,12 +936,16 @@ namespace rhi
                 }
                 setViewport(0.0f, 0.0f, static_cast<float>(w), static_cast<float>(h));
                 setScissor(0, 0, static_cast<int>(w), static_cast<int>(h));
+                if (m_passTime)
+                    beginPassTime(pass.name, w, h, m_toWindow);
             }
 
             void endPass() override
             {
                 if (!owner("endPass"))
                     return;
+                if (m_passTime)
+                    endPassTime();
                 if (m_passMarker)
                     popMarker();
                 m_passMarker = false;
@@ -1188,6 +1203,8 @@ namespace rhi
                 }
                 drain();
                 checkErrors("frame");
+                if (m_passTime)
+                    collectPassTimes();
                 reportStats();
             }
 
@@ -2009,8 +2026,84 @@ namespace rhi
                 }
             }
 
+            // ---- GPU time per pass (PS2X_GL_PASS_TIME, M10-02) ----------------------------------------------------------
+            // A GL_TIMESTAMP query at the start and the end of each pass (they may overlap the frame's GL_TIME_ELAPSED
+            // query); results read in order, without waiting, when the GPU has them. A pass finding no free record is
+            // not timed (not timed count). Totals by "name WxH" ("name window" for the back buffer) go to [rhi-stats].
+            void beginPassTime(const char *name, uint32_t w, uint32_t h, bool window)
+            {
+                m_passOpen = -1;
+                if (m_passCount == kPassRecords)
+                {
+                    ++m_passDropped;
+                    return;
+                }
+                const uint32_t slot = (m_passFirst + m_passCount) % kPassRecords;
+                char key[96];
+                if (window)
+                    std::snprintf(key, sizeof(key), "%s window", name ? name : "(unnamed)");
+                else
+                    std::snprintf(key, sizeof(key), "%s %ux%u", name ? name : "(unnamed)", w, h);
+                m_passRecords[slot].key = key;
+                glQueryCounter(m_passQueries[2u * slot], GL_TIMESTAMP);
+                m_passOpen = static_cast<int>(slot);
+            }
+
+            void endPassTime()
+            {
+                if (m_passOpen < 0)
+                    return;
+                glQueryCounter(m_passQueries[2u * static_cast<uint32_t>(m_passOpen) + 1u], GL_TIMESTAMP);
+                ++m_passCount;
+                m_passOpen = -1;
+            }
+
+            void collectPassTimes()
+            {
+                while (m_passCount)
+                {
+                    const uint32_t slot = m_passFirst;
+                    GLuint available = 0;
+                    glGetQueryObjectuiv(m_passQueries[2u * slot + 1u], GL_QUERY_RESULT_AVAILABLE, &available);
+                    if (!available)
+                        break;
+                    GLuint64 t0 = 0, t1 = 0;
+                    glGetQueryObjectui64v(m_passQueries[2u * slot], GL_QUERY_RESULT, &t0);
+                    glGetQueryObjectui64v(m_passQueries[2u * slot + 1u], GL_QUERY_RESULT, &t1);
+                    PassTotal &t = m_passTotals[m_passRecords[slot].key];
+                    t.ns += t1 > t0 ? t1 - t0 : 0u;
+                    ++t.count;
+                    m_passFirst = (m_passFirst + 1u) % kPassRecords;
+                    --m_passCount;
+                }
+            }
+
+            void reportPassTimes(uint64_t presents)
+            {
+                std::vector<std::pair<uint64_t, std::string>> top;
+                uint64_t all = 0;
+                const double n = presents ? static_cast<double>(presents) : 1.0;
+                for (const auto &e : m_passTotals)
+                {
+                    all += e.second.ns;
+                    char item[160];
+                    std::snprintf(item, sizeof(item), "%s %.2f ms x%.1f", e.first.c_str(), e.second.ns / 1e6 / n,
+                                  e.second.count / n);
+                    top.emplace_back(e.second.ns, item);
+                }
+                std::sort(top.begin(), top.end(), [](const auto &a, const auto &b) { return a.first > b.first; });
+                std::string line;
+                for (size_t i = 0; i < top.size() && i < 10; ++i)
+                    line += (i ? " | " : "") + top[i].second;
+                std::fprintf(stderr, "[rhi-stats] passes per present (%llu presents, all passes %.2f ms, %llu not timed): %s\n",
+                             static_cast<unsigned long long>(presents), all / 1e6 / n,
+                             static_cast<unsigned long long>(m_passDropped), line.c_str());
+                m_passTotals.clear();
+            }
+
             void reportStats()
             {
+
                 static const bool on = envOn("PS2X_RHI_STATS");
                 if (!on)
                     return;
@@ -2027,6 +2120,11 @@ namespace rhi
                                  s.gpuMaxNs / 1e6, static_cast<unsigned long long>(s.gpuDropped));
                     m_gpuReported[0] = s.gpuFrames;
                     m_gpuReported[1] = s.gpuNs;
+                }
+                if (m_passTime)
+                {
+                    reportPassTimes(s.presents - m_passPresentsReported);
+                    m_passPresentsReported = s.presents;
                 }
                 std::fprintf(stderr,
                              "[rhi-stats] textures %llu (%.1f MiB) buffers %llu (%.1f MiB) samplers %llu pipelines %llu programs %llu "
@@ -2086,6 +2184,24 @@ namespace rhi
             uint32_t m_gpuNext = 0;
             uint64_t m_gpuReported[2] = {0, 0}; // frames, ns at the last [rhi-stats] line
             FILE *m_gpuLog = nullptr;             // PS2X_GL_GPU_LOG: frame,gpu_ms per timed frame
+
+            // PS2X_GL_PASS_TIME (M10-02): a ring of begin / end timestamp pairs and totals by pass key
+            static constexpr uint32_t kPassRecords = 2048;
+            struct PassRecord
+            {
+                std::string key;
+            };
+            struct PassTotal
+            {
+                uint64_t ns = 0, count = 0;
+            };
+            bool m_passTime = false;
+            std::vector<GLuint> m_passQueries;
+            std::vector<PassRecord> m_passRecords;
+            std::unordered_map<std::string, PassTotal> m_passTotals;
+            uint32_t m_passFirst = 0, m_passCount = 0;
+            int m_passOpen = -1;
+            uint64_t m_passDropped = 0, m_passPresentsReported = 0;
 
             bool m_inPass = false, m_passMarker = false, m_toWindow = false;
             GLuint m_passColor = 0, m_passDepth = 0;
