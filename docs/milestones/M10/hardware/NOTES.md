@@ -272,3 +272,10 @@ Sphaira.
 Change: a pooled texture is reused only after a GPU fence shows every command before its release has completed (no
 upload into a texture the GPU may still read - Mesa nouveau's busy-texture path, the suspect); the teardown's steps are
 logged. The full soak repeats with it.
+
+## soak30-docked-3 (2026-11-25): fence-gated reuse delays the crash; the pool goes off
+
+NRO `80c11232` (commit ebcf919, ELF kept): the same crash (nouveau_mm_allocate <- ... <- GlDevice::createBuffer <-
+gs_hw.cpp:1066, PC 0xeaa00000000c3700) at ~1433 s, after four interior transitions (`soak30-docked-3/`). The three
+soaks with the texture pool crashed (480, 545, 1433 s); the one without it ran its 900 s. **The texture pool is off by
+default** (`PS2X_GL_TEX_RECYCLE=1` turns it on, for investigation); the full soak repeats without it.

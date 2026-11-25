@@ -486,8 +486,11 @@ namespace rhi
                         makeRing(m_ubo, kUboRingBytes, static_cast<size_t>(std::max(align, 16)), "constant ring");
                     if (!(v && v[0] == '0'))
                         makeRing(m_vbo, kVboRingBytes, 256u, "vertex ring");
+                    // off by default (M10-10): the three soaks with it on crashed in Mesa nouveau's buffer sub-allocator
+                    // (soak30-docked, -2, -3: a corrupt pointer in nouveau_mm_allocate, at 480 / 545 / 1433 s, the last
+                    // with fence-gated reuse); the one without it did not. PS2X_GL_TEX_RECYCLE=1: on, for investigation
                     const char *t = std::getenv("PS2X_GL_TEX_RECYCLE");
-                    m_texRecycle = !(t && t[0] == '0');
+                    m_texRecycle = t && t[0] == '1';
                     std::fprintf(stderr, "[rhi] texture pool: %s\n", m_texRecycle ? "released plain textures reused, 64 MiB" : "off");
                 }
                 // GPU time per pass (M10-02): GL_TIMESTAMP queries around each pass, by pass name and target size
