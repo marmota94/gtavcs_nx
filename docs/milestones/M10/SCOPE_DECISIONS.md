@@ -31,3 +31,26 @@ No test result depends on it; builds are slower.
 "Focus test on docked mode." M10's hardware runs are done docked first (the busy-route baseline, the docked work of
 M10-13, the soak and lifecycle runs); handheld repeats follow for the tasks that name both modes. It changes the
 order, not the scope: M10-04, M10-07, M10-08 and M10-11 still need both modes before they are ticked.
+
+## A lowered, measured target for M10; 25+ fps later (user decision, 2026-11-25)
+
+M10-04's "25+ FPS baseline in both modes" (>= 25 presented gameplay frames/s, p95 <= 40 ms after warmup) is not met:
+docked at stock clocks the busy route reached 14.2 game fps (route-docked-4, from 7.7 at the start of M10), the
+30-minute soak 15.5 fps; the game thread alone takes ~31-34 ms a frame with no single hotspot left, and the slow frames
+come from texture streaming. Asked "How should M10 treat the target?" with the options keep optimizing, record the
+baseline and move the target, or lower the target, the user chose **"Lower the target"** ("Set a lower measured target
+for M10 (e.g. the current median / p95) and keep 25+ fps as a goal for later").
+
+What changes:
+- **M10-04** is met by the busy route docked at stock clocks reaching the lowered target, set from the measured
+  baseline of the M10 candidate (route-docked-5, recorded with its numbers in TASKS.md) and held by the candidate.
+- **25+ fps** (>= 25 game fps, p95 <= 40 ms on the busy route) stays a goal: **M16-05** (new).
+
+## Docked only for now; M10's handheld parts later (user decision, 2026-11-25)
+
+Handheld runs must be at stock clocks; sys-clk on the console has a profile for the title the game runs under
+(05446530ACA7E000: handheld while charging on the official charger, CPU 1785 MHz). Asked how the handheld runs should
+be done (on battery, the profile removed, or docked only for now), the user chose **"Docked only for now"**.
+
+What changes: M10-04, M10-07, M10-08 and M10-11 are done docked; their handheld parts move to **M16-06** (new). Nothing
+handheld is claimed in M10.
