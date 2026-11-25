@@ -1,0 +1,20 @@
+run route-docked-2, window 90-390 s (perf.csv t_s)
+modes: 1920x1080
+game frames: n=2360 fps=7.9 median=79.6 ms p95=377.1 ms p99=799.5 ms max=1084.0 ms
+  over 40 ms: 2313, over 100 ms: 956, over 250 ms: 249; longest slow interval 77041 ms
+  25+ baseline (fps >= 25 and p95 <= 40 ms): NOT MET
+  game_ms: median=43.9 p95=60.2 max=345.8
+  render_ms: median=4.1 p95=203.1 max=1031.3
+  wait_ms: median=23.3 p95=144.3 max=266.5
+  iop_ms: median=2.3 p95=5.6 max=18.8
+  host_ms: median=51.2 p95=128.6 max=1027.4
+  host_max_ms: median=74.0 p95=169.7 max=1596.8
+  gl_ms: median=44.3 p95=117.3 max=1011.1
+  host_fps: median=15.5 p95=61.1 max=126.0
+  tex_create_us: median=0.0 p95=35373.4 max=738022.0
+  tex_kb: median=0.0 p95=280.2 max=7512.0
+  audio underruns (counter): 0 -> 0 in the window
+gpu.csv (whole run, 11262 presents): GL_TIME_ELAPSED median=2.18 p95=67.28 ms; last three quarters median=2.23 p95=71.75 ms
+heap in use / obtained: first 138.8 / 138.9 MiB, last 709.9 / 1086.6 MiB, max in use 857.2 MiB (46 lines)
+GL error lines with errors: 0
+crash reports after the run: 0

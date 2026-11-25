@@ -1,7 +1,9 @@
 /* M10-02: a sampling profiler for the process's own threads (diagnosis; nxrun.cfg env only).
  *
- *   VCS_NX_SAMPLE_THREAD=main,4  the threads: "main" (the main thread: SDL, GL, present) and N, the Nth created thread
- *                                (the t<N> of the [threads] lines; thread_stack.c); up to 4
+ *   VCS_NX_SAMPLE_THREAD=4,6     the threads: N, the Nth created thread (the t<N> of the [threads] lines;
+ *                                thread_stack.c); up to 4. NOT the main thread: route-prof-docked (2026-11-25) paused it
+ *                                500 times a second and the console went to Atmosphere's fatal screen (the controller
+ *                                applet aborted; docs/milestones/M10/hardware/NOTES.md). "main" is refused.
  *   VCS_NX_SAMPLE_HZ=500         samples a second per thread (50-2000)
  *   VCS_NX_SAMPLE_FROM=80        seconds after the sampler starts (core boot) to begin, VCS_NX_SAMPLE_TO=280 to end
  *   VCS_NX_SAMPLE_OUT=path       where the counts go at shutdown (relative to the game folder)
@@ -124,8 +126,9 @@ void gtavcs_sampler_start(void)
         unsigned t;
         if (strncmp(p, "main", 4) == 0)
         {
-            t = MAIN_THREAD;
-            p += 4;
+            fprintf(stderr, "[sampler] VCS_NX_SAMPLE_THREAD: the main thread is not sampled (it took the console down); "
+                            "nothing sampled\n");
+            return;
         }
         else
         {
