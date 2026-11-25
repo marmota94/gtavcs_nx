@@ -196,3 +196,24 @@ loss at 34 s and at ~48 s `[lifecycle] confirmed suspension_ns=32012882405937` -
 (auto-sleep in TV mode), resumed the next morning (game 31 fps standing in the car, 0 GL errors after resume), and the
 game was closed at 75 s (`[nxrun] shutdown t=75.029`, an orderly shutdown). The sampler had not begun (from 90 s).
 A real suspend / resume across 8.9 hours with the game running, for M10-08. Auto-sleep is to be off for the runs.
+
+## route-prof-docked / route-prof2-docked (2026-11-25): where the main thread's GL time goes
+
+NRO `a4800647` (route-prof-docked, third try, clean; `PS2X_GL_CPU_TIME`, sampler on t4 / t6) and `1029f7bf`
+(route-prof2-docked: the constant ring with a map per update). The busy route, driving, CPU time of the main thread
+inside the GL backend per present (`[rhi-stats] cpu per present`):
+
+| | buffer updates | draws | texture creation | passes / copies / swap / deletes |
+|---|---|---|---|---|
+| orphaning (a4800647) | 6.9-22.8 ms in 190-554 updates (~40 us each) | 2.6-8.0 ms in 219-702 (~11 us) | 0-12.9 ms in 0-5 | ~1-5 ms |
+| ring, map per update (1029f7bf) | 6.5-20.1 ms in 276-616 (~33 us each) | 3.9-10.2 ms | 2.3-12.3 ms | ~1-8 ms |
+
+The updates are the GS renderer's per-draw constants (`gs_hw.cpp` updateConstants: draw / world / quad constants,
+dynamic constant buffers). An unsynchronized map / unmap per update costs on Mesa nouveau about what orphaning did.
+Profiles (`route-prof-docked-profile.txt`): the game thread t4 waits 58.6%, busy in the VU0 natives (boxClip 5.0%,
+matrixTimes3From 4.5%), dispatch 1.9%, generated code 13.8%; the **GS stage t6** waits 48%, then **`free` 11.7% and
+a contended lock 9.7%** (newlib's allocator lock), gsRun 4.6%, texture upload deferral ~4.4%.
+
+Next: the ring mapped once, persistent and coherent (GL 4.4 / ARB_buffer_storage through getProcAddress): an update
+is a memcpy. Host conformance with it (`host-tests/rhi-host-ring-persistent.txt`, Mesa iris): 127/127 within
+tolerance of upstream's Vulkan backend, 91 byte-identical, as before.

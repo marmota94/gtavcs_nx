@@ -1,0 +1,160 @@
+# threads 2 hz 500 from 90 to 390 samples 297062 failed 0 dropped 0 anchor a23abf8d0
+load offset 0xa239b5000
+
+== thread t4: 148531 samples
+by group:
+   64.2%  other (Mesa, SDL, libs)
+   19.6%  runtime / port (C++)
+   13.8%  generated game code
+    2.4%  libc / compiler
+
+top 25 functions (self):
+   58.6%  svcWaitProcessWideKeyAtomic
+    5.0%  (anonymous namespace)::boxClip(R5900Context*, unsigned char*, unsigned int)
+    4.5%  (anonymous namespace)::matrixTimes3From(R5900Context*, unsigned char*, unsigned int, short, short)
+    3.3%  svcArbitrateLock
+    1.9%  PS2Runtime::dispatchGuestBranch(unsigned char*, R5900Context*, unsigned int, unsigned int, unsigned int, PS2Runtime::GuestBranchKind, char const*)
+    1.0%  memcpy
+    1.0%  ps2x::iop::detail::IopSpu2::mixOne(short&, short&)
+    0.6%  PS2Runtime::executeVU0Microprogram(unsigned char*, R5900Context*, unsigned int)
+    0.6%  _malloc_r
+    0.6%  svcSendSyncRequest
+    0.4%  _free_r
+    0.4%  svcArbitrateUnlock
+    0.4%  (anonymous namespace)::sphereTriangle(R5900Context*, unsigned char*, unsigned int)
+    0.4%  ps2x::iop::detail::IopSpu2::voiceSample(ps2x::iop::detail::IopSpu2::Core&, unsigned int, unsigned int)
+    0.3%  FUN_002f7528_0x2f7528(unsigned char*, R5900Context*, PS2Runtime*)
+    0.3%  PS2Runtime::eeCheckpointDue(unsigned int)
+    0.3%  FUN_002560d8_0x2560d8(unsigned char*, R5900Context*, PS2Runtime*)
+    0.3%  fesetround
+    0.3%  vcs::rslworld::(anonymous namespace)::closeBlock(unsigned long, std::vector<unsigned int, std::allocator<unsigned int> >&, bool, unsigned int)
+    0.3%  FUN_002f62b8_0x2f62b8(unsigned char*, R5900Context*, PS2Runtime*)
+    0.3%  unsigned int ps2Read<unsigned int>(unsigned char*, R5900Context*, PS2Runtime*, unsigned int, unsigned int)
+    0.3%  std::_Hashtable<unsigned long, std::pair<unsigned long const, bool>, std::allocator<std::pair<unsigned long const, bool> >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::find(unsigned long const&) const
+    0.2%  FUN_0026f550_0x26f550(unsigned char*, R5900Context*, PS2Runtime*)
+    0.2%  FUN_003816f8_0x3816f8(unsigned char*, R5900Context*, PS2Runtime*)
+    0.2%  FUN_0032e750_0x32e750(unsigned char*, R5900Context*, PS2Runtime*)
+
+callers (lr) of the top 12:
+  svcWaitProcessWideKeyAtomic:
+       58.6%  <- condvarWaitTimeout
+  (anonymous namespace)::boxClip(R5900Context*, unsigned char*, unsigned int):
+        1.4%  <- ?2f0c2d10
+        1.1%  <- ?2f0c2cd0
+        1.0%  <- ?2f0c2d40
+        0.3%  <- ?2f0c2c60
+        0.3%  <- ?2f0c2de0
+  (anonymous namespace)::matrixTimes3From(R5900Context*, unsigned char*, unsigned int, short, short):
+        4.4%  <- ?7f000000
+        0.1%  <- PS2Runtime::executeVU0Microprogram(unsigned char*, R5900Context*, unsigned int)
+  svcArbitrateLock:
+        3.3%  <- mutexLock
+  PS2Runtime::dispatchGuestBranch(unsigned char*, R5900Context*, unsigned int, unsigned int, unsigned int, PS2Runtime::GuestBranchKind, char const*):
+        0.3%  <- PS2Runtime::dispatchGuestBranch(unsigned char*, R5900Context*, unsigned int, unsigned int, unsigned int, PS2Runtime::GuestBranchKind, char const*)
+        0.1%  <- FUN_0023e748_0x23e748(unsigned char*, R5900Context*, PS2Runtime*)
+        0.1%  <- FUN_0039ec18_0x39ec18(unsigned char*, R5900Context*, PS2Runtime*)
+        0.1%  <- FUN_0040c4b8_0x40c4b8(unsigned char*, R5900Context*, PS2Runtime*)
+        0.1%  <- FUN_002f7620_0x2f7620(unsigned char*, R5900Context*, PS2Runtime*)
+  memcpy:
+        0.5%  <- void std::vector<unsigned char, std::allocator<unsigned char> >::_M_range_insert<unsigned char const*>(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, unsigned char const*, unsigned char const*, std::forward_iterator_tag) [clone .isra.0]
+        0.3%  <- vcs::rslworld::(anonymous namespace)::observe(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned long, unsigned int, bool)
+        0.1%  <- vcs::rslworld::(anonymous namespace)::appendRegion(unsigned char*, unsigned int, vcs::rslworld::(anonymous namespace)::Piece const*, unsigned long, unsigned int)
+        0.1%  <- void std::vector<unsigned char, std::allocator<unsigned char> >::_M_range_insert<unsigned char*>(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, unsigned char*, unsigned char*, std::forward_iterator_tag) [clone .isra.0]
+        0.0%  <- (anonymous namespace)::collectParamsNative(unsigned char*, R5900Context*, PS2Runtime*)
+  ps2x::iop::detail::IopSpu2::mixOne(short&, short&):
+        0.8%  <- ps2x::iop::detail::IopSpu2::mixOne(short&, short&)
+        0.2%  <- ps2x::iop::detail::IopSpu2::advanceTo(unsigned long)
+  PS2Runtime::executeVU0Microprogram(unsigned char*, R5900Context*, unsigned int):
+        0.5%  <- PS2Runtime::executeVU0Microprogram(unsigned char*, R5900Context*, unsigned int)
+        0.1%  <- FUN_0030c940_0x30c940(unsigned char*, R5900Context*, PS2Runtime*)
+        0.1%  <- FUN_0030c8d4_0x30c8d4(unsigned char*, R5900Context*, PS2Runtime*)
+        0.0%  <- FUN_002b8ed0_0x2b8ed0(unsigned char*, R5900Context*, PS2Runtime*)
+        0.0%  <- FUN_002b78d0_0x2b78d0(unsigned char*, R5900Context*, PS2Runtime*)
+  _malloc_r:
+        0.6%  <- _malloc_r
+        0.0%  <- _memalign_r
+        0.0%  <- operator new(unsigned long)
+  svcSendSyncRequest:
+        0.5%  <- fsFileWrite
+        0.1%  <- fsFileRead
+  _free_r:
+        0.4%  <- _free_r
+        0.0%  <- vcs::rslworld::(anonymous namespace)::addPages(std::vector<unsigned int, std::allocator<unsigned int> >&, bool&, unsigned int, unsigned int)
+  svcArbitrateUnlock:
+        0.4%  <- mutexUnlock
+
+== thread t6: 148531 samples
+by group:
+   62.3%  other (Mesa, SDL, libs)
+   22.5%  runtime / port (C++)
+   15.2%  libc / compiler
+
+top 25 functions (self):
+   48.1%  svcWaitProcessWideKeyAtomic
+   11.7%  _free_r
+    9.7%  svcArbitrateLock
+    4.6%  ps2_render_worker::(anonymous namespace)::gsRun()
+    2.5%  svcArbitrateUnlock
+    2.4%  (anonymous namespace)::HwBackend::deferUpload(unsigned char const*, unsigned int)
+    2.0%  (anonymous namespace)::HwBackend::UploadImage(unsigned char const*, unsigned int)
+    1.4%  GS::submitPackedKick(unsigned char const*, unsigned int)
+    1.3%  (anonymous namespace)::HwBackend::soleQueuedWriter(std::vector<unsigned short, std::allocator<unsigned short> > const&)
+    1.3%  (anonymous namespace)::HwBackend::recordPrimitive((anonymous namespace)::HwState, (anonymous namespace)::HwVertex*, unsigned int, GSPrimitiveBatch const*, float, float, unsigned int, bool)
+    1.2%  (anonymous namespace)::HwBackend::recordPacked(GSDrawState const&, GSVertex const*, unsigned char const*, unsigned int)
+    1.2%  memcpy
+    1.2%  _malloc_r
+    1.0%  (anonymous namespace)::HwBackend::bindTexture(GSDrawState const&, (anonymous namespace)::HwState&)
+    0.7%  (anonymous namespace)::HwBackend::SubmitNative(GSDrawState const&, GSNativeDraw const&)
+    0.7%  mutexUnlock
+    0.6%  std::_Hashtable<unsigned long, std::pair<unsigned long const, unsigned long>, std::allocator<std::pair<unsigned long const, unsigned long> >, std::__detail::_Select1st, std::equal_to<unsigned long>, std::hash<unsigned long>, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<false, false, true> >::find(unsigned long const&)
+    0.6%  GS::processGIFPacket(unsigned char const*, unsigned int)
+    0.5%  GS::writeRegisterUnlocked(unsigned char, unsigned long)
+    0.4%  mutexLock
+    0.4%  GSMem::RectBlocks(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, std::vector<unsigned short, std::allocator<unsigned short> >&, std::vector<unsigned short, std::allocator<unsigned short> >*)
+    0.4%  GSCpuBackend::ClutHash(GSTex0Reg const&) const
+    0.4%  __aarch64_read_tp
+    0.3%  vcs::(anonymous namespace)::classify(float const*, unsigned int)
+    0.3%  GSCpuBackend::LoadClutFromRect(GSTex0Reg const&, GSTexClutReg const&, unsigned char const*, unsigned int, unsigned int)
+
+callers (lr) of the top 12:
+  svcWaitProcessWideKeyAtomic:
+       48.1%  <- condvarWaitTimeout
+  _free_r:
+       11.7%  <- _free_r
+        0.0%  <- _memalign_r
+        0.0%  <- (anonymous namespace)::HwBackend::deferUpload(unsigned char const*, unsigned int)
+  svcArbitrateLock:
+        9.7%  <- mutexLock
+  ps2_render_worker::(anonymous namespace)::gsRun():
+        4.6%  <- ps2_render_worker::(anonymous namespace)::gsRun()
+  svcArbitrateUnlock:
+        2.5%  <- mutexUnlock
+  (anonymous namespace)::HwBackend::deferUpload(unsigned char const*, unsigned int):
+        2.4%  <- (anonymous namespace)::HwBackend::deferUpload(unsigned char const*, unsigned int)
+        0.0%  <- (anonymous namespace)::HwBackend::UploadImage(unsigned char const*, unsigned int)
+  (anonymous namespace)::HwBackend::UploadImage(unsigned char const*, unsigned int):
+        1.9%  <- (anonymous namespace)::HwBackend::UploadImage(unsigned char const*, unsigned int)
+        0.1%  <- GS::processGIFPacket(unsigned char const*, unsigned int)
+  GS::submitPackedKick(unsigned char const*, unsigned int):
+        1.4%  <- GS::submitPackedKick(unsigned char const*, unsigned int)
+        0.0%  <- GS::processGIFPacket(unsigned char const*, unsigned int)
+        0.0%  <- (anonymous namespace)::gsStageHandler(ps2_render_worker::GsCommand const&, unsigned char const*)
+  (anonymous namespace)::HwBackend::soleQueuedWriter(std::vector<unsigned short, std::allocator<unsigned short> > const&):
+        0.1%  <- (anonymous namespace)::HwBackend::loadClutFromQueuedUpload(GSTex0Reg const&, GSTexClutReg const&)
+        0.0%  <- ?73aab20b0
+        0.0%  <- ?740bb8060
+        0.0%  <- ?75ce53228
+        0.0%  <- ?73e900440
+  (anonymous namespace)::HwBackend::recordPrimitive((anonymous namespace)::HwState, (anonymous namespace)::HwVertex*, unsigned int, GSPrimitiveBatch const*, float, float, unsigned int, bool):
+        1.0%  <- (anonymous namespace)::HwBackend::recordPacked(GSDrawState const&, GSVertex const*, unsigned char const*, unsigned int)
+        0.3%  <- (anonymous namespace)::HwBackend::recordPrimitive((anonymous namespace)::HwState, (anonymous namespace)::HwVertex*, unsigned int, GSPrimitiveBatch const*, float, float, unsigned int, bool)
+        0.0%  <- (anonymous namespace)::HwBackend::Submit(GSPrimitiveBatch const&)
+  (anonymous namespace)::HwBackend::recordPacked(GSDrawState const&, GSVertex const*, unsigned char const*, unsigned int):
+        1.2%  <- (anonymous namespace)::HwBackend::recordPacked(GSDrawState const&, GSVertex const*, unsigned char const*, unsigned int)
+        0.0%  <- (anonymous namespace)::HwBackend::SubmitPacked(GSDrawState const&, GSVertex const*, unsigned char const*, unsigned int)
+  memcpy:
+        0.4%  <- void std::vector<unsigned char, std::allocator<unsigned char> >::_M_assign_aux<unsigned char const*>(unsigned char const*, unsigned char const*, std::forward_iterator_tag) [clone .isra.0]
+        0.2%  <- void std::vector<(anonymous namespace)::HwVertex, std::allocator<(anonymous namespace)::HwVertex> >::_M_range_insert<(anonymous namespace)::HwVertex*>(__gnu_cxx::__normal_iterator<(anonymous namespace)::HwVertex*, std::vector<(anonymous namespace)::HwVertex, std::allocator<(anonymous namespace)::HwVertex> > >, (anonymous namespace)::HwVertex*, (anonymous namespace)::HwVertex*, std::forward_iterator_tag) [clone .isra.0]
+        0.2%  <- (anonymous namespace)::gsStageHandler(ps2_render_worker::GsCommand const&, unsigned char const*)
+        0.2%  <- GSCpuBackend::LoadClutFromRect(GSTex0Reg const&, GSTexClutReg const&, unsigned char const*, unsigned int, unsigned int)
+        0.2%  <- (anonymous namespace)::HwBackend::SubmitNative(GSDrawState const&, GSNativeDraw const&)

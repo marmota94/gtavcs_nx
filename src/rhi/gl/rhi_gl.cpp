@@ -55,6 +55,8 @@ namespace rhi
         constexpr GLenum kDebugSeverityHigh = 0x9146, kDebugSeverityMedium = 0x9147;
         constexpr GLenum kLabelBuffer = 0x82E0, kLabelProgram = 0x82E2, kLabelSampler = 0x82E6;
         using ClipControlFn = void (*)(GLenum, GLenum);
+        using BufferStorageFn = void (*)(GLenum, GLsizeiptr, const void *, GLbitfield); // GL 4.4 / ARB_buffer_storage
+        constexpr GLbitfield kMapPersistent = 0x0040, kMapCoherent = 0x0080;
         using ViewportIndexedfFn = void (*)(GLuint, GLfloat, GLfloat, GLfloat, GLfloat);
         using DebugProc = void (*)(GLenum, GLenum, GLuint, GLenum, GLsizei, const GLchar *, const void *);
         using DebugMessageCallbackFn = void (*)(DebugProc, const void *);
@@ -377,7 +379,15 @@ namespace rhi
                     if (f)
                         glDeleteSync(f), f = nullptr;
                 if (m_ubo.name)
+                {
+                    if (m_ubo.mapped)
+                    {
+                        glBindBuffer(GL_COPY_WRITE_BUFFER, m_ubo.name);
+                        glUnmapBuffer(GL_COPY_WRITE_BUFFER);
+                        glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
+                    }
                     glDeleteBuffers(1, &m_ubo.name);
+                }
                 drain();
                 std::lock_guard<std::mutex> lock(m_core->mutex);
                 m_core->alive = false;
@@ -435,11 +445,34 @@ namespace rhi
                     m_ubo.align = static_cast<size_t>(std::max(align, 16));
                     glGenBuffers(1, &m_ubo.name);
                     glBindBuffer(GL_COPY_WRITE_BUFFER, m_ubo.name);
-                    glBufferData(GL_COPY_WRITE_BUFFER, static_cast<GLsizeiptr>(kUboRingBytes), nullptr, GL_STREAM_DRAW);
+                    // mapped once, persistent and coherent where the context has buffer storage: an update is then a
+                    // memcpy (an unsynchronized map / unmap per update cost as much as orphaning on nouveau,
+                    // route-prof2-docked); else a map per update. PS2X_GL_UBO_PERSISTENT=0: the map per update.
+                    const char *pe = std::getenv("PS2X_GL_UBO_PERSISTENT");
+                    if (m_bufferStorage && !(pe && pe[0] == '0'))
+                    {
+                        m_bufferStorage(GL_COPY_WRITE_BUFFER, static_cast<GLsizeiptr>(kUboRingBytes), nullptr,
+                                        GL_MAP_WRITE_BIT | kMapPersistent | kMapCoherent);
+                        m_ubo.mapped = static_cast<uint8_t *>(glMapBufferRange(GL_COPY_WRITE_BUFFER, 0,
+                                                                               static_cast<GLsizeiptr>(kUboRingBytes),
+                                                                               GL_MAP_WRITE_BIT | kMapPersistent | kMapCoherent));
+                        if (!m_ubo.mapped)
+                        {
+                            // storage is immutable now: a fresh buffer for the map-per-update path
+                            glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
+                            glDeleteBuffers(1, &m_ubo.name);
+                            glGenBuffers(1, &m_ubo.name);
+                            glBindBuffer(GL_COPY_WRITE_BUFFER, m_ubo.name);
+                        }
+                    }
+                    if (!m_ubo.mapped)
+                        glBufferData(GL_COPY_WRITE_BUFFER, static_cast<GLsizeiptr>(kUboRingBytes), nullptr, GL_STREAM_DRAW);
                     glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
+                    glCheckError("constant ring");
                     label(kLabelBuffer, m_ubo.name, "constant ring");
-                    std::fprintf(stderr, "[rhi] constant buffers through a %u KiB ring (offset alignment %zu)\n",
-                                 static_cast<unsigned>(kUboRingBytes / 1024u), m_ubo.align);
+                    std::fprintf(stderr, "[rhi] constant buffers through a %u KiB ring (offset alignment %zu, %s)\n",
+                                 static_cast<unsigned>(kUboRingBytes / 1024u), m_ubo.align,
+                                 m_ubo.mapped ? "persistent map" : "map per update");
                 }
                 // GPU time per pass (M10-02): GL_TIMESTAMP queries around each pass, by pass name and target size
                 m_passTime = !m_offscreen && envOn("PS2X_GL_PASS_TIME");
@@ -1381,6 +1414,8 @@ namespace rhi
                     m_clipControl = reinterpret_cast<ClipControlFn>(load("glClipControl"));
                     m_caps.clipControl = m_clipControl != nullptr;
                 }
+                if (version >= 44 || has("GL_ARB_buffer_storage"))
+                    m_bufferStorage = reinterpret_cast<BufferStorageFn>(load("glBufferStorage"));
                 if ((version >= 41 || has("GL_ARB_viewport_array")) && !envOn("PS2X_GL_NO_VIEWPORT_ARRAY"))
                 {
                     m_viewportIndexedf = reinterpret_cast<ViewportIndexedfFn>(load("glViewportIndexedf"));
@@ -2110,17 +2145,22 @@ namespace rhi
                     }
                     m_ubo.segment = seg;
                 }
-                glBindBuffer(GL_COPY_WRITE_BUFFER, m_ubo.name);
-                void *p = glMapBufferRange(GL_COPY_WRITE_BUFFER, static_cast<GLintptr>(at), static_cast<GLsizeiptr>(need),
-                                           GL_MAP_WRITE_BIT | GL_MAP_UNSYNCHRONIZED_BIT | GL_MAP_INVALIDATE_RANGE_BIT);
-                if (p)
-                {
-                    std::memcpy(p, data, size);
-                    glUnmapBuffer(GL_COPY_WRITE_BUFFER);
-                }
+                if (m_ubo.mapped)
+                    std::memcpy(m_ubo.mapped + at, data, size); // coherent: visible to commands issued after this
                 else
-                    glBufferSubData(GL_COPY_WRITE_BUFFER, static_cast<GLintptr>(at), static_cast<GLsizeiptr>(size), data);
-                glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
+                {
+                    glBindBuffer(GL_COPY_WRITE_BUFFER, m_ubo.name);
+                    void *p = glMapBufferRange(GL_COPY_WRITE_BUFFER, static_cast<GLintptr>(at), static_cast<GLsizeiptr>(need),
+                                               GL_MAP_WRITE_BIT | GL_MAP_UNSYNCHRONIZED_BIT | GL_MAP_INVALIDATE_RANGE_BIT);
+                    if (p)
+                    {
+                        std::memcpy(p, data, size);
+                        glUnmapBuffer(GL_COPY_WRITE_BUFFER);
+                    }
+                    else
+                        glBufferSubData(GL_COPY_WRITE_BUFFER, static_cast<GLintptr>(at), static_cast<GLsizeiptr>(size), data);
+                    glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
+                }
                 m_ubo.head = at + need;
                 b.ringOffset = at;
                 b.ringValid = true;
@@ -2280,6 +2320,7 @@ namespace rhi
             int m_swapInterval = -1;
 
             ClipControlFn m_clipControl = nullptr;
+            BufferStorageFn m_bufferStorage = nullptr;
             ViewportIndexedfFn m_viewportIndexedf = nullptr;
             DebugMessageCallbackFn m_debugMessageCallback = nullptr;
             PushDebugGroupFn m_pushDebugGroup = nullptr;
@@ -2316,6 +2357,7 @@ namespace rhi
                 GLuint name = 0;
                 size_t align = 256, head = 0;
                 uint32_t segment = 0;
+                uint8_t *mapped = nullptr; // the persistent map (buffer storage)
                 GLsync fences[kUboSegments] = {};
                 uint64_t waits = 0;
             } m_ubo;
