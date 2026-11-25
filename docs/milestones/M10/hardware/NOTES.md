@@ -124,3 +124,16 @@ sampler's variables were named `NX_SAMPLE_*`; the run-file check (src/core/run_c
 `PS2X_` names. The core boot failed into the system error dialog, which waited for a button; the session timed out
 after 900 s. No crash report (the ones on the card are pcv's / nvservices' from wide0-docked). Renamed to
 `VCS_NX_SAMPLE_*` and `VCS_NX_THREAD_CORES` (the port's prefix, as `VCS_NX_OUTPUT`).
+
+## align64-docked (2026-11-25): the width is not it; the game thread's first profile
+
+NRO `318205e7` (commit e75c7e6, clean): `PS2X_HW_WIDE_ALIGN=64` (patch 0014) makes the picture's targets 896x512; the
+sampler (`VCS_NX_SAMPLE_THREAD=4`, 500 Hz, 80-280 s) on the game thread.
+
+- 16:9 standing: 11.4 game fps, median 68.9 ms (as at 853 wide); the **896x512** passes take 26.7-28.1 ms per present in
+  ~8 passes - the same as 853x512. The width's alignment is not the cost.
+- Game-thread profile (`align64-docked-profile.txt`, 99,395 samples, 0 failed): **55.4% waiting** on a condition
+  variable (16:9 is GPU-bound: the game waits for the render path), 3.2% blocked in a contended mutex. Busy time has no
+  single hotspot: the runtime's native VU0 helpers `matrixTimes3From` 3.8%, `boxClip` 3.7%, collision
+  (`sphereTriangle`, `CollisionVu`) ~3%, `dispatchGuestBranch` 2.3%, `free` 1.2%, SPU2 mixing ~1.1%, generated game
+  code 16.8% spread over thousands of functions; perf.csv's SD writes 0.7% (measurement overhead).

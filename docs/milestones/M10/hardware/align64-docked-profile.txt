@@ -1,0 +1,85 @@
+# thread t4 hz 500 from 80 to 280 samples 99395 failed 0 dropped 0 anchor 7f1aaa8b0
+total 99395 samples; load offset 0x7f19a0000
+
+by group:
+   61.3%  other (Mesa, SDL, libs)
+   19.6%  runtime / port (C++)
+   16.8%  generated game code
+    2.3%  libc / compiler
+
+top 35 functions (self):
+   55.4%  svcWaitProcessWideKeyAtomic
+    3.8%  (anonymous namespace)::matrixTimes3From(R5900Context*, unsigned char*, unsigned int, short, short)
+    3.7%  (anonymous namespace)::boxClip(R5900Context*, unsigned char*, unsigned int)
+    3.2%  svcArbitrateLock
+    2.3%  PS2Runtime::dispatchGuestBranch(unsigned char*, R5900Context*, unsigned int, unsigned int, unsigned int, PS2Runtime::GuestBranchKind, char const*)
+    1.4%  (anonymous namespace)::sphereTriangle(R5900Context*, unsigned char*, unsigned int)
+    1.2%  _free_r
+    0.9%  ps2x::iop::detail::IopSpu2::mixOne(short&, short&)
+    0.7%  svcSendSyncRequest
+    0.6%  memcpy
+    0.6%  PS2Runtime::executeVU0Microprogram(unsigned char*, R5900Context*, unsigned int)
+    0.6%  (anonymous namespace)::segmentTriangleFrom0068((anonymous namespace)::CollisionVu&, R5900Context*)
+    0.6%  FUN_0040ffc0_0x40ffc0(unsigned char*, R5900Context*, PS2Runtime*)
+    0.5%  FUN_002b8ed0_0x2b8ed0(unsigned char*, R5900Context*, PS2Runtime*)
+    0.5%  FUN_001aaa38_0x1aaa38(unsigned char*, R5900Context*, PS2Runtime*)
+    0.4%  FUN_002560d8_0x2560d8(unsigned char*, R5900Context*, PS2Runtime*)
+    0.4%  PS2Runtime::eeCheckpointDue(unsigned int)
+    0.4%  (anonymous namespace)::CollisionVu::vf(int) const [clone .isra.0]
+    0.4%  (anonymous namespace)::CollisionVu::dotW(int, int)
+    0.3%  unsigned int ps2Read<unsigned int>(unsigned char*, R5900Context*, PS2Runtime*, unsigned int, unsigned int)
+    0.3%  (anonymous namespace)::CollisionVu::nearestOnSegment()
+    0.3%  (anonymous namespace)::CollisionVu::convertInputs()
+    0.3%  FUN_0032e750_0x32e750(unsigned char*, R5900Context*, PS2Runtime*)
+    0.3%  fesetround
+    0.3%  FUN_0011a690_0x11a690(unsigned char*, R5900Context*, PS2Runtime*)
+    0.3%  svcArbitrateUnlock
+    0.2%  ps2x::iop::detail::IopSpu2::voiceSample(ps2x::iop::detail::IopSpu2::Core&, unsigned int, unsigned int)
+    0.2%  FUN_002f7528_0x2f7528(unsigned char*, R5900Context*, PS2Runtime*)
+    0.2%  FUN_003816f8_0x3816f8(unsigned char*, R5900Context*, PS2Runtime*)
+    0.2%  FUN_002f62b8_0x2f62b8(unsigned char*, R5900Context*, PS2Runtime*)
+    0.2%  FUN_0040fcc8_0x40fcc8(unsigned char*, R5900Context*, PS2Runtime*)
+    0.2%  (anonymous namespace)::collectParamsNative(unsigned char*, R5900Context*, PS2Runtime*)
+    0.2%  _malloc_r
+    0.2%  ps2_fmul(float, float)
+    0.2%  FUN_00255fa8_0x255fa8(unsigned char*, R5900Context*, PS2Runtime*)
+
+callers (lr) of the top 10:
+  svcWaitProcessWideKeyAtomic:
+       55.4%  <- condvarWaitTimeout
+  (anonymous namespace)::matrixTimes3From(R5900Context*, unsigned char*, unsigned int, short, short):
+        3.7%  <- ?7f000000
+        0.1%  <- PS2Runtime::executeVU0Microprogram(unsigned char*, R5900Context*, unsigned int)
+  (anonymous namespace)::boxClip(R5900Context*, unsigned char*, unsigned int):
+        1.8%  <- ?6006cd10
+        0.7%  <- ?6006ccd0
+        0.4%  <- ?6006cd40
+        0.3%  <- ?6006cd50
+        0.2%  <- (anonymous namespace)::boxClip(R5900Context*, unsigned char*, unsigned int)
+  svcArbitrateLock:
+        3.2%  <- mutexLock
+  PS2Runtime::dispatchGuestBranch(unsigned char*, R5900Context*, unsigned int, unsigned int, unsigned int, PS2Runtime::GuestBranchKind, char const*):
+        0.4%  <- PS2Runtime::dispatchGuestBranch(unsigned char*, R5900Context*, unsigned int, unsigned int, unsigned int, PS2Runtime::GuestBranchKind, char const*)
+        0.2%  <- FUN_0023e748_0x23e748(unsigned char*, R5900Context*, PS2Runtime*)
+        0.1%  <- FUN_0011a690_0x11a690(unsigned char*, R5900Context*, PS2Runtime*)
+        0.1%  <- FUN_0040fcc8_0x40fcc8(unsigned char*, R5900Context*, PS2Runtime*)
+        0.1%  <- FUN_0040c4b8_0x40c4b8(unsigned char*, R5900Context*, PS2Runtime*)
+  (anonymous namespace)::sphereTriangle(R5900Context*, unsigned char*, unsigned int):
+        1.1%  <- (anonymous namespace)::sphereTriangle(R5900Context*, unsigned char*, unsigned int)
+        0.3%  <- ?80
+        0.0%  <- PS2Runtime::executeVU0Microprogram(unsigned char*, R5900Context*, unsigned int)
+  _free_r:
+        1.2%  <- _free_r
+        0.0%  <- PS2Runtime::drainCompletedDmacHandlers(unsigned char*)
+  ps2x::iop::detail::IopSpu2::mixOne(short&, short&):
+        0.6%  <- ps2x::iop::detail::IopSpu2::advanceTo(unsigned long)
+        0.3%  <- ps2x::iop::detail::IopSpu2::mixOne(short&, short&)
+  svcSendSyncRequest:
+        0.7%  <- fsFileWrite
+        0.0%  <- fsFileRead
+  memcpy:
+        0.3%  <- void std::vector<unsigned char, std::allocator<unsigned char> >::_M_range_insert<unsigned char const*>(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, unsigned char const*, unsigned char const*, std::forward_iterator_tag) [clone .isra.0]
+        0.2%  <- vcs::rslworld::(anonymous namespace)::observe(unsigned int, unsigned int, unsigned int, unsigned int, unsigned int, unsigned long, unsigned int, bool)
+        0.0%  <- void std::vector<unsigned char, std::allocator<unsigned char> >::_M_range_insert<unsigned char*>(__gnu_cxx::__normal_iterator<unsigned char*, std::vector<unsigned char, std::allocator<unsigned char> > >, unsigned char*, unsigned char*, std::forward_iterator_tag) [clone .isra.0]
+        0.0%  <- vcs::rslworld::(anonymous namespace)::appendRegion(unsigned char*, unsigned int, vcs::rslworld::(anonymous namespace)::Piece const*, unsigned long, unsigned int)
+        0.0%  <- (anonymous namespace)::collectParamsNative(unsigned char*, R5900Context*, PS2Runtime*)
