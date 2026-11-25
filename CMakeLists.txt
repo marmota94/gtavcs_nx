@@ -224,7 +224,7 @@ target_compile_options(gtavcs PRIVATE -Wall -Wextra -Wpedantic
     ${NX_SDL2_CFLAGS_OTHER} ${NX_GL_CFLAGS_OTHER} ${NX_EGL_CFLAGS_OTHER})
 target_link_directories(gtavcs PRIVATE "${SWITCH_PORTLIBS}/lib")
 target_link_options(gtavcs PRIVATE
-    "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs.map" -Wl,--wrap=__syscall_thread_create -Wl,--wrap=_open_r
+    "-Wl,-Map,${CMAKE_CURRENT_BINARY_DIR}/gtavcs.map" -Wl,--wrap=__syscall_thread_create -Wl,--wrap=_open_r -Wl,--wrap=_write_r -Wl,--wrap=_close_r
     # src/switch/branch_trace.cpp: the indirect-site trace (M04-12); generated code calls this out of line
     -Wl,--wrap=_ZN10PS2Runtime23dispatchGuestBranchSlowEPhP12R5900ContextjjjNS_15GuestBranchKindEPKc
     ${NX_SDL2_STATIC_LDFLAGS_OTHER} ${NX_GL_STATIC_LDFLAGS_OTHER} ${NX_EGL_STATIC_LDFLAGS_OTHER})

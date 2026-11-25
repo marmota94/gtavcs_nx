@@ -562,6 +562,8 @@ namespace rhi
                 const bool msaa = desc.samples > 1u;
                 if (!fi.internal || !checkSize(w, h, desc.name))
                     return nullptr;
+                if (!(desc.usage & (UsageRenderTarget | UsageDepth)) && injectedTextureFault(desc.name))
+                    return nullptr;
                 if (msaa)
                 {
                     const int limit = fi.depth ? m_caps.maxDepthTextureSamples : m_caps.maxColorTextureSamples;
@@ -747,6 +749,8 @@ namespace rhi
                 const uint32_t w = std::max(1u, desc.width), h = std::max(1u, desc.height);
                 const uint32_t count = std::min(std::max(1u, levelCount), std::min(16u, fullChain(w, h)));
                 if (!levels || !checkSize(w, h, desc.name))
+                    return nullptr;
+                if (injectedTextureFault(desc.name))
                     return nullptr;
                 for (uint32_t i = 0; i < count; ++i)
                     if (!levels[i])
@@ -1555,6 +1559,34 @@ namespace rhi
             {
                 glActiveTexture(GL_TEXTURE0 + m_scratchUnit);
                 glBindTexture(target, name);
+            }
+
+            // M10-09: VCS_NX_FAULT_TEXTURE=<every n>:<after s>:<count> (nxrun.cfg env): after <after s> seconds, every n-th
+            // plain texture creation fails as an out-of-memory would (nullptr, a [fault] line), <count> times. Off when unset.
+            bool injectedTextureFault(const char *name)
+            {
+                static const struct Spec
+                {
+                    int every = 0, count = 0;
+                    double after = 0.0;
+                    std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+                } spec = [] {
+                    Spec v;
+                    if (const char *e = std::getenv("VCS_NX_FAULT_TEXTURE"))
+                        if (std::sscanf(e, "%d:%lf:%d", &v.every, &v.after, &v.count) != 3)
+                            v.every = 0;
+                    return v;
+                }();
+                static int seen = 0, injected = 0;
+                if (spec.every <= 0 || injected >= spec.count ||
+                    std::chrono::duration<double>(std::chrono::steady_clock::now() - spec.start).count() < spec.after)
+                    return false;
+                if (++seen % spec.every)
+                    return false;
+                ++injected;
+                std::fprintf(stderr, "[fault] texture creation %d of %d refused: '%s' (VCS_NX_FAULT_TEXTURE)\n", injected, spec.count,
+                             name ? name : "");
+                return true;
             }
 
             // M10-03: a pooled texture of this shape (the oldest: the GPU is the likeliest done with it), or 0. Mesa

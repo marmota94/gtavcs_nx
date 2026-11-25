@@ -3,6 +3,9 @@
 #include <algorithm>
 #include <charconv>
 #include <cstring>
+#include <cstdlib>
+#include <chrono>
+#include <atomic>
 #include <sys/stat.h>
 
 namespace
@@ -650,8 +653,54 @@ void FolderDisc::release(Slot *slot) const
     m_released.notify_all();
 }
 
+namespace
+{
+    // M10-09: VCS_NX_FAULT_READ=<part of a host path>:<after s>:<count> (nxrun.cfg env): after <after s> seconds of the
+    // process, the next <count> reads of a file whose path contains that text fail as an I/O error would (nothing read,
+    // the same "read failed" line). Off when unset.
+    bool injectedReadFault(const std::string &path)
+    {
+        static const struct Spec
+        {
+            std::string part;
+            double after = 0.0;
+            int count = 0;
+            std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+        } spec = [] {
+            Spec s;
+            if (const char *v = std::getenv("VCS_NX_FAULT_READ"))
+            {
+                const std::string text(v);
+                const size_t a = text.find(':'), b = a == std::string::npos ? a : text.find(':', a + 1);
+                if (a != std::string::npos && b != std::string::npos)
+                {
+                    s.part = text.substr(0, a);
+                    s.after = std::atof(text.substr(a + 1, b - a - 1).c_str());
+                    s.count = std::atoi(text.substr(b + 1).c_str());
+                }
+            }
+            return s;
+        }();
+        static std::atomic<int> injected{0};
+        if (spec.part.empty() || path.find(spec.part) == std::string::npos ||
+            std::chrono::duration<double>(std::chrono::steady_clock::now() - spec.start).count() < spec.after)
+            return false;
+        const int n = injected.fetch_add(1);
+        if (n >= spec.count)
+            return false;
+        std::fprintf(stderr, "[fault] read %d of %d refused: %s (VCS_NX_FAULT_READ)\n", n + 1, spec.count, path.c_str());
+        return true;
+    }
+}
+
 bool FolderDisc::readFile(uint32_t file, uint64_t offset, size_t count, uint8_t *destination) const
 {
+    if (injectedReadFault(m_files[file].hostPath))
+    {
+        std::fprintf(stderr, "[folder-disc] read failed: %s offset=%llu count=%zu\n", m_files[file].hostPath.c_str(),
+                     static_cast<unsigned long long>(offset), count);
+        return false;
+    }
     Slot *slot = acquire(file);
     const bool ok = slot && seekTo(slot->handle, offset) && std::fread(destination, 1, count, slot->handle) == count;
     if (slot)
