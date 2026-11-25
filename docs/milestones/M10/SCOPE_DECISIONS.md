@@ -25,3 +25,9 @@ stay in M16. Nothing docked is claimed until a docked run backs it.
 The build host is the user's NAS: "Use only one core of cpu". tools/build_game.py takes `--jobs` and
 tools/build_core_tests.py `NX_BUILD_JOBS`, both 1 by default (compile jobs and the container's CPUs); CI passes 4.
 No test result depends on it; builds are slower.
+
+## Docked mode first (user instruction, 2026-11-24)
+
+"Focus test on docked mode." M10's hardware runs are done docked first (the busy-route baseline, the docked work of
+M10-13, the soak and lifecycle runs); handheld repeats follow for the tasks that name both modes. It changes the
+order, not the scope: M10-04, M10-07, M10-08 and M10-11 still need both modes before they are ticked.
