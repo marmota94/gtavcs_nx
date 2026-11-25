@@ -809,10 +809,12 @@ namespace rhi
 
             void updateBuffer(Buffer &buffer, const void *data, size_t size) override
             {
-                CpuScope cpu(this, CpuBuffer);
                 if (!owner("updateBuffer"))
                     return;
                 auto &b = static_cast<GlBuffer &>(buffer);
+                CpuScope cpu(this, b.ring ? CpuConst : CpuBuffer); // constants (the ring) apart from other buffers
+                if (!b.ring && cpuTimeOn())
+                    m_cpuBufferBytes += size;
                 if (!data || !size)
                     return;
                 if (size > b.desc().size)
@@ -2269,7 +2271,7 @@ namespace rhi
                 if (cpuTimeOn())
                 {
                     static const char *const names[CpuKinds] = {"create", "upload", "buffer", "draw", "pass", "copy", "swap",
-                                                                "delete"};
+                                                                "delete", "constants"};
                     const double n = s.presents > m_cpuPresents ? static_cast<double>(s.presents - m_cpuPresents) : 1.0;
                     std::string line;
                     for (uint32_t k = 0; k < CpuKinds; ++k)
@@ -2280,7 +2282,9 @@ namespace rhi
                         line += item;
                         m_cpuNs[k] = m_cpuCalls[k] = 0;
                     }
-                    std::fprintf(stderr, "[rhi-stats] cpu per present (%.0f presents, owner thread): %s\n", n, line.c_str());
+                    std::fprintf(stderr, "[rhi-stats] cpu per present (%.0f presents, owner thread): %s | buffer bytes %.0f KiB\n",
+                                 n, line.c_str(), m_cpuBufferBytes / 1024.0 / n);
+                    m_cpuBufferBytes = 0;
                     m_cpuPresents = s.presents;
                 }
                 if (m_passTime)
@@ -2363,7 +2367,9 @@ namespace rhi
             } m_ubo;
 
             // PS2X_GL_CPU_TIME (M10-02): the owner thread's CPU time inside the backend by kind of call
-            enum CpuKind : uint32_t { CpuCreate, CpuUpload, CpuBuffer, CpuDraw, CpuPass, CpuCopy, CpuSwap, CpuDelete, CpuKinds };
+            enum CpuKind : uint32_t { CpuCreate, CpuUpload, CpuBuffer, CpuDraw, CpuPass, CpuCopy, CpuSwap, CpuDelete, CpuConst,
+                                     CpuKinds };
+            uint64_t m_cpuBufferBytes = 0; // bytes through updateBuffer outside the constant ring
             uint64_t m_cpuNs[CpuKinds] = {}, m_cpuCalls[CpuKinds] = {};
             uint64_t m_cpuPresents = 0;
             static bool cpuTimeOn()
