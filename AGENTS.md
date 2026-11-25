@@ -35,8 +35,10 @@ authorize general implementation delegation or additional user-owned chats.
 GitHub plan limitations on private branch protection must be recorded honestly;
 they do not relax these operating rules.
 
-**Current deliverable (M09: widescreen, 16:9 Hor+ by default on the Switch, proven in handheld; awaiting independent review).**
-M06 (the handheld beta), M07 (sound and movies) and M08 (the developer menu on L3+R3) are merged.
+**Current deliverable (M10: stability, lifecycle and measured performance, in handheld and docked; in progress).**
+M06 (the handheld beta), M07 (sound and movies), M08 (the developer menu on L3+R3) and M09 (16:9 Hor+ by default)
+are merged. The dock works again (user decision 2026-11-24): M10 also owns the docked work deferred from M06-M08.
+Builds use one CPU core by default (`--jobs`, `NX_BUILD_JOBS`): the build host is a shared NAS.
 `python tools/build_game.py` links the private generated EE/VU archive, the
 overlaid upstream runtime/game layer, `src/core/core.cpp` behind the C ABI in
 `src/core.h`, the SDL2 platform adapter and the OpenGL 3.3 RHI backend
