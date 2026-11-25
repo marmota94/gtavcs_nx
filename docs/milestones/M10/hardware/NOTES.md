@@ -74,3 +74,18 @@ NRO `ae99f34c` (commit 4b75456, clean): the `[threads]` lines. Same schedule as 
   M09's handheld run is open (clocks not read yet).
 
 Next: the GPU time of every pass (`PS2X_GL_PASS_TIME`, `tests/switch/m10-stand-passes.cfg`).
+
+## passes-docked (2026-11-24): the GPU time by pass, docked
+
+NRO `b7737f40` (commit 3a87fc4, clean), `tests/switch/m10-stand-passes.cfg` (stand-aspect with `PS2X_GL_PASS_TIME`).
+`[rhi-stats] passes per present` lines (GPU time per present by pass name and target size):
+
+- **16:9**: the passes into the picture's **853x512** targets take **~20-35 ms per present** in ~5-10 passes (~3.5 ms
+  a pass); everything else ~4 ms (1920x1080 output passes ~1.1 ms, the window ~0.8 ms, 341x256 / 341x512 ~2 ms).
+- **4:3**: the **640x512** picture passes take ~10-12 ms per present in ~25-37 passes (~0.35 ms a pass).
+
+So the cost is the picture's 3D drawing, 2-3x more at 16:9 than its 1.33x pixels. And docked should be the faster
+mode (GPU 768 MHz stock against 384 / 460 MHz handheld), yet 4:3 costs the same GPU time docked as handheld (M09-06)
+and 16:9 twice, and the game thread takes ~35 ms docked against ~22 ms handheld. That fits a console below stock
+clocks when docked (a supply that cannot give full power reduces them). Next run reads the clocks (`[nxrun] clocks`
+lines: clkrst CPU / GPU / EMC, apm mode, psm charger; src/switch/clocks.c).

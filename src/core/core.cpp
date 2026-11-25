@@ -59,6 +59,7 @@
 extern "C" unsigned gtavcs_threads_created(void);
 extern "C" size_t gtavcs_default_thread_stack(void);
 extern "C" void gtavcs_thread_cpu_line(char *out, size_t size); // M10-02, src/switch/thread_stack.c
+extern "C" void gtavcs_clocks_line(char *out, size_t size);     // M10-01, src/switch/clocks.c
 extern "C" unsigned gtavcs_open_count(void);
 extern "C" unsigned gtavcs_iso_open_count(void);
 extern "C" void gtavcs_branch_trace_report(void);
@@ -205,6 +206,9 @@ namespace
         char cpu[768];
         gtavcs_thread_cpu_line(cpu, sizeof(cpu));
         result(core, "threads", cpu);
+        char clocks[256];
+        gtavcs_clocks_line(clocks, sizeof(clocks));
+        result(core, "clocks", clocks);
         result(core, "perf", quote(ps2perf::summaryLine()));
         result(core, "devmenu", devmenu::reportLine());
     }
