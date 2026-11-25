@@ -104,3 +104,10 @@ void gtavcs_thread_cpu_line(char *out, size_t size)
     }
     if (used + 16 < size) snprintf(out + used, size - used, " sum=%u%%", total_pct);
 }
+
+/* the kernel handle of created thread `index` (1-based), or INVALID_HANDLE (sampler.c) */
+Handle gtavcs_thread_handle(unsigned index)
+{
+    return index >= 1 && index <= GTAVCS_TRACKED_THREADS && index <= atomic_load(&created_threads) ? tracked[index - 1]
+                                                                                                    : INVALID_HANDLE;
+}

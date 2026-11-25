@@ -165,7 +165,7 @@ target_link_libraries(nx_platform PUBLIC nx_imgui glad)
 # the private archive), so main.c and src/switch/*.c are compiled on every change. The executable compiles the same
 # sources with the same warning and floating-point options (not identical: PIC here, PIE there, and the executable
 # inherits more include directories and definitions from the libraries it links).
-set(nx_entry_sources src/main.c src/switch/output.c src/switch/thread_stack.c src/switch/clocks.c src/switch/open_audit.c)
+set(nx_entry_sources src/main.c src/switch/output.c src/switch/thread_stack.c src/switch/clocks.c src/switch/sampler.c src/switch/open_audit.c)
 add_library(nx_entry_check OBJECT ${nx_entry_sources})
 target_include_directories(nx_entry_check PRIVATE src ${NX_SDL2_INCLUDE_DIRS} ${NX_GL_INCLUDE_DIRS} ${NX_EGL_INCLUDE_DIRS})
 target_compile_definitions(nx_entry_check PRIVATE SDL_MAIN_HANDLED GTAVCS_LIBNX_PACKAGE="${NX_PACKAGE}")

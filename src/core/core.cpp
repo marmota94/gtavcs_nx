@@ -60,6 +60,8 @@ extern "C" unsigned gtavcs_threads_created(void);
 extern "C" size_t gtavcs_default_thread_stack(void);
 extern "C" void gtavcs_thread_cpu_line(char *out, size_t size); // M10-02, src/switch/thread_stack.c
 extern "C" void gtavcs_clocks_line(char *out, size_t size);     // M10-01, src/switch/clocks.c
+extern "C" void gtavcs_sampler_start(void);                     // M10-02, src/switch/sampler.c (NX_SAMPLE_*)
+extern "C" void gtavcs_sampler_stop(void);
 extern "C" unsigned gtavcs_open_count(void);
 extern "C" unsigned gtavcs_iso_open_count(void);
 extern "C" void gtavcs_branch_trace_report(void);
@@ -289,6 +291,7 @@ namespace
     // Everything boot started, in reverse; safe at any point of a failed boot and after a run.
     void teardown(Core &core)
     {
+        gtavcs_sampler_stop(); // writes the samples before the threads it sampled go
         if (core.runtime)
         {
             core.runtime->requestStop();
@@ -371,6 +374,7 @@ namespace
             setenv(name.c_str(), value.c_str(), 1);
             std::fprintf(stderr, "[core] env %s=%s\n", name.c_str(), value.c_str());
         }
+        gtavcs_sampler_start(); // NX_SAMPLE_THREAD set only: a run's sampling profile of one thread
         // vcs_hle_world.cpp chooses the world path in a static initializer, before this run's environment exists: on
         // the desktop PS2X_HLE comes from the process environment, here from nxrun.cfg (M06-01, reference-handheld
         // drew natively with PS2X_HLE=0). Apply the reference path's choice again: no MSCAL hooks = the recompiled
