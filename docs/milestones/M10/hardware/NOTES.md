@@ -116,3 +116,11 @@ the clocks without trouble; sys-clk on this console also holds pcv sessions.
 Fix (src/switch/clocks.c): no clkrst and no apm: the line keeps the performance mode (applet), the charger and battery
 (psm), the operation mode, and adds the program ID the run has, against sys-clk's profiles. The clock rates of
 clocks-docked (stock 1020 / 768 / 1600) stay the record that docked runs are at stock; wide0-docked is repeated.
+
+## align64-docked, first try (2026-11-24): the run file refused, not a crash
+
+NRO `02f7553c`. The game log: `[core] nxrun.cfg:8: env needs NAME=value with NAME starting VCS_ or PS2X_` - the new
+sampler's variables were named `NX_SAMPLE_*`; the run-file check (src/core/run_config.cpp) allows only `VCS_` and
+`PS2X_` names. The core boot failed into the system error dialog, which waited for a button; the session timed out
+after 900 s. No crash report (the ones on the card are pcv's / nvservices' from wide0-docked). Renamed to
+`VCS_NX_SAMPLE_*` and `VCS_NX_THREAD_CORES` (the port's prefix, as `VCS_NX_OUTPUT`).

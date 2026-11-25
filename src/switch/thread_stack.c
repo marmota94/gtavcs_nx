@@ -9,7 +9,7 @@
  * with its Thread, whose first member is the kernel handle) so the core can report each
  * thread's CPU time and core mask (gtavcs_thread_cpu_line). libnx creates every such thread
  * with the process's default core as its ideal core and the process's core mask as its
- * affinity: where it runs is the kernel's choice. M10-03: NX_THREAD_CORES (nxrun.cfg env, a
+ * affinity: where it runs is the kernel's choice. M10-03: VCS_NX_THREAD_CORES (nxrun.cfg env, a
  * diagnosis) sets the ideal core of created thread N: "1:1,2:2" puts the 1st created thread
  * on core 1, the 2nd on core 2 (the affinity mask stays the process's). */
 #include <switch.h>
@@ -31,10 +31,10 @@ static Handle tracked[GTAVCS_TRACKED_THREADS];
 static u64 last_ticks[GTAVCS_TRACKED_THREADS + 1];
 static u64 last_wall;
 
-/* NX_THREAD_CORES: the ideal core asked for created thread `index` (1-based), or -1 */
+/* VCS_NX_THREAD_CORES: the ideal core asked for created thread `index` (1-based), or -1 */
 static int wanted_core(unsigned index)
 {
-    const char *spec = getenv("NX_THREAD_CORES");
+    const char *spec = getenv("VCS_NX_THREAD_CORES");
     while (spec && *spec)
     {
         char *end = NULL;
@@ -66,7 +66,7 @@ int __wrap___syscall_thread_create(struct __pthread_t **thread, void *(*func)(vo
     /* the creation order names the threads in the [threads] lines (t1, t2, ...); the log's neighbouring lines say
      * which runtime thread each is */
     fprintf(stderr, "[threads] created t%u: ideal core %d, mask %x%s (%08x)\n", index, (int)ideal, (unsigned)affinity,
-        core >= 0 ? " (NX_THREAD_CORES)" : "", rc);
+        core >= 0 ? " (VCS_NX_THREAD_CORES)" : "", rc);
     return result;
 }
 

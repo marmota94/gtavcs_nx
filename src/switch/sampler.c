@@ -1,9 +1,9 @@
 /* M10-02: a sampling profiler for one of the process's own threads (diagnosis; nxrun.cfg env only).
  *
- *   NX_SAMPLE_THREAD=N       the Nth created thread (the t<N> of the [threads] lines; thread_stack.c)
- *   NX_SAMPLE_HZ=500         samples a second (50-2000)
- *   NX_SAMPLE_FROM=80        seconds after the sampler starts (core boot) to begin, NX_SAMPLE_TO=280 to end
- *   NX_SAMPLE_OUT=path       where the counts go at shutdown (relative to the game folder)
+ *   VCS_NX_SAMPLE_THREAD=N       the Nth created thread (the t<N> of the [threads] lines; thread_stack.c)
+ *   VCS_NX_SAMPLE_HZ=500         samples a second (50-2000)
+ *   VCS_NX_SAMPLE_FROM=80        seconds after the sampler starts (core boot) to begin, VCS_NX_SAMPLE_TO=280 to end
+ *   VCS_NX_SAMPLE_OUT=path       where the counts go at shutdown (relative to the game folder)
  *
  * Horizon lets a process pause its own threads: svcSetThreadActivity(Paused), then svcGetThreadContext3 reads the
  * registers of the paused thread, svcSetThreadActivity(Runnable) lets it go. The sampler keeps a count per (pc, lr)
@@ -106,14 +106,14 @@ static void run(void *arg)
 
 void gtavcs_sampler_start(void)
 {
-    target = env_uint("NX_SAMPLE_THREAD", 0);
+    target = env_uint("VCS_NX_SAMPLE_THREAD", 0);
     if (!target) return;
-    hz = env_uint("NX_SAMPLE_HZ", 500);
+    hz = env_uint("VCS_NX_SAMPLE_HZ", 500);
     if (hz < 50) hz = 50;
     if (hz > 2000) hz = 2000;
-    from_s = env_uint("NX_SAMPLE_FROM", 0);
-    to_s = env_uint("NX_SAMPLE_TO", 100000);
-    const char *out = getenv("NX_SAMPLE_OUT");
+    from_s = env_uint("VCS_NX_SAMPLE_FROM", 0);
+    to_s = env_uint("VCS_NX_SAMPLE_TO", 100000);
+    const char *out = getenv("VCS_NX_SAMPLE_OUT");
     snprintf(out_path, sizeof(out_path), "%s", out && *out ? out : "userdata/samples.txt");
     table = calloc(TABLE_SIZE, sizeof(Slot));
     if (!table) return;

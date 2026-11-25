@@ -17,7 +17,7 @@ game frame times):
 - presented frames from gpu.csv (one row per present) and their GL_TIME_ELAPSED median / p95;
 - heap in use / obtained at the window's first and last progress line, GL errors, crash reports.
 
-`profile` reads a run's sampler output (<label>/samples.txt: NX_SAMPLE_THREAD in the run file, src/switch/sampler.c)
+`profile` reads a run's sampler output (<label>/samples.txt: VCS_NX_SAMPLE_THREAD in the run file, src/switch/sampler.c)
 and resolves each sampled pc and lr against the run's ELF symbols (the toolchain's nm in the container; the anchor
 symbol gtavcs_sampler_start gives the load offset) into <label>-profile.txt: the share of samples per function (self),
 per caller of the hottest functions, and per generated-code / runtime / library group.
