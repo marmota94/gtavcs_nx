@@ -89,3 +89,16 @@ mode (GPU 768 MHz stock against 384 / 460 MHz handheld), yet 4:3 costs the same 
 and 16:9 twice, and the game thread takes ~35 ms docked against ~22 ms handheld. That fits a console below stock
 clocks when docked (a supply that cannot give full power reduces them). Next run reads the clocks (`[nxrun] clocks`
 lines: clkrst CPU / GPU / EMC, apm mode, psm charger; src/switch/clocks.c).
+
+## clocks-docked (2026-11-24): docked runs at stock clocks
+
+NRO `46c1c4fc` (commit 3fb6a66, clean), the stand-passes schedule. Every `[nxrun] clocks` line: `cpu_mhz=1020
+gpu_mhz=768 emc_mhz=1600 perf_mode=1 perf_config=00010001 charger=enough-power battery=100% operation_mode=docked`.
+The docked numbers above are **stock** (the reduced-clock idea is wrong). Windows as before: 16:9 11.2 / 11.8 fps,
+4:3 21.9 / 17.9 fps; game thread 32-36 ms.
+
+**sys-clk is installed and enabled on this console** (`/atmosphere/contents/00FF0000636C6BFF/flags/boot2.flag`,
+`/config/sys-clk/config.ini`): per-title profiles up to CPU 1785 / GPU 921 MHz, several for handheld while charging.
+A homebrew run takes the overridden title's ID, so a profile may apply to it. This docked run was at stock. M09-06's
+handheld numbers (game thread ~22 ms) recorded no clocks: they may have run overclocked (1785 / 1020 = 1.75, close
+to 35 / 22). M10 comparisons use only runs with clock lines; every M10 run records them.
