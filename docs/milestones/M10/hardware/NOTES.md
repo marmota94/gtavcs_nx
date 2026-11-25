@@ -217,3 +217,24 @@ a contended lock 9.7%** (newlib's allocator lock), gsRun 4.6%, texture upload de
 Next: the ring mapped once, persistent and coherent (GL 4.4 / ARB_buffer_storage through getProcAddress): an update
 is a memcpy. Host conformance with it (`host-tests/rhi-host-ring-persistent.txt`, Mesa iris): 127/127 within
 tolerance of upstream's Vulkan backend, 91 byte-identical, as before.
+
+## route-prof3/4/5-docked (2026-11-25): the stream rings take the main thread from ~60 to ~25 ms
+
+Main thread's CPU in the GL backend per present while driving (`[rhi-stats] cpu per present`):
+
+| NRO | constants (updates) | other buffer updates | draws | main thread host_ms / gl_ms median |
+|---|---|---|---|---|
+| 8a86737c, persistent constant ring | (together with the others) 11.5-19.0 ms in 420-710 | | 5.5-10.1 ms | 58.5 / 54.3 ms |
+| ed6adebf, split timing | **0.3-0.8 ms in 300-580** | **7.0-19.1 ms in 4-5 (250-500 KiB)** | 4.9-8.4 ms | - |
+| **35b0375e, vertex ring too** | 0.3-0.7 ms | **0.3-0.5 ms in 4** | 4.2-6.4 ms | **24.5 / 12.3 ms** |
+
+The constants were cheap once the ring was persistently mapped; the cost left was the frame's few vertex buffer
+updates, each orphaning the buffer's whole capacity (2-4 ms each on nouveau). With both rings (`[rhi] constant ring:
+8192 KiB ... persistent map`, `vertex ring: 32768 KiB ...`) the main thread's GL time while driving is 12.3 ms median
+(from 44-62), its host frame 24.5 ms (from ~60). 0 GL errors. Host conformance with the rings: 127/127 within
+tolerance, 91 byte-identical (`host-tests/rhi-host-stream-rings.txt`).
+
+route-prof5-docked (the route with the sampler, so not the baseline): 10.0 game fps, median 70.4 ms; the **game
+thread** (46 ms median) is the limit now. Its profile (t4): 45% waiting; busy time led by the VU0 natives `boxClip`
+6.3% / `matrixTimes3From` 6.0% (of all samples), a contended lock 4.9%, dispatch 2.2%. The GS stage (t6): `free`
+16.5%, mutex 12.2% (newlib's allocator lock, likely), 48% waiting. Heap in use up to 946 MiB, obtained 1.14 GiB.
