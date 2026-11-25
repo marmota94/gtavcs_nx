@@ -36,6 +36,19 @@ import switch_m09_session as m09  # noqa: E402
 
 m06.SHOTS = ROOT / "build/evidence/M10/screenshots"
 
+# NX_NRO: send this NRO instead of build/m04/private/gtavcs.nro (for example the card's own copy of a candidate whose
+# game code is unchanged); its SHA-256 is in the run's log as usual.
+_game = m04.game
+
+
+def _game_with_nro(*args, **kwargs):
+    if os.environ.get("NX_NRO"):
+        m04.NRO_LOCAL = Path(os.environ["NX_NRO"]).resolve()
+    return _game(*args, **kwargs)
+
+
+m04.game = _game_with_nro
+
 
 def pct(values, q):
     return m06.percentile(values, q) if values else float("nan")
