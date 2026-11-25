@@ -238,3 +238,18 @@ route-prof5-docked (the route with the sampler, so not the baseline): 10.0 game 
 thread** (46 ms median) is the limit now. Its profile (t4): 45% waiting; busy time led by the VU0 natives `boxClip`
 6.3% / `matrixTimes3From` 6.0% (of all samples), a contended lock 4.9%, dispatch 2.2%. The GS stage (t6): `free`
 16.5%, mutex 12.2% (newlib's allocator lock, likely), 48% waiting. Heap in use up to 946 MiB, obtained 1.14 GiB.
+
+## soak30-docked (2026-11-25): the game crashed after the first interior transition
+
+NRO `4dfc629b` (commit 9a4d345), `tests/switch/m10-soak30.cfg`. Boot, S4, combat (80-110 s: lock-on and punches at the
+soldiers, `combat-100.png`), the car and the cruise from 132 s, at 420 s the cruise stopped and the player went into
+Phil's range interior (area 2): the player's z read 12.1 there (not 30 - upstream's notes: the booth's floor is not
+loaded when the range is entered from elsewhere; he stands on the ground under it), back outdoors at 462 s, the cruise
+again at 470 s. The log ends at 480 s; Atmosphère's crash report for the game (`soak30-docked/crash-report-head.txt`):
+**Data Abort, PC = X0 = 0xaaa000000007471f** (a jump through a corrupt pointer), thread 0x56f, a 12-frame stack in the
+game's code. The ELF of that build was not kept (removed when the next build's was archived): the stack is not
+resolved. From now on the ELF of every NRO that runs on the console is kept (build/m10-elf/<nro>.elf).
+
+interior-repro-1 (NRO `49075457`, commit c86663a): the same transition early (cruise 132-150 s, interior 152-192 s,
+cruise again from 200 s) ran to 300 s and exited cleanly: not reproduced that way. soak30-docked-2 repeats the whole
+soak on 49075457 (ELF kept).

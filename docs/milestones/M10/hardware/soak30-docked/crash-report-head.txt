@@ -1,0 +1,100 @@
+Atmosphère Crash Report (v1.7):
+Result:                          0x4A8 (2168-0002)
+
+Process Info:
+    Process Name:                Application
+    Program ID:                  05446530aca7e000
+    Process ID:                  000000000000008f
+    Process Flags:               00000073
+    User Exception Address:      0000000077886000
+Exception Info:
+    Type:                        Data Abort
+    Address:                     aaa000000007471f
+    Fault Address:               0000000000000000
+Crashed Thread Info:
+    Thread ID:                   000000000000056f
+    Stack Region:                000000001e7a5000-000000001e8a5000
+    Registers:
+        X[00]:                   aaa000000007471f
+        X[01]:                   0000000764cdb718
+        X[02]:                   00000007417a3b90
+        X[03]:                   0000000000000000
+        X[04]:                   0000000000000000
+        X[05]:                   000000000000d800
+        X[06]:                   0000000000000006
+        X[07]:                   0000000000000005
+        X[08]:                   000000029ef6fa90
+        X[09]:                   0000000000000004
+        X[10]:                   00000000000008c0
+        X[11]:                   0000000000000000
+        X[12]:                   8000001fe880001f
+        X[13]:                   0000000003000000
+        X[14]:                   000000073b4aa741
+        X[15]:                   0000000000000001
+        X[16]:                   000000029dcd9c80 (gtavcs + 0x2ca6c80)
+        X[17]:                   0000000000000000
+        X[18]:                   0000000000000024
+        X[19]:                   aaa00000000746cf
+        X[20]:                   0000000764cdb718
+        X[21]:                   0000000000000000
+        X[22]:                   0000000725cbaaa0
+        X[23]:                   0000000725cbabc0
+        X[24]:                   0000000000000002
+        X[25]:                   0000000764cdb718
+        X[26]:                   0000000000000000
+        X[27]:                   00000007264bb010
+        X[28]:                   000000072c232010
+        FP:                      000000001e8a2c10
+        LR:                      000000029dc87654 (gtavcs + 0x2c54654)
+        SP:                      000000001e8a2c10
+        PC:                      000000029dea9bc4 (gtavcs + 0x2e76bc4)
+    Stack Trace:
+        ReturnAddress[00]:       000000029dc87654 (gtavcs + 0x2c54654)
+        ReturnAddress[01]:       000000029dc866e4 (gtavcs + 0x2c536e4)
+        ReturnAddress[02]:       000000029dc93a7c (gtavcs + 0x2c60a7c)
+        ReturnAddress[03]:       000000029dd6b628 (gtavcs + 0x2d38628)
+        ReturnAddress[04]:       000000029dcd6b3c (gtavcs + 0x2ca3b3c)
+        ReturnAddress[05]:       000000029d954514 (gtavcs + 0x2921514)
+        ReturnAddress[06]:       000000029d888ca4 (gtavcs + 0x2855ca4)
+        ReturnAddress[07]:       000000029d88cde0 (gtavcs + 0x2859de0)
+        ReturnAddress[08]:       000000029d858f48 (gtavcs + 0x2825f48)
+        ReturnAddress[09]:       000000029d9630fc (gtavcs + 0x29300fc)
+        ReturnAddress[10]:       000000029b086024 (gtavcs + 0x53024)
+        ReturnAddress[11]:       000000029b085b00 (gtavcs + 0x52b00)
+        ReturnAddress[12]:       00000007264bba90
+        ReturnAddress[13]:       0000000425cbab98
+        ReturnAddress[14]:       0000000725cbab98
+        ReturnAddress[15]:       0000000725cbab88
+        ReturnAddress[16]:       0000000725cbab98
+        ReturnAddress[17]:       0000000725cbab88
+        ReturnAddress[18]:       0000000725cbab98
+        ReturnAddress[19]:       0000000725cbab88
+        ReturnAddress[20]:       0000000725cbab98
+        ReturnAddress[21]:       0000000725cbab88
+        ReturnAddress[22]:       0000000725cbab98
+        ReturnAddress[23]:       0000000725cbab88
+        ReturnAddress[24]:       0000000725cbab98
+        ReturnAddress[25]:       0000000725cbab88
+        ReturnAddress[26]:       0000000725cbab98
+        ReturnAddress[27]:       0000000725cbab88
+        ReturnAddress[28]:       0000000725cbab98
+        ReturnAddress[29]:       0000000725cbab88
+        ReturnAddress[30]:       0000000725cbab98
+        ReturnAddress[31]:       0000000725cbab88
+    Stack Dump:                               00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f
+                                 00001e8a2c10 40 2c 8a 1e 00 00 00 00 54 76 c8 9d 02 00 00 00
+                                 00001e8a2c20 18 01 00 00 00 00 00 00 20 b7 cd 64 07 00 00 00
+                                 00001e8a2c30 22 67 41 44 07 00 00 00 a0 aa cb 25 07 00 00 00
+                                 00001e8a2c40 b0 2c 8a 1e 00 00 00 00 e4 66 c8 9d 02 00 00 00
+                                 00001e8a2c50 d0 b6 cd 64 07 00 00 00 10 b0 4b 26 07 00 00 00
+                                 00001e8a2c60 d0 b6 cd 64 07 00 00 00 18 b7 cd 64 07 00 00 00
+                                 00001e8a2c70 20 b7 cd 64 07 00 00 00 02 00 00 00 00 00 00 00
+                                 00001e8a2c80 10 b6 cd 64 07 00 00 00 14 66 c8 9d 02 00 00 00
+                                 00001e8a2c90 90 3b 7a 41 07 00 00 00 14 66 c8 9d 02 00 00 00
+                                 00001e8a2ca0 c0 2c 8a 1e 00 00 00 00 d0 b6 cd 64 07 00 00 00
+                                 00001e8a2cb0 f0 2c 8a 1e 00 00 00 00 7c 3a c9 9d 02 00 00 00
+                                 00001e8a2cc0 30 68 23 2c 07 00 00 00 c0 08 00 00 00 00 00 00
+                                 00001e8a2cd0 30 68 25 2c 07 00 00 00 00 00 00 00 00 00 00 00
+                                 00001e8a2ce0 e4 88 00 00 00 00 00 00 37 8f 00 00 00 00 00 00
+                                 00001e8a2cf0 10 2d 8a 1e 00 00 00 00 28 b6 d6 9d 02 00 00 00
+                                 00001e8a2d00 10 b6 cd 64 07 00 00 00 ff ff ff ff ff ff ff 00
