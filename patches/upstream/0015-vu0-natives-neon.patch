@@ -202,10 +202,10 @@ index 4865fb1..cb5e330 100644
          r.vi[1] = v.fcand(0x03u);                                           // 0478 FCAND
 diff --git a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_neon.h b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_neon.h
 new file mode 100644
-index 0000000..b8215e3
+index 0000000..a72b1f1
 --- /dev/null
 +++ b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_neon.h
-@@ -0,0 +1,124 @@
+@@ -0,0 +1,122 @@
 +// [gta-recomp] vu1neon: the vu1v vector helpers (ps2_vu1_compiled.h) for AArch64 NEON (Switch port M10-03).
 +//
 +// On a host without AVX, vu1v is a struct of four floats and its fused multiply-add computes every lane in double
@@ -270,14 +270,12 @@ index 0000000..b8215e3
 +            vandq_u32(vandq_u32(vcgeq_f32(magnitude, vdupq_n_f32(0x1p-100f)), vcleq_f32(magnitude, vdupq_n_f32(0x1p126f))),
 +                      vcleq_f32(vabsq_f32(floatProduct), vmulq_f32(magnitude, vdupq_n_f32(0x1p20f))));
 +        const uint32x4_t zeroOperand = vorrq_u32(vceqq_f32(a, vdupq_n_f32(0.0f)), vceqq_f32(b, vdupq_n_f32(0.0f)));
-+        const uint32x4_t fine = vorrq_u32(inRange, zeroOperand);
-+        alignas(16) uint32_t lanes[4];
-+        vst1q_u32(lanes, fine);
-+        unsigned bad = 0u;
-+        for (unsigned k = 0; k < 4u; ++k)
-+            if (!lanes[k])
-+                bad |= 1u << k;
-+        if ((bad & Dest) == 0u)
++        // every written lane fine: the lanes not written count as fine, and the lowest lane is all ones. In registers -
++        // a store of the mask read back per lane stalled the A57 (a narrow load from a wide store does not forward:
++        // about half of the natives' samples, route-prof6-docked)
++        const uint32x4_t unwritten = {(Dest & 1u) ? 0u : ~0u, (Dest & 2u) ? 0u : ~0u, (Dest & 4u) ? 0u : ~0u,
++                                      (Dest & 8u) ? 0u : ~0u};
++        if (vminvq_u32(vorrq_u32(vorrq_u32(inRange, zeroOperand), unwritten)) == ~0u)
 +            return value;
 +        alignas(16) float values[4], cs[4], as[4], bs[4];
 +        vst1q_f32(values, value);
