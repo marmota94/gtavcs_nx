@@ -63,7 +63,7 @@ def main():
          f"-DVCS_UPSTREAM_DIR={source}", f"-DVULKAN_HEADERS_DIR={deps / 'vulkanheaders-src/include'}",
          f"-DVOLK_DIR={deps / 'volk-src'}", f"-DVMA_DIR={deps / 'vulkanmemoryallocator-src/include'}",
          f"-DSHADER_HEADERS_DIR={shaders}", f"-DIMGUI_DIR={deps / 'imgui-src'}"], stdout=subprocess.DEVNULL)
-    run(["cmake", "--build", build])
+    run(["cmake", "--build", build, "--parallel", os.environ.get("NX_BUILD_JOBS", "1")])  # the host is a shared NAS
     if a.no_run:
         return 0
     # the desktop reference: upstream's Vulkan backend on this host's GPU (Mesa ANV / RADV, whatever the loader picks

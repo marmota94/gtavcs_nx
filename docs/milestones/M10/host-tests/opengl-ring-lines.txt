@@ -1,0 +1,1 @@
+[rhi] constant buffers through a 8192 KiB ring (offset alignment 32)

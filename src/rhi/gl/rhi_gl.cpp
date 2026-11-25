@@ -264,6 +264,10 @@ namespace rhi
             GLuint name = 0;
             GLenum target = GL_ARRAY_BUFFER;
             size_t allocated = 0; // bytes the GL buffer holds (constant buffers: rounded up to 16 as in D3D11)
+            // M10-03: a dynamic constant buffer's contents live in the device's uniform ring once updated (ring); its
+            // own storage keeps the initial data until then
+            bool ring = false, ringValid = false;
+            size_t ringOffset = 0;
         };
 
         class GlSampler final : public Sampler
@@ -369,6 +373,11 @@ namespace rhi
                     std::fclose(m_gpuLog);
                 if (m_passTime && !m_passQueries.empty())
                     glDeleteQueries(static_cast<GLsizei>(m_passQueries.size()), m_passQueries.data());
+                for (GLsync &f : m_ubo.fences)
+                    if (f)
+                        glDeleteSync(f), f = nullptr;
+                if (m_ubo.name)
+                    glDeleteBuffers(1, &m_ubo.name);
                 drain();
                 std::lock_guard<std::mutex> lock(m_core->mutex);
                 m_core->alive = false;
@@ -411,6 +420,26 @@ namespace rhi
                         std::fprintf(stderr, "[rhi] GPU time per frame to %s%s\n", path, m_gpuLog ? "" : ": cannot open");
                     }
                     beginGpuFrame();
+                }
+                // M10-03: dynamic constant buffers through one uniform ring (PS2X_GL_UBO_RING=0: each update orphans the
+                // buffer's own storage, as before). Driving, ~500 updates a frame cost the Switch's main thread 12-23 ms
+                // with orphaning (route-prof-docked); each orphan is a new allocation in Mesa nouveau.
+                {
+                    const char *e = std::getenv("PS2X_GL_UBO_RING");
+                    m_ubo.on = !(e && e[0] == '0');
+                }
+                if (m_ubo.on)
+                {
+                    GLint align = 256;
+                    glGetIntegerv(GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT, &align);
+                    m_ubo.align = static_cast<size_t>(std::max(align, 16));
+                    glGenBuffers(1, &m_ubo.name);
+                    glBindBuffer(GL_COPY_WRITE_BUFFER, m_ubo.name);
+                    glBufferData(GL_COPY_WRITE_BUFFER, static_cast<GLsizeiptr>(kUboRingBytes), nullptr, GL_STREAM_DRAW);
+                    glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
+                    label(kLabelBuffer, m_ubo.name, "constant ring");
+                    std::fprintf(stderr, "[rhi] constant buffers through a %u KiB ring (offset alignment %zu)\n",
+                                 static_cast<unsigned>(kUboRingBytes / 1024u), m_ubo.align);
                 }
                 // GPU time per pass (M10-02): GL_TIMESTAMP queries around each pass, by pass name and target size
                 m_passTime = !m_offscreen && envOn("PS2X_GL_PASS_TIME");
@@ -728,6 +757,7 @@ namespace rhi
                            desc.name ? desc.name : "", b->allocated, m_caps.maxUniformBlockSize);
                     return nullptr;
                 }
+                b->ring = m_ubo.on && desc.dynamic && desc.usage == BufferUsage::Constant && b->allocated <= kUboRingBytes / kUboSegments;
                 glGenBuffers(1, &b->name);
                 // element array buffers are VAO state: made through GL_COPY_WRITE_BUFFER so no VAO changes
                 glBindBuffer(GL_COPY_WRITE_BUFFER, b->name);
@@ -758,6 +788,11 @@ namespace rhi
                     reject("updateBuffer: %zu bytes into '%s' of %zu: clamped", size, b.desc().name ? b.desc().name : "",
                            b.desc().size);
                     size = b.desc().size;
+                }
+                if (b.ring)
+                {
+                    ringWrite(b, data, size);
+                    return;
                 }
                 glBindBuffer(GL_COPY_WRITE_BUFFER, b.name);
                 if (b.desc().dynamic)
@@ -1112,7 +1147,11 @@ namespace rhi
                     reject("setConstants: slot %u or '%s' is not a constant buffer", slot, b.desc().name ? b.desc().name : "");
                     return;
                 }
-                glBindBufferBase(GL_UNIFORM_BUFFER, slot, b.name);
+                if (b.ring && b.ringValid)
+                    glBindBufferRange(GL_UNIFORM_BUFFER, slot, m_ubo.name, static_cast<GLintptr>(b.ringOffset),
+                                      static_cast<GLsizeiptr>(b.allocated));
+                else
+                    glBindBufferBase(GL_UNIFORM_BUFFER, slot, b.name);
                 m_blocks[slot] = {b.name, b.allocated};
             }
 
@@ -2039,6 +2078,59 @@ namespace rhi
                 }
             }
 
+            // ---- the constant ring (M10-03) -----------------------------------------------------------------------------
+            // One GL buffer of kUboRingBytes in kUboSegments segments. An update takes the next aligned span (the
+            // buffer's whole allocation, so a binding covers the shader's block), written through an unsynchronized map:
+            // draws already submitted keep reading their own spans (D3D11 WRITE_DISCARD). Entering a segment fences the
+            // one left and waits for the segment's fence from the last lap (long done: a lap is many frames).
+            void ringWrite(GlBuffer &b, const void *data, size_t size)
+            {
+                const size_t need = (b.allocated + m_ubo.align - 1u) & ~(m_ubo.align - 1u);
+                const size_t segment = kUboRingBytes / kUboSegments;
+                size_t at = m_ubo.head;
+                if (at / segment != (at + need - 1u) / segment || at + need > kUboRingBytes)
+                    at = ((at / segment) + 1u) * segment % kUboRingBytes; // to the next segment's start
+                const uint32_t seg = static_cast<uint32_t>(at / segment);
+                if (seg != m_ubo.segment)
+                {
+                    GLsync &left = m_ubo.fences[m_ubo.segment];
+                    if (left)
+                        glDeleteSync(left);
+                    left = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
+                    GLsync &entering = m_ubo.fences[seg];
+                    if (entering)
+                    {
+                        if (glClientWaitSync(entering, GL_SYNC_FLUSH_COMMANDS_BIT, 0) == GL_TIMEOUT_EXPIRED)
+                        {
+                            ++m_ubo.waits;
+                            glClientWaitSync(entering, GL_SYNC_FLUSH_COMMANDS_BIT, 1000000000ull);
+                        }
+                        glDeleteSync(entering);
+                        entering = nullptr;
+                    }
+                    m_ubo.segment = seg;
+                }
+                glBindBuffer(GL_COPY_WRITE_BUFFER, m_ubo.name);
+                void *p = glMapBufferRange(GL_COPY_WRITE_BUFFER, static_cast<GLintptr>(at), static_cast<GLsizeiptr>(need),
+                                           GL_MAP_WRITE_BIT | GL_MAP_UNSYNCHRONIZED_BIT | GL_MAP_INVALIDATE_RANGE_BIT);
+                if (p)
+                {
+                    std::memcpy(p, data, size);
+                    glUnmapBuffer(GL_COPY_WRITE_BUFFER);
+                }
+                else
+                    glBufferSubData(GL_COPY_WRITE_BUFFER, static_cast<GLintptr>(at), static_cast<GLsizeiptr>(size), data);
+                glBindBuffer(GL_COPY_WRITE_BUFFER, 0);
+                m_ubo.head = at + need;
+                b.ringOffset = at;
+                b.ringValid = true;
+                // D3D11: an update reaches the slots the buffer is bound to
+                for (uint32_t slot = 0; slot < kBlocks; ++slot)
+                    if (m_blocks[slot].name == b.name)
+                        glBindBufferRange(GL_UNIFORM_BUFFER, slot, m_ubo.name, static_cast<GLintptr>(at),
+                                          static_cast<GLsizeiptr>(b.allocated));
+            }
+
             // ---- GPU time per pass (PS2X_GL_PASS_TIME, M10-02) ----------------------------------------------------------
             // A GL_TIMESTAMP query at the start and the end of each pass (they may overlap the frame's GL_TIME_ELAPSED
             // query); results read in order, without waiting, when the GPU has them. A pass finding no free record is
@@ -2214,6 +2306,19 @@ namespace rhi
             uint32_t m_gpuNext = 0;
             uint64_t m_gpuReported[2] = {0, 0}; // frames, ns at the last [rhi-stats] line
             FILE *m_gpuLog = nullptr;             // PS2X_GL_GPU_LOG: frame,gpu_ms per timed frame
+
+            // the constant ring (M10-03)
+            static constexpr size_t kUboRingBytes = 8u << 20;
+            static constexpr uint32_t kUboSegments = 8;
+            struct UboRing
+            {
+                bool on = false;
+                GLuint name = 0;
+                size_t align = 256, head = 0;
+                uint32_t segment = 0;
+                GLsync fences[kUboSegments] = {};
+                uint64_t waits = 0;
+            } m_ubo;
 
             // PS2X_GL_CPU_TIME (M10-02): the owner thread's CPU time inside the backend by kind of call
             enum CpuKind : uint32_t { CpuCreate, CpuUpload, CpuBuffer, CpuDraw, CpuPass, CpuCopy, CpuSwap, CpuDelete, CpuKinds };
