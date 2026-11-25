@@ -160,3 +160,31 @@ native chain), the same at 4:3.
 
 **Change (M10-03):** src/core/core.cpp sets `PS2X_HW_POSTFX=bc` unless the run sets it: trails recorded, bloom and
 frame copies native (`[core] post effects native: bc` in the log).
+
+## route-docked-2 (2026-11-25): the busy route with trails recorded
+
+NRO `73de4f16` (commit 8439ef1, clean; `[core] post effects native: bc`). `route-docked-2-route.txt`, window 90-390 s
+driving: **7.9 game fps, median 79.6 ms** (route-docked-1: 7.7 / 104.7), p95 377 ms. Driving, two limits the standing
+runs did not show: the game thread 43.9 ms median (streaming, more of the world), and the main thread's GL calls
+44.3 ms median per host frame (`gl_ms`; texture creation `tex_create_us` p95 35 ms, max 738 ms: the streamed
+textures are made on the main thread, M05-09). Heap in use up to 857 MiB, obtained 1.09 GiB at the end. 0 underruns,
+0 GL errors.
+
+## route-prof-docked (2026-11-25): sampling the main thread took the console down
+
+NRO `1d572faa`, `VCS_NX_SAMPLE_THREAD=main,4`. The game log (`route-prof-crash/gtavcs.log`) ends after the report at
+351 s of 420; the console went to Atmosphere's fatal screen (the user: "It crashed atmosphere"). The newest crash
+report is the system's **controller applet** (0100000000001003, User Break in its "Prepare Thread",
+`route-prof-crash/controller-crash-head.txt`); no report of the game. The run's only new factor was pausing the main
+thread (SDL, window, GL, applet messages) 500 times a second; sampling the game thread alone (align64-docked) ran
+clean. The samples were lost (written at shutdown). The sampler now refuses `main`.
+
+Also in these logs:
+- **No controller connected** in the docked runs (`gamepad=0`, `[platform] controller physical: ... nothing connected
+  for player 1`): scripted runs need none; M10-08's controller loss needs the Joy-Cons connected.
+- psm read `charger=none battery=0%` throughout (it read `enough-power 100%` in clocks-docked); psm is no longer asked.
+- `program_id=05446530aca7e000`: the title the homebrew runs under. sys-clk's config has a profile for it:
+  `handheld_charging_official_cpu=1785 gpu=768 mem=1600`, nothing docked. So **docked runs are at stock** (as
+  clocks-docked read), but **handheld while charging on the official charger runs the CPU at 1785 MHz** (stock 1020):
+  M09-06's handheld game thread (~22 ms against ~35 ms docked; 1785 / 1020 = 1.75) was very likely overclocked.
+  Handheld M10 runs must be on battery or with that profile removed (user's decision).
