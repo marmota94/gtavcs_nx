@@ -1,0 +1,10 @@
+Vulkan: 127 images, 0 failed checks (/Downloads/repos/gtavcs_nx/build/m05/host/vulkan_hw)
+Vulkan: 127 images, 0 failed checks (/Downloads/repos/gtavcs_nx/build/m05/host/vulkan)
+OpenGL: 127 images, 0 failed checks (/Downloads/repos/gtavcs_nx/build/m05/host/opengl)
+127 images, 127 byte-identical, 0 failures
+127 images, 91 byte-identical, 0 failures
+vulkan_hw: exit 0; backend Vulkan on Intel(R) Graphics (ADL-N) (Intel open-source Mesa driver Mesa 25.0.7-2+deb13u1)
+vulkan: exit 0; backend Vulkan on llvmpipe (LLVM 19.1.7, 256 bits) (llvmpipe Mesa 25.0.7-2+deb13u1 (LLVM 19.1.7))
+opengl: exit 0; backend OpenGL on Mesa Intel(R) Graphics (ADL-N) (4.6 (Core Profile) Mesa 25.0.7-2+deb13u1; GLSL 4.60), offscreen
+[rhi] constant ring: 8192 KiB, offset alignment 32, persistent map
+[rhi] vertex ring: 32768 KiB, offset alignment 256, persistent map
