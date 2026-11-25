@@ -1,0 +1,332 @@
+diff --git a/docs/PS2RECOMP_PATCHES.md b/docs/PS2RECOMP_PATCHES.md
+index ddca195..2929498 100644
+--- a/docs/PS2RECOMP_PATCHES.md
++++ b/docs/PS2RECOMP_PATCHES.md
+@@ -401,3 +401,4 @@ changes keep desktop behaviour: `main()` and `run()` take the same steps as befo
+ | Where | What | Why |
+ |---|---|---|
+ | `ps2xRuntime/src/lib/gs/gs_hw.cpp` | `PS2X_HW_WIDE_ALIGN=N`: the integer scale's wide width rounded up to a multiple of N pixels (diagnosis; unset = as before) | Docked at 16:9 the picture's passes into its 853-wide targets cost 2-3 times the 4:3 passes for 1.33 times the pixels; an A/B against an aligned width |
++| `ps2xRuntime/include/runtime/ps2_vu1_neon.h` (new); `src/game/vcs_vu0_native.cpp` | `vu1neon`: vu1v's helpers in NEON with the AVX path's rules (the float range test before the double fallback, compare-and-select min / max, no fused multiply-add); the VU0 natives use it on AArch64 through the alias `vu0v`, vu1v elsewhere. A namespace of its own: the generated VU1 code keeps vu1v | On a host without AVX vu1v's scalar branch computes every fused lane in double; on the Switch the VU0 natives (boxClip, matrixTimes3From) were ~12% of the game thread's samples while driving |
+diff --git a/src/game/vcs_vu0_native.cpp b/src/game/vcs_vu0_native.cpp
+index 4865fb1..cb5e330 100644
+--- a/src/game/vcs_vu0_native.cpp
++++ b/src/game/vcs_vu0_native.cpp
+@@ -7,6 +7,15 @@
+ #include "runtime/ps2_vu0_native.h"
+ #include "runtime/ps2_vu1_compiled.h"
+ 
++// [gta-recomp] Switch port M10-03: on AArch64 the vector helpers are runtime/ps2_vu1_neon.h's (the AVX path's rules in
++// NEON) instead of vu1v's scalar branch, which computes every fused lane in double; elsewhere vu1v as before
++#if defined(__aarch64__)
++#include "runtime/ps2_vu1_neon.h"
++namespace vu0v = vu1neon;
++#else
++namespace vu0v = vu1v;
++#endif
++
+ #include <cstdint>
+ #include <cmath>
+ #include <cstring>
+@@ -14,11 +23,11 @@
+ 
+ namespace
+ {
+-    using vu1v::fused;
+-    using vu1v::load;
+-    using vu1v::operand;
+-    using vu1v::splat;
+-    using vu1v::store;
++    using vu0v::fused;
++    using vu0v::load;
++    using vu0v::operand;
++    using vu0v::splat;
++    using vu0v::store;
+ 
+     // The program's view of VU0's registers. [gta-recomp] VF and ACC are the context's own (`__m128 vu0_vf[32]` has
+     // this layout), worked on in place: copying the whole register file in and out was ~1 KB per call at ~3,100 calls
+@@ -61,9 +70,9 @@ namespace
+     }
+ 
+     // VF = a * b.bc  (MUL / MULA with a broadcast)
+-    vu1v::V mulBc(const float *a, const float *b, int bc) { return operand(vu1v::mul(operand(load(a)), splat(vu1fast::operand(b[bc])))); }
++    vu0v::V mulBc(const float *a, const float *b, int bc) { return operand(vu0v::mul(operand(load(a)), splat(vu1fast::operand(b[bc])))); }
+     // ACC + a * b.bc  (MADD / MADDA)
+-    vu1v::V maddBc(const float *acc, const float *a, const float *b, int bc)
++    vu0v::V maddBc(const float *acc, const float *a, const float *b, int bc)
+     {
+         return fused<0xFu, false>(operand(load(acc)), operand(load(a)), splat(vu1fast::operand(b[bc])));
+     }
+@@ -106,7 +115,7 @@ namespace
+         r.vi[4] = static_cast<int16_t>(r.vi[15] + 24);                     // 0cf8 IADDIU vi4, vi15, 24
+         store<0xFu>(r.vf[31], mulBc(r.vf[0], r.vf[0], 0));                 // 0d00 MULx vf31, vf0, vf0x | IADD vi1 = 0
+         r.vi[1] = 0;
+-        store<0x7u>(r.vf[2], operand(vu1v::sub(operand(load(r.vf[2])), operand(load(r.vf[1]))))); // 0d08 SUB.xyz | vi2 = 0
++        store<0x7u>(r.vf[2], operand(vu0v::sub(operand(load(r.vf[2])), operand(load(r.vf[1]))))); // 0d08 SUB.xyz | vi2 = 0
+         r.vi[2] = 0;
+         r.vi[3] = 3;                                                        // 0d10
+         r.vi[5] = 240;                                                      // 0d18
+@@ -116,33 +125,33 @@ namespace
+         lqi(r, 6, 4, data, size);
+         // [perf] as matrixTimes3From: the broadcasts of vf1 / vf2 / vf0.w (not written in the loop) cleaned once, vf31
+         // (0) cleaned once, ACC kept in a register and stored at the end - the same operations (PS2X_VU0_VERIFY=1)
+-        const vu1v::V b1x = splat(vu1fast::operand(r.vf[1][0])), b1y = splat(vu1fast::operand(r.vf[1][1])),
++        const vu0v::V b1x = splat(vu1fast::operand(r.vf[1][0])), b1y = splat(vu1fast::operand(r.vf[1][1])),
+                       b1z = splat(vu1fast::operand(r.vf[1][2])), b2x = splat(vu1fast::operand(r.vf[2][0])),
+                       b2y = splat(vu1fast::operand(r.vf[2][1])), b2z = splat(vu1fast::operand(r.vf[2][2])),
+                       one = splat(vu1fast::operand(r.vf[0][3])), zero = operand(load(r.vf[31]));
+-        vu1v::V acc = load(r.acc);
++        vu0v::V acc = load(r.acc);
+         do
+         {
+             r.vi[1] = static_cast<int16_t>(r.vi[1] << 4);                   // 0d40..0d58 IADD vi1, vi1, vi1 (x4)
+-            const vu1v::V v3 = operand(load(r.vf[3])), v4 = operand(load(r.vf[4])), v5 = operand(load(r.vf[5]));
+-            acc = operand(vu1v::mul(v3, b1x));                              // 0d40 MULAx  acc = vf3 * vf1x
++            const vu0v::V v3 = operand(load(r.vf[3])), v4 = operand(load(r.vf[4])), v5 = operand(load(r.vf[5]));
++            acc = operand(vu0v::mul(v3, b1x));                              // 0d40 MULAx  acc = vf3 * vf1x
+             acc = fused<0xFu, false>(operand(acc), v4, b1y);                // 0d48 MADDAy
+             acc = fused<0xFu, false>(operand(acc), v5, b1z);                // 0d50 MADDAz
+-            const vu1v::V v7 = fused<0xFu, false>(operand(acc), operand(load(r.vf[6])), one); // 0d58 MADDw vf7 = acc + vf6 * 1
++            const vu0v::V v7 = fused<0xFu, false>(operand(acc), operand(load(r.vf[6])), one); // 0d58 MADDw vf7 = acc + vf6 * 1
+             store<0xFu>(r.vf[7], v7);
+-            const vu1v::V v8 = operand(vu1v::mul(v3, b2x)), v9 = operand(vu1v::mul(v4, b2y)), v10 = operand(vu1v::mul(v5, b2z));
++            const vu0v::V v8 = operand(vu0v::mul(v3, b2x)), v9 = operand(vu0v::mul(v4, b2y)), v10 = operand(vu0v::mul(v5, b2z));
+             store<0xFu>(r.vf[8], v8);                                       // 0d60 MULx vf8
+             store<0xFu>(r.vf[9], v9);                                       // 0d68 MULy vf9
+             store<0xFu>(r.vf[10], v10);                                     // 0d70 MULz vf10
+             r.vi[2] = static_cast<int16_t>(r.vi[2] << 4);                   // 0d60..0d78 IADD vi2, vi2, vi2 (x4)
+-            const vu1v::V lo[3] = {vu1v::min(operand(v8), zero), vu1v::min(operand(v9), zero), vu1v::min(operand(v10), zero)};
+-            const vu1v::V hi[3] = {vu1v::max(operand(v8), zero), vu1v::max(operand(v9), zero), vu1v::max(operand(v10), zero)};
++            const vu0v::V lo[3] = {vu0v::min(operand(v8), zero), vu0v::min(operand(v9), zero), vu0v::min(operand(v10), zero)};
++            const vu0v::V hi[3] = {vu0v::max(operand(v8), zero), vu0v::max(operand(v9), zero), vu0v::max(operand(v10), zero)};
+             for (int i = 0; i < 3; ++i)                                     // 0d80..0da8 MINI / MAX against vf31 (0)
+             {
+                 store<0xFu>(r.vf[11 + i], lo[i]);
+                 store<0xFu>(r.vf[14 + i], hi[i]);
+             }
+-            const vu1v::V base = operand(vu1v::mul(operand(v7), one));      // 0db0 / 0dd0 MULAw acc = vf7
++            const vu0v::V base = operand(vu0v::mul(operand(v7), one));      // 0db0 / 0dd0 MULAw acc = vf7
+             lqi(r, 3, 4, data, size);                                       // | LQI vf3 (next set)
+             acc = fused<0xFu, false>(operand(base), operand(lo[0]), one);   // 0db8 MADDAw | LQI vf4
+             lqi(r, 4, 4, data, size);
+@@ -173,7 +182,7 @@ namespace
+         r.vi[4] = static_cast<int16_t>(r.vi[15] + 24);                     // 0c10 IADDIU vi4, vi15, 24
+         store<0xFu>(r.vf[31], mulBc(r.vf[0], r.vf[0], 0));                 // 0c18 MULx vf31, vf0, vf0x | IADD vi1 = 0
+         r.vi[1] = 0;
+-        store<0xFu>(r.vf[31], operand(vu1v::add(operand(load(r.vf[31])), splat(vu1fast::operand(r.vf[0][3]))))); // 0c20 ADDw vf31 (= 1) | vi2 = 0
++        store<0xFu>(r.vf[31], operand(vu0v::add(operand(load(r.vf[31])), splat(vu1fast::operand(r.vf[0][3]))))); // 0c20 ADDw vf31 (= 1) | vi2 = 0
+         r.vi[2] = 0;
+         r.vi[3] = 3;                                                        // 0c28
+         r.vi[5] = 240;                                                      // 0c30
+@@ -227,22 +236,22 @@ namespace
+         // (not written here) as cleaned broadcasts once per call, each matrix row cleaned once per matrix, ACC kept in
+         // a register (still cleaned as an operand each time) and stored once at the end (bit-identical:
+         // PS2X_VU0_VERIFY=1; PERFORMANCE.md 22)
+-        vu1v::V in[4][4];
++        vu0v::V in[4][4];
+         for (int v = 0; v < 4; ++v)
+             for (int c = 0; c < 4; ++c)
+                 in[v][c] = splat(vu1fast::operand(r.vf[1 + v][c]));
+-        vu1v::V acc = load(r.acc);
++        vu0v::V acc = load(r.acc);
+         do
+         {
+             lqi(r, 5, 1, data, size);                                       // 0ed0..0ee8
+             lqi(r, 6, 1, data, size);
+             lqi(r, 7, 1, data, size);
+             lqi(r, 8, 1, data, size);
+-            const vu1v::V m0 = operand(load(r.vf[5])), m1 = operand(load(r.vf[6])), m2 = operand(load(r.vf[7])),
++            const vu0v::V m0 = operand(load(r.vf[5])), m1 = operand(load(r.vf[6])), m2 = operand(load(r.vf[7])),
+                           m3 = operand(load(r.vf[8]));
+             for (int v = 0; v < 4; ++v)                                     // 0ef0..0f68: vf13+v = M * vf(1+v)
+             {
+-                acc = operand(vu1v::mul(m0, in[v][0]));                     // MULAx
++                acc = operand(vu0v::mul(m0, in[v][0]));                     // MULAx
+                 acc = fused<0xFu, false>(operand(acc), m1, in[v][1]);       // MADDAy
+                 acc = fused<0xFu, false>(operand(acc), m2, in[v][2]);       // MADDAz
+                 store<0xFu>(r.vf[13 + v], fused<0xFu, false>(operand(acc), m3, in[v][3])); // MADDw
+@@ -283,19 +292,19 @@ namespace
+             ctx->vu0_clip_flags2 = clip;
+         }
+ 
+-        vu1v::V vf(int n) const { return operand(load(r.vf[n])); }
+-        vu1v::V lane(int n, int c) const { return splat(vu1fast::operand(r.vf[n][c])); }
+-        vu1v::V acc() const { return operand(load(r.acc)); }
+-        static vu1v::V add(vu1v::V a, vu1v::V b) { return operand(vu1v::add(a, b)); }
+-        static vu1v::V sub(vu1v::V a, vu1v::V b) { return operand(vu1v::sub(a, b)); }
+-        static vu1v::V mul(vu1v::V a, vu1v::V b) { return operand(vu1v::mul(a, b)); }
++        vu0v::V vf(int n) const { return operand(load(r.vf[n])); }
++        vu0v::V lane(int n, int c) const { return splat(vu1fast::operand(r.vf[n][c])); }
++        vu0v::V acc() const { return operand(load(r.acc)); }
++        static vu0v::V add(vu0v::V a, vu0v::V b) { return operand(vu0v::add(a, b)); }
++        static vu0v::V sub(vu0v::V a, vu0v::V b) { return operand(vu0v::sub(a, b)); }
++        static vu0v::V mul(vu0v::V a, vu0v::V b) { return operand(vu0v::mul(a, b)); }
+         // (x, y, z) -> (y, z, x) and (z, x, y): OPMULA / OPMSUB operands
+-        static vu1v::V yzx(vu1v::V v) { return vu1v::yzx(v); }
+-        static vu1v::V zxy(vu1v::V v) { return vu1v::zxy(v); }
++        static vu0v::V yzx(vu0v::V v) { return vu0v::yzx(v); }
++        static vu0v::V zxy(vu0v::V v) { return vu0v::zxy(v); }
+ 
+         void itof0(int n)
+         {
+-            store<0xFu>(r.vf[n], vu1v::intToFloat(load(r.vf[n])));
++            store<0xFu>(r.vf[n], vu0v::intToFloat(load(r.vf[n])));
+         }
+         // ACC.w / dest.w = the sum of v.xyz (MULAx.w, MADDAy.w, MADDz.w with vf0.w = 1)
+         void dotW(int dest, int v)
+@@ -358,7 +367,7 @@ namespace
+             const float num = vu1fast::operand(r.vf[fs][fsf]), den = std::sqrt(std::fabs(vu1fast::operand(r.vf[ft][ftf])));
+             q = vu1fast::result(den != 0.0f ? num / den : maxSigned(std::signbit(num)));
+         }
+-        vu1v::V qv() const { return splat(vu1fast::operand(q)); }
++        vu0v::V qv() const { return splat(vu1fast::operand(q)); }
+         void move(int dst, int src) { std::memcpy(r.vf[dst], r.vf[src], 16); }
+ 
+         // 0x000..0x018: the exits (vi1 = 0 / 1)
+@@ -371,7 +380,7 @@ namespace
+             i = vu1fast::fromBits(0x397FFFD5u);
+             store<0x7u>(r.vf[17], mul(vf(17), splat(vu1fast::operand(i)))); // MULi.xyz vf17 (I = 1/4096) | LOI 1/128
+             i = 0.0078125f;
+-            const vu1v::V i128 = splat(i);
++            const vu0v::V i128 = splat(i);
+             store<0x8u>(r.vf[17], mul(vf(17), i128));                       // MULi.w vf17
+             store<0xFu>(r.vf[14], mul(vf(14), i128));
+             store<0xFu>(r.vf[15], mul(vf(15), i128));
+@@ -538,7 +547,7 @@ namespace
+         store<0x7u>(r.vf[1], fused<0x7u, true>(v.acc(), v.vf(17), v.lane(2, 3))); // 0458 MSUBw vf1: centre on the plane
+         store<0x8u>(r.vf[1], CV::mul(v.vf(0), v.lane(0, 0)));               // 0460 MULx.w vf1 | FCAND (sees 0440 only)
+         r.vi[1] = (clip0440 & 0x3u) != 0u ? 1 : 0;
+-        store<0x8u>(r.vf[2], vu1v::abs(v.vf(2)));                           // 0468 ABS.w vf2 | IBEQ vi0, vi1 -> 0000
++        store<0x8u>(r.vf[2], vu0v::abs(v.vf(2)));                           // 0468 ABS.w vf2 | IBEQ vi0, vi1 -> 0000
+         if (r.vi[1] == 0)
+             return v.exit(0), v.finish(ctx);
+         r.vi[1] = v.fcand(0x03u);                                           // 0478 FCAND
+diff --git a/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_neon.h b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_neon.h
+new file mode 100644
+index 0000000..b8215e3
+--- /dev/null
++++ b/third_party/PS2Recomp/ps2xRuntime/include/runtime/ps2_vu1_neon.h
+@@ -0,0 +1,124 @@
++// [gta-recomp] vu1neon: the vu1v vector helpers (ps2_vu1_compiled.h) for AArch64 NEON (Switch port M10-03).
++//
++// On a host without AVX, vu1v is a struct of four floats and its fused multiply-add computes every lane in double
++// precision (vu1fast::exactResult per lane, always). The AVX path first proves with a float test that the float
++// result is already the exact one (all but rare lanes) and falls back to doubles only for the rest. This header is that
++// AVX path for NEON, with the same rules lane for lane:
++// - operand: denormals -> signed zero, Inf / NaN -> signed max (integer masks, as the AVX path)
++// - max / min: (a > b) ? a : b and (a < b) ? a : b, i.e. SSE's MAXPS / MINPS (the second operand when equal) by a
++//   compare and a select - not vmaxq / vminq, which order +0 / -0 differently
++// - mul / add / sub: one IEEE operation each under the thread's FPCR (rounding mode, flush), never fused: the callers
++//   are compiled with -ffp-contract=off, and no vfma intrinsic is used
++// - fused<Dest, Subtract>: c +/- fl(a * b) when every written lane passes the AVX path's range test or has a zero
++//   operand; otherwise vu1fast::exactResult per written lane on the double value, as the AVX path
++// - store<Dest>: only the written lanes.
++// A separate namespace, not a third branch of vu1v: the generated VU1 code (a private archive compiled against
++// vu1v's scalar branch) keeps its own definitions, so no inline function has two definitions in one program. Used by
++// src/game/vcs_vu0_native.cpp on AArch64; PS2X_VU0_VERIFY=1 checks the natives against the interpreter on live data.
++#pragma once
++
++#if defined(__aarch64__)
++#include <arm_neon.h>
++#include <cstdint>
++#include <cstring>
++
++#include "runtime/ps2_vu1_compiled.h"
++
++namespace vu1neon
++{
++    using V = float32x4_t;
++
++    VU1_FORCEINLINE V load(const float *p) { return vld1q_f32(p); }
++    VU1_FORCEINLINE V splat(float value) { return vdupq_n_f32(value); }
++    VU1_FORCEINLINE V add(V a, V b) { return vaddq_f32(a, b); }
++    VU1_FORCEINLINE V sub(V a, V b) { return vsubq_f32(a, b); }
++    VU1_FORCEINLINE V mul(V a, V b) { return vmulq_f32(a, b); }
++    VU1_FORCEINLINE V max(V a, V b) { return vbslq_f32(vcgtq_f32(a, b), a, b); }
++    VU1_FORCEINLINE V min(V a, V b) { return vbslq_f32(vcltq_f32(a, b), a, b); }
++    VU1_FORCEINLINE V abs(V value)
++    {
++        return vreinterpretq_f32_u32(vandq_u32(vreinterpretq_u32_f32(value), vdupq_n_u32(0x7FFFFFFFu)));
++    }
++
++    // = vu1fast::operand per lane
++    VU1_FORCEINLINE V operand(V value)
++    {
++        const uint32x4_t bits = vreinterpretq_u32_f32(value);
++        const uint32x4_t exponent = vandq_u32(bits, vdupq_n_u32(0x7F800000u));
++        const uint32x4_t sign = vandq_u32(bits, vdupq_n_u32(0x80000000u));
++        uint32x4_t out = vbslq_u32(vceqq_u32(exponent, vdupq_n_u32(0u)), sign, bits);
++        out = vbslq_u32(vceqq_u32(exponent, vdupq_n_u32(0x7F800000u)), vorrq_u32(sign, vdupq_n_u32(0x7F7FFFFFu)), out);
++        return vreinterpretq_f32_u32(out);
++    }
++
++    // acc +/- a * b as vu1v::fused (AVX path): see ps2_vu1_compiled.h for why the float test suffices
++    template <unsigned Dest, bool Subtract>
++    VU1_FORCEINLINE V fused(V c, V a, V b)
++    {
++        const V floatProduct = vmulq_f32(a, b);
++        const V value = Subtract ? vsubq_f32(c, floatProduct) : vaddq_f32(c, floatProduct);
++        const V magnitude = vabsq_f32(value);
++        const uint32x4_t inRange =
++            vandq_u32(vandq_u32(vcgeq_f32(magnitude, vdupq_n_f32(0x1p-100f)), vcleq_f32(magnitude, vdupq_n_f32(0x1p126f))),
++                      vcleq_f32(vabsq_f32(floatProduct), vmulq_f32(magnitude, vdupq_n_f32(0x1p20f))));
++        const uint32x4_t zeroOperand = vorrq_u32(vceqq_f32(a, vdupq_n_f32(0.0f)), vceqq_f32(b, vdupq_n_f32(0.0f)));
++        const uint32x4_t fine = vorrq_u32(inRange, zeroOperand);
++        alignas(16) uint32_t lanes[4];
++        vst1q_u32(lanes, fine);
++        unsigned bad = 0u;
++        for (unsigned k = 0; k < 4u; ++k)
++            if (!lanes[k])
++                bad |= 1u << k;
++        if ((bad & Dest) == 0u)
++            return value;
++        alignas(16) float values[4], cs[4], as[4], bs[4];
++        vst1q_f32(values, value);
++        vst1q_f32(cs, c);
++        vst1q_f32(as, a);
++        vst1q_f32(bs, b);
++        for (unsigned k = 0; k < 4u; ++k)
++        {
++            if ((Dest & (1u << k)) == 0u)
++                continue;
++            const double product = static_cast<double>(as[k]) * static_cast<double>(bs[k]);
++            const double exact = Subtract ? static_cast<double>(cs[k]) - product : static_cast<double>(cs[k]) + product;
++            values[k] = vu1fast::exactResult(values[k], exact);
++        }
++        return vld1q_f32(values);
++    }
++
++    // static_cast<float>(int32 lane bits) (/ divisor), under the thread's rounding mode as the scalar conversion
++    VU1_FORCEINLINE V intToFloat(V bits) { return vcvtq_f32_s32(vreinterpretq_s32_f32(bits)); }
++    VU1_FORCEINLINE V intToFloat(V bits, float divisor) { return vdivq_f32(intToFloat(bits), vdupq_n_f32(divisor)); }
++
++    // (x, y, z, w) -> (y, z, x, w) and (z, x, y, w)
++    VU1_FORCEINLINE V yzx(V v)
++    {
++        const V r = {vgetq_lane_f32(v, 1), vgetq_lane_f32(v, 2), vgetq_lane_f32(v, 0), vgetq_lane_f32(v, 3)};
++        return r;
++    }
++    VU1_FORCEINLINE V zxy(V v)
++    {
++        const V r = {vgetq_lane_f32(v, 2), vgetq_lane_f32(v, 0), vgetq_lane_f32(v, 1), vgetq_lane_f32(v, 3)};
++        return r;
++    }
++
++    template <unsigned Dest>
++    VU1_FORCEINLINE void store(float *p, V value)
++    {
++        if constexpr (Dest == 0xFu)
++            vst1q_f32(p, value);
++        else
++        {
++            if (Dest & 1u)
++                p[0] = vgetq_lane_f32(value, 0);
++            if (Dest & 2u)
++                p[1] = vgetq_lane_f32(value, 1);
++            if (Dest & 4u)
++                p[2] = vgetq_lane_f32(value, 2);
++            if (Dest & 8u)
++                p[3] = vgetq_lane_f32(value, 3);
++        }
++    }
++}
++#endif

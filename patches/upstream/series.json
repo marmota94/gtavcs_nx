@@ -56,6 +56,10 @@
     {
       "path": "0014-wide-target-align.patch",
       "sha256": "a65f2f43974b50406266d231994ce20496c50dd8278b08e2363ddd348afb455c"
+    },
+    {
+      "path": "0015-vu0-natives-neon.patch",
+      "sha256": "2012cc259e14a5d796a11e2cae8e20b0b44deaf9878d6e25f3dbfef8ed916f05"
     }
   ]
 }
