@@ -35,6 +35,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <deque>
 #include <map>
 #include <memory>
 #include <mutex>
@@ -219,6 +220,15 @@ namespace rhi
             // render targets and depth buffers (M09-06: what widescreen's wider targets cost), and the live ones' sizes
             std::atomic<uint64_t> targetCount{0}, targetBytes{0};
             std::map<std::pair<uint32_t, uint32_t>, uint32_t> targetSizes; // width, height -> live targets (mutex)
+            // M10-03: released plain textures kept for reuse (GlDevice's pool) instead of deleted (mutex)
+            struct Recycled
+            {
+                GLuint name;
+                uint32_t width, height, levels;
+                GLenum internal;
+                uint64_t bytes;
+            };
+            std::vector<Recycled> recycled;
 
             void release(std::vector<GLuint> Core::*list, GLuint name)
             {
@@ -247,7 +257,14 @@ namespace rhi
                     if (it != m_core->targetSizes.end() && --it->second == 0)
                         m_core->targetSizes.erase(it);
                 }
-                m_core->release(&Core::textures, name);
+                if (recyclable && name && !fence)
+                {
+                    std::lock_guard<std::mutex> lock(m_core->mutex);
+                    if (m_core->alive)
+                        m_core->recycled.push_back({name, m_desc.width, m_desc.height, levels, format.internal, bytes});
+                }
+                else
+                    m_core->release(&Core::textures, name);
                 if (fence)
                 {
                     std::lock_guard<std::mutex> lock(m_core->mutex);
@@ -263,6 +280,7 @@ namespace rhi
             uint32_t levels = 1;
             uint64_t bytes = 0;
             bool renderTarget = false; // UsageRenderTarget or UsageDepth: counted in Core::target*
+            bool recyclable = false;   // M10-03: a plain 2D texture the owner made: back to the pool when released
         };
 
         class GlBuffer final : public Buffer
@@ -393,6 +411,15 @@ namespace rhi
                     glDeleteQueries(static_cast<GLsizei>(m_passQueries.size()), m_passQueries.data());
                 freeRing(m_ubo);
                 freeRing(m_vbo);
+                for (const Core::Recycled &r : m_texPool)
+                    glDeleteTextures(1, &r.name);
+                m_texPool.clear();
+                {
+                    std::lock_guard<std::mutex> lock(m_core->mutex);
+                    for (const Core::Recycled &r : m_core->recycled)
+                        glDeleteTextures(1, &r.name);
+                    m_core->recycled.clear();
+                }
                 drain();
                 std::lock_guard<std::mutex> lock(m_core->mutex);
                 m_core->alive = false;
@@ -449,6 +476,9 @@ namespace rhi
                         makeRing(m_ubo, kUboRingBytes, static_cast<size_t>(std::max(align, 16)), "constant ring");
                     if (!(v && v[0] == '0'))
                         makeRing(m_vbo, kVboRingBytes, 256u, "vertex ring");
+                    const char *t = std::getenv("PS2X_GL_TEX_RECYCLE");
+                    m_texRecycle = !(t && t[0] == '0');
+                    std::fprintf(stderr, "[rhi] texture pool: %s\n", m_texRecycle ? "released plain textures reused, 64 MiB" : "off");
                 }
                 // GPU time per pass (M10-02): GL_TIMESTAMP queries around each pass, by pass name and target size
                 m_passTime = !m_offscreen && envOn("PS2X_GL_PASS_TIME");
@@ -555,15 +585,20 @@ namespace rhi
                 t->format = fi;
                 t->levels = mips ? (desc.mipLevels ? std::min(desc.mipLevels, fullChain(w, h)) : fullChain(w, h)) : 1u;
                 t->target = msaa ? GL_TEXTURE_2D_MULTISAMPLE : GL_TEXTURE_2D;
-                glGenTextures(1, &t->name);
+                t->recyclable = m_texRecycle && !msaa && !(desc.usage & (UsageRenderTarget | UsageDepth));
+                const GLuint reused = t->recyclable ? takeRecycled(w, h, t->levels, fi.internal) : 0u;
+                t->name = reused;
+                if (!reused)
+                    glGenTextures(1, &t->name);
                 bindScratch(t->target, t->name);
                 if (msaa)
                     glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, static_cast<GLsizei>(desc.samples), fi.internal, w, h, GL_TRUE);
                 else
                 {
-                    for (uint32_t level = 0; level < t->levels; ++level)
-                        glTexImage2D(GL_TEXTURE_2D, static_cast<GLint>(level), static_cast<GLint>(fi.internal),
-                                     std::max(1u, w >> level), std::max(1u, h >> level), 0, fi.format, fi.type, nullptr);
+                    if (!reused) // a reused texture has these levels already (its contents are replaced by the upload)
+                        for (uint32_t level = 0; level < t->levels; ++level)
+                            glTexImage2D(GL_TEXTURE_2D, static_cast<GLint>(level), static_cast<GLint>(fi.internal),
+                                         std::max(1u, w >> level), std::max(1u, h >> level), 0, fi.format, fi.type, nullptr);
                     defaultParameters(t->levels);
                 }
                 t->bytes = accountTexture(w, h, fi.bytes, t->levels, msaa ? desc.samples : 1u);
@@ -728,11 +763,22 @@ namespace rhi
                 auto t = std::make_unique<GlTexture>(m_core, sized);
                 t->format = formatInfo(Format::RGBA8);
                 t->levels = count;
-                glGenTextures(1, &t->name);
+                t->recyclable = m_texRecycle;
+                const GLuint reused = m_texRecycle ? takeRecycled(w, h, count, t->format.internal) : 0u;
+                t->name = reused;
+                if (!reused)
+                    glGenTextures(1, &t->name);
                 bindScratch(GL_TEXTURE_2D, t->name);
+                glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
                 for (uint32_t i = 0; i < count; ++i)
-                    glTexImage2D(GL_TEXTURE_2D, static_cast<GLint>(i), GL_RGBA8, std::max(1u, w >> i), std::max(1u, h >> i), 0,
-                                 GL_RGBA, GL_UNSIGNED_BYTE, levels[i]);
+                {
+                    if (reused)
+                        glTexSubImage2D(GL_TEXTURE_2D, static_cast<GLint>(i), 0, 0, std::max(1u, w >> i), std::max(1u, h >> i),
+                                        GL_RGBA, GL_UNSIGNED_BYTE, levels[i]);
+                    else
+                        glTexImage2D(GL_TEXTURE_2D, static_cast<GLint>(i), GL_RGBA8, std::max(1u, w >> i), std::max(1u, h >> i),
+                                     0, GL_RGBA, GL_UNSIGNED_BYTE, levels[i]);
+                }
                 defaultParameters(count);
                 t->bytes = accountTexture(w, h, 4u, count, 1u);
                 label(GL_TEXTURE, t->name, desc.name);
@@ -1511,6 +1557,24 @@ namespace rhi
                 glBindTexture(target, name);
             }
 
+            // M10-03: a pooled texture of this shape (the oldest: the GPU is the likeliest done with it), or 0. Mesa
+            // nouveau's allocation for a new texture cost the main thread ~3 ms each while streaming (route-prof5-docked);
+            // GL orders the reused texture's upload after the draws that still read its old contents.
+            GLuint takeRecycled(uint32_t w, uint32_t h, uint32_t levels, GLenum internal)
+            {
+                for (auto it = m_texPool.begin(); it != m_texPool.end(); ++it)
+                    if (it->width == w && it->height == h && it->levels == levels && it->internal == internal)
+                    {
+                        const GLuint name = it->name;
+                        m_texPoolBytes -= it->bytes;
+                        m_texPool.erase(it);
+                        ++m_texReused;
+                        return name;
+                    }
+                ++m_texMade;
+                return 0u;
+            }
+
             void defaultParameters(uint32_t levels)
             {
                 // complete with every allocated level, whatever sampler reads it (texelFetch needs completeness too)
@@ -2008,6 +2072,7 @@ namespace rhi
                 CpuScope cpu(this, CpuDelete);
                 std::vector<GLuint> textures, buffers, samplers, vaos;
                 std::vector<GLsync> fences;
+                std::vector<Core::Recycled> recycled;
                 {
                     std::lock_guard<std::mutex> lock(m_core->mutex);
                     fences.swap(m_core->fences);
@@ -2015,6 +2080,26 @@ namespace rhi
                     buffers.swap(m_core->buffers);
                     samplers.swap(m_core->samplers);
                     vaos.swap(m_core->vaos);
+                    recycled.swap(m_core->recycled);
+                }
+                if (!recycled.empty())
+                {
+                    // into the pool: no longer bound to a unit (a later texture may take the name with other contents)
+                    for (const Core::Recycled &r : recycled)
+                        for (uint32_t slot = 0; slot < kUnits; ++slot)
+                            if (m_units[slot].name == r.name)
+                                m_units[slot] = {};
+                    for (const Core::Recycled &r : recycled)
+                    {
+                        m_texPool.push_back(r);
+                        m_texPoolBytes += r.bytes;
+                    }
+                    while (m_texPoolBytes > kTexPoolBytes && !m_texPool.empty())
+                    {
+                        glDeleteTextures(1, &m_texPool.front().name);
+                        m_texPoolBytes -= m_texPool.front().bytes;
+                        m_texPool.pop_front();
+                    }
                 }
                 if (!vaos.empty())
                 {
@@ -2335,6 +2420,15 @@ namespace rhi
                     m_gpuReported[0] = s.gpuFrames;
                     m_gpuReported[1] = s.gpuNs;
                 }
+                if (m_texRecycle)
+                {
+                    std::fprintf(stderr, "[rhi-stats] texture pool: %llu reused, %llu made, %zu pooled (%.1f MiB)\n",
+                                 static_cast<unsigned long long>(m_texReused - m_texReported[0]),
+                                 static_cast<unsigned long long>(m_texMade - m_texReported[1]), m_texPool.size(),
+                                 m_texPoolBytes / 1048576.0);
+                    m_texReported[0] = m_texReused;
+                    m_texReported[1] = m_texMade;
+                }
                 if (cpuTimeOn())
                 {
                     static const char *const names[CpuKinds] = {"create", "upload", "buffer", "draw", "pass", "copy", "swap",
@@ -2421,6 +2515,11 @@ namespace rhi
 
             // the stream rings (M10-03)
             StreamRing m_ubo, m_vbo;
+            // the texture pool (M10-03; PS2X_GL_TEX_RECYCLE=0: released textures deleted, as before)
+            static constexpr uint64_t kTexPoolBytes = 64ull << 20;
+            bool m_texRecycle = false;
+            std::deque<Core::Recycled> m_texPool;
+            uint64_t m_texPoolBytes = 0, m_texReused = 0, m_texMade = 0, m_texReported[2] = {0, 0};
             GLuint m_vertexLogical = 0;     // the RHI buffer bound as vertex buffer (its own name), when streamed
             uint32_t m_vertexUserOffset = 0; // ... and the caller's offset
 
