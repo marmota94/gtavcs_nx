@@ -253,3 +253,22 @@ resolved. From now on the ELF of every NRO that runs on the console is kept (bui
 interior-repro-1 (NRO `49075457`, commit c86663a): the same transition early (cruise 132-150 s, interior 152-192 s,
 cruise again from 200 s) ran to 300 s and exited cleanly: not reproduced that way. soak30-docked-2 repeats the whole
 soak on 49075457 (ELF kept).
+
+## soak30-docked-2 and soak15-norecycle (2026-11-25): the crash is in Mesa's buffer sub-allocator; without the pool, none
+
+soak30-docked-2 (NRO `49075457`, ELF kept): crashed again, ~75 s after the first interior transition's return (log
+ends at 540 s). Data Abort, PC = X0 = 0xeaa00000000a2d7a. The stack against the ELF: **nouveau_mm_allocate <-
+nouveau_buffer_create <- nvc0_resource_create <- st_bufferobj_data <- glBufferData <- GlDevice::createBuffer
+(rhi_gl.cpp) <- RhiExecutor::execute (gs_hw.cpp:1066, MeshCreate: a native mesh's vertex buffer)** <-
+executeAndGetDisplay <- runFrame <- gtavcs_core_frame <- main. Mesa's buffer sub-allocator jumped through a corrupt
+pointer: memory corruption. The live buffers stay at ~10,000-12,000 (the native meshes, made and deleted as the world
+streams): not a leak.
+
+soak15-norecycle (same NRO, `PS2X_GL_TEX_RECYCLE=0`, the soak cut to 900 s with transitions at 420 and 720 s): **no
+crash** - 900 s, 14,127 game frames, both transitions. Both crashed soaks had the texture pool on. The run then hung in
+the GL backend's teardown, after the `[rhi] GPU time` line (`soak15-norecycle-gtavcs.log`), and did not return to
+Sphaira.
+
+Change: a pooled texture is reused only after a GPU fence shows every command before its release has completed (no
+upload into a texture the GPU may still read - Mesa nouveau's busy-texture path, the suspect); the teardown's steps are
+logged. The full soak repeats with it.

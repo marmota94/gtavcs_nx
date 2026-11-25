@@ -227,6 +227,7 @@ namespace rhi
                 uint32_t width, height, levels;
                 GLenum internal;
                 uint64_t bytes;
+                uint64_t serial = 0; // the pool's batch (GlDevice): reused only once its fence has signalled
             };
             std::vector<Recycled> recycled;
 
@@ -405,12 +406,19 @@ namespace rhi
                                  m_stats.gpuFrames ? m_stats.gpuNs / 1e6 / static_cast<double>(m_stats.gpuFrames) : 0.0,
                                  m_stats.gpuMaxNs / 1e6, static_cast<unsigned long long>(m_stats.gpuDropped));
                 }
+                // M10-10: each teardown step named (soak15-norecycle hung after the GPU time line)
+                std::fprintf(stderr, "[rhi] teardown: GPU log, queries\n");
                 if (m_gpuLog)
                     std::fclose(m_gpuLog);
                 if (m_passTime && !m_passQueries.empty())
                     glDeleteQueries(static_cast<GLsizei>(m_passQueries.size()), m_passQueries.data());
+                std::fprintf(stderr, "[rhi] teardown: stream rings\n");
                 freeRing(m_ubo);
                 freeRing(m_vbo);
+                std::fprintf(stderr, "[rhi] teardown: texture pool (%zu)\n", m_texPool.size());
+                for (auto &f : m_poolFences)
+                    glDeleteSync(f.second);
+                m_poolFences.clear();
                 for (const Core::Recycled &r : m_texPool)
                     glDeleteTextures(1, &r.name);
                 m_texPool.clear();
@@ -420,7 +428,9 @@ namespace rhi
                         glDeleteTextures(1, &r.name);
                     m_core->recycled.clear();
                 }
+                std::fprintf(stderr, "[rhi] teardown: released objects\n");
                 drain();
+                std::fprintf(stderr, "[rhi] teardown: done\n");
                 std::lock_guard<std::mutex> lock(m_core->mutex);
                 m_core->alive = false;
             }
@@ -1594,8 +1604,19 @@ namespace rhi
             // GL orders the reused texture's upload after the draws that still read its old contents.
             GLuint takeRecycled(uint32_t w, uint32_t h, uint32_t levels, GLenum internal)
             {
+                // the batches the GPU is done with (without waiting)
+                while (!m_poolFences.empty())
+                {
+                    const GLenum st = glClientWaitSync(m_poolFences.front().second, 0, 0);
+                    if (st != GL_ALREADY_SIGNALED && st != GL_CONDITION_SATISFIED)
+                        break;
+                    m_poolSafe = m_poolFences.front().first;
+                    glDeleteSync(m_poolFences.front().second);
+                    m_poolFences.pop_front();
+                }
                 for (auto it = m_texPool.begin(); it != m_texPool.end(); ++it)
-                    if (it->width == w && it->height == h && it->levels == levels && it->internal == internal)
+                    if (it->serial <= m_poolSafe && it->width == w && it->height == h && it->levels == levels &&
+                        it->internal == internal)
                     {
                         const GLuint name = it->name;
                         m_texPoolBytes -= it->bytes;
@@ -2121,8 +2142,14 @@ namespace rhi
                         for (uint32_t slot = 0; slot < kUnits; ++slot)
                             if (m_units[slot].name == r.name)
                                 m_units[slot] = {};
-                    for (const Core::Recycled &r : recycled)
+                    // one fence for the batch: a pooled texture is reused only when the GPU has finished every command
+                    // issued before it was released (no upload into a texture the GPU may still read: Mesa nouveau's
+                    // busy-texture path, a suspect of soak30-docked's crash in its buffer sub-allocator)
+                    ++m_poolSerial;
+                    m_poolFences.push_back({m_poolSerial, glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0)});
+                    for (Core::Recycled r : recycled)
                     {
+                        r.serial = m_poolSerial;
                         m_texPool.push_back(r);
                         m_texPoolBytes += r.bytes;
                     }
@@ -2552,6 +2579,8 @@ namespace rhi
             bool m_texRecycle = false;
             std::deque<Core::Recycled> m_texPool;
             uint64_t m_texPoolBytes = 0, m_texReused = 0, m_texMade = 0, m_texReported[2] = {0, 0};
+            uint64_t m_poolSerial = 0, m_poolSafe = 0;
+            std::deque<std::pair<uint64_t, GLsync>> m_poolFences;
             GLuint m_vertexLogical = 0;     // the RHI buffer bound as vertex buffer (its own name), when streamed
             uint32_t m_vertexUserOffset = 0; // ... and the caller's offset
 
