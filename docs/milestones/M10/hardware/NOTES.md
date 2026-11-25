@@ -34,3 +34,26 @@ driving throughout; the console's clock and the host's differ). Measured on the 
 
 So the shake is the frame rate and its uneven pacing (M10-03/04/06), not a camera or presentation bug. It is
 rechecked on video after each performance change.
+
+## stand-aspect-docked (2026-11-24): the wide picture's cost docked, standing
+
+NRO `af1a582d`, `tests/switch/m10-stand-aspect.cfg`: the player standing at the S4 spot (M09-06's view), the aspect
+switched live every 50 s (the `[present] display aspect` lines confirm each switch). `tools/switch_m10_session.py
+route ... --from A --to B` per window:
+
+| Window | Aspect | Game fps | Median / p95 ms | game_ms | host_ms | gl_ms | wait_ms |
+|---|---|---|---|---|---|---|---|
+| 80-130 | 16:9 | 11.3 | 67.2 / 155.8 | 33.7 | 56.6 | 19.4 | 27.9 |
+| 130-180 | 4:3 | 21.0 | 39.0 / 68.2 | 35.1 | 23.0 | 15.6 | 0.0 |
+| 180-230 | 16:9 | 12.2 | 67.8 / 135.3 | 36.1 | 58.7 | 19.2 | 26.7 |
+| 230-280 | 4:3 | 18.5 | 41.1 / 102.2 | 35.6 | 40.8 | 35.9 | 0.0 |
+
+M09-06 handheld, same spot: 4:3 median 23.9 ms (game_ms 21.7), 16:9 48.8 ms. Docked:
+
+- 16:9 costs about half the frame rate docked too: the main thread's host frame doubles (23 -> 57 ms) and the game
+  waits on it (wait_ms 0 -> 27 ms).
+- The **game thread itself takes 34-36 ms docked against ~22 ms handheld** at the same spot and stock CPU clock (the
+  same in both modes), at either aspect. Something takes CPU from it docked. libnx gives every std::thread the
+  process's default core as its ideal core (`__syscall_thread_create`: threadCreate(..., -2), then the process core
+  mask as affinity): the game thread, the render worker, the GS stage and the main thread may share a core. Next run:
+  each thread's CPU share and core mask (`[threads]` result lines, src/switch/thread_stack.c).
