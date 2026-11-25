@@ -58,6 +58,7 @@
 // src/switch/thread_stack.c and open_audit.c (linked into the NRO with --wrap)
 extern "C" unsigned gtavcs_threads_created(void);
 extern "C" size_t gtavcs_default_thread_stack(void);
+extern "C" void gtavcs_thread_cpu_line(char *out, size_t size); // M10-02, src/switch/thread_stack.c
 extern "C" unsigned gtavcs_open_count(void);
 extern "C" unsigned gtavcs_iso_open_count(void);
 extern "C" void gtavcs_branch_trace_report(void);
@@ -200,6 +201,10 @@ namespace
                       static_cast<unsigned long long>(ps.audioFrames), ps.gamepad ? 1 : 0,
                       static_cast<size_t>(heap.uordblks), static_cast<size_t>(heap.arena));
         result(core, "progress", line);
+        // M10-02: each thread's share of a core since the last report, its ideal core / affinity mask
+        char cpu[768];
+        gtavcs_thread_cpu_line(cpu, sizeof(cpu));
+        result(core, "threads", cpu);
         result(core, "perf", quote(ps2perf::summaryLine()));
         result(core, "devmenu", devmenu::reportLine());
     }
