@@ -61,7 +61,7 @@ int __wrap___syscall_thread_create(struct __pthread_t **thread, void *(*func)(vo
     svcGetInfo(&mask, InfoType_CoreMask, CUR_PROCESS_HANDLE, 0);
     const Result rc = core >= 0 ? svcSetThreadCoreMask(handle, core, (u32)mask) : 0;
     s32 ideal = -1;
-    u32 affinity = 0;
+    u64 affinity = 0;
     svcGetThreadCoreMask(&ideal, &affinity, handle);
     /* the creation order names the threads in the [threads] lines (t1, t2, ...); the log's neighbouring lines say
      * which runtime thread each is */
@@ -90,7 +90,7 @@ void gtavcs_thread_cpu_line(char *out, size_t size)
         u64 ticks = 0;
         if (R_FAILED(svcGetInfo(&ticks, InfoType_ThreadTickCount, h, (u64)-1))) continue; /* exited */
         s32 ideal = -1;
-        u32 mask = 0;
+        u64 mask = 0;
         svcGetThreadCoreMask(&ideal, &mask, h);
         const unsigned pct = span && last_ticks[i] ? (unsigned)((ticks - last_ticks[i]) * 100 / span) : 0;
         last_ticks[i] = ticks;
