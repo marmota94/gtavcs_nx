@@ -87,6 +87,7 @@ int main(int argc, char **argv)
 {
     (void)argc; (void)argv;
     int result = EXIT_FAILURE, core_started = 0;
+    unsigned long frames_presented = 0; /* before any goto cleanup: the error dialog reads it (M10-09) */
     SDL_Window *window = NULL;
     SDL_GLContext context = NULL;
     FILE *log = NULL;
@@ -194,7 +195,6 @@ int main(int argc, char **argv)
     u64 window_frames = 0, window_start = armTicksToNs(armGetSystemTick());
     appletHook(&hook, lifecycle_hook, NULL);
     hook_started = 1;
-    unsigned long frames_presented = 0;
     while (running && appletMainLoop()) {
         /* Focus messages can be coalesced while Horizon suspends the process.
          * Compare real ticks to libnx's clock excluding accumulated suspension;
