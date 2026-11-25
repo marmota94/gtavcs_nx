@@ -299,3 +299,23 @@ and streamed between every transition (`cruise status` advancing after each). **
 p95 170.7 ms, p99 546.8 ms; game thread median 30.6 ms; render-stage stalls up to 10.4 s (texture creation up to
 994 ms in one frame: streamed textures made on the main thread). Heap in use at most 897 MiB, obtained 1,356 MiB at the
 end and still growing (fragmentation).
+
+## The fault runs (2026-11-25), NRO `0104b414`
+
+- **fault-read-audio-docked** (`VCS_NX_FAULT_READ=.VB:120:5`): five reads of the radio's AUDIO/MUSIC/FRESH.VB failed
+  while driving; the sound went on, 0 underruns, the run ended cleanly at 300 s. Absorbed.
+- **fault-read-img-docked** (`.IMG:150:3`): three reads of GTA3PS2.IMG failed (`[stream] read of 55296 bytes at LSN
+  0x1d35a failed`); from then on **a black screen**: 0 draws, the player frozen at (-630, 447, 34.8), the game thread
+  spinning at ~10 fps, until the run's timer ended it. Not a bounded recovery. Fixed (commit 41a16bd): the folder disc
+  retries a failed read 3 times; a file still unreadable stops the core with it named (the system's error dialog,
+  "GTA VCS NX stopped."). To be rerun, with the persistent case (`m10-fault-read-persist.cfg`).
+- **fault-texture-docked** (`VCS_NX_FAULT_TEXTURE=20:120:15`): all 15 refused texture creations ('gs texture') were
+  absorbed - the run went on to its 300 s, stopped orderly and the GL backend's teardown finished (`teardown: done`,
+  `fault-texture-docked/gtavcs.log`). It then **hung before the audio device closed** and never returned to Sphaira -
+  the same place as soak15-norecycle's hang (after the GL teardown). Not the texture fault: a shutdown hang that comes
+  after some long runs.
+
+The shutdown order after the GL teardown: present::shutdown's end, `ps2AudioShutdown` (joins the audio keeper thread,
+which calls the native sound engine's fill: SPU2, music stream), then SDL's audio close. The game thread (and the IOP
+work it drives) is joined before the keeper is stopped. Change (src/core/core.cpp): the core clears the keeper's filler
+before the runtime stops; log lines before that and before SDL's audio close place a remaining hang.

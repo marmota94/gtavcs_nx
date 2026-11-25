@@ -36,6 +36,7 @@
 #include "game/vcs_trainer.h"
 #include "launcher.h"
 #include "render/presenter.h"
+#include "runtime/ps2_audio_out.h"
 #include "rhi/rhi.h"
 #include "settings/settings.h"
 #include "util/sha1.h"
@@ -292,6 +293,12 @@ namespace
     void teardown(Core &core)
     {
         gtavcs_sampler_stop(); // writes the samples before the threads it sampled go
+        // M10-10: the audio keeper's filler (the native sound engine's fill: SPU2, music stream) stops before the game
+        // thread is joined, so the keeper is idle when runEnd joins it. Two runs (soak15-norecycle, fault-texture-docked)
+        // hung after the GL teardown, before the audio device closed; this rules the keeper out or finds it.
+        ps2AudioSetFiller(nullptr);
+        std::this_thread::sleep_for(std::chrono::milliseconds(30)); // a fill in progress finishes (the keeper's tick is 5 ms)
+        std::fprintf(stderr, "[core] audio filler stopped; stopping the runtime\n");
         if (core.runtime)
         {
             core.runtime->requestStop();

@@ -792,6 +792,7 @@ namespace platform
         if (!g_audio)
             return;
         g_audioWanted.store(false, std::memory_order_release);
+        std::fprintf(stderr, "[platform] closing the audio device\n"); // M10-10: a hang here is SDL's close
         SDL_CloseAudioDevice(g_audio); // waits for a callback in progress: AudioFill is not called after this
         std::fprintf(stderr, "[platform] audio closed after %llu callbacks, %llu frames\n",
                      static_cast<unsigned long long>(g_audioCallbacks.load()), static_cast<unsigned long long>(g_audioFrames.load()));
