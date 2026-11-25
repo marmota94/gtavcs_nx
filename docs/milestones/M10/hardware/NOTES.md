@@ -57,3 +57,20 @@ M09-06 handheld, same spot: 4:3 median 23.9 ms (game_ms 21.7), 16:9 48.8 ms. Doc
   process's default core as its ideal core (`__syscall_thread_create`: threadCreate(..., -2), then the process core
   mask as affinity): the game thread, the render worker, the GS stage and the main thread may share a core. Next run:
   each thread's CPU share and core mask (`[threads]` result lines, src/switch/thread_stack.c).
+
+## threads-docked (2026-11-24): where the CPU and the GPU go, docked
+
+NRO `ae99f34c` (commit 4b75456, clean): the `[threads]` lines. Same schedule as stand-aspect-docked.
+
+- libnx's threads have **no ideal core and the mask 0-2** (`[threads] created tN: ideal core -1, mask 7`): the kernel
+  spreads them over the three application cores. They are not confined to one core.
+- **16:9 windows: the CPU is mostly idle.** Sum of all threads ~110-118% of one core (main ~28%, game thread t4
+  ~44%, the render worker / GS stage t5 / t6 ~20% each). 4:3 windows: ~200-220%, the game thread ~87%.
+- **16:9 docked is GPU-bound**: the `[rhi-stats] gpu` lines give ~41-50 ms of GPU time per present at 16:9
+  (61-73 presents per 5 s line) against ~10-18 ms at 4:3. M09-06 handheld: 21.3 ms (16:9) / 11.4 ms (4:3); with
+  640-wide targets at 16:9 34.2 ms - so the target width alone is not the cause; 4:3 costs the same docked and
+  handheld, 16:9 docked costs twice handheld.
+- At 4:3 the game thread is the limit (~35 ms per game frame, 87% busy). Why it takes 35 ms docked against ~22 ms in
+  M09's handheld run is open (clocks not read yet).
+
+Next: the GPU time of every pass (`PS2X_GL_PASS_TIME`, `tests/switch/m10-stand-passes.cfg`).
