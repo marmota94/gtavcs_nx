@@ -10,6 +10,7 @@
 #include <stdarg.h>
 #include <arpa/inet.h>
 #include "core.h"
+int gtavcs_audio_close_hung(void); /* src/platform/platform_switch_sdl2.cpp (M10-10) */
 #include "switch/output.h"
 
 #define ASSET_ROOT "sdmc:/switch/gtavcs_nx/gamefolder"
@@ -274,7 +275,10 @@ cleanup:;
     if (core_started) gtavcs_core_shutdown();
     if (context) SDL_GL_DeleteContext(context);
     if (window) SDL_DestroyWindow(window);
-    SDL_Quit(); /* Also unwind a partially successful SDL_Init. */
+    /* M10-10: SDL_Quit closes an audio device still open - the one SDL would not close (gtavcs_audio_close_hung) - and
+     * would hang there too: left to the process's end then */
+    if (gtavcs_audio_close_hung()) diagnostic("[shutdown] SDL_Quit skipped: the audio device did not close\n");
+    else SDL_Quit(); /* Also unwind a partially successful SDL_Init. */
     if (result == EXIT_SUCCESS)
         diagnostic("[shutdown] core, context, window and SDL closed\n");
     else {

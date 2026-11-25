@@ -332,3 +332,14 @@ logged in order (`audio filler stopped`, `teardown: done`, `closing the audio de
 Changes: patch 0016 (`PS2X_HW_TEX_BUDGET_MS`, the Switch default 12 ms: GS textures beyond that per frame wait and
 are made first in the next frames; their draws left out meanwhile) and the GL backend frees released textures at most
 ~3 ms a frame (a backlog; the teardown frees all). Host conformance with the backlog: 127/127, 91 byte-identical.
+
+## fault-read-img-docked-2 and fault-texture-docked-2 (2026-11-25), NRO `498fcb71`
+
+- **fault-read-img-docked-2**: the three refused reads of GTA3PS2.IMG retried; the fourth attempt read (`read
+  succeeded after a failure ... attempt 4 of 4`); the game drew on (draws every 5 s), the run exited cleanly at 300 s.
+  Bounded recovery.
+- **fault-texture-docked-2**: the 15 refused texture creations absorbed again; at exit the log ends at `[platform]
+  closing the audio device`, after `audio filler stopped` and the GL teardown's `done` - the game froze (the user: "It
+  was frozen the game again"). The hang is **inside switch-sdl2's SDL_CloseAudioDevice**, not the keeper or the
+  fault. Change: the device is paused, then closed on a helper thread with a 1 s limit; if SDL does not return, the
+  exit goes on (`the audio device did not close within 1 s`) and main.c skips SDL_Quit (which would close it again).

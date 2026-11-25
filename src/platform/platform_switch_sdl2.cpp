@@ -36,6 +36,7 @@
 
 #include <algorithm>
 #include <array>
+#include <memory>
 #include <atomic>
 #include <chrono>
 #include <cmath>
@@ -72,6 +73,7 @@ namespace platform
 
         SDL_AudioDeviceID g_audio = 0;
         AudioFill g_audioFill = nullptr;
+        std::atomic<bool> g_audioCloseHung{false}; // M10-10: SDL_CloseAudioDevice did not return (audioClose)
         std::atomic<bool> g_audioWanted{false}; // open and not paused for focus
         std::atomic<uint64_t> g_audioCallbacks{0}, g_audioFrames{0};
 
@@ -792,8 +794,29 @@ namespace platform
         if (!g_audio)
             return;
         g_audioWanted.store(false, std::memory_order_release);
-        std::fprintf(stderr, "[platform] closing the audio device\n"); // M10-10: a hang here is SDL's close
-        SDL_CloseAudioDevice(g_audio); // waits for a callback in progress: AudioFill is not called after this
+        std::fprintf(stderr, "[platform] closing the audio device\n");
+        // M10-10: switch-sdl2's close sometimes never returned (fault-texture-docked-2: the log ends at the line above, the
+        // game frozen at exit). The device is paused first, then closed on a helper thread with a 1 s limit; if SDL does
+        // not return, the exit goes on without it (main.c then skips SDL_Quit, which would close the device again and
+        // hang) and the process's end stops SDL's audio thread.
+        SDL_PauseAudioDevice(g_audio, 1);
+        auto closed = std::make_shared<std::atomic<bool>>(false);
+        const SDL_AudioDeviceID device = g_audio;
+        std::thread closer([device, closed] {
+            SDL_CloseAudioDevice(device); // waits for a callback in progress: AudioFill is not called after this
+            closed->store(true, std::memory_order_release);
+        });
+        const auto limit = std::chrono::steady_clock::now() + std::chrono::seconds(1);
+        while (!closed->load(std::memory_order_acquire) && std::chrono::steady_clock::now() < limit)
+            std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        if (closed->load(std::memory_order_acquire))
+            closer.join();
+        else
+        {
+            closer.detach();
+            g_audioCloseHung.store(true, std::memory_order_release);
+            std::fprintf(stderr, "[platform] the audio device did not close within 1 s: left to the process's end\n");
+        }
         std::fprintf(stderr, "[platform] audio closed after %llu callbacks, %llu frames\n",
                      static_cast<unsigned long long>(g_audioCallbacks.load()), static_cast<unsigned long long>(g_audioFrames.load()));
         g_audio = 0;
@@ -912,3 +935,6 @@ namespace platform_switch
         return which >= 0 && which < 2 && g_rawSticks[which];
     }
 }
+
+// M10-10: main.c skips SDL_Quit when the audio device could not be closed (it would close it again and hang)
+extern "C" int gtavcs_audio_close_hung(void) { return platform::g_audioCloseHung.load(std::memory_order_acquire) ? 1 : 0; }
