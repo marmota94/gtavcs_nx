@@ -171,11 +171,20 @@ def crash_list(session, name):
 
 def nxlink(session, local, remote):
     folder = local.parent.resolve()
-    command = ["docker", "run", "--rm", "--mount", f"type=bind,source={folder.as_posix()},target=/p,readonly",
+    name = f"gtavcs-nxlink-{os.getpid()}"
+    command = ["docker", "run", "--rm", "--name", name, "--mount",
+               f"type=bind,source={folder.as_posix()},target=/p,readonly",
                IMAGE, "/opt/devkitpro/tools/bin/nxlink", "-a", HOST, "-r", "3", "-p", remote, f"/p/{local.name}"]
     env = dict(os.environ, MSYS_NO_PATHCONV="1")
     for attempt in range(1, 4):
-        result = subprocess.run(command, capture_output=True, text=True, env=env, timeout=600)
+        try:
+            # a 66 MB NRO takes about a minute; nxlink hangs when Sphaira is not on its main screen
+            result = subprocess.run(command, capture_output=True, text=True, env=env, timeout=300)
+        except subprocess.TimeoutExpired:
+            subprocess.run(["docker", "kill", name], capture_output=True)
+            session.say(f"nxlink attempt={attempt} hung for 300 s: container killed (is Sphaira on its main screen?)")
+            time.sleep(8)
+            continue
         session.say(f"nxlink attempt={attempt} exit={result.returncode} output={(result.stdout + result.stderr).strip()!r}")
         if result.returncode == 0:
             return True
